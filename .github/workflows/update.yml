@@ -33,12 +33,14 @@ jobs:
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
         
-        # Добавляем ВСЕ новые файлы (ru, eu, all)
-        git add proxy_ru.txt proxy_eu.txt proxy_all.txt proxy_stats.json
+        # Добавляем только существующие файлы
+        git add proxy_ru.txt proxy_eu.txt proxy_all.txt
         
-        # Если старый файл остался, удаляем его из гита
-        git rm --cached proxy_list.txt || true
+        # Если старый файл существует в репозитории, удаляем его
+        if [ -f "proxy_list.txt" ]; then
+          git rm proxy_list.txt || true
+        fi
         
-        # Коммитим и пушим
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: RU/EU lists" && git push)
+        # Коммитим только если есть изменения
+        git diff --quiet && git diff --staged --quiet || (git commit -m "🔄 Auto-update: RU/EU proxy lists $(date +'%Y-%m-%d %H:%M UTC')" && git push)
 
