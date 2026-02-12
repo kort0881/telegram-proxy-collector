@@ -68,7 +68,6 @@ python main.py
 ⚙️ Как это работает (Техническая часть)
 Скрипт парсит "сырые" базы прокси с GitHub (SoliSpirit, Hookzof и др.), а затем прогоняет их через фильтр ProxyClassifier:
 
-python
 # Пример логики оценки
 if secret.startswith("ee"):
     domain = decode_secret(secret)
@@ -76,9 +75,5 @@ if secret.startswith("ee"):
         score += 50  # Super Priority
     elif "google.com" in domain:
         score += 20  # Normal Priority
-Это гарантирует, что в топе списка всегда будут самые "живучие" сервера.
 
 Developed by Kort0881
-
-text
-undefined
