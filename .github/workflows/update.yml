@@ -2,8 +2,8 @@ name: Update Proxy List
 
 on:
   schedule:
-    - cron: '0 */4 * * *'  # Запуск каждые 4 часа
-  workflow_dispatch:      # Кнопка для ручного запуска
+    - cron: '0 */4 * * *'  # Каждые 4 часа
+  workflow_dispatch:      # Ручной запуск
 
 permissions:
   contents: write
@@ -32,6 +32,13 @@ jobs:
       run: |
         git config --global user.name 'GitHub Actions'
         git config --global user.email 'actions@github.com'
-        git add proxy_list.txt
-        # Коммитим только если есть изменения
-        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update proxies" && git push)
+        
+        # Добавляем ВСЕ новые файлы (ru, eu, all)
+        git add proxy_ru.txt proxy_eu.txt proxy_all.txt proxy_stats.json
+        
+        # Если старый файл остался, удаляем его из гита
+        git rm --cached proxy_list.txt || true
+        
+        # Коммитим и пушим
+        git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update: RU/EU lists" && git push)
+
