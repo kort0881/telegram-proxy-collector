@@ -1,17 +1,15 @@
-# RU Proxies (14)
-# Updated: 2026-02-17 20:22:48 UTC
+# RU Proxies (12)
+# Updated: 2026-02-18 01:00:08 UTC
 
-tg://proxy?server=72.56.102.104&port=443&secret=eed8223b129a62eafcdafc08c4513e6d0531632e7275
-tg://proxy?server=72.56.78.99&port=443&secret=eea1b303bada01b81e3f48d38511e95e9031632e7275
-tg://proxy?server=mtproto.online&port=443&secret=ee139e0ee36150c1ea3bf299796586b5457777772e7674622e7275
 tg://proxy?server=168.119.250.230&port=443&secret=ee550fbe912b27753fa54a23c73ba806347765622e727562696b612e636f6d
-tg://proxy?server=5.129.193.137&port=443&secret=ee1178512256973a8fa4bf32e13bf8e04731632e7275
-tg://proxy?server=37.139.34.147&port=443&secret=ee945bcba88da188b91f9234162d3fb8bd6d61782e7275
+tg://proxy?server=72.56.78.99&port=443&secret=eea1b303bada01b81e3f48d38511e95e9031632e7275
+tg://proxy?server=72.56.102.104&port=443&secret=eed8223b129a62eafcdafc08c4513e6d0531632e7275
+tg://proxy?server=mtproto.online&port=443&secret=ee139e0ee36150c1ea3bf299796586b5457777772e7674622e7275
 tg://proxy?server=46.243.232.222&port=443&secret=eeccedf4acf58a2f639b0c3e3f6b0a78d56d61782e7275
+tg://proxy?server=37.139.34.147&port=443&secret=ee945bcba88da188b91f9234162d3fb8bd6d61782e7275
 tg://proxy?server=37.139.34.125&port=443&secret=eeea117b84278bc990f4b25bbf7686ba836d61782e7275
+tg://proxy?server=5.129.193.137&port=443&secret=ee1178512256973a8fa4bf32e13bf8e04731632e7275
 tg://proxy?server=37.139.34.128&port=443&secret=eefc1510c9153cb7fbadbc6325e81684a76d61782e7275
-tg://proxy?server=proxy-dag.ru&port=443&secret=ee94fc2b484af6e1e1c87e6576b33c257579612e7275
-tg://proxy?server=proxy.codex-vpn.ru&port=443&secret=ee3fbe95e68e560b9b58e408e13b22ad0d70726f78792d736e692e636f6465782d76706e2e7275
 tg://proxy?server=tgmtpfree.realityvpn.ru&port=443&secret=ee71b0a6e0369ba316464ab3cb05b6c6e631632e7275
+tg://proxy?server=proxy-dag.ru&port=443&secret=ee94fc2b484af6e1e1c87e6576b33c257579612e7275
 tg://proxy?server=p.krakenlabs.ru&port=8443&secret=ee82ca02a4c8457a796b42c4c555627472702e6b72616b656e6c6162732e7275
-tg://proxy?server=138.124.54.64&port=443&secret=ee82ab8267b6f684c79b677d3acaa1146831632e7275
