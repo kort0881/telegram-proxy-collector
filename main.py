@@ -7,44 +7,19 @@ from datetime import datetime
 import json
 import os
 
-# ИСТОЧНИКИ (обновлённые)
+# ИСТОЧНИКИ (основные txt-списки MTProto)
 SOURCES = [
-    # SoliSpirit – автоапдейт каждые 12 часов
+    # SoliSpirit – исходный all_proxies.txt (автоапдейт каждые 12ч)
     "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",  # [web:32]
 
-    # ALIILAPRO – свежие mtproto-прокси
-    "https://raw.githubusercontent.com/ALIILAPRO/MTProtoProxy/main/mtproto.txt",    # [web:35]
+    # Grim1313 – форк, синхронизируется с SoliSpirit
+    "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",  # [web:20]
 
-    # Grim1313 – список mtproto
-    "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/main/proxies.txt",  # [web:20]
+    # Доп. источник от ALIILAPRO
+    "https://raw.githubusercontent.com/ALIILAPRO/MTProtoProxy/main/mtproto.txt",  # [web:35]
 
-    # Старые, но ещё живые источники
+    # Старый, но полезный список
     "https://raw.githubusercontent.com/yemixzy/proxy-projects/main/proxies/mtproto.txt",
-    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/MTPROTO_RAW.txt",
-]
-
-# Ручные прокси, которые ты прислал (будут добавляться к собранным)
-MANUAL_PROXIES = [
-    ("Online.harcibasheokeye.ir", 987, "7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t"),
-    ("193.124.49.92", 443, "a4b93f8c7e5d21fa0c6e4b2d8f19c73a"),
-    ("14.102.10.145", 8443, "eeNEgYdJvXrFGRMCIMJdCQ"),
-    ("195.254.165.96", 65535, "10446282fff6fffffff80000fff80000"),
-    ("films.video-fun-new.com.de", 443, "eefeb6d369848a45bd91fd87e332faa3d063727970747061642e6672"),
-    ("77.72.80.86", 443, "eeNEgYdJvXrFGRMCIMJdCQ"),
-    ("185.84.157.21", 444, "FgMBAgABAAH8AxOG4kw63Q=="),
-    ("garden-paradise.karako.co.uk", 443, "ee1603010200010001fc030386e24c3add626973636F7474692E79656B74616E65742E636F6D"),
-    ("paitakht.arasto.info", 443, "7hYDAQIAAQAB_AMDhuJMOt1iaXNjb3R0aS55ZWt0YW5ldC5jb20"),
-    ("95.217.169.14", 443, "eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"),
-    ("62.60.176.36", 443, "7hYDAQIAAQAH8AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29tbWVkaWEuc3RlYW1wb3dlcmVkLmNvbQ"),
-    ("10.full.filmne1t.info", 8080, "dd49a70de57a60174f18dfd7fe6ef6aaf5"),
-    ("78.46.234.177", 443, "DDBighLLvXrFGRMCBVJdFQ=="),
-    ("65.109.244.118", 8080, "ProxyQavi____ProxymelgACM4eFlnUldQOFpvTHVwZmNpaVI2ZkJFNDJMSXJxUW1yT2s4YzRCaVRaLi11cGRhdAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"),
-    ("03363673733776377.meli.zban-mas.info", 8888, "7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t"),
-    ("Shooka-Koopa.xhivar-nokian.rang-mavar-zhos.info", 2040, "EEABAzJJlbB8AwOG6Ibn8Q"),
-    ("morgh.2p2p.ir", 8080, "7maIHm4ebR_2ZmZmYW1mrq5ob3N0aXJhbi5jbG91ZA=="),
-    ("212.34.151.112", 443, "eeNEgYdJvXrFGRMCIMJdCQ"),
-    ("udp.road-digger.info.", 61016, "7nnnAQIAAQAH8AMDhuJMOt0"),
-    ("87.28.51.0.mamadjoon.ir", 231, "ee5lrPbFdb1vizwd3HEHow"),
 ]
 
 TIMEOUT = 2.0
@@ -62,7 +37,7 @@ BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'tor
 def get_proxies_from_text(text: str):
     proxies = set()
 
-    # 1) Пробуем достать tg://proxy?server=...&port=...&secret=...
+    # tg://proxy?server=...&port=...&secret=...
     tg_pattern = re.compile(
         r'tg://proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=-]+)',
         re.IGNORECASE
@@ -70,22 +45,22 @@ def get_proxies_from_text(text: str):
     for h, p, s in tg_pattern.findall(text):
         proxies.add((h, int(p), s))
 
-    # 2) Пробуем формат t.me/proxy?server=...
+    # t.me/proxy?server=...&port=...&secret=...
     tme_pattern = re.compile(
-        r't.me/proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=-]+)',
+        r't\.me/proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=-]+)',
         re.IGNORECASE
     )
     for h, p, s in tme_pattern.findall(text):
         proxies.add((h, int(p), s))
 
-    # 3) Старый формат host:port:secret
+    # host:port:secret
     simple_pattern = re.compile(
         r'([a-zA-Z0-9\.-]+):(\d+):([A-Fa-f0-9]{16,})'
     )
     for h, p, s in simple_pattern.findall(text):
         proxies.add((h, int(p), s))
 
-    # 4) Попытка парсить JSON-списки
+    # Попытка парсить JSON
     txt = text.strip()
     if txt.startswith('[') or txt.startswith('{'):
         try:
@@ -148,10 +123,18 @@ def check_proxy(p):
                 break
 
     return {
+        'host': host,
+        'port': port,
+        'secret': secret,
         'link': f"tg://proxy?server={host}&port={port}&secret={secret}",
         'ping': ping,
         'region': region
     }
+
+
+def make_tme_link(host, port, secret):
+    # Ссылка, которая открывается через браузер: t.me/proxy...
+    return f"https://t.me/proxy?server={host}&port={port}&secret={secret}"
 
 
 def main():
@@ -159,11 +142,11 @@ def main():
     print("🚀 Start collecting...")
     all_raw = set()
 
-    # 1. Грузим из внешних источников
+    # 1. Загрузка из источников
     for url in SOURCES:
         name = url.split('/')[3]
         try:
-            r = requests.get(url, timeout=10)
+            r = requests.get(url, timeout=15)
             if r.status_code != 200:
                 print(f"✗ {name} -> HTTP {r.status_code}")
                 continue
@@ -172,13 +155,6 @@ def main():
             print(f"✓ {name} -> {len(extracted)}")
         except Exception as e:
             print(f"✗ Failed: {name} ({e})")
-
-    # 2. Добавляем ручные прокси из списка
-    before_manual = len(all_raw)
-    for h, p, s in MANUAL_PROXIES:
-        all_raw.add((h, int(p), s))
-    added_manual = len(all_raw) - before_manual
-    print(f"✓ Manual list -> {added_manual}")
 
     print(f"\n⚡ Checking {len(all_raw)} proxies...")
     valid = []
@@ -192,7 +168,7 @@ def main():
     ru = sorted([x for x in valid if x['region'] == 'ru'], key=lambda x: x['ping'])
     eu = sorted([x for x in valid if x['region'] == 'eu'], key=lambda x: x['ping'])
 
-    # Сохраняем прокси
+    # 2. Сохранение tg:// ссылок
     with open('proxy_ru.txt', 'w', encoding='utf-8') as f:
         f.write(f"# RU Proxies ({len(ru)})\n")
         f.write(f"# Updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n")
@@ -208,6 +184,14 @@ def main():
         f.write(f"# Updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n")
         f.write('\n'.join([x['link'] for x in valid]))
 
+    # 3. Дополнительно: t.me/proxy формат (удобно кликать из браузера)
+    with open('proxy_all_tme.txt', 'w', encoding='utf-8') as f:
+        f.write(f"# All Proxies (t.me format, {len(valid)})\n")
+        f.write(f"# Updated: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S UTC')}\n\n")
+        for x in valid:
+            f.write(make_tme_link(x['host'], x['port'], x['secret']) + "\n")
+
+    # 4. Статистика
     stats = {
         'updated': datetime.utcnow().isoformat(),
         'total': len(valid),
@@ -228,6 +212,10 @@ def main():
 
     print(f"\n✅ DONE: RU={len(ru)}, EU={len(eu)}, TOTAL={len(valid)}")
     print(f"⏱ Time: {stats['execution_time']}s")
+
+
+if __name__ == "__main__":
+    main()
 
 
 if __name__ == "__main__":
