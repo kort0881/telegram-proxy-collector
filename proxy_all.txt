@@ -1,5 +1,5 @@
 # All Proxies (2)
-# Updated: 2026-02-26 12:33:03 UTC
+# Updated: 2026-02-26 16:42:17 UTC
 
-tg://proxy?server=23.88.51.230&port=443&secret=3QAAAAAAAAAAAAAAAAAAAAA=
 tg://proxy?server=syntax.ddnscdn.sbs.&port=443&secret=ee0000f00f0f775555fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d
+tg://proxy?server=23.88.51.230&port=443&secret=3QAAAAAAAAAAAAAAAAAAAAA=
