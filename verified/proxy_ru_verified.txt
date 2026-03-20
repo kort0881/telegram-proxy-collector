@@ -1,7 +1,7 @@
 # Verified RU Proxies (2)
-# Updated: 2026-03-19 20:23:44 UTC
+# Updated: 2026-03-20 00:57:43 UTC
 # Method: TCP_OK
-# Best ping: 0.155s
+# Best ping: 0.464s
 
-tg://proxy?server=proxy.ciaowner.lol&port=443&secret=ee1459dda62dc99782f8741f1ab0deb4f2706574726f766963682e7275
 tg://proxy?server=go.bolshevps.su&port=443&secret=ee617782cbbfb6dcc27b0e338f570da65f6164732e78352e7275
+tg://proxy?server=proxy.ciaowner.lol&port=443&secret=ee1459dda62dc99782f8741f1ab0deb4f2706574726f766963682e7275
