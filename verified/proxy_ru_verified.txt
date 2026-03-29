@@ -1,7 +1,7 @@
 # Verified RU Proxies (2)
-# Updated: 2026-03-29 08:25:35 UTC
+# Updated: 2026-03-29 12:24:55 UTC
 # Method: TCP_OK
-# Best ping: 0.114s
+# Best ping: 0.189s
 
 tg://proxy?server=MTPROTO.online&port=443&secret=ee139e0ee36150c1ea3bf299796586b5457777772e7674622e7275
-tg://proxy?server=free.tgsecurity.online&port=443&secret=ee7c5d4e1f2a3b9c8d7e6f5a4b3c2d1e0f766b2e636f6d
+tg://proxy?server=free.FCKRKNBOT.COM&port=443&secret=eef48f621b110f302e468756840c29f916766b2e636f6d
