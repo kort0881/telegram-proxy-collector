@@ -1,40 +1,41 @@
-# Verified EU Proxies (35)
-# Updated: 2026-03-29 16:20:13 UTC
+# Verified EU Proxies (36)
+# Updated: 2026-03-29 20:17:14 UTC
 # Method: TCP_OK
-# Best ping: 0.031s
+# Best ping: 0.036s
 
 tg://proxy?server=107.150.34.100&port=443&secret=7gnbgVptgqMf2nb4ciMMaddwa2didWlsZC5vcmc
-tg://proxy?server=93.183.88.188&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D
-tg://proxy?server=openimp.space&port=443&secret=075d7b345dc0222924ccea508c8edf91
-tg://proxy?server=185.237.95.231&port=443&secret=ee4571396297582727452bf660db01b789676f6f676c652e636f6d
+tg://proxy?server=195.254.165.251&port=25565&secret=dd79e344818749bd7ac519130220c25d09
+tg://proxy?server=195.254.165.250&port=25565&secret=dd79e344818749bd7ac519130220c25d09
+tg://proxy?server=23.88.51.230&port=443&secret=3QAAAAAAAAAAAAAAAAAAAAA=
+tg://proxy?server=195.254.165.249&port=25565&secret=dd79e344818749bd7ac519130220c25d09
 tg://proxy?server=94.156.112.129&port=443&secret=dded391f275a6d93e52cdbf4058562bc20
 tg://proxy?server=195.254.165.253&port=25565&secret=dd79e344818749bd7ac519130220c25d09
-tg://proxy?server=195.254.165.250&port=25565&secret=dd79e344818749bd7ac519130220c25d09
-tg://proxy?server=195.254.165.251&port=25565&secret=dd79e344818749bd7ac519130220c25d09
-tg://proxy?server=195.254.165.249&port=25565&secret=dd79e344818749bd7ac519130220c25d09
 tg://proxy?server=195.254.165.252&port=25565&secret=dd79e344818749bd7ac519130220c25d09
-tg://proxy?server=116.203.134.165&port=443&secret=ee636c6f7564666c6172652e636f6db6
-tg://proxy?server=178.104.98.160&port=443&secret=ee636c6f7564666c6172652e636f6db6
 tg://proxy?server=195.254.165.247&port=25565&secret=dd79e344818749bd7ac519130220c25d09
-tg://proxy?server=23.88.51.230&port=443&secret=3QAAAAAAAAAAAAAAAAAAAAA=
-tg://proxy?server=Q4.opt-meli.info&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D
-tg://proxy?server=46.225.29.180&port=443&secret=ee636c6f7564666c6172652e636f6db6
-tg://proxy?server=91.107.169.174&port=8443&secret=dd104462821249bd7ac519130220c25d09
+tg://proxy?server=185.237.95.231&port=443&secret=ee4571396297582727452bf660db01b789676f6f676c652e636f6d
+tg://proxy?server=116.203.134.165&port=443&secret=ee636c6f7564666c6172652e636f6db6
 tg://proxy?server=91.107.189.181&port=8443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=2.27.21.235&port=443&secret=ee636c6f7564666c6172652e636f6d02
+tg://proxy?server=46.225.29.180&port=443&secret=ee636c6f7564666c6172652e636f6db6
+tg://proxy?server=93.183.88.188&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D
+tg://proxy?server=91.107.182.200&port=8443&secret=dd104462821249bd7ac519130220c25d09
+tg://proxy?server=178.104.98.160&port=443&secret=ee636c6f7564666c6172652e636f6db6
 tg://proxy?server=138.201.54.122&port=443&secret=7gnbgVptgqMf2nb4ciMMaddwa2didWlsZC5vcmc
-tg://proxy?server=144.31.230.217&port=443&secret=33d73370103ea05acd9418eb9dca989e
-tg://proxy?server=nitro.alotaxi.info&port=4515&secret=eee9a4f23b1d768c04a8d7f39120ca5b6e626973636f7474692e79656b74616e65742e636f6d
+tg://proxy?server=91.107.169.174&port=8443&secret=dd104462821249bd7ac519130220c25d09
 tg://proxy?server=144.31.136.0&port=59877&secret=ddb62d12eb3a9c875d04c730aa81c87f8b
+tg://proxy?server=openimp.space&port=443&secret=075d7b345dc0222924ccea508c8edf91
+tg://proxy?server=144.31.230.217&port=443&secret=33d73370103ea05acd9418eb9dca989e
 tg://proxy?server=syntax.ddnscdn.sbs.&port=443&secret=ee0000f00f0f775555fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d
+tg://proxy?server=tg.scroogevpn.com&port=443&secret=59d307276beb8f4d8a0ed547eb6a461a
+tg://proxy?server=Q4.opt-meli.info&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D
 tg://proxy?server=194.87.252.116&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557
-tg://proxy?server=proxydazhenaparkovke.site&port=443&secret=dde8aa2e8c1ad50570b7d6fe7e0ba3d677
-tg://proxy?server=mt.ascel.la&port=8443&secret=c363767bbdb02912983f17ab2417a20c
-tg://proxy?server=proxyobhod.online&port=443&secret=71c30cc28759e0a10b6de5b471d69751
-tg://proxy?server=raven8471-14d968ab.proxytg.ink&port=443&secret=eead14f006e06912127407f9fe07a146cb6465627269732e6c6f63616c
 tg://proxy?server=2.27.20.156&port=443&secret=ee636c6f7564666c6172652e636f6db6
-tg://proxy?server=free.tgsecurity.online&port=443&secret=dd7c5d4e1f2a3b9c8d7e6f5a4b3c2d1e0f
-tg://proxy?server=proxy-sosavpn.ru&port=8443&secret=e675e7ab7553ed8aa0ba2a91c575cfcc
+tg://proxy?server=194.190.152.168&port=443&secret=eee52fdf1f6e8359eac49c0d9e5a6da1bb7777772e676f6f676c652e636f6d
+tg://proxy?server=proxydazhenaparkovke.site&port=443&secret=dde8aa2e8c1ad50570b7d6fe7e0ba3d677
 tg://proxy?server=tgobhod.lol&port=443&secret=1f66cebc6de568853ea5d965cd580ee2
 tg://proxy?server=alo.acharbashi.info&port=4515&secret=eee9a4f23b1d768c04a8d7f39120ca5b6e626973636f7474692e79656b74616e65742e636f6d
+tg://proxy?server=raven8471-14d968ab.proxytg.ink&port=443&secret=eead14f006e06912127407f9fe07a146cb6465627269732e6c6f63616c
+tg://proxy?server=nitro.alotaxi.info&port=4515&secret=eee9a4f23b1d768c04a8d7f39120ca5b6e626973636f7474692e79656b74616e65742e636f6d
+tg://proxy?server=mt.ascel.la&port=8443&secret=c363767bbdb02912983f17ab2417a20c
 tg://proxy?server=s1.sosproxy.space&port=443&secret=ee668f277db019fe88c30c8e498e72446764726976652e676f6f676c652e636f6d
+tg://proxy?server=2.27.21.235&port=443&secret=ee636c6f7564666c6172652e636f6d02
+tg://proxy?server=proxy-sosavpn.ru&port=8443&secret=e675e7ab7553ed8aa0ba2a91c575cfcc
