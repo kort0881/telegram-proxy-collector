@@ -1,8 +1,8 @@
 # Verified RU Proxies (3)
-# Updated: 2026-03-31 16:44:11 UTC
+# Updated: 2026-03-31 20:30:15 UTC
 # Method: TCP_OK
-# Best ping: 0.147s
+# Best ping: 0.111s
 
 tg://proxy?server=72.56.102.104&port=443&secret=eed8223b129a62eafcdafc08c4513e6d0531632e7275
-tg://proxy?server=my.safepal.life&port=443&secret=ee65682e766b2e636f6db97f3e8c4607
 tg://proxy?server=de-03.satoshidiary.org&port=8443&secret=ee6d33147f1bbc63e9b39efe483516ab85617669746f2e7374
+tg://proxy?server=my.safepal.life&port=443&secret=ee65682e766b2e636f6db97f3e8c4607
