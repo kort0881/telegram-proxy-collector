@@ -1,12 +1,9 @@
-# Verified RU Proxies (7)
-# Updated: 2026-04-01 01:12:52 UTC
+# Verified RU Proxies (4)
+# Updated: 2026-04-01 05:49:24 UTC
 # Method: TCP_OK
-# Best ping: 0.087s
+# Best ping: 0.086s
 
 tg://proxy?server=72.56.102.104&port=443&secret=eed8223b129a62eafcdafc08c4513e6d0531632e7275
 tg://proxy?server=194.238.57.153&port=443&secret=ee2198b6ba0791e91cdbaf7c1fcb3ade9a706574726f766963682e7275
-tg://proxy?server=my.safepal.life&port=443&secret=ee65682e766b2e636f6db97f3e8c4607
-tg://proxy?server=de-03.satoshidiary.org&port=8443&secret=ee6d33147f1bbc63e9b39efe483516ab85617669746f2e7374
-tg://proxy?server=ckopo.cheburnet.tech&port=443&secret=ee79612e72750ce362c1d1f216781718
 tg://proxy?server=s1.neo-trading.org&port=443&secret=ee17b59d905a546c7bf7355cf95c4ecfed79612e7275
 tg://proxy?server=s2.neo-trading.org&port=443&secret=ee50a0c99bdb7370565b7d74d4d362e27f79612e7275
