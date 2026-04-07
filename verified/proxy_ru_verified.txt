@@ -1,8 +1,7 @@
-# Verified RU Proxies (3)
-# Updated: 2026-04-07 01:06:46 UTC
+# Verified RU Proxies (2)
+# Updated: 2026-04-07 05:31:12 UTC
 # Method: TCP_OK
-# Best ping: 0.152s
+# Best ping: 0.129s
 
 tg://proxy?server=84.201.169.90&port=443&secret=ee387cc39e6784d06b17cc32354e92bfe66164732e78352e7275
 tg://proxy?server=212.233.74.109&port=443&secret=eedb3fe4bf0ed595882e36d26015268f346d61782e7275
-tg://proxy?server=charlie.freetelega.me&port=8443&secret=eec2eec77016252e334767f27d5b208fb27265672e7275
