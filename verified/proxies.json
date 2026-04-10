@@ -1,0 +1,52 @@
+{
+  "info": {
+    "created": "2026-04-10T15:04:53.324914+00:00",
+    "top_n": 200,
+    "count": 0,
+    "sources": [
+      {
+        "url": "https://mtpro.xyz/api/?type=mtproto-ru",
+        "fetched": 0,
+        "verified": 0,
+        "pass_rate": 0,
+        "failed": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/ALIILAPRO/MTProtoProxy/main/mtproto.txt",
+        "fetched": 1,
+        "verified": 0,
+        "pass_rate": 0.0,
+        "failed": false
+      },
+      {
+        "url": "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
+        "fetched": 1,
+        "verified": 0,
+        "pass_rate": 0.0,
+        "failed": false
+      },
+      {
+        "url": "https://raw.githubusercontent.com/yemixzy/proxy-projects/main/proxies/mtproto.txt",
+        "fetched": 0,
+        "verified": 0,
+        "pass_rate": 0,
+        "failed": true
+      },
+      {
+        "url": "https://mtpro.xyz/api/?type=mtproto",
+        "fetched": 0,
+        "verified": 0,
+        "pass_rate": 0,
+        "failed": true
+      },
+      {
+        "url": "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",
+        "fetched": 1,
+        "verified": 0,
+        "pass_rate": 0.0,
+        "failed": false
+      }
+    ]
+  },
+  "proxies": []
+}
