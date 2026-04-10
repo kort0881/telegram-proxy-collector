@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 MTProto Proxy Collector v3.0
 Улучшения: ping-история, рейтинг стабильности, статистика по источникам, Tor/прокси-пул.
@@ -19,14 +20,8 @@ from datetime import datetime, timezone
 from collections import defaultdict
 from typing import Optional
 
-
-# Всегда используем только requests; если хочешь httpx — включи его вручную
-HTTPX_AVAILABLE = False
-try:
-    import httpx
-    HTTPX_AVAILABLE = True
-except ImportError:
-    import requests
+# Всегда используем requests (httpx не требуется)
+import requests
 
 try:
     from telethon import TelegramClient
@@ -41,7 +36,7 @@ except ImportError:
 API_ID   = None  # my.telegram.org
 API_HASH = None
 
-# Список User-Agent реальных браузеров (упрощённый)
+# Список User-Agent реальных браузеров
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15",
@@ -57,14 +52,14 @@ SOURCES = [
     "https://mtpro.xyz/api/?type=mtproto-ru",
 ]
 
-# Включаешь Tor/SOCKS5 — так новые источники почти точно заработают
+# Прокси для загрузки источников (Tor/SOCKS5/HTTP)
 FETCH_PROXIES: list[str] = [
-    "socks5h://127.0.0.1:9050",  # Tor — включи и запусти `sudo systemctl start tor`
+    # "socks5h://127.0.0.1:9050",  # Tor — раскомментировать при запущенном tor
     # "http://user:pass@proxy.example.com:8080",
 ]
 
 TIMEOUT     = 2.0
-MAX_WORKERS = 50          # уменьшено под DPI
+MAX_WORKERS = 50
 MAX_PING    = 2.0         # прокси с ping > MAX_PING не берём
 MIN_CHECKS_FOR_STABLE = 2 # сколько проверок нужно для статуса «стабильный»
 
@@ -177,7 +172,6 @@ def _cleanup_telethon_session(host: str, port: int) -> None:
 
 
 def _random_headers() -> dict[str, str]:
-    """Минимальные, «незаметные» заголовки, как в старом коде."""
     return {
         "User-Agent": random.choice(USER_AGENTS),
         "Accept": "*/*",
@@ -291,7 +285,6 @@ def fetch_source(url: str, timeout: int = 15) -> str:
 
     for attempt in range(3):
         try:
-            # Всегда стучим через requests + прокси
             proxies_dict = {'http': proxy, 'https': proxy} if proxy else {}
             r = requests.get(url, timeout=timeout, headers=_random_headers(), proxies=proxies_dict)
             if r.status_code == 200:
@@ -318,7 +311,6 @@ async def check_proxy_telethon(p: tuple) -> Optional[dict]:
     if _is_blocked(secret, domain):
         return None
 
-    # Лёгкая задержка между запросами для обхода DPI
     await asyncio.sleep(random.uniform(0.05, 0.2))
 
     client = TelegramClient(
@@ -424,6 +416,7 @@ def sort_proxies(proxies: list[dict]) -> list[dict]:
 def make_tme_link(host: str, port: int, secret: str) -> str:
     return f'https://t.me/proxy?server={host}&port={port}&secret={secret}'
 
+
 # ─────────────────── main ──────────────────────────────────────────
 
 async def main_async(args: argparse.Namespace) -> None:
@@ -451,7 +444,103 @@ async def main_async(args: argparse.Namespace) -> None:
             print(f'  ✓ {name:<48} +{len(extracted)}')
         else:
             print(f'  ✗ {name:<48} недоступен')
-        # Лёгкая задержка между источниками
-        time.sleep(random.uniform(0.2, 0.7))
 
-    # Грубая фильтрация по уникальным х
+    count_before = len(all_raw)
+    print(f'\n🧩 Всего найдено прокси: {count_before} (до проверки)')
+
+    filtered = set()
+    for h, p, s in all_raw:
+        d = decode_domain(s)
+        if not _is_blocked(s, d):
+            filtered.add((h, p, s))
+    print(f'  ⚖️  После фильтра заблокированных: {len(filtered)}')
+
+    print('\n🔄 Проверка работоспособности (ping, стабильность)...\n')
+    checked = []
+    tcp_workers = min(MAX_WORKERS, 20)
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=tcp_workers) as exe:
+        futures = [exe.submit(check_proxy_tcp, p) for p in filtered]
+        results = concurrent.futures.as_completed(futures)
+        for i, fut in enumerate(results):
+            try:
+                data = fut.result()
+                if data:
+                    checked.append(data)
+            except Exception as e:
+                log.debug('checker future error: %s', e)
+
+            if (i + 1) % 20 == 0:
+                print(f'  TCP: {i + 1} / {len(futures)}')
+
+    print(f'  ✅ TCP проверка: {len(checked)} активных прокси')
+
+    deduplicated = deduplicate_by_host_port(checked)
+    sorted_proxies = sort_proxies(deduplicated)
+
+    total = len(sorted_proxies)
+    print(f'\n✅ Итого отфильтровано, проверено, стабильных прокси: {total}')
+
+    verified_dir = os.path.join(output_dir, 'verified')
+    os.makedirs(verified_dir, exist_ok=True)
+
+    stats = SOURCE_STATS.to_dict()
+    info = {
+        'info': {
+            'created': datetime.now(timezone.utc).isoformat(),
+            'top_n': args.top,
+            'count': total,
+            'sources': stats,
+        },
+        'proxies': sorted_proxies[:args.top],
+    }
+
+    out_json = os.path.join(verified_dir, 'proxies.json')
+    with open(out_json, 'w', encoding='utf-8') as f:
+        json.dump(info, f, ensure_ascii=False, indent=2)
+    print(f'  📄 {out_json}')
+
+    out_links = os.path.join(verified_dir, 'proxy_links.txt')
+    with open(out_links, 'w', encoding='utf-8') as f:
+        for p in sorted_proxies[:args.top]:
+            f.write(make_tme_link(p["host"], p["port"], p["secret"]) + '\n')
+    print(f'  📄 {out_links}')
+
+    out_all = os.path.join(verified_dir, 'proxy_all.txt')
+    with open(out_all, 'w', encoding='utf-8') as f:
+        for p in sorted_proxies:
+            f.write(f'{p["host"]}:{p["port"]}:{p["secret"]}\n')
+    print(f'  📄 {out_all}')
+
+    PING_HISTORY.save()
+    print('  📦 ping_history.json обновлён')
+
+    elapsed = time.time() - start_time
+    print(f'\n⏱️ Сбор завершён за {round(elapsed, 1)} секунд, {total} прокси записано.')
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(
+        description='MTProto Proxy Collector v3.0'
+    )
+    parser.add_argument(
+        '--top',
+        type=int,
+        default=200,
+        help='Сколько лучших прокси сохранять'
+    )
+    parser.add_argument(
+        '--output-dir',
+        default='.',
+        help='Каталог для сохранения verified/'
+    )
+    args = parser.parse_args()
+
+    try:
+        asyncio.run(main_async(args))
+    except KeyboardInterrupt:
+        print('🛑 Остановлено пользователем')
+
+
+if __name__ == '__main__':
+    main()
