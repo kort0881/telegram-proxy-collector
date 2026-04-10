@@ -1,43 +1,24 @@
 name: Update Verified Proxy Lists
-
 on:
   schedule:
-    - cron: '0 */2 * * *'   # каждые 2 часа (было */4, можно вернуть)
+    - cron: '0 */4 * * *'
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
-
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - run: pip install requests telethon
+    - run: python main.py --top 200  # ← main.py!
+    - run: |
+        git config user.name "Proxy Bot"
+        git config user.email "bot@github.com"
+        git add verified/ || true
+        git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
+        git push || true
 
-      - uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install dependencies
-        run: pip install httpx[http2] requests telethon
-
-      - name: Restore ping history
-        uses: actions/cache@v4
-        with:
-          path: ping_history.json
-          key: ping-history-${{ github.run_id }}
-          restore-keys: ping-history-
-
-      - name: Run collector
-        run: python main.py --top 200
-
-      - name: Commit results
-        run: |
-          git config user.name "Proxy Bot"
-          git config user.email "bot@github.com"
-          git add verified/ ping_history.json || true
-          git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
-          git push || true
 
