@@ -1,6 +1,6 @@
 # Verified RU Proxies (1)
-# Updated: 2026-04-12 16:43:08 UTC
+# Updated: 2026-04-12 20:40:33 UTC
 # Method: TCP_OK
-# Best ping: 0.119s
+# Best ping: 0.113s
 
 tg://proxy?server=95.217.28.150&port=45321&secret=ee104462821249bd7ac519130220c25d096d61782e7275
