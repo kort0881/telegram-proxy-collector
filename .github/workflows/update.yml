@@ -2,7 +2,7 @@ name: Update Verified Proxy Lists
 
 on:
   schedule:
-    - cron: '0 */4 * * *'      # каждые 4 часа
+    - cron: '0 * * * *'  # каждый час
   workflow_dispatch:
 
 jobs:
