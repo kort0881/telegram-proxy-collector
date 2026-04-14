@@ -1,6 +1,6 @@
 # Verified RU Proxies (1)
-# Updated: 2026-04-14 17:14:06 UTC
+# Updated: 2026-04-14 19:01:53 UTC
 # Method: TCP_OK
-# Best ping: 0.232s
+# Best ping: 0.285s
 
 tg://proxy?server=tg1.helpbitrix.org&port=443&secret=ee6b1cf68741e58d9e8ae5c5dd71da10c279616e6465782e7275
