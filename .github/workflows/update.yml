@@ -1,24 +1,36 @@
 name: Update Verified Proxy Lists
+
 on:
   schedule:
-    - cron: '0 */4 * * *'
+    - cron: '0 */4 * * *'      # каждые 4 часа
   workflow_dispatch:
 
 jobs:
   collect:
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v4
+
     - uses: actions/setup-python@v4
       with:
         python-version: '3.11'
+
     - run: pip install requests telethon
-    - run: python main.py --top 200  # ← main.py!
+
+    # Генерим verified/*
+    - run: python main.py --top 200
+
+    # Копируем актуальные файлы в корень репозитория
+    - run: |
+        cp verified/proxy_ru_verified.txt  proxy_ru.txt
+        cp verified/proxy_eu_verified.txt  proxy_eu.txt
+        cp verified/proxy_all_verified.txt proxy_all.txt
+
+    # Коммитим только если есть изменения
     - run: |
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
-        git add verified/ || true
+        git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt || true
         git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
         git push || true
-
-
