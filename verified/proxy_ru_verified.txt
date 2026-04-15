@@ -1,7 +1,7 @@
 # Verified RU Proxies (3)
-# Updated: 2026-04-15 06:29:01 UTC
+# Updated: 2026-04-15 08:23:48 UTC
 # Method: TCP_OK
-# Best ping: 0.167s
+# Best ping: 0.146s
 
 tg://proxy?server=178.104.195.205&port=54921&secret=ee104462821249bd7ac519130220c25d096d61782e7275
 tg://proxy?server=mtproto.ONLINE&port=443&secret=ee139e0ee36150c1ea3bf299796586b5457777772e7674622e7275
