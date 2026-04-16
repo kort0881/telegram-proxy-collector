@@ -1,9 +1,8 @@
-# Verified RU Proxies (4)
-# Updated: 2026-04-16 19:01:23 UTC
+# Verified RU Proxies (3)
+# Updated: 2026-04-16 20:40:38 UTC
 # Method: TCP_OK
-# Best ping: 0.158s
+# Best ping: 0.113s
 
 tg://proxy?server=178.104.202.42&port=9321&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275
 tg://proxy?server=prxtg.enterlancevpn.com&port=8443&secret=ee79612e7275c8d582e6565ef8a46786
-tg://proxy?server=89.124.112.249&port=443&secret=eef97fccdfa1bf4c0de586e6282f07778c706574726f766963682e7275
 tg://proxy?server=proxy.xxee.ru&port=443&secret=eed5c322a50f706f672dcbfca3413d96e077622e7275
