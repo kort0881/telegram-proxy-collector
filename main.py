@@ -9,6 +9,8 @@ import os
 import glob
 import argparse
 import asyncio
+import base64
+from pathlib import Path
 
 try:
     from telethon import TelegramClient
@@ -19,8 +21,8 @@ except ImportError:
     print("⚠️  Telethon не установлен. Используется TCP ping (pip install telethon для MTProto)")
 
 # API ключи для Telethon (получи на my.telegram.org)
-API_ID   = None  # Вставь свой api_id
-API_HASH = None  # Вставь свой api_hash
+API_ID   = None  # Вставь свой api_id (число)
+API_HASH = None  # Вставь свой api_hash (строка)
 
 SOURCES = [
     "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
@@ -45,7 +47,6 @@ BLOCKED = [
     'meduza', 'linkedin', 'torproject',
 ]
 
-
 # ─────────────────────────── helpers ────────────────────────────
 
 def _valid_port(port_str: str) -> bool:
@@ -55,7 +56,6 @@ def _valid_port(port_str: str) -> bool:
     except (ValueError, TypeError):
         return False
 
-
 def _is_blocked(secret: str, domain: str | None) -> bool:
     """True, если прокси нужно отфильтровать."""
     if len(secret) < 16:
@@ -63,7 +63,6 @@ def _is_blocked(secret: str, domain: str | None) -> bool:
     if domain and any(b in domain for b in BLOCKED):
         return True
     return False
-
 
 def _detect_region(domain: str | None) -> str:
     """Определяет регион по домену в секрете."""
@@ -73,16 +72,29 @@ def _detect_region(domain: str | None) -> str:
                 return 'ru'
     return 'eu'
 
-
-def _cleanup_telethon_session(host: str, port: int) -> None:
-    """Удаляет .session файлы, созданные Telethon."""
+def _cleanup_telethon_session(host: str, port: int, delay: float = 0.5) -> None:
+    """Удаляет .session файлы, созданные Telethon, с небольшой задержкой."""
     session_name = f'test_{host.replace(".", "_")}_{port}'
-    for path in glob.glob(f'{session_name}*'):
+    time.sleep(delay)
+    for path in Path('.').glob(f'{session_name}*'):
         try:
-            os.remove(path)
+            path.unlink()
         except OSError:
             pass
 
+def _prepare_secret(secret_str: str) -> bytes:
+    """
+    Преобразует строку секрета в байты.
+    Поддерживает hex (16+ символов 0-9A-F) и base64.
+    """
+    secret_str = secret_str.strip()
+    if all(c in '0123456789abcdefABCDEF' for c in secret_str):
+        return bytes.fromhex(secret_str)
+    else:
+        missing_padding = len(secret_str) % 4
+        if missing_padding:
+            secret_str += '=' * (4 - missing_padding)
+        return base64.b64decode(secret_str)
 
 # ─────────────────────────── parsing ────────────────────────────
 
@@ -111,7 +123,7 @@ def get_proxies_from_text(text: str) -> set[tuple]:
         if _valid_port(p):
             proxies.add((h, int(p), s))
 
-    # host:port:secret
+    # host:port:secret (hex, минимум 16 символов)
     simple_pattern = re.compile(
         r'([A-Za-z0-9\.-]+):(\d+):([A-Fa-f0-9]{16,})'
     )
@@ -137,7 +149,6 @@ def get_proxies_from_text(text: str) -> set[tuple]:
 
     return proxies
 
-
 def decode_domain(secret: str) -> str | None:
     """Декодирует домен из MTProto-секрета с префиксом ee."""
     if not secret.startswith('ee'):
@@ -155,7 +166,6 @@ def decode_domain(secret: str) -> str | None:
     except Exception:
         return None
 
-
 # ──────────────────────── source fetching ───────────────────────
 
 def fetch_source(url: str, timeout: int = 15) -> str:
@@ -170,10 +180,9 @@ def fetch_source(url: str, timeout: int = 15) -> str:
         time.sleep(0.5 * (attempt + 1))
     return ''
 
-
 # ─────────────────────────── checkers ───────────────────────────
 
-async def check_proxy_telethon(p: tuple) -> dict | None:
+async def check_proxy_telethon(p: tuple, timeout_sec: float = 10.0) -> dict | None:
     if not TELETHON_AVAILABLE or not API_ID or not API_HASH:
         return None
 
@@ -183,16 +192,21 @@ async def check_proxy_telethon(p: tuple) -> dict | None:
     if _is_blocked(secret, domain):
         return None
 
+    try:
+        secret_bytes = _prepare_secret(secret)
+    except Exception:
+        return None
+
     client = TelegramClient(
         f'test_{host.replace(".", "_")}_{port}', API_ID, API_HASH,
         connection=ConnectionTcpMTProxyRandomizedIntermediate,
-        proxy=(host, int(port), secret),
-        timeout=8.0,
+        proxy=(host, int(port), secret_bytes),
+        timeout=timeout_sec,
     )
     try:
         start = time.time()
-        await client.connect()
-        await client.get_config()
+        await asyncio.wait_for(client.connect(), timeout=timeout_sec)
+        await asyncio.wait_for(client.get_config(), timeout=timeout_sec)
         ping = round(time.time() - start, 3)
         return {
             'host': host, 'port': port, 'secret': secret,
@@ -208,7 +222,6 @@ async def check_proxy_telethon(p: tuple) -> dict | None:
         except Exception:
             pass
         _cleanup_telethon_session(host, port)
-
 
 def check_proxy_tcp(p: tuple) -> dict | None:
     host, port, secret = p
@@ -233,7 +246,6 @@ def check_proxy_tcp(p: tuple) -> dict | None:
         'domain': domain or '', 'method': 'TCP_OK',
     }
 
-
 # ─────────────────────────── postprocess ────────────────────────
 
 def deduplicate_by_host_port(proxies: list[dict]) -> list[dict]:
@@ -245,16 +257,14 @@ def deduplicate_by_host_port(proxies: list[dict]) -> list[dict]:
             best[key] = p
     return list(best.values())
 
-
 def make_tme_link(host: str, port: int, secret: str) -> str:
     return f'https://t.me/proxy?server={host}&port={port}&secret={secret}'
-
 
 # ─────────────────────────── main ───────────────────────────────
 
 async def main_async(args: argparse.Namespace) -> None:
     start_time = time.time()
-    print('🚀 MTProto Proxy Collector v2.1')
+    print('🚀 MTProto Proxy Collector v2.1 (исправленная версия)')
     print('=' * 48)
 
     output_dir = args.output_dir
@@ -273,34 +283,48 @@ async def main_async(args: argparse.Namespace) -> None:
         else:
             print(f'  ✗ {name:<42} недоступен')
 
-    print(f'\n  Уникальных прокси: {len(all_raw)}\n')
+    print(f'\n  Уникальных прокси: {len(all_raw)}')
 
-    print(f'⚡ Проверка {len(all_raw)} прокси...\n')
+    if not all_raw:
+        print('\n⚠️ Нет прокси для проверки. Завершение.')
+        return
+
+    print(f'\n⚡ Проверка {len(all_raw)} прокси...\n')
 
     valid:   list[dict] = []
     checked: int        = 0
     total:   int        = len(all_raw)
 
-    if TELETHON_AVAILABLE and API_ID and API_HASH:
+    use_telethon = TELETHON_AVAILABLE and API_ID and API_HASH
+    if use_telethon:
         print('🔥 Режим: Telethon MTProto\n')
-        semaphore = asyncio.Semaphore(10)
+        semaphore = asyncio.Semaphore(args.workers)
 
-        async def check_p(p: tuple) -> dict | None:
+        async def check_with_semaphore(p: tuple) -> dict | None:
             async with semaphore:
-                return await check_proxy_telethon(p)
+                try:
+                    return await check_proxy_telethon(p, timeout_sec=args.timeout)
+                except Exception:
+                    return None
 
-        tasks = [asyncio.ensure_future(check_p(p)) for p in all_raw]
-        for coro in asyncio.as_completed(tasks):
-            result = await coro
-            checked += 1
-            if result:
-                valid.append(result)
+        tasks = [asyncio.create_task(check_with_semaphore(p)) for p in all_raw]
+        for task in asyncio.as_completed(tasks):
+            try:
+                result = await task
+                checked += 1
+                if result:
+                    valid.append(result)
+            except Exception:
+                checked += 1
             if checked % 50 == 0 or checked == total:
                 print(f'  [{checked}/{total}] {checked / total * 100:.0f}% | найдено: {len(valid)}')
     else:
-        print('📡 Режим: TCP ping\n')
-        with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as exc:
-            futures = {exc.submit(check_proxy_tcp, p): p for p in all_raw}
+        if not TELETHON_AVAILABLE:
+            print('📡 Режим: TCP ping (Telethon не установлен)\n')
+        else:
+            print('📡 Режим: TCP ping (API_ID или API_HASH не заданы)\n')
+        with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as executor:
+            futures = {executor.submit(check_proxy_tcp, p): p for p in all_raw}
             for f in concurrent.futures.as_completed(futures):
                 result = f.result()
                 checked += 1
@@ -308,6 +332,10 @@ async def main_async(args: argparse.Namespace) -> None:
                     valid.append(result)
                 if checked % 100 == 0 or checked == total:
                     print(f'  [{checked}/{total}] {checked / total * 100:.0f}% | найдено: {len(valid)}')
+
+    if not valid:
+        print('\n⚠️ Рабочих прокси не найдено.')
+        return
 
     valid = deduplicate_by_host_port(valid)
     ru    = sorted([x for x in valid if x['region'] == 'ru'], key=lambda x: x['ping'])
@@ -362,7 +390,7 @@ async def main_async(args: argparse.Namespace) -> None:
         'total_verified':  len(valid),
         'ru_count':        len(ru),
         'eu_count':        len(eu),
-        'telethon_used':   TELETHON_AVAILABLE and bool(API_ID and API_HASH),
+        'telethon_used':   use_telethon,
         'best_ru_ping':    ru[0]['ping'] if ru else None,
         'best_eu_ping':    eu[0]['ping'] if eu else None,
         'execution_time':  elapsed,
@@ -382,11 +410,10 @@ async def main_async(args: argparse.Namespace) -> None:
     print(f'⏱️   Время:      {elapsed}s')
     print('=' * 48)
 
-
 def main() -> None:
     parser = argparse.ArgumentParser(description='🚀 MTProto Proxy Collector v2.1')
-    parser.add_argument('--timeout',    type=float, default=2.0,        help='TCP таймаут (сек)')
-    parser.add_argument('--workers',    type=int,   default=100,        help='Потоки TCP проверки')
+    parser.add_argument('--timeout',    type=float, default=2.0,        help='Таймаут (сек) для TCP и Telethon')
+    parser.add_argument('--workers',    type=int,   default=100,        help='Количество одновременных проверок')
     parser.add_argument('--top',        type=int,   default=0,          help='Сохранить TOP N быстрейших (0 = все)')
     parser.add_argument('--output-dir', type=str,   default='verified', help='Папка для результатов')
     args = parser.parse_args()
@@ -394,8 +421,11 @@ def main() -> None:
     global TIMEOUT
     TIMEOUT = args.timeout
 
-    asyncio.run(main_async(args))
+    if TELETHON_AVAILABLE and (API_ID is None or API_HASH is None):
+        print("⚠️  API_ID или API_HASH не заданы. Для MTProto проверки укажите их в коде или используйте TCP режим.\n")
 
+    asyncio.run(main_async(args))
 
 if __name__ == '__main__':
     main()
+
