@@ -90,35 +90,36 @@ def get_proxies_from_text(text: str) -> set[tuple]:
     """
     Извлекает прокси из текста, поддерживая форматы:
     tg://proxy, t.me/proxy, host:port:secret и JSON.
-
-    ИСПРАВЛЕНО: в raw-строках \\s и \\d давали буквальный
-    символ '\', что ломало паттерны — теперь \s и \d.
     """
     proxies: set[tuple] = set()
 
+    # tg://proxy?server=...&port=...&secret=...
     tg_pattern = re.compile(
-        r'tg://proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)',
+        r'tg://proxy\?server=([^\s&]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)',
         re.IGNORECASE,
     )
     for h, p, s in tg_pattern.findall(text):
         if _valid_port(p):
             proxies.add((h, int(p), s))
 
-    # ИСПРАВЛЕНО: t\.me (один слэш) — корректный regex для литеральной точки
+    # https://t.me/proxy?server=...&port=...&secret=...
     tme_pattern = re.compile(
-        r't\.me/proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)',
+        r't\.me/proxy\?server=([^\s&]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)',
         re.IGNORECASE,
     )
     for h, p, s in tme_pattern.findall(text):
         if _valid_port(p):
             proxies.add((h, int(p), s))
 
-    # ИСПРАВЛЕНО: [a-zA-Z0-9.-] без лишнего слэша
-    simple_pattern = re.compile(r'([a-zA-Z0-9.-]+):(\d+):([A-Fa-f0-9]{16,})')
+    # host:port:secret
+    simple_pattern = re.compile(
+        r'([A-Za-z0-9\.-]+):(\d+):([A-Fa-f0-9]{16,})'
+    )
     for h, p, s in simple_pattern.findall(text):
         if _valid_port(p):
             proxies.add((h, int(p), s))
 
+    # JSON форматы
     txt = text.strip()
     if txt.startswith('[') or txt.startswith('{'):
         try:
@@ -203,7 +204,6 @@ async def check_proxy_telethon(p: tuple) -> dict | None:
     except Exception:
         return None
     finally:
-        # ИСПРАВЛЕНО: finally гарантирует disconnect и очистку сессии
         try:
             await client.disconnect()
         except Exception:
@@ -219,7 +219,6 @@ def check_proxy_tcp(p: tuple) -> dict | None:
         return None
 
     try:
-        # ИСПРАВЛЕНО: контекстный менеджер гарантирует закрытие сокета
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.settimeout(TIMEOUT)
             start = time.time()
@@ -293,7 +292,6 @@ async def main_async(args: argparse.Namespace) -> None:
             async with semaphore:
                 return await check_proxy_telethon(p)
 
-        # as_completed даёт прогресс в реальном времени
         tasks = [asyncio.ensure_future(check_p(p)) for p in all_raw]
         for coro in asyncio.as_completed(tasks):
             result = await coro
@@ -320,7 +318,6 @@ async def main_async(args: argparse.Namespace) -> None:
     ru    = sorted([x for x in valid if x['region'] == 'ru'], key=lambda x: x['ping'])
     eu    = sorted([x for x in valid if x['region'] == 'eu'], key=lambda x: x['ping'])
 
-    # ИСПРАВЛЕНО: top_n=None вместо 0, срез [:None] == весь список
     top_n = args.top if args.top > 0 else None
 
     # ── сохранение файлов ─────────────────────────────────────────
@@ -334,7 +331,6 @@ async def main_async(args: argparse.Namespace) -> None:
 
     for filename, proxies_list in region_files.items():
         region_label = 'RU' if 'ru' in filename else 'EU' if 'eu' in filename else 'All'
-        # ИСПРАВЛЕНО: скобки вокруг тернарного оператора
         chunk = proxies_list[:top_n]
         with open(filename, 'w', encoding='utf-8') as f:
             f.write(f'# Verified {region_label} Proxies ({len(chunk)})\n')
@@ -351,6 +347,17 @@ async def main_async(args: argparse.Namespace) -> None:
         f.write(f'# Verified Proxies t.me format ({len(tme_chunk)})\n')
         f.write(f'# Updated: {datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S UTC")}\n\n')
         for x in tme_chunk:
+            f.write(make_tme_link(x['host'], x['port'], x['secret']) + '\n')
+
+    # ЧИСТЫЙ файл только с tg:// (для копипаста с мобилы)
+    clean_chunk = valid[:top_n]
+    with open(f'{output_dir}/proxy_links_clean.txt', 'w', encoding='utf-8') as f:
+        for x in clean_chunk:
+            f.write(f'tg://proxy?server={x["host"]}&port={x["port"]}&secret={x["secret"]}\n')
+
+    # ЧИСТЫЙ файл только с https://t.me/proxy (максимальная кликабельность)
+    with open(f'{output_dir}/proxy_links_tme_clean.txt', 'w', encoding='utf-8') as f:
+        for x in clean_chunk:
             f.write(make_tme_link(x['host'], x['port'], x['secret']) + '\n')
 
     # Полный JSON с деталями каждого прокси
@@ -376,7 +383,6 @@ async def main_async(args: argparse.Namespace) -> None:
     with open(f'{output_dir}/proxy_stats_verified.json', 'w', encoding='utf-8') as f:
         json.dump(stats, f, indent=2, ensure_ascii=False)
 
-    # ── итог ──────────────────────────────────────────────────────
     print('=' * 48)
     print(f'✅  Верифицировано: RU={len(ru)}  EU={len(eu)}  Всего={len(valid)}')
     if ru:
@@ -391,9 +397,9 @@ async def main_async(args: argparse.Namespace) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description='🚀 MTProto Proxy Collector v2.1')
     parser.add_argument('--timeout',    type=float, default=2.0,        help='TCP таймаут (сек)')
-    parser.add_argument('--workers',    type=int,   default=100,         help='Потоки TCP проверки')
-    parser.add_argument('--top',        type=int,   default=0,           help='Сохранить TOP N быстрейших (0 = все)')
-    parser.add_argument('--output-dir', type=str,   default='verified',  help='Папка для результатов')
+    parser.add_argument('--workers',    type=int,   default=100,        help='Потоки TCP проверки')
+    parser.add_argument('--top',        type=int,   default=0,          help='Сохранить TOP N быстрейших (0 = все)')
+    parser.add_argument('--output-dir', type=str,   default='verified', help='Папка для результатов')
     args = parser.parse_args()
 
     global TIMEOUT
