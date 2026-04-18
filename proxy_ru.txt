@@ -1,8 +1,6 @@
-# Verified RU Proxies (3)
-# Updated: 2026-04-18 01:28:54 UTC
+# Verified RU Proxies (1)
+# Updated: 2026-04-18 04:26:11 UTC
 # Method: TCP_OK
-# Best ping: 0.172s
+# Best ping: 0.161s
 
 tg://proxy?server=bezobhoda.freeon.name&port=8443&secret=eeed1a5a7f339b8ff9840d52df123829706164732e78352e7275
-tg://proxy?server=news1704.mtproxygram.lol&port=443&secret=ee608248722a8f45103ed03c7994abf9b062726f777365722e79616e6465782e636f6d
-tg://proxy?server=poll1704.mtproxygram.lol&port=443&secret=eec39eef5b0ab34eb882b893c156b4c14a62726f777365722e79616e6465782e636f6d
