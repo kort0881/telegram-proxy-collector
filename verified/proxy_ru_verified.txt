@@ -1,6 +1,6 @@
 # Verified RU Proxies (1)
-# Updated: 2026-04-20 19:56:52 UTC
+# Updated: 2026-04-20 20:41:21 UTC
 # Method: TCP_OK
-# Best ping: 0.115s
+# Best ping: 0.17s
 
 tg://proxy?server=65.21.184.226&port=54921&secret=ee104462821249bd7ac519130220c25d096d61782e7275
