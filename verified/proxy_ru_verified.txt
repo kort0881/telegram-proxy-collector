@@ -1,7 +1,7 @@
 # Verified RU Proxies (3)
-# Updated: 2026-05-01 06:08:59 UTC
+# Updated: 2026-05-01 08:54:38 UTC
 # Method: TCP_OK
-# Best ping: 0.145s
+# Best ping: 0.101s
 
 tg://proxy?server=132.243.228.115&port=443&secret=ee3caf4d06bf6b23313068e4b3e743f91e79616e6465782e7275
 tg://proxy?server=labuten.strawberries.cfd&port=853&secret=ee58639c2a0869a8d109d1b6dde1aa98c677622e7275
