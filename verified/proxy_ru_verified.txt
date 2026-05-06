@@ -1,9 +1,10 @@
-# Verified RU Proxies (4)
-# Updated: 2026-05-06 15:24:26 UTC
+# Verified RU Proxies (5)
+# Updated: 2026-05-06 17:24:16 UTC
 # Method: TCP_OK
-# Best ping: 0.088s
+# Best ping: 0.108s
 
 tg://proxy?server=144.31.167.194&port=443&secret=ee52af82771595b7d7e9eeeda3a7aa4f1a77622e7275
-tg://proxy?server=proxyfsociety.mooo.com&port=443&secret=eeec5071a832c00b83ea970629d08ef2fe706574726f766963682e7275
 tg://proxy?server=proxyfsociety.strangled.net&port=443&secret=eeec5071a832c00b83ea970629d08ef2fe706574726f766963682e7275
+tg://proxy?server=now.tproxyru.click&port=8980&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
+tg://proxy?server=connect.tproxyru.click&port=8980&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
 tg://proxy?server=swe-1.vespersubpage.tech&port=443&secret=ee503ff7a4c00ebb5fe94b58c1a418e16f706574726f766963682e7275
