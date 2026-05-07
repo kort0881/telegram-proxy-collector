@@ -1,25 +1,29 @@
 # 🛡️ Telegram Proxy Collector: Anti-Censorship Edition
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue?style=for-the-badge&logo=python)
-![Status](https://img.shields.io/badge/Auto_Update-Every_4_Hours-success?style=for-the-badge&logo=github-actions)
-![License](https://img.shields.io/badge/License-MIT-orange?style=for-the-badge)
+
+
+
 
 **Умный комбайн для сбора MTProto прокси.**  
-В отличие от обычных парсеров, этот скрипт анализирует секрет (Secret) каждого прокси и определяет, под какой сайт он маскируется. Это критически важно для работы в условиях жестких блокировок (DPI).
+В отличие от обычных парсеров, этот скрипт анализирует секрет (Secret) каждого прокси и определяет, под какой сайт он маскируется. Это критически важно для работы в условиях жестких блокировок (DPI). [github](https://github.com/kort0881/telegram-proxy-collector)
 
----
+***
 
 ## 🛠️ Community Tools: Утилиты от пользователей
 
 | Инструмент | Описание | Автор |
 | :--- | :--- | :--- |
-| **[Parser-telegram-proxies](https://github.com/ComradeBingo/Parser-telegram-proxies-list/)** | Удобная Windows-утилита для парсинга и проверки прокси с отображением пинга в реальном времени. | [ComradeBingo](https://github.com/ComradeBingo) |
+| **[Parser-telegram-proxies](https://github.com/ComradeBingo/Parser-telegram-proxies-list/)** | Удобная Windows-утилита для парсинга и проверки прокси с отображением пинга в реальном времени. **Обновил версию для винды (исправил периодические блокировки запросов к .txt со стороны гитхаба - http request теперь).** | [ComradeBingo](https://github.com/ComradeBingo) |
+| **[Proxy-Telegram-Android](https://github.com/ComradeBingo/Proxy-Telegram-Android)** | Приложение для парсинга прокси для Telegram на Android с проверкой доступности и пинга серверов. | [ComradeBingo](https://github.com/ComradeBingo)  [github](https://github.com/ComradeBingo/Proxy-Telegram-Android)
+| **[Proxy-telegram-windows](https://github.com/ComradeBingo/Proxy-telegram-windows)** | Парсер прокси серверов для Telegram на Windows. Обновлено до версии 1.2: переработан GUI, добавлено меню справки. | [ComradeBingo](https://github.com/ComradeBingo)  [github](https://github.com/ComradeBingo/Proxy-telegram-windows/releases) |
 
----
+**Маленько перелопатил названия реп и ридми, чтобы проще находилось.**
+
+***
 
 ## 🔥 Актуальные списки (обновляются автоматически)
 
-Скрипт каждый  час запускается через GitHub Actions, собирает свежие MTProto‑прокси, фильтрует и проверяет их, а затем обновляет файлы в этом репозитории. 
+Скрипт каждый час запускается через GitHub Actions, собирает свежие MTProto‑прокси, фильтрует и проверяет их, а затем обновляет файлы в этом репозитории. [github](https://github.com/kort0881/telegram-proxy-collector)
 
 Прямые ссылки для вставки в Telegram или свои программы:
 
@@ -31,7 +35,7 @@
 
 > ⚙️ GitHub Actions сохраняет результаты в `verified/`, а затем копирует их в `proxy_ru.txt`, `proxy_eu.txt` и `proxy_all.txt` в корне репозитория, так что ссылки выше всегда ведут на свежие списки.
 
----
+***
 
 ## 📱 Использование с телефона 
 
@@ -52,7 +56,7 @@
 
 Страница `mobile.html` автоматически читает файл `verified/proxy_links_tme_clean.txt`, который генерирует этот репозиторий, и превращает каждую строку в отдельную кнопку.
 
----
+***
 
 ## 🚀 Как это работает?
 
@@ -83,7 +87,7 @@
 - `verified/proxy_all_verified.json` — подробный JSON с полями `host`, `port`, `secret`, `ping`, `region`, `domain`, `method` (TCP_OK / Telethon_OK).
 - `verified/proxy_stats_verified.json` — статистика по запуску (кол‑во сырья, верифицированных прокси, лучший пинг и т.п.).
 
----
+***
 
 ## 🔗 Мои проекты
 
@@ -95,7 +99,7 @@
 | **Internet Access** | Сайт проекта | [Website](https://kort0881.github.io/internet-access-site/) |
 | **VPN Key Repo** | Репозиторий скриптов VLESS | [GitHub](https://github.com/kort0881/vpn-key-vless) |
 
----
+***
 
 ## 🛠️ Локальный запуск (для разработчиков)
 
@@ -103,7 +107,7 @@
 
 ```bash
 # 1. Клонировать репозиторий
-git clone https://github.com/kort0881/telegram-proxy-collector.git
+git clone [https://github.com/kort0881/telegram-proxy-collector.git](https://github.com/kort0881/telegram-proxy-collector.git)
 cd telegram-proxy-collector
 
 # 2. Установить зависимости
