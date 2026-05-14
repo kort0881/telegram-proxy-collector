@@ -1,11 +1,11 @@
 # Verified RU Proxies (6)
-# Updated: 2026-05-14 22:50:49 UTC
+# Updated: 2026-05-14 23:48:25 UTC
 # Method: TCP_OK
-# Best ping: 0.135s
+# Best ping: 0.132s
 
+tg://proxy?server=89.125.48.232&port=443&secret=ee72f3ca54320d22b0c5d8daf53168962d706574726f766963682e7275
 tg://proxy?server=germany.tgproxysokol.pro&port=8443&secret=ee4215d16e455242e9b5ffb6349df285d06164732e78352e7275
 tg://proxy?server=connect.tproxyru.live&port=8980&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
-tg://proxy?server=tproxyru.live.&port=8980&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
 tg://proxy?server=mt.corph.ru&port=443&secret=ee2ed7517b077ef414e24b106e0729335d6d742e636f7270682e7275
+tg://proxy?server=tproxyru.live.&port=8980&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
 tg://proxy?server=mtp.love-pussy.online&port=8980&secret=eeb6506e69d11db32d81c215a14850a194617669746f2e7275
-tg://proxy?server=89.125.48.232&port=443&secret=ee72f3ca54320d22b0c5d8daf53168962d706574726f766963682e7275
