@@ -1,12 +1,10 @@
-# Verified RU Proxies (7)
-# Updated: 2026-05-18 14:33:32 UTC
+# Verified RU Proxies (5)
+# Updated: 2026-05-18 17:27:02 UTC
 # Method: TCP_OK
-# Best ping: 0.147s
+# Best ping: 0.114s
 
 tg://proxy?server=132.243.213.216&port=443&secret=eea3f41c6c1aefca10e6a8c366158ae25d706574726f766963682e7275
-tg://proxy?server=132.243.224.115&port=443&secret=ee64fa232998f0194a2cc5f5d0f4d1c9ae706574726f766963682e7275
-tg://proxy?server=132.243.213.215&port=443&secret=ee46f33d84ae85e3ad53567904d7199be7706574726f766963682e7275
-tg://proxy?server=132.243.224.144&port=443&secret=eeecda39a76e1bc3262c8c8b01f7ba4fee706574726f766963682e7275
 tg://proxy?server=132.243.213.221&port=443&secret=eedb1bb2c2c796e681b5062a973eb05859706574726f766963682e7275
+tg://proxy?server=132.243.213.215&port=443&secret=ee46f33d84ae85e3ad53567904d7199be7706574726f766963682e7275
 tg://proxy?server=alpina.agency&port=8443&secret=eea02597a68d4821f58d17e6405c389da16164732e78352e7275
 tg://proxy?server=germany.tgproxysokol.pro&port=8443&secret=ee4215d16e455242e9b5ffb6349df285d06164732e78352e7275
