@@ -1,8 +1,15 @@
-# Verified RU Proxies (3)
-# Updated: 2026-05-23 20:40:34 UTC
+# Verified RU Proxies (10)
+# Updated: 2026-05-23 21:45:37 UTC
 # Method: TCP_OK
-# Best ping: 0.132s
+# Best ping: 0.082s
 
 tg://proxy?server=91.84.127.166&port=443&secret=eee1c9c22f43146f765430cbd63d40cdc37777772e79616e6465782e7275
+tg://proxy?server=89.35.131.217&port=443&secret=ee21406fa1321a733a9fe7edd39ddbe4fe7777772e79616e6465782e7275
 tg://proxy?server=78.17.71.42&port=443&secret=eeec75b855ebcc01c982f3e013af8ed92a7777772e79616e6465782e7275
+tg://proxy?server=tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275
+tg://proxy?server=www.tproxy.mom&port=8090&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
+tg://proxy?server=176.125.240.195&port=443&secret=eeae49fc0cb49514612b72494665fffa167777772e79616e6465782e7275
+tg://proxy?server=speed.chunkycorp.shop&port=443&secret=ee3a3365be03d6bc13518d65e70a3146c2617669746f2e7275
+tg://proxy?server=www.tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275
+tg://proxy?server=tproxy.mom&port=8090&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
 tg://proxy?server=80.96.112.222&port=443&secret=ee2e7fcf4666472ebd58e4fea75357105f7777772e79616e6465782e7275
