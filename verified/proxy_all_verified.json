@@ -1,12 +1,32 @@
 [
   {
+    "host": "195.133.20.10",
+    "port": 443,
+    "secret": "7sEXmKsAiDG0dAZsnh6_XIJhdml0by5ydQ",
+    "link": "tg://proxy?server=195.133.20.10&port=443&secret=7sEXmKsAiDG0dAZsnh6_XIJhdml0by5ydQ",
+    "ping": 0.086,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
     "host": "89.35.131.217",
     "port": 443,
     "secret": "ee21406fa1321a733a9fe7edd39ddbe4fe7777772e79616e6465782e7275",
     "link": "tg://proxy?server=89.35.131.217&port=443&secret=ee21406fa1321a733a9fe7edd39ddbe4fe7777772e79616e6465782e7275",
-    "ping": 0.13,
+    "ping": 0.087,
     "region": "ru",
     "domain": "!@o2s:www.yandex.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "91.107.189.181",
+    "port": 8443,
+    "secret": "dd104462821249bd7ac519130220c25d09",
+    "link": "tg://proxy?server=91.107.189.181&port=8443&secret=dd104462821249bd7ac519130220c25d09",
+    "ping": 0.098,
+    "region": "eu",
+    "domain": "",
     "method": "TCP_OK"
   },
   {
@@ -14,7 +34,27 @@
     "port": 443,
     "secret": "eec11798ab008831b474066c9e1ebf5c85617669746f2e7275",
     "link": "tg://proxy?server=72.56.41.35&port=443&secret=eec11798ab008831b474066c9e1ebf5c85617669746f2e7275",
-    "ping": 0.136,
+    "ping": 0.103,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "78.17.71.42",
+    "port": 443,
+    "secret": "eeec75b855ebcc01c982f3e013af8ed92a7777772e79616e6465782e7275",
+    "link": "tg://proxy?server=78.17.71.42&port=443&secret=eeec75b855ebcc01c982f3e013af8ed92a7777772e79616e6465782e7275",
+    "ping": 0.088,
+    "region": "ru",
+    "domain": "uu*www.yandex.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "178.104.244.158",
+    "port": 8080,
+    "secret": "dd104462821249bd7ac519130220c25d09",
+    "link": "tg://proxy?server=178.104.244.158&port=8080&secret=dd104462821249bd7ac519130220c25d09",
+    "ping": 0.098,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK"
@@ -24,7 +64,107 @@
     "port": 443,
     "secret": "3QAAAAAAAAAAAAAAAAAAAAA=",
     "link": "tg://proxy?server=23.88.51.230&port=443&secret=3QAAAAAAAAAAAAAAAAAAAAA=",
-    "ping": 0.146,
+    "ping": 0.099,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "dreams.nolags.pw",
+    "port": 443,
+    "secret": "dd2d558135931b5e0c5da5e7501724b32c",
+    "link": "tg://proxy?server=dreams.nolags.pw&port=443&secret=dd2d558135931b5e0c5da5e7501724b32c",
+    "ping": 0.092,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "alpinavpn.hatecens.cc",
+    "port": 7443,
+    "secret": "eef8dc254a4c2af8afcab54c8a5f9bb4fb616c70696e6176706e2e6861746563656e732e6363",
+    "link": "tg://proxy?server=alpinavpn.hatecens.cc&port=7443&secret=eef8dc254a4c2af8afcab54c8a5f9bb4fb616c70696e6176706e2e6861746563656e732e6363",
+    "ping": 0.113,
+    "region": "eu",
+    "domain": "%jl*l_alpinavpn.hatecens.cc",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "31.207.5.58",
+    "port": 443,
+    "secret": "ee997f8741c0919f7b1e8a2c47d9bc1b106d61782e7275",
+    "link": "tg://proxy?server=31.207.5.58&port=443&secret=ee997f8741c0919f7b1e8a2c47d9bc1b106d61782e7275",
+    "ping": 0.109,
+    "region": "ru",
+    "domain": "a{,gmax.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "syntax.ddnscdn.sbs.",
+    "port": 443,
+    "secret": "ee0000f00f0f775555fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d",
+    "link": "tg://proxy?server=syntax.ddnscdn.sbs.&port=443&secret=ee0000f00f0f775555fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d",
+    "ping": 0.115,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "176.125.240.195",
+    "port": 443,
+    "secret": "eeae49fc0cb49514612b72494665fffa167777772e79616e6465782e7275",
+    "link": "tg://proxy?server=176.125.240.195&port=443&secret=eeae49fc0cb49514612b72494665fffa167777772e79616e6465782e7275",
+    "ping": 0.113,
+    "region": "ru",
+    "domain": "ia+rifewww.yandex.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "89.167.103.249",
+    "port": 443,
+    "secret": "dd104462821249bd7ac519130220c25d09",
+    "link": "tg://proxy?server=89.167.103.249&port=443&secret=dd104462821249bd7ac519130220c25d09",
+    "ping": 0.118,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "another.life.mambabot.net",
+    "port": 4515,
+    "secret": "eec485b564c0178c338d8bf4f3f17539c4613234382e652e616b616d61692e6e6574",
+    "link": "tg://proxy?server=another.life.mambabot.net&port=4515&secret=eec485b564c0178c338d8bf4f3f17539c4613234382e652e616b616d61692e6e6574",
+    "ping": 0.132,
+    "region": "eu",
+    "domain": "d3u9a248.e.akamai.net",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "s3.neo-trading.org",
+    "port": 443,
+    "secret": "eec3fefd89a25d37ca3af1a602c7bfd8de79612e7275",
+    "link": "tg://proxy?server=s3.neo-trading.org&port=443&secret=eec3fefd89a25d37ca3af1a602c7bfd8de79612e7275",
+    "ping": 0.124,
+    "region": "ru",
+    "domain": "]7:ya.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "92.118.234.215",
+    "port": 443,
+    "secret": "dddb9b51b5ce9a2820ff62d348cb23f1b9",
+    "link": "tg://proxy?server=92.118.234.215&port=443&secret=dddb9b51b5ce9a2820ff62d348cb23f1b9",
+    "ping": 0.134,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "vaslshid.co.uk.",
+    "port": 85,
+    "secret": "FgMBAgABAAH8AxOG4kw63Q%3D%3D",
+    "link": "tg://proxy?server=vaslshid.co.uk.&port=85&secret=FgMBAgABAAH8AxOG4kw63Q%3D%3D",
+    "ping": 0.143,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK"
@@ -34,19 +174,19 @@
     "port": 8443,
     "secret": "ee38a4d5d648d6af5196c71c2018eb6fa6776176652e70726f7879752e73697465",
     "link": "tg://proxy?server=wave.proxyu.site&port=8443&secret=ee38a4d5d648d6af5196c71c2018eb6fa6776176652e70726f7879752e73697465",
-    "ping": 0.151,
+    "ping": 0.107,
     "region": "eu",
     "domain": "8hq owave.proxyu.site",
     "method": "TCP_OK"
   },
   {
-    "host": "2.26.99.245",
-    "port": 8443,
-    "secret": "ee17263409876123456712342349876554322e32362e39392e323435",
-    "link": "tg://proxy?server=2.26.99.245&port=8443&secret=ee17263409876123456712342349876554322e32362e39392e323435",
-    "ping": 0.162,
+    "host": "5.181.0.202",
+    "port": 443,
+    "secret": "eec11798ab008831b474066c9e1ebf5c96617669746f2e7275",
+    "link": "tg://proxy?server=5.181.0.202&port=443&secret=eec11798ab008831b474066c9e1ebf5c96617669746f2e7275",
+    "ping": 0.096,
     "region": "eu",
-    "domain": "&4a#eg4#iet2.26.99.245",
+    "domain": "",
     "method": "TCP_OK"
   },
   {
@@ -54,39 +194,9 @@
     "port": 5443,
     "secret": "eeee1b84950935ebf99951bc30e394445c9b7777772e636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=79.137.196.223&port=5443&secret=eeee1b84950935ebf99951bc30e394445c9b7777772e636c6f7564666c6172652e636f6d",
-    "ping": 0.151,
+    "ping": 0.097,
     "region": "eu",
     "domain": "5q0d\\www.cloudflare.com",
-    "method": "TCP_OK"
-  },
-  {
-    "host": "speed.chunkycorp.shop",
-    "port": 443,
-    "secret": "ee3a3365be03d6bc13518d65e70a3146c2617669746f2e7275",
-    "link": "tg://proxy?server=speed.chunkycorp.shop&port=443&secret=ee3a3365be03d6bc13518d65e70a3146c2617669746f2e7275",
-    "ping": 0.175,
-    "region": "ru",
-    "domain": ":3eqe1favito.ru",
-    "method": "TCP_OK"
-  },
-  {
-    "host": "www.tproxy.ink",
-    "port": 443,
-    "secret": "ee104462821249bd7ac519130220c25d09617669746f2e7275",
-    "link": "tg://proxy?server=www.tproxy.ink&port=443&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275",
-    "ping": 0.173,
-    "region": "ru",
-    "domain": "dbiz ]avito.ru",
-    "method": "TCP_OK"
-  },
-  {
-    "host": "vaslshid.co.uk.",
-    "port": 85,
-    "secret": "FgMBAgABAAH8AxOG4kw63Q%3D%3D",
-    "link": "tg://proxy?server=vaslshid.co.uk.&port=85&secret=FgMBAgABAAH8AxOG4kw63Q%3D%3D",
-    "ping": 0.187,
-    "region": "eu",
-    "domain": "",
     "method": "TCP_OK"
   },
   {
@@ -94,49 +204,9 @@
     "port": 443,
     "secret": "ee104462821249bd7ac519130220c25d09617669746f2e7275",
     "link": "tg://proxy?server=tproxy.ink&port=443&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275",
-    "ping": 0.176,
+    "ping": 0.107,
     "region": "ru",
     "domain": "dbiz ]avito.ru",
-    "method": "TCP_OK"
-  },
-  {
-    "host": "Q4.opt-meli.info",
-    "port": 443,
-    "secret": "eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D",
-    "link": "tg://proxy?server=Q4.opt-meli.info&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D",
-    "ping": 0.189,
-    "region": "eu",
-    "domain": "}>r@c'media.steampowered.com",
-    "method": "TCP_OK"
-  },
-  {
-    "host": "plg-proxy.duckdns.org",
-    "port": 9443,
-    "secret": "7nI_RL0Z_1CkMYeMay0LRqBwbGctcHJveHkuZHVja2Rucy5vcmc",
-    "link": "tg://proxy?server=plg-proxy.duckdns.org&port=9443&secret=7nI_RL0Z_1CkMYeMay0LRqBwbGctcHJveHkuZHVja2Rucy5vcmc",
-    "ping": 0.215,
-    "region": "eu",
-    "domain": "",
-    "method": "TCP_OK"
-  },
-  {
-    "host": "amoreszi.duckdns.org",
-    "port": 443,
-    "secret": "7uZ0yg4fr7vIQ5i_MUfeWQB3d3cuYXBwbGUuY29t",
-    "link": "tg://proxy?server=amoreszi.duckdns.org&port=443&secret=7uZ0yg4fr7vIQ5i_MUfeWQB3d3cuYXBwbGUuY29t",
-    "ping": 0.217,
-    "region": "eu",
-    "domain": "",
-    "method": "TCP_OK"
-  },
-  {
-    "host": "syntax.ddnscdn.sbs.",
-    "port": 443,
-    "secret": "ee0000f00f0f775555fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d",
-    "link": "tg://proxy?server=syntax.ddnscdn.sbs.&port=443&secret=ee0000f00f0f775555fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d",
-    "ping": 0.23,
-    "region": "eu",
-    "domain": "",
     "method": "TCP_OK"
   },
   {
@@ -144,9 +214,79 @@
     "port": 2053,
     "secret": "ee104462821249bd7ac519130220c25d096d61696c2e7275",
     "link": "tg://proxy?server=www.tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275",
-    "ping": 0.242,
+    "ping": 0.222,
     "region": "ru",
     "domain": "dbiz ]mail.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "186.246.16.232",
+    "port": 443,
+    "secret": "eec11798ab008831b474066c9e1ebf5c81617669746f2e7275",
+    "link": "tg://proxy?server=186.246.16.232&port=443&secret=eec11798ab008831b474066c9e1ebf5c81617669746f2e7275",
+    "ping": 0.1,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "Q4.opt-meli.info",
+    "port": 443,
+    "secret": "eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D",
+    "link": "tg://proxy?server=Q4.opt-meli.info&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D",
+    "ping": 0.114,
+    "region": "eu",
+    "domain": "}>r@c'media.steampowered.com",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "2.26.99.245",
+    "port": 8443,
+    "secret": "ee17263409876123456712342349876554322e32362e39392e323435",
+    "link": "tg://proxy?server=2.26.99.245&port=8443&secret=ee17263409876123456712342349876554322e32362e39392e323435",
+    "ping": 0.1,
+    "region": "eu",
+    "domain": "&4a#eg4#iet2.26.99.245",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "g.proxytg.space",
+    "port": 8443,
+    "secret": "eedc41bbb2f33136f9e5f58f258e2f5a8a672e70726f787974672e7370616365",
+    "link": "tg://proxy?server=g.proxytg.space&port=8443&secret=eedc41bbb2f33136f9e5f58f258e2f5a8a672e70726f787974672e7370616365",
+    "ping": 0.235,
+    "region": "eu",
+    "domain": "a16%/zg.proxytg.space",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "62.60.228.136",
+    "port": 443,
+    "secret": "ee4fdb47b5c93d2b46c0c155b90106418379616e6465782e7275",
+    "link": "tg://proxy?server=62.60.228.136&port=443&secret=ee4fdb47b5c93d2b46c0c155b90106418379616e6465782e7275",
+    "ping": 0.113,
+    "region": "ru",
+    "domain": "og=+fuayandex.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "server-1.shustrik.world",
+    "port": 443,
+    "secret": "ee53fed7a45b8fcb2ef5a2e0223c76bb4e766b766964656f2e7275",
+    "link": "tg://proxy?server=server-1.shustrik.world&port=443&secret=ee53fed7a45b8fcb2ef5a2e0223c76bb4e766b766964656f2e7275",
+    "ping": 0.126,
+    "region": "ru",
+    "domain": "s[.\"<vnvkvideo.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "tproxy.mom",
+    "port": 8090,
+    "secret": "ee104462821249bd7ac519130220c25d09617669746f2e7275",
+    "link": "tg://proxy?server=tproxy.mom&port=8090&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275",
+    "ping": 0.279,
+    "region": "ru",
+    "domain": "dbiz ]avito.ru",
     "method": "TCP_OK"
   },
   {
@@ -154,7 +294,87 @@
     "port": 8090,
     "secret": "ee104462821249bd7ac519130220c25d09617669746f2e7275",
     "link": "tg://proxy?server=www.tproxy.mom&port=8090&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275",
-    "ping": 0.297,
+    "ping": 0.279,
+    "region": "ru",
+    "domain": "dbiz ]avito.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "mt.nowaboost.com",
+    "port": 853,
+    "secret": "4fd95a487c5c87ae82b6639a9b6b5ff2",
+    "link": "tg://proxy?server=mt.nowaboost.com&port=853&secret=4fd95a487c5c87ae82b6639a9b6b5ff2",
+    "ping": 0.3,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "win.sosproxy.space",
+    "port": 443,
+    "secret": "ee477ccce74a28c13a2ef6ec9e01510c3164726976652e676f6f676c652e636f6d",
+    "link": "tg://proxy?server=win.sosproxy.space&port=443&secret=ee477ccce74a28c13a2ef6ec9e01510c3164726976652e676f6f676c652e636f6d",
+    "ping": 0.301,
+    "region": "eu",
+    "domain": "g|j(:.q1drive.google.com",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "s.proxytg.space",
+    "port": 8443,
+    "secret": "eefefc4f17248e59437bb451447a9170b2732e70726f787974672e7370616365",
+    "link": "tg://proxy?server=s.proxytg.space&port=8443&secret=eefefc4f17248e59437bb451447a9170b2732e70726f787974672e7370616365",
+    "ping": 0.228,
+    "region": "eu",
+    "domain": "o$yc{qdzps.proxytg.space",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "amoreszi.duckdns.org",
+    "port": 443,
+    "secret": "7uZ0yg4fr7vIQ5i_MUfeWQB3d3cuYXBwbGUuY29t",
+    "link": "tg://proxy?server=amoreszi.duckdns.org&port=443&secret=7uZ0yg4fr7vIQ5i_MUfeWQB3d3cuYXBwbGUuY29t",
+    "ping": 0.144,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "s4.neo-trading.org",
+    "port": 443,
+    "secret": "ee181e2ad5e63c27262781187f2dedc4bb79612e7275",
+    "link": "tg://proxy?server=s4.neo-trading.org&port=443&secret=ee181e2ad5e63c27262781187f2dedc4bb79612e7275",
+    "ping": 0.15,
+    "region": "ru",
+    "domain": "*<'&'-ya.ru",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "95.217.235.33",
+    "port": 443,
+    "secret": "dd104462821249bd7ac519130220c25d09",
+    "link": "tg://proxy?server=95.217.235.33&port=443&secret=dd104462821249bd7ac519130220c25d09",
+    "ping": 0.118,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "89.167.104.111",
+    "port": 443,
+    "secret": "b3f0c7f6af7dc2dc2e9c80d0d80e8162",
+    "link": "tg://proxy?server=89.167.104.111&port=443&secret=b3f0c7f6af7dc2dc2e9c80d0d80e8162",
+    "ping": 0.118,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK"
+  },
+  {
+    "host": "www.tproxy.ink",
+    "port": 443,
+    "secret": "ee104462821249bd7ac519130220c25d09617669746f2e7275",
+    "link": "tg://proxy?server=www.tproxy.ink&port=443&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275",
+    "ping": 0.495,
     "region": "ru",
     "domain": "dbiz ]avito.ru",
     "method": "TCP_OK"
@@ -164,19 +384,9 @@
     "port": 2053,
     "secret": "ee104462821249bd7ac519130220c25d096d61696c2e7275",
     "link": "tg://proxy?server=tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275",
-    "ping": 0.393,
+    "ping": 0.414,
     "region": "ru",
     "domain": "dbiz ]mail.ru",
-    "method": "TCP_OK"
-  },
-  {
-    "host": "tproxy.mom",
-    "port": 8090,
-    "secret": "ee104462821249bd7ac519130220c25d09617669746f2e7275",
-    "link": "tg://proxy?server=tproxy.mom&port=8090&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275",
-    "ping": 1.319,
-    "region": "ru",
-    "domain": "dbiz ]avito.ru",
     "method": "TCP_OK"
   }
 ]
