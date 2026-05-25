@@ -1,17 +1,17 @@
 # Verified RU Proxies (12)
-# Updated: 2026-05-25 07:06:05 UTC
+# Updated: 2026-05-25 11:45:48 UTC
 # Method: TCP_OK
-# Best ping: 0.099s
+# Best ping: 0.132s
 
-tg://proxy?server=78.17.71.42&port=443&secret=eeec75b855ebcc01c982f3e013af8ed92a7777772e79616e6465782e7275
 tg://proxy?server=89.35.131.217&port=443&secret=ee21406fa1321a733a9fe7edd39ddbe4fe7777772e79616e6465782e7275
-tg://proxy?server=www.tproxy.ink&port=443&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
-tg://proxy?server=tproxy.ink&port=443&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
+tg://proxy?server=78.17.71.42&port=443&secret=eeec75b855ebcc01c982f3e013af8ed92a7777772e79616e6465782e7275
+tg://proxy?server=176.125.240.195&port=443&secret=eeae49fc0cb49514612b72494665fffa167777772e79616e6465782e7275
 tg://proxy?server=31.207.5.58&port=443&secret=ee997f8741c0919f7b1e8a2c47d9bc1b106d61782e7275
+tg://proxy?server=62.60.228.136&port=443&secret=ee4fdb47b5c93d2b46c0c155b90106418379616e6465782e7275
 tg://proxy?server=s3.neo-trading.org&port=443&secret=eec3fefd89a25d37ca3af1a602c7bfd8de79612e7275
-tg://proxy?server=s4.neo-trading.org&port=443&secret=ee181e2ad5e63c27262781187f2dedc4bb79612e7275
 tg://proxy?server=tproxy.mom&port=8090&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
+tg://proxy?server=www.tproxy.ink&port=443&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
+tg://proxy?server=s4.neo-trading.org&port=443&secret=ee181e2ad5e63c27262781187f2dedc4bb79612e7275
 tg://proxy?server=www.tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275
-tg://proxy?server=www.tproxy.mom&port=8090&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
+tg://proxy?server=tproxy.ink&port=443&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
 tg://proxy?server=tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275
-tg://proxy?server=server-1.shustrik.world&port=443&secret=ee53fed7a45b8fcb2ef5a2e0223c76bb4e766b766964656f2e7275
