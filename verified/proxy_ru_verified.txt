@@ -1,16 +1,16 @@
 # Verified RU Proxies (11)
-# Updated: 2026-05-27 23:56:04 UTC
+# Updated: 2026-05-28 02:28:56 UTC
 # Method: TCP_OK
-# Best ping: 0.135s
+# Best ping: 0.108s
 
-tg://proxy?server=tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
 tg://proxy?server=31.207.5.58&port=443&secret=ee997f8741c0919f7b1e8a2c47d9bc1b106d61782e7275
+tg://proxy?server=dr1.dedus.pro&port=443&secret=eeaf504aa56469ec880c9cb00515fc8a2d79616e6465782e7275
+tg://proxy?server=80.96.112.222&port=443&secret=ee2e7fcf4666472ebd58e4fea75357105f7777772e79616e6465782e7275
+tg://proxy?server=dr4.dedus.pro&port=443&secret=eeaf504aa56469ec880c9cb00515fc8a2d79616e6465782e7275
+tg://proxy?server=s25.proxyru.top&port=443&secret=eefe281d2bfa13f991ed6be43138e5e14c79612e7275
+tg://proxy?server=tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
+tg://proxy?server=He.jlpoKcu.cloud&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 tg://proxy?server=tproxy.mom&port=8090&secret=ee104462821249bd7ac519130220c25d09617669746f2e7275
 tg://proxy?server=s21.neo-trading.org&port=443&secret=ee181e2ad5e63c27262781187f2dedc4bb79612e7275
-tg://proxy?server=www.tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275
-tg://proxy?server=80.96.112.222&port=443&secret=ee2e7fcf4666472ebd58e4fea75357105f7777772e79616e6465782e7275
-tg://proxy?server=cloud.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
-tg://proxy?server=He.jlpoKcu.cloud&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
 tg://proxy?server=dns.vdl.lat&port=853&secret=ee534adcf23a16f425cbae129c4cb574cb6164732e78352e7275
-tg://proxy?server=gov.chunkycorp.shop&port=443&secret=ee3a3365be03d6bc13518d65e70a3146c2617669746f2e7275
-tg://proxy?server=s25.proxyru.top&port=443&secret=eefe281d2bfa13f991ed6be43138e5e14c79612e7275
+tg://proxy?server=www.tproxy.monster&port=2053&secret=ee104462821249bd7ac519130220c25d096d61696c2e7275
