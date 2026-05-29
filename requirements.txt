@@ -1,5 +1,2 @@
-httpx[socks,http2]>=0.28.1
-rich>=14.3.2
-PyYAML>=6.0.3
-telethon
-aiodns
+requests>=2.31.0
+telethon>=1.36.0
