@@ -1,4 +1,3 @@
-# MTProto RU (1)
-# Updated: 2026-06-05 13:51:20.387333+00:00
+# MTProto RU (0)
+# Updated: 2026-06-05 16:28:33.649617+00:00
 
-tg://proxy?server=186.246.28.25&port=443&secret=eefced0b92adbe28d8bea608c8ca7e553f6275726765726b696e677275732e7275
