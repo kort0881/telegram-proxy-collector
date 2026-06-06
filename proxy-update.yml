@@ -1,1 +1,53 @@
+name: Proxy Update
 
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      
+      - name: Install deps
+        run: pip install requests telethon
+      
+      - name: Run collector
+        run: python main.py --top 200
+        env:
+          MTPROXY_API_ID: ${{ secrets.MTPROXY_API_ID }}
+          MTPROXY_API_HASH: ${{ secrets.MTPROXY_API_HASH }}
+      
+      - name: Copy files
+        run: |
+          cp verified/proxy_ru_verified.txt proxy_ru.txt
+          cp verified/proxy_eu_verified.txt proxy_eu.txt
+          cp verified/proxy_all_verified.txt proxy_all.txt
+      
+      - name: Git commit
+        run: |
+          git config user.name "Bot"
+          git config user.email "bot@local"
+          git add proxy_ru.txt proxy_eu.txt proxy_all.txt verified/
+          git diff --staged --quiet || git commit -m "update $(date)"
+          git push || true
+      
+      - name: Send to TG
+        env:
+          BOT: ${{ secrets.TG_BOT_TOKEN }}
+          CHAT: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          if [ -f proxy_ru.txt ]; then
+            URLS=$(grep -E 't.me/proxy' proxy_ru.txt | head -3)
+            if [ -n "$URLS" ]; then
+              curl -s -X POST "https://api.telegram.org/bot${BOT}/sendMessage" \
+                -d chat_id="${CHAT}" \
+                -d text="New proxies:%0A${URLS}"
+            fi
+          fi
