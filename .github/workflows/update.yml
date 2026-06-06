@@ -24,14 +24,15 @@
           local msk_time=$(TZ='Europe/Moscow' date '+%H:%M')
           local msk_date=$(TZ='Europe/Moscow' date '+%d.%m.%Y')
           
-          # Собираем кнопки (максимум 5 строк по 1 кнопке)
-          local buttons=""
+          # Формируем JSON клавиатуры
+          local keyboard_json='{"inline_keyboard":['
           local counter=1
+          
           while IFS= read -r proxy_url; do
             # Очищаем URL от возможных пробелов и символов перевода строки
             proxy_url=$(echo "$proxy_url" | tr -d '\n\r' | sed 's/&/\\&/g')
             
-            # Случайный процент загрузки (от 0 до 85) — т.к. у вас нет реальных данных
+            # Случайный процент загрузки (от 0 до 85)
             local load=$((RANDOM % 86))
             local load_emoji="🟢"
             if [ $load -gt 70 ]; then
@@ -41,35 +42,19 @@
               load_emoji="🔴"
             fi
             
-            # Добавляем кнопку: текст = "🟢 33% 👉 Прокси сервер N"
-            buttons="${buttons}{\"text\":\"${load_emoji} ${load}% 👉 ${title} ${counter}\",\"url\":\"${proxy_url}\"},"$'\n'
+            # Добавляем кнопку в виде строки с одной кнопкой
+            keyboard_json="${keyboard_json}[{\"text\":\"${load_emoji} ${load}% 👉 ${title} ${counter}\",\"url\":\"${proxy_url}\"}],"
             counter=$((counter + 1))
           done <<< "$proxies"
           
-          # Убираем последнюю запятую
-          buttons=${buttons%,$'\n'}
-          
-          # Формируем JSON для inline_keyboard
-          local inline_keyboard="{\"inline_keyboard\":[[${buttons//$'\n'/\}],[}]"
-          # Упрощённый вариант — проще собрать вручную:
-          local keyboard_json='{"inline_keyboard":['
-          local i=1
-          while IFS= read -r proxy_url; do
-            proxy_url=$(echo "$proxy_url" | tr -d '\n\r' | sed 's/&/\\&/g')
-            local load=$((RANDOM % 86))
-            local load_emoji="🟢"
-            if [ $load -gt 70 ]; then load_emoji="🟡"; fi
-            if [ $load -gt 85 ]; then load_emoji="🔴"; fi
-            keyboard_json="${keyboard_json}[{\"text\":\"${load_emoji} ${load}% 👉 ${title} ${i}\",\"url\":\"${proxy_url}\"}],"
-            i=$((i + 1))
-          done <<< "$(grep -E '^https?://t\.me/proxy\?' "$file" | head -n 5)"
+          # Убираем последнюю запятую и закрываем JSON
           keyboard_json="${keyboard_json%,}]}"
           
-          # Сообщение с эмодзи и информацией
+          # Формируем сообщение
           local message="${flag} *${title}*%0A"
           message="${message}Актуальный список на ${msk_date}%0A"
           message="${message}Обновлено в ${msk_time} МСК%0A"
-          message="${message}Просьба подключаться с учетом процента загрузки серверов.%0A%0A"
+          message="${message}Просьба подключаться с учётом процента загрузки серверов.%0A%0A"
           
           # Отправляем с инлайн-кнопками
           curl -s -X POST "https://api.telegram.org/bot${TG_BOT}/sendMessage" \
