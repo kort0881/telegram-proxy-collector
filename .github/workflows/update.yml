@@ -29,3 +29,12 @@ jobs:
         git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt socks5.txt || true
         git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
         git push || true
+        
+name: Send to Telegram
+  env:
+    TG_BOT: ${{ secrets.TG_BOT_TOKEN }}
+    TG_CHAT: ${{ secrets.TG_CHAT_ID }}
+  run: |
+    curl -s -X POST https://api.telegram.org/bot${TG_BOT}/sendMessage \
+    -d chat_id=${TG_CHAT} \
+    -d text="$(cat proxy_ru.txt | head -n 5)"
