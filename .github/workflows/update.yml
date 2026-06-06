@@ -1,4 +1,4 @@
-    - name: Send pretty proxies to Telegram
+name: Send pretty proxies to Telegram
       env:
         TG_BOT: ${{ secrets.TG_BOT_TOKEN }}
         TG_CHAT: ${{ secrets.TG_CHAT_ID }}
