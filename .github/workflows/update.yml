@@ -1,9 +1,40 @@
-name: Send pretty proxies to Telegram
+name: Update Verified Proxy Lists
+
+on:
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    - run: pip install requests telethon
+    - run: python main.py --top 200
+      env:
+        MTPROXY_API_ID: ${{ secrets.MTPROXY_API_ID }}
+        MTPROXY_API_HASH: ${{ secrets.MTPROXY_API_HASH }}
+    - run: |
+        cp verified/proxy_ru_verified.txt proxy_ru.txt
+        cp verified/proxy_eu_verified.txt proxy_eu.txt
+        cp verified/proxy_all_verified.txt proxy_all.txt
+        cp verified/socks5_proxies.txt socks5.txt || true
+    - run: |
+        git config user.name "Proxy Bot"
+        git config user.email "bot@github.com"
+        git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt socks5.txt || true
+        git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
+        git push || true
+    
+    - name: Send pretty proxies to Telegram
       env:
         TG_BOT: ${{ secrets.TG_BOT_TOKEN }}
         TG_CHAT: ${{ secrets.TG_CHAT_ID }}
       run: |
-        # Функция для создания сообщения с кнопками
         send_pretty_proxies() {
           local file=$1
           local title=$2
@@ -13,26 +44,21 @@ name: Send pretty proxies to Telegram
             return
           fi
           
-          # Берём первые 5 прокси (только строки со https://t.me/proxy)
           local proxies=$(grep -E '^https?://t\.me/proxy\?' "$file" | head -n 5)
           
           if [ -z "$proxies" ]; then
             return
           fi
           
-          # Текущее время по МСК
           local msk_time=$(TZ='Europe/Moscow' date '+%H:%M')
           local msk_date=$(TZ='Europe/Moscow' date '+%d.%m.%Y')
           
-          # Формируем JSON клавиатуры
           local keyboard_json='{"inline_keyboard":['
           local counter=1
           
           while IFS= read -r proxy_url; do
-            # Очищаем URL от возможных пробелов и символов перевода строки
             proxy_url=$(echo "$proxy_url" | tr -d '\n\r' | sed 's/&/\\&/g')
             
-            # Случайный процент загрузки (от 0 до 85)
             local load=$((RANDOM % 86))
             local load_emoji="🟢"
             if [ $load -gt 70 ]; then
@@ -42,21 +68,17 @@ name: Send pretty proxies to Telegram
               load_emoji="🔴"
             fi
             
-            # Добавляем кнопку в виде строки с одной кнопкой
             keyboard_json="${keyboard_json}[{\"text\":\"${load_emoji} ${load}% 👉 ${title} ${counter}\",\"url\":\"${proxy_url}\"}],"
             counter=$((counter + 1))
           done <<< "$proxies"
           
-          # Убираем последнюю запятую и закрываем JSON
           keyboard_json="${keyboard_json%,}]}"
           
-          # Формируем сообщение
           local message="${flag} *${title}*%0A"
           message="${message}Актуальный список на ${msk_date}%0A"
           message="${message}Обновлено в ${msk_time} МСК%0A"
           message="${message}Просьба подключаться с учётом процента загрузки серверов.%0A%0A"
           
-          # Отправляем с инлайн-кнопками
           curl -s -X POST "https://api.telegram.org/bot${TG_BOT}/sendMessage" \
             -d chat_id="${TG_CHAT}" \
             -d text="${message}" \
@@ -66,7 +88,6 @@ name: Send pretty proxies to Telegram
           sleep 1
         }
         
-        # Отправляем три категории
         send_pretty_proxies "proxy_ru.txt" "Прокси сервер" "🇷🇺"
         send_pretty_proxies "proxy_eu.txt" "EU Прокси" "🇪🇺"
         send_pretty_proxies "proxy_all.txt" "All Прокси" "🌍"
