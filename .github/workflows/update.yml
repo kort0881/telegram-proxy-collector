@@ -30,15 +30,29 @@ jobs:
         git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
         git push || true
     
-    - name: Send to Telegram
+    - name: Send proxies to Telegram
       env:
         TG_BOT: ${{ secrets.TG_BOT_TOKEN }}
         TG_CHAT: ${{ secrets.TG_CHAT_ID }}
       run: |
-        if [ -f proxy_ru.txt ]; then
-          MESSAGE=$(head -n 5 proxy_ru.txt | sed ':a;N;$!ba;s/\n/%0A/g' | sed 's/&/\\&/g')
-          curl -s -X POST "https://api.telegram.org/bot${TG_BOT}/sendMessage" \
-            -d chat_id="${TG_CHAT}" \
-            -d text="🔥 *Свежие MTProto прокси для РФ*%0A%0A\`${MESSAGE}\`" \
-            -d parse_mode="Markdown"
-        fi
+        # Функция для отправки сообщения
+        send_proxies() {
+          local file=$1
+          local title=$2
+          
+          if [ -f "$file" ] && [ -s "$file" ]; then
+            CONTENT=$(head -n 5 "$file" | sed ':a;N;$!ba;s/\n/%0A/g' | sed 's/&/\\&/g')
+            if [ -n "$CONTENT" ]; then
+              curl -s -X POST "https://api.telegram.org/bot${TG_BOT}/sendMessage" \
+                -d chat_id="${TG_CHAT}" \
+                -d text="*${title}*%0A%0A\`${CONTENT}\`" \
+                -d parse_mode="Markdown"
+              sleep 1
+            fi
+          fi
+        }
+        
+        # Отправляем три списка
+        send_proxies "proxy_ru.txt" "MTProxy для РФ"
+        send_proxies "proxy_eu.txt" "MTProxy для EU (Google/Amazon)"
+        send_proxies "proxy_all.txt" "Все MTProxy (без сортировки)"
