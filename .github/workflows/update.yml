@@ -2,7 +2,7 @@ name: Update Verified Proxy Lists
 
 on:
   schedule:
-    - cron: '0 * * * *'
+    - cron: '0 */4 * * *'
   workflow_dispatch:
 
 jobs:
