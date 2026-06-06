@@ -27,67 +27,17 @@ jobs:
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
         git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt socks5.txt || true
-        git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
+        git diff --staged --quiet || git commit -m "Verified proxies $(date)"
         git push || true
-    
-    - name: Send pretty proxies to Telegram
+    - name: Send to Telegram
       env:
         TG_BOT: ${{ secrets.TG_BOT_TOKEN }}
         TG_CHAT: ${{ secrets.TG_CHAT_ID }}
       run: |
-        send_pretty_proxies() {
-          local file=$1
-          local title=$2
-          local flag=$3
-          
-          if [ ! -f "$file" ] || [ ! -s "$file" ]; then
-            return
+        if [ -f proxy_ru.txt ]; then
+          PROXIES=$(grep -E '^https?://t\.me/proxy\?' proxy_ru.txt | head -n 3)
+          if [ -n "$PROXIES" ]; then
+            MESSAGE="Новые прокси для РФ%0A%0A$PROXIES"
+            curl -s -X POST "https://api.telegram.org/bot${TG_BOT}/sendMessage" -d chat_id="${TG_CHAT}" -d text="${MESSAGE}"
           fi
-          
-          local proxies=$(grep -E '^https?://t\.me/proxy\?' "$file" | head -n 5)
-          
-          if [ -z "$proxies" ]; then
-            return
-          fi
-          
-          local msk_time=$(TZ='Europe/Moscow' date '+%H:%M')
-          local msk_date=$(TZ='Europe/Moscow' date '+%d.%m.%Y')
-          
-          local keyboard_json='{"inline_keyboard":['
-          local counter=1
-          
-          while IFS= read -r proxy_url; do
-            proxy_url=$(echo "$proxy_url" | tr -d '\n\r' | sed 's/&/\\&/g')
-            
-            local load=$((RANDOM % 86))
-            local load_emoji="🟢"
-            if [ $load -gt 70 ]; then
-              load_emoji="🟡"
-            fi
-            if [ $load -gt 85 ]; then
-              load_emoji="🔴"
-            fi
-            
-            keyboard_json="${keyboard_json}[{\"text\":\"${load_emoji} ${load}% 👉 ${title} ${counter}\",\"url\":\"${proxy_url}\"}],"
-            counter=$((counter + 1))
-          done <<< "$proxies"
-          
-          keyboard_json="${keyboard_json%,}]}"
-          
-          local message="${flag} *${title}*%0A"
-          message="${message}Актуальный список на ${msk_date}%0A"
-          message="${message}Обновлено в ${msk_time} МСК%0A"
-          message="${message}Просьба подключаться с учётом процента загрузки серверов.%0A%0A"
-          
-          curl -s -X POST "https://api.telegram.org/bot${TG_BOT}/sendMessage" \
-            -d chat_id="${TG_CHAT}" \
-            -d text="${message}" \
-            -d parse_mode="Markdown" \
-            -d reply_markup="${keyboard_json}"
-          
-          sleep 1
-        }
-        
-        send_pretty_proxies "proxy_ru.txt" "Прокси сервер" "🇷🇺"
-        send_pretty_proxies "proxy_eu.txt" "EU Прокси" "🇪🇺"
-        send_pretty_proxies "proxy_all.txt" "All Прокси" "🌍"
+        fi
