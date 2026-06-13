@@ -28,8 +28,8 @@ except ImportError:
 API_ID   = os.environ.get("MTPROXY_API_ID")
 API_HASH = os.environ.get("MTPROXY_API_HASH")
 
+# ---------- MTProto источники (старые + ваши новые) ----------
 SOURCES = [
-    # Старые источники (оставляем)
     "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
     "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",
     "https://raw.githubusercontent.com/ALIILAPRO/MTProtoProxy/main/mtproto.txt",
@@ -47,7 +47,7 @@ SOURCES = [
     "https://vpnoverview.com/privacy/anonymous-browsing/free-proxy-servers",
     "https://proxylist.geonode.com/api/proxy-list?limit=300&page=1&sort_by=lastChecked&sort_type=desc&protocols=http,https",
     "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all",
-    # Новые источники MTProto (которые вы дали)
+    # ----- ваши новые источники -----
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no1.txt",
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no2.txt",
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no3.txt",
@@ -73,6 +73,18 @@ SOURCES = [
     "https://raw.githubusercontent.com/Therealwh/MTPproxyLIST/refs/heads/main/verified/proxy_all_tme_verified.txt",
     "https://raw.githubusercontent.com/Airuop/MTProtoCollector/refs/heads/main/proxy/mtproto.json",
     "https://raw.githubusercontent.com/blog1703/tgonline/refs/heads/main/proxies.txt",
+]
+
+# ---------- SOCKS5 источники (все старые + новые) ----------
+SOCKS_SOURCES = [
+    "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt",
+    "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=5000&country=all",
+    "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt",
+    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/SOCKS5_RAW.txt",
+    "https://raw.githubusercontent.com/fyvri/fresh-proxy-list/archive/storage/classic/socks5.txt",
+    "https://gist.githubusercontent.com/December000/fd23d2530ffc29264297a5e687a79ecd/raw/all.yaml",
+    "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/proxy.txt",
+    "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json",
 ]
 
 TIMEOUT = 2.0
@@ -142,7 +154,7 @@ def get_proxies_from_text(text):
                             proxies.add(('socks5', item.get('ip') or item.get('host'), int(item['port']), (None, None)))
         except: pass
     
-    # YAML парсинг (для all.yaml и подобных)
+    # YAML парсинг (для all.yaml)
     if text.strip().startswith('proxies:'):
         try:
             import yaml
@@ -154,7 +166,7 @@ def get_proxies_from_text(text):
                         port = item.get('port')
                         if server and port and _valid_port(str(port)):
                             proxies.add(('socks5', server, int(port), (None, None)))
-        except Exception as e:
+        except Exception:
             pass
 
     # Специальный парсинг для proxy.txt от CB-X2-Jun: socks5://IP:port:country
@@ -368,7 +380,6 @@ async def main_async(args):
             checked += 1
             if res:
                 valid.append(res)
-                # лог
             if checked % 100 == 0 or checked == total:
                 print(f'  [{checked}/{total}] {checked/total*100:.0f}% | найдено: {len(valid)}')
     else:
