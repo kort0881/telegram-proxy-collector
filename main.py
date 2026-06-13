@@ -56,6 +56,8 @@ SOCKS_SOURCES = [
     "https://raw.githubusercontent.com/roosterkid/openproxylist/main/SOCKS5_RAW.txt",
     "https://raw.githubusercontent.com/fyvri/fresh-proxy-list/archive/storage/classic/socks5.txt",
     "https://gist.githubusercontent.com/December000/fd23d2530ffc29264297a5e687a79ecd/raw/all.yaml",
+    "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/proxy.txt",
+    "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json",
 ]
 
 TIMEOUT = 2.0
@@ -139,6 +141,13 @@ def get_proxies_from_text(text):
                             proxies.add(('socks5', server, int(port), (None, None)))
         except Exception as e:
             pass
+
+    # Специальный парсинг для proxy.txt от CB-X2-Jun: socks5://IP:port:country
+    for match in re.findall(r'(socks5)://([\d.]+):(\d+):\w+', text, re.I):
+        protocol, ip, port = match
+        if _valid_port(port):
+            proxies.add(('socks5', ip, int(port), (None, None)))
+
     return proxies
 
 def decode_domain(secret):
