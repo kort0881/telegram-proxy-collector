@@ -85,6 +85,8 @@ SOCKS_SOURCES = [
     "https://gist.githubusercontent.com/December000/fd23d2530ffc29264297a5e687a79ecd/raw/all.yaml",
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/proxy.txt",
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json",
+    # ---- добавленная ссылка ----
+    "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt",
 ]
 
 TIMEOUT = 2.0
