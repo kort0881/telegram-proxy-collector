@@ -10,6 +10,19 @@
 
 ---
 
+## 📌 Что нового в версии 3.1
+
+- **✅ Фильтрация по пингу** — прокси с откликом >3 секунд автоматически отсеиваются (параметр `--max-ping`).
+- **🔐 Поддержка URL‑safe Base64** — корректно декодируются секреты с символами `-` и `_`.
+- **🇷🇺 Для RU‑прокси теперь обязательно** наличие флага `probe_resistant` — это гарантирует, что прокси маскируется под легитимный HTTPS и устойчив к DPI-зондированию.
+- **⏱️ Увеличен таймаут** до 14 секунд (по умолчанию в GitHub Actions) — даёт шанс медленным, но живым прокси ответить.
+- **⚙️ Снижена параллельность** до 20 воркеров — предотвращает `FloodWait` от Telegram.
+- **📡 Добавлен сбор из Telegram‑каналов** (например, `@ProxyMTProto`) через параметр `--channel`.
+- **🧹 Улучшен парсинг** — теперь извлекаются прокси из большего числа форматов (YAML, JSON, специальные списки).
+- **📊 Более строгая сортировка** — сначала `probe_resistant`, затем обычные MTProto, затем SOCKS5, внутри каждой группы по возрастанию пинга.
+
+---
+
 ## 🛠️ Community Tools: утилиты от пользователей
 
 | Инструмент | Описание | Автор |
@@ -143,17 +156,16 @@ git clone https://github.com/kort0881/telegram-proxy-collector.git
 cd telegram-proxy-collector
 
 # 2. Установить зависимости
-pip install requests telethon
+pip install -r requirements.txt
 
 # 3. Запустить базовую проверку (только TCP‑пинг)
 python main.py
 
 # 4. Запустить полную проверку (с Telethon, Probe Resistance и SOCKS5)
-python main.py --api-id YOUR_API_ID --api-hash YOUR_API_HASH --top 200 --output-dir verified
+python main.py --api-id YOUR_API_ID --api-hash YOUR_API_HASH --top 200 --timeout 14 --workers 20 --channel @ProxyMTProto --channel-limit 150 --max-ping 3.0 --output-dir verified
 
 # 5. Помощь по аргументам
 python main.py --help
-Для полной проверки (Telethon) необходимы API_ID и API_HASH. Их можно получить на my.telegram.org.
 
 Для полной проверки (Telethon) необходимы API_ID и API_HASH. Их можно получить на my.telegram.org.
 
