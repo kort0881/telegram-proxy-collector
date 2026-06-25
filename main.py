@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.3 (Ultra Fast)
+# MTProto & SOCKS5 Proxy Collector v3.4 (Stable MTProto)
 
 import requests
 import re
@@ -28,7 +28,7 @@ except ImportError:
 API_ID   = os.environ.get("MTPROXY_API_ID")
 API_HASH = os.environ.get("MTPROXY_API_HASH")
 
-MAX_SOCKS5_TO_CHECK = 5000   # достаточно для выбора лучших
+MAX_SOCKS5_TO_CHECK = 5000
 
 # ── источники (те же) ────────────────────────────────────────────────────────
 SOURCES = [
@@ -86,7 +86,7 @@ SOCKS_SOURCES = [
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/protocols/socks5/data.txt",
 ]
 
-TIMEOUT = 2.0  # только для TCP fallback
+TIMEOUT = 2.0  # TCP fallback
 RU_DOMAINS = ['.ru', 'yandex', 'vk.com', 'mail.ru', 'ok.ru', 'dzen', 'rutube', 'sber',
               'tinkoff', 'vtb', 'gosuslugi', 'nalog', 'mos.ru', 'ozon', 'wildberries',
               'avito', 'kinopoisk', 'mts', 'beeline']
@@ -107,14 +107,12 @@ def _prepare_secret(s):
 
 def get_proxies_from_text(text):
     proxies = set()
-    # MTProto
     for h, p, s in re.findall(r'tg://proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', text, re.I):
         if _valid_port(p): proxies.add(('mtproto', h, int(p), s))
     for h, p, s in re.findall(r't\.me/proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', text, re.I):
         if _valid_port(p): proxies.add(('mtproto', h, int(p), s))
     for h, p, s in re.findall(r'([A-Za-z0-9\.-]+):(\d+):([A-Fa-f0-9]{16,})', text):
         if _valid_port(p): proxies.add(('mtproto', h, int(p), s))
-    # SOCKS5
     for h, p in re.findall(r'tg://socks\?server=([^&\s]+)&port=(\d+)', text, re.I):
         if _valid_port(p): proxies.add(('socks5', h, int(p), (None, None)))
     for u, pw, h, p in re.findall(r'socks5://(?:([^:@]+):([^@]+)@)?([A-Za-z0-9\.-]+):(\d+)', text, re.I):
@@ -122,7 +120,6 @@ def get_proxies_from_text(text):
     for h, p in re.findall(r'(\d+\.\d+\.\d+\.\d+):(\d+)', text):
         if _valid_port(p) and not any(x[1] == h and x[2] == int(p) for x in proxies if x[0] == 'mtproto'):
             proxies.add(('socks5', h, int(p), (None, None)))
-    # JSON / YAML (сокращённо)
     txt = text.strip()
     if txt.startswith('[') or txt.startswith('{'):
         try:
@@ -179,14 +176,11 @@ def fetch_sources_parallel(urls, timeout=8, workers=50):
             results[url] = future.result()
     return results
 
-# ── БЫСТРАЯ ПРОВЕРКА SOCKS5 (TCP + SOCKS5 handshake) ─────────────────────
 def check_socks5_fast(host, port, timeout=3.0):
-    """Проверяет, что прокси отвечает на SOCKS5-приветствие."""
     try:
         sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         sock.settimeout(timeout)
         sock.connect((host, port))
-        # Отправляем SOCKS5 приветствие: версия 5, один метод (no auth)
         sock.send(b'\x05\x01\x00')
         data = sock.recv(2)
         sock.close()
@@ -194,8 +188,8 @@ def check_socks5_fast(host, port, timeout=3.0):
     except:
         return False
 
-# ── ПРОВЕРКА MTProto (Telethon, но с жёсткими лимитами) ──────────────────
-async def check_mtproto(p, timeout_sec=5.0):
+# ── УЛУЧШЕННАЯ ПРОВЕРКА MTProto (с повторными попытками и увеличенным таймаутом) ──
+async def check_mtproto(p, timeout_sec=12.0, max_attempts=2):
     _, host, port, secret = p
     domain = decode_domain(secret)
     if _is_blocked(secret, domain):
@@ -205,39 +199,69 @@ async def check_mtproto(p, timeout_sec=5.0):
     except:
         return None
 
-    client = TelegramClient(
-        MemorySession(),
-        API_ID, API_HASH,
-        connection=ConnectionTcpMTProxyRandomizedIntermediate,
-        proxy=(host, int(port), secret_bytes),
-        timeout=timeout_sec,
-        request_retries=0,
-        connection_retries=0,
-        retry_delay=0,
-        auto_reconnect=False,
-    )
-    try:
-        start = time.time()
-        await asyncio.wait_for(client.connect(), timeout=timeout_sec)
-        await asyncio.wait_for(client.get_config(), timeout=timeout_sec)
-        ping = round(time.time() - start, 3)
-        return {
-            'type': 'mtproto', 'host': host, 'port': port, 'secret': secret,
-            'link': f'tg://proxy?server={host}&port={port}&secret={secret}',
-            'ping': ping, 'region': _detect_region(domain),
-            'domain': domain or '', 'method': 'Telethon_OK',
-            'probe_resistant': False,  # не тратим время на probe
-        }
-    except:
-        return None
-    finally:
+    for attempt in range(max_attempts):
+        client = TelegramClient(
+            MemorySession(),
+            API_ID, API_HASH,
+            connection=ConnectionTcpMTProxyRandomizedIntermediate,
+            proxy=(host, int(port), secret_bytes),
+            timeout=timeout_sec,
+            request_retries=1,          # даём одну внутреннюю попытку
+            connection_retries=1,
+            retry_delay=1,
+            auto_reconnect=False,
+        )
         try:
-            await client.disconnect()
-        except:
-            pass
+            start = time.time()
+            await asyncio.wait_for(client.connect(), timeout=timeout_sec)
+            await asyncio.wait_for(client.get_config(), timeout=timeout_sec)
+            ping = round(time.time() - start, 3)
+            return {
+                'type': 'mtproto', 'host': host, 'port': port, 'secret': secret,
+                'link': f'tg://proxy?server={host}&port={port}&secret={secret}',
+                'ping': ping, 'region': _detect_region(domain),
+                'domain': domain or '', 'method': 'Telethon_OK',
+                'probe_resistant': False,
+            }
+        except FloodWaitError as e:
+            await asyncio.sleep(min(e.seconds, 5))
+            continue
+        except Exception as e:
+            # при последней попытке просто возвращаем None
+            if attempt == max_attempts - 1:
+                return None
+            continue
+        finally:
+            try:
+                await client.disconnect()
+            except:
+                pass
+    return None
+
+async def fetch_proxies_from_channel(channel, limit=50):
+    if not TELETHON_AVAILABLE or not API_ID or not API_HASH:
+        return set()
+    proxies = set()
+    client = TelegramClient(MemorySession(), API_ID, API_HASH)
+    try:
+        await client.start()
+        entity = channel.lstrip('@')
+        chan = await client.get_entity(entity)
+        print(f"📡 Читаем канал @{entity} (последние {limit})...")
+        async for msg in client.iter_messages(chan, limit=limit):
+            if msg.text:
+                proxies.update(get_proxies_from_text(msg.text))
+        print(f"  → Извлечено {len(proxies)} прокси")
+    except FloodWaitError as e:
+        print(f"  ⏳ FloodWait {e.seconds} сек")
+        await asyncio.sleep(min(e.seconds, 5))
+    except Exception as e:
+        print(f"  ✗ Ошибка: {e}")
+    finally:
+        await client.disconnect()
+    return proxies
 
 def check_proxy_tcp(p):
-    """TCP fallback (только для MTProto, если Telethon не доступен)"""
     typ, host, port, extra = p
     if typ == 'mtproto':
         secret = extra
@@ -265,7 +289,7 @@ def check_proxy_tcp(p):
         return None
 
 def deduplicate_and_sort(proxies, max_ping=3.0):
-    seen = set(); unique = []
+    seen, unique = set(), []
     for p in proxies:
         key = (p['type'], p['host'], p['port'], p.get('secret'))
         if key not in seen:
@@ -293,11 +317,10 @@ async def main_async(args):
     if args.api_id: API_ID = args.api_id
     if args.api_hash: API_HASH = args.api_hash
     start = time.time()
-    print('🚀 MTProxy Collector v3.3 (Ultra Fast)')
+    print('🚀 MTProxy Collector v3.4 (Stable MTProto)')
     print('=' * 48)
     os.makedirs(args.output_dir, exist_ok=True)
 
-    # ── Параллельная загрузка ──────────────────────────────────────────────
     print('\n📥 Параллельная загрузка источников...')
     all_urls = SOURCES + SOCKS_SOURCES
     url_results = fetch_sources_parallel(all_urls, timeout=8, workers=50)
@@ -314,7 +337,6 @@ async def main_async(args):
     if args.manual:
         all_raw.update(load_local_proxies(args.manual))
     if args.channel:
-        # каналы не используем в Actions, но оставляем для локального запуска
         all_raw.update(await fetch_proxies_from_channel(args.channel, args.channel_limit))
 
     mtproto_set = {p for p in all_raw if p[0] == 'mtproto'}
@@ -331,20 +353,14 @@ async def main_async(args):
         print('\n⚠️ Нет прокси. Завершение.')
         return
 
-    # ── Проверка ──────────────────────────────────────────────────────────────
     print(f'\n⚡ Проверка {len(all_raw)} прокси...')
     valid = []
-    checked = 0
-    total = len(all_raw)
-    use_telethon = TELETHON_AVAILABLE and API_ID and API_HASH
-
-    # Разделяем MTProto и SOCKS5 для разных подходов
     mtproto_list = [p for p in all_raw if p[0] == 'mtproto']
     socks5_list  = [p for p in all_raw if p[0] == 'socks5']
 
-    # 1. Проверяем MTProto через Telethon (если доступен)
-    if use_telethon and mtproto_list:
-        print(f'🔥 MTProto: Telethon (workers={args.workers})')
+    # ── MTProto ──────────────────────────────────────────────────────────────
+    if TELETHON_AVAILABLE and API_ID and API_HASH and mtproto_list:
+        print(f'🔥 MTProto: Telethon (workers={args.workers}, timeout={args.timeout_mt}s)')
         sem = asyncio.Semaphore(args.workers)
         async def check_one_mt(p):
             async with sem:
@@ -352,13 +368,22 @@ async def main_async(args):
         tasks = [asyncio.create_task(check_one_mt(p)) for p in mtproto_list]
         for task in asyncio.as_completed(tasks):
             res = await task
-            checked += 1
             if res:
                 valid.append(res)
+            checked = len(valid)
             if checked % 200 == 0 or checked == len(mtproto_list):
                 print(f'  MTProto: {checked}/{len(mtproto_list)} | найдено: {len([v for v in valid if v["type"]=="mtproto"])}')
+    else:
+        # fallback TCP
+        print('📡 MTProto: TCP fallback')
+        with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as ex:
+            futures = {ex.submit(check_proxy_tcp, p): p for p in mtproto_list}
+            for f in concurrent.futures.as_completed(futures):
+                res = f.result()
+                if res:
+                    valid.append(res)
 
-    # 2. Проверяем SOCKS5 быстро через TCP (всегда, независимо от Telethon)
+    # ── SOCKS5 ──────────────────────────────────────────────────────────────
     if socks5_list:
         print(f'🔒 SOCKS5: TCP fast check (workers={args.workers_socks})')
         with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers_socks) as ex:
@@ -366,16 +391,15 @@ async def main_async(args):
             for future in concurrent.futures.as_completed(future_to_socks):
                 host, port = future_to_socks[future]
                 if future.result():
-                    # Если SOCKS5 отвечает, считаем его рабочим (пинг = 0.1)
                     valid.append({
                         'type': 'socks5', 'host': host, 'port': port,
                         'link': f'tg://socks?server={host}&port={port}',
                         'ping': 0.1, 'region': 'eu', 'domain': '',
                         'method': 'TCP_SOCKS5_OK', 'probe_resistant': False
                     })
-                checked += 1
+                checked = len([v for v in valid if v['type'] == 'socks5'])
                 if checked % 500 == 0 or checked == len(socks5_list):
-                    print(f'  SOCKS5: {checked}/{len(socks5_list)} | найдено: {len([v for v in valid if v["type"]=="socks5"])}')
+                    print(f'  SOCKS5: {checked}/{len(socks5_list)} | найдено: {checked}')
 
     if not valid:
         print('\n⚠️ Рабочих прокси не найдено.')
@@ -389,7 +413,6 @@ async def main_async(args):
     top = args.top if args.top > 0 else None
     utc = datetime.now(timezone.utc)
 
-    # ── Сохранение ──────────────────────────────────────────────────────────
     print(f'\n💾 Сохранение в {args.output_dir}/...')
     saves = {
         f'{args.output_dir}/proxy_ru_verified.txt': (
@@ -424,33 +447,10 @@ async def main_async(args):
     print(f'⏱️ Время: {elapsed}s')
     print('=' * 48)
 
-async def fetch_proxies_from_channel(channel, limit=50):
-    if not TELETHON_AVAILABLE or not API_ID or not API_HASH:
-        return set()
-    proxies = set()
-    client = TelegramClient(MemorySession(), API_ID, API_HASH)
-    try:
-        await client.start()
-        entity = channel.lstrip('@')
-        chan = await client.get_entity(entity)
-        print(f"📡 Читаем канал @{entity} (последние {limit})...")
-        async for msg in client.iter_messages(chan, limit=limit):
-            if msg.text:
-                proxies.update(get_proxies_from_text(msg.text))
-        print(f"  → Извлечено {len(proxies)} прокси")
-    except FloodWaitError as e:
-        print(f"  ⏳ FloodWait {e.seconds} сек")
-        await asyncio.sleep(min(e.seconds, 5))
-    except Exception as e:
-        print(f"  ✗ Ошибка: {e}")
-    finally:
-        await client.disconnect()
-    return proxies
-
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--timeout', type=float, default=2.0, help='TCP таймаут для SOCKS5')
-    p.add_argument('--timeout-mt', type=float, default=5.0, help='Таймаут для MTProto')
+    p.add_argument('--timeout', type=float, default=2.0, help='TCP таймаут для fallback')
+    p.add_argument('--timeout-mt', type=float, default=12.0, help='Таймаут для MTProto (сек)')
     p.add_argument('--timeout-socks', type=float, default=3.0, help='Таймаут для SOCKS5 TCP')
     p.add_argument('--workers', type=int, default=200, help='Воркеры для MTProto')
     p.add_argument('--workers-socks', type=int, default=300, help='Воркеры для SOCKS5')
