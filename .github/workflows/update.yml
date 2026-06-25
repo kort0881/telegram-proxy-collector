@@ -2,7 +2,7 @@ name: Update Verified Proxy Lists
 
 on:
   schedule:
-    - cron: '0 */4 * * *'   # каждые 4 часа
+    - cron: '0 */4 * * *'
   workflow_dispatch:
 
 jobs:
@@ -14,7 +14,7 @@ jobs:
       with:
         python-version: '3.11'
     - run: pip install requests telethon pyyaml python-socks
-    - run: python main.py --top 100 --timeout 4 --workers 40 --channel @ProxyMTProto --channel-limit 150 --max-ping 3.0
+    - run: python main.py --top 100 --timeout-mt 5 --timeout-socks 3 --workers 200 --workers-socks 300 --max-ping 3.0
       env:
         MTPROXY_API_ID: ${{ secrets.MTPROXY_API_ID }}
         MTPROXY_API_HASH: ${{ secrets.MTPROXY_API_HASH }}
@@ -29,7 +29,7 @@ jobs:
         echo "✅ SOCKS5: $(wc -l < socks5.txt)"
     - run: |
         git config user.name "Proxy Bot"
-        git config user.email "bot@github.com"
+        git config.user.email "bot@github.com"
         git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt socks5.txt || true
         git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
         git push || true
