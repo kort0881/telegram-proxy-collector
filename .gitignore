@@ -1,13 +1,63 @@
+# Python
 __pycache__/
 *.py[cod]
+*$py.class
 *.so
+
+# Session files
+*.session
+*.session-journal
 test_*
 channel_reader_session*
-*.session
+
+# AI models and data
+models/*.pkl
+models/*.joblib
+data/*.csv
+data/*.json
+!data/analytics_report.json
+reports/*.json
+!reports/analytics_report.json
+
+# IDE
 .vscode/
 .idea/
 .DS_Store
 Thumbs.db
-dpi_detector.spec
+
+# Build
+*.pyc
 build/
 dist/
+*.spec
+
+# Verified output
+verified/
+*.txt
+!proxy_ru.txt
+!proxy_eu.txt
+!proxy_all.txt
+!socks5.txt
+
+# Configs
+config.yml
+domains.txt
+whitelist_sni.txt
+tcp16.json
+
+# Requirements & project files - явные исключения
+!*.py
+!*.md
+!*.yml
+!*.yaml
+!*.txt
+!requirements.txt
+!.gitignore
+!.github/
+!README.md
+!main.py
+!analytics.py
+!ai_analytics.py
+!mobile.html
+!index.html
+!LICENSE

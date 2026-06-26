@@ -1,0 +1,47 @@
+name: Proxy Analytics
+
+on:
+  workflow_run:
+    workflows: ["Update Verified Proxy Lists"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    # Исправлено: условие работает и для workflow_dispatch, и для workflow_run
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+    
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    
+    - name: Run core analytics
+      run: python analytics.py
+    
+    - name: Run AI analytics with LLM
+      env:
+        XAI_API_KEY: ${{ secrets.XAI_API_KEY }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        TELEGRAMPROXYCOLLECTOR: ${{ secrets.TELEGRAMPROXYCOLLECTOR }}
+        LLM_PROVIDER: ${{ secrets.LLM_PROVIDER || 'auto' }}
+      run: python ai_analytics.py
+    
+    - name: Commit analytics results
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git config --global user.name "Analytics Bot"
+        git config --global user.email "bot@github.com"
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+        git add data/ models/ reports/ README.md || true
+        git diff --staged --quiet || git commit -m "📊 AI analytics & README update $(date)"
+        git push || true
