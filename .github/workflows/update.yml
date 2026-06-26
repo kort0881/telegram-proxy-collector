@@ -29,7 +29,7 @@ jobs:
         echo "✅ SOCKS5: $(grep -c 'tg://' socks5.txt 2>/dev/null || echo 0)"
     - run: |
         git config user.name "Proxy Bot"
-        git config.user.email "bot@github.com"
+        git config user.email "bot@github.com"
         git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt socks5.txt || true
         git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
         git push || true
