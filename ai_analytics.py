@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# AI Analytics — использует внешний LLM (Grok/OpenAI) для генерации отчётов и обновления README
+# AI Analytics — работает с Groq (бесплатно) или локально
 
 import os
 import json
@@ -11,7 +11,6 @@ from pathlib import Path
 from collections import Counter
 
 DATA_DIR = Path("data")
-REPORT_DIR = Path("reports")
 README_FILE = Path("README.md")
 HISTORY_FILE = DATA_DIR / "proxy_history.json"
 SOURCE_STATS_FILE = DATA_DIR / "source_stats.json"
@@ -20,8 +19,7 @@ def load_history():
     if not HISTORY_FILE.exists():
         return []
     with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    return data
+        return json.load(f)
 
 def load_source_stats():
     if not SOURCE_STATS_FILE.exists():
@@ -52,51 +50,23 @@ def build_prompt(history, stats):
 
 Задача:
 1. Напиши краткое введение (1–2 предложения) о текущем состоянии списков.
-2. Укажи, сколько прокси добавлено за последний час (если есть данные).
-3. Дай рекомендацию, какие прокси лучше использовать (по региону, типу).
-4. Если есть аномалии (слишком много плохих прокси) — предупреди.
-5. Добавь дату и время отчёта.
+2. Дай рекомендацию, какие прокси лучше использовать (по региону, типу).
+3. Если есть аномалии (слишком много плохих прокси) — предупреди.
+4. Добавь дату и время отчёта.
 
 Ответ должен быть в формате Markdown (без лишнего текста, только готовый блок для вставки в README).
 """
     return prompt
 
-def call_llm_api(prompt, api_key, provider="auto", model=None):
-    """
-    Вызов LLM API с поддержкой Grok (xAI) и OpenAI.
-    
-    Args:
-        prompt: Текст запроса
-        api_key: API ключ
-        provider: "grok", "openai" или "auto" (автоопределение)
-        model: Название модели (опционально)
-    """
-    
-    # Определяем провайдера
-    if provider == "auto":
-        # Пытаемся определить по формату ключа
-        if api_key.startswith("xai-"):
-            provider = "grok"
-        else:
-            provider = "openai"
-    
-    # Настраиваем endpoint и модель
-    if provider == "grok":
-        url = "https://api.x.ai/v1/chat/completions"
-        if model is None:
-            model = "grok-2-latest"
-    else:  # openai
-        url = "https://api.openai.com/v1/chat/completions"
-        if model is None:
-            model = "gpt-3.5-turbo"
-    
+def call_groq_api(prompt, api_key):
+    """Вызов Groq API (бесплатно)"""
+    url = "https://api.groq.com/openai/v1/chat/completions"
     headers = {
         "Authorization": f"Bearer {api_key}",
         "Content-Type": "application/json"
     }
-    
     payload = {
-        "model": model,
+        "model": "llama-3.3-70b-versatile",
         "messages": [{"role": "user", "content": prompt}],
         "temperature": 0.7,
         "max_tokens": 500
@@ -107,13 +77,56 @@ def call_llm_api(prompt, api_key, provider="auto", model=None):
         if resp.status_code == 200:
             return resp.json()['choices'][0]['message']['content']
         else:
-            print(f"⚠️ Ошибка API ({provider}): {resp.status_code} – {resp.text}")
+            print(f"⚠️ Ошибка Groq API: {resp.status_code} – {resp.text}")
             return None
     except Exception as e:
-        print(f"⚠️ Ошибка запроса к LLM ({provider}): {e}")
+        print(f"⚠️ Ошибка запроса к Groq: {e}")
         return None
 
-def update_readme_with_ai_report(report_text):
+def generate_local_report(history, stats):
+    """Локальная генерация (если нет API-ключа)"""
+    total = len(history)
+    if total == 0:
+        return "Нет данных для анализа."
+
+    good = sum(1 for p in history if p.get('ping', 999) < 1.5)
+    medium = sum(1 for p in history if 1.5 <= p.get('ping', 999) < 5.0)
+    bad = sum(1 for p in history if p.get('ping', 999) >= 5.0)
+    regions = Counter(p.get('region', 'unknown') for p in history)
+    types = Counter(p.get('type', 'mtproto') for p in history)
+
+    lines = []
+    lines.append(f"**📊 Текущее состояние списков**")
+    lines.append(f"- Всего прокси в истории: **{total}**")
+    lines.append(f"- 🟢 Хорошие (пинг < 1.5с): **{good}**")
+    lines.append(f"- 🟡 Средние (1.5–5с): **{medium}**")
+    lines.append(f"- 🔴 Плохие (>5с): **{bad}**")
+    
+    if regions:
+        lines.append(f"\n**🌍 Регионы:**")
+        for reg, count in regions.most_common():
+            lines.append(f"- {reg}: {count}")
+    
+    if types:
+        lines.append(f"\n**📦 Типы:**")
+        for t, count in types.most_common():
+            lines.append(f"- {t}: {count}")
+    
+    lines.append(f"\n**💡 Рекомендации:**")
+    if good > 0:
+        lines.append(f"- Используйте прокси из региона **{regions.most_common(1)[0][0] if regions else 'RU'}** — они показывают лучший пинг.")
+    else:
+        lines.append("- Рекомендуется проверить источники — хороших прокси пока нет.")
+    
+    if bad > total * 0.5:
+        lines.append("- ⚠️ Обнаружено много плохих прокси — возможно, источники устарели.")
+    
+    if medium > 0:
+        lines.append("- Средние прокси можно использовать как запасной вариант.")
+
+    return "\n".join(lines)
+
+def update_readme_with_report(report_text):
     if not README_FILE.exists():
         print("⚠️ README.md не найден")
         return
@@ -123,30 +136,25 @@ def update_readme_with_ai_report(report_text):
 
     start_marker = "<!-- AI_ANALYTICS_START -->"
     end_marker = "<!-- AI_ANALYTICS_END -->"
+    full_report = f"*Отчёт сгенерирован {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}*\n\n{report_text}"
 
     if start_marker not in content or end_marker not in content:
-        # Если маркеров нет, добавим их в конец README
-        content += f"\n\n## 📊 AI-аналитика (автоматическая)\n\n{start_marker}\n{report_text}\n{end_marker}"
+        content += f"\n\n## 📊 AI-аналитика (автоматическая)\n\n{start_marker}\n{full_report}\n{end_marker}"
     else:
         pattern = re.compile(rf'{re.escape(start_marker)}.*?{re.escape(end_marker)}', re.DOTALL)
-        replacement = f"{start_marker}\n{report_text}\n{end_marker}"
+        replacement = f"{start_marker}\n{full_report}\n{end_marker}"
         content = pattern.sub(replacement, content)
 
     with open(README_FILE, 'w', encoding='utf-8') as f:
         f.write(content)
 
-    print("✅ README.md обновлён с AI-аналитикой")
+    print("✅ README.md обновлён с аналитикой")
 
 def main():
-    # Поддержка нескольких переменных окружения для гибкости
-    api_key = os.environ.get("XAI_API_KEY") or os.environ.get("OPENAI_API_KEY") or os.environ.get("TELEGRAMPROXYCOLLECTOR")
-    provider = os.environ.get("LLM_PROVIDER", "auto")  # "grok", "openai" или "auto"
+    # Твой секрет TELEGRAMPROXYCOLLECTOR — Groq API ключ
+    api_key = os.environ.get("TELEGRAMPROXYCOLLECTOR")
     
-    if not api_key:
-        print("⚠️ API-ключ не найден. Установите XAI_API_KEY, OPENAI_API_KEY или TELEGRAMPROXYCOLLECTOR. Пропускаем AI-аналитику.")
-        return
-
-    print("🧠 Запуск AI-аналитики с использованием внешнего LLM...")
+    print("🧠 Запуск AI-аналитики...")
     history = load_history()
     stats = load_source_stats()
 
@@ -154,16 +162,24 @@ def main():
         print("⚠️ Нет истории для анализа. Завершение.")
         return
 
-    prompt = build_prompt(history, stats)
-    print("📤 Отправка запроса к LLM...")
-    report_text = call_llm_api(prompt, api_key, provider=provider)
-
-    if report_text:
-        report_text = f"*Отчёт сгенерирован {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}*\n\n" + report_text
-        update_readme_with_ai_report(report_text)
-        print("✅ AI-аналитика завершена и README обновлён")
+    # Если есть ключ Groq и он начинается с gsk_ — используем Groq
+    if api_key and api_key.startswith("gsk_"):
+        print("📤 Отправка запроса к Groq API (бесплатно)...")
+        prompt = build_prompt(history, stats)
+        report_text = call_groq_api(prompt, api_key)
+        if report_text:
+            update_readme_with_report(report_text)
+            print("✅ README обновлён через Groq")
+            return
+        else:
+            print("⚠️ Groq не ответил, используем локальную генерацию...")
     else:
-        print("⚠️ Не удалось получить ответ от LLM.")
+        print("ℹ️ Groq API ключ не найден, используем локальную генерацию...")
+
+    # Локальная генерация (если нет ключа или Groq упал)
+    report_text = generate_local_report(history, stats)
+    update_readme_with_report(report_text)
+    print("✅ README обновлён локально")
 
 if __name__ == "__main__":
     main()
