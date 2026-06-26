@@ -99,7 +99,6 @@ def _detect_region(domain):
     return 'ru' if domain and any(m in domain for m in RU_DOMAINS) else 'eu'
 
 def _prepare_secret(s):
-    # Приводим к строке (если bytes или bytearray)
     if isinstance(s, (bytes, bytearray)):
         try:
             s = s.decode('utf-8')
@@ -108,7 +107,6 @@ def _prepare_secret(s):
     if not isinstance(s, str):
         return None
     s = s.strip().replace('-', '+').replace('_', '/')
-    # Проверка на hex-строку
     if re.fullmatch(r'[0-9a-fA-F]+', s):
         if len(s) % 2 != 0:
             return None
@@ -116,7 +114,6 @@ def _prepare_secret(s):
             return bytes.fromhex(s)
         except ValueError:
             return None
-    # Иначе base64
     missing = (4 - len(s) % 4) % 4
     s += '=' * missing
     try:
@@ -238,8 +235,9 @@ async def check_mtproto(p, timeout_sec=30.0):
         retry_delay=0,
         auto_reconnect=False,
     )
+    # ⚡ start объявлен ДО try, чтобы быть доступным в except RPCError
+    start = time.time()
     try:
-        start = time.time()
         await asyncio.wait_for(client.connect(), timeout=timeout_sec)
         # Реальный запрос к Telegram — если доходит, прокси рабочий
         await asyncio.wait_for(client.get_me(), timeout=timeout_sec)
