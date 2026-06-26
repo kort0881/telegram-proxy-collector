@@ -9,27 +9,31 @@ jobs:
   collect:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-    - run: pip install requests telethon pyyaml python-socks
-    - run: python main.py --top 100 --timeout-mt 30 --timeout-socks 3 --workers 200 --workers-socks 300 --max-ping 5.0
-      env:
-        MTPROXY_API_ID: ${{ secrets.MTPROXY_API_ID }}
-        MTPROXY_API_HASH: ${{ secrets.MTPROXY_API_HASH }}
-    - run: |
-        cp verified/proxy_ru_verified.txt proxy_ru.txt
-        cp verified/proxy_eu_verified.txt proxy_eu.txt
-        cp verified/proxy_all_verified.txt proxy_all.txt
-        cp verified/socks5_proxies.txt socks5.txt || true
-    - run: |
-        echo "✅ MTProto RU: $(grep -c 'tg://' proxy_ru.txt 2>/dev/null || echo 0)"
-        echo "✅ MTProto EU: $(grep -c 'tg://' proxy_eu.txt 2>/dev/null || echo 0)"
-        echo "✅ SOCKS5: $(grep -c 'tg://' socks5.txt 2>/dev/null || echo 0)"
-    - run: |
-        git config user.name "Proxy Bot"
-        git config.user.email "bot@github.com"
-        git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt socks5.txt || true
-        git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date)"
-        git push || true
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests telethon pyyaml python-socks
+
+      - name: Run collector
+        run: python main.py --top 100 --timeout-mt 30 --timeout-socks 3 --workers 200 --workers-socks 300 --max-ping 5.0
+        env:
+          MTPROXY_API_ID: ${{ secrets.MTPROXY_API_ID }}
+          MTPROXY_API_HASH: ${{ secrets.MTPROXY_API_HASH }}
+
+      - name: Show stats
+        run: |
+          echo "✅ MTProto RU: $(grep -c 'tg://' proxy_ru.txt 2>/dev/null || echo 0)"
+          echo "✅ MTProto EU: $(grep -c 'tg://' proxy_eu.txt 2>/dev/null || echo 0)"
+          echo "✅ SOCKS5:     $(grep -c 'tg://' socks5.txt    2>/dev/null || echo 0)"
+
+      - name: Commit and push
+        run: |
+          git config --local user.name "Proxy Bot"
+          git config --local user.email "bot@github.com"
+          git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt socks5.txt 2>/dev/null || true
+          git diff --staged --quiet || git commit -m "🔥 Verified proxies $(date -u '+%Y-%m-%d %H:%M UTC')"
+          git push || true
