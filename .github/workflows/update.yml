@@ -14,7 +14,7 @@ jobs:
       with:
         python-version: '3.11'
     - run: pip install requests telethon pyyaml python-socks
-    - run: python main.py --top 100 --timeout-mt 30 --timeout-socks 3 --workers 200 --workers-socks 300 --max-ping 5.0
+    - run: python main.py --top 100 --timeout-mt 20 --timeout-socks 3 --workers 100 --workers-socks 300 --max-ping 5.0
       env:
         MTPROXY_API_ID: ${{ secrets.MTPROXY_API_ID }}
         MTPROXY_API_HASH: ${{ secrets.MTPROXY_API_HASH }}
