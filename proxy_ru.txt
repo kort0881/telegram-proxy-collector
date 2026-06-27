@@ -1,6 +1,7 @@
-# MTProto RU (3)
-# Updated: 2026-06-27 21:04:36.616108+00:00
+# MTProto RU (4)
+# Updated: 2026-06-27 23:07:35.784215+00:00
 
-tg://proxy?server=global.mtp.lat&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
-tg://proxy?server=sensitizer.unparted.upscale.gmateleserye.com&port=443&secret=eec7aee1f820ac1fc748444dfe1bc8132b647a656e2e7275
 tg://proxy?server=athematic.mydriasis.paco.steatoma.warring.lamidix.com&port=1450&secret=eec94ed77bf66cc3866481beb8cff1fdf0647a656e2e7275
+tg://proxy?server=and.call-away.chicklette.teleseryeme.com&port=443&secret=ee96a58415489db3b7c4fb9456bb5403c8647a656e2e7275
+tg://proxy?server=dizygotic.marasca.multitudinous.tagged.therapeutic.wapozavr.com&port=24934&secret=ee9ec322908ffcca5845363fccdcf1e9d6647a656e2e7275
+tg://proxy?server=global.mtp.lat&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
