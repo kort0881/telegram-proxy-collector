@@ -1,4 +1,5 @@
-# MTProto RU (1)
-# Updated: 2026-06-27 11:36:49.837468+00:00
+# MTProto RU (2)
+# Updated: 2026-06-27 13:24:59.838592+00:00
 
+tg://proxy?server=s2.fluctuation.online&port=443&secret=eedd345afe9188a4e5a94dc706e1aa6cef78352e7275
 tg://proxy?server=photo.vkmtp.pro&port=443&secret=ee616cf892574b078aab3f73e63b8b7df4786170692e6f7a6f6e2e7275
