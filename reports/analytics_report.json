@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-06-28T17:13:35.468454",
-  "history_size": 84,
+  "timestamp": "2026-06-28T19:14:27.951589",
+  "history_size": 93,
   "source_stats": {
     "unknown": {
       "total": 12,
@@ -9,30 +9,30 @@
       "probe_resistant_percent": 0.0
     },
     "eu": {
-      "total": 71,
-      "good_percent": 60.56,
-      "avg_ping": 1.88,
+      "total": 77,
+      "good_percent": 50.65,
+      "avg_ping": 2.37,
       "probe_resistant_percent": 0.0
     },
     "ru": {
-      "total": 1,
+      "total": 4,
       "good_percent": 0.0,
-      "avg_ping": 4.63,
+      "avg_ping": 4.55,
       "probe_resistant_percent": 0.0
     }
   },
   "model_quality": "available",
   "model_anomaly": "available",
   "recommendations": {
-    "recommended_timeout_mt": 433,
+    "recommended_timeout_mt": 393,
     "recommended_max_ping": 10.0,
     "recommended_workers": 150,
-    "current_avg_ping": 144.36,
-    "total_proxies": 84
+    "current_avg_ping": 131.06,
+    "total_proxies": 93
   },
   "quality_distribution": {
-    "good": 43,
-    "medium": 29,
+    "medium": 42,
+    "good": 39,
     "bad": 12
   }
 }
