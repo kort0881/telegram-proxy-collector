@@ -1,4 +1,7 @@
-# MTProto RU (1)
-# Updated: 2026-06-28 17:13:01.789373+00:00
+# MTProto RU (4)
+# Updated: 2026-06-28 19:13:52.941915+00:00
 
+tg://proxy?server=87.232.111.185&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
+tg://proxy?server=start5.vkmtp.pro&port=443&secret=ee616cf892574b078aab3f73e63b8b7df4786170692e6f7a6f6e2e7275
 tg://proxy?server=cloud.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
+tg://proxy?server=jtproxy.life&port=443&secret=eef0050d30441bab41f60acae779df0c40766473696e612e7275
