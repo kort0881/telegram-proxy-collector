@@ -2,7 +2,7 @@ name: Update Verified Proxy Lists
 
 on:
   schedule:
-    - cron: '0 */1 * * *' # Каждый час
+    - cron: '0 */2 * * *' # Каждые часа
   workflow_dispatch:
 
 jobs:
@@ -19,7 +19,7 @@ jobs:
       run: pip install --quiet requests pyyaml
       
     - name: Run Proxy Collector
-      run: python main.py --top 100 --timeout 2.0 --workers 50
+      run: python main.py --top 100 --timeout 2.0 --workers 100
       
     - name: Copy files to root
       run: |
