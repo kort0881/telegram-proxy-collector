@@ -1,34 +1,29 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.0 (Probe Resistance + SOCKS5)
+# MTProto & SOCKS5 Proxy Collector v3.0 (TCP only, без Telethon)
 
 import requests
 import re
 import socket
-import ssl
 import concurrent.futures
 import time
 from datetime import datetime, timezone
 import json
 import os
 import argparse
-import asyncio
 import base64
 from pathlib import Path
-from telethon.network import ConnectionTcpMTProxyRandomizedIntermediate
 
-try:
-    from telethon import TelegramClient
-    from telethon.errors import FloodWaitError
-    TELETHON_AVAILABLE = True
-except ImportError:
-    TELETHON_AVAILABLE = False
-    print("⚠️ Telethon не установлен. Установите: pip install telethon")
+# ------------------ БЕЗ TELETHON ------------------
+# Telethon отключен принудительно, чтобы избежать ошибок OpenSSL и запросов телефона.
+# Проверка прокси выполняется только через TCP-соединение (пинг порта).
 
-API_ID   = os.environ.get("MTPROXY_API_ID")
-API_HASH = os.environ.get("MTPROXY_API_HASH")
+TIMEOUT = 2.0
+RU_DOMAINS = ['.ru', 'yandex', 'vk.com', 'mail.ru', 'ok.ru', 'dzen', 'rutube', 'sber', 'tinkoff', 'vtb', 'gosuslugi', 'nalog', 'mos.ru', 'ozon', 'wildberries', 'avito', 'kinopoisk', 'mts', 'beeline']
+BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
+VERIFICATION_LOG = []
 
-# ---------- MTProto источники ----------
+# ---------- MTProto источники (старые + ваши новые) ----------
 SOURCES = [
     "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
     "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",
@@ -47,6 +42,7 @@ SOURCES = [
     "https://vpnoverview.com/privacy/anonymous-browsing/free-proxy-servers",
     "https://proxylist.geonode.com/api/proxy-list?limit=300&page=1&sort_by=lastChecked&sort_type=desc&protocols=http,https",
     "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=http&timeout=10000&country=all&ssl=all&anonymity=all",
+    # ----- ваши новые источники -----
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no1.txt",
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no2.txt",
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no3.txt",
@@ -74,7 +70,7 @@ SOURCES = [
     "https://raw.githubusercontent.com/blog1703/tgonline/refs/heads/main/proxies.txt",
 ]
 
-# ---------- SOCKS5 источники (включая запрошенные) ----------
+# ---------- SOCKS5 источники (все старые + новые) ----------
 SOCKS_SOURCES = [
     "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt",
     "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=5000&country=all",
@@ -84,24 +80,15 @@ SOCKS_SOURCES = [
     "https://gist.githubusercontent.com/December000/fd23d2530ffc29264297a5e687a79ecd/raw/all.yaml",
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/proxy.txt",
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json",
-    # ---- добавлены ссылки ProxyScrape ----
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt",
-    "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/protocols/socks5/data.txt",
 ]
 
-TIMEOUT = 2.0
-RU_DOMAINS = ['.ru', 'yandex', 'vk.com', 'mail.ru', 'ok.ru', 'dzen', 'rutube', 'sber', 'tinkoff', 'vtb', 'gosuslugi', 'nalog', 'mos.ru', 'ozon', 'wildberries', 'avito', 'kinopoisk', 'mts', 'beeline']
-BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
-VERIFICATION_LOG = []
-
 def _valid_port(p): return 1 <= int(p) <= 65535
-def _is_blocked(secret, domain): return len(secret)<16 or (domain and any(b in domain for b in BLOCKED))
-def _detect_region(domain): return 'ru' if domain and any(m in domain for m in RU_DOMAINS) else 'eu'
-def _cleanup_session(host, port, delay=0.5):
-    time.sleep(delay)
-    for p in Path('.').glob(f'test_{host.replace(".", "_")}_{port}*'):
-        try: p.unlink()
-        except: pass
+def _is_blocked(secret, domain):
+    return len(secret) < 16 or (domain and any(b in domain for b in BLOCKED))
+def _detect_region(domain):
+    return 'ru' if domain and any(m in domain for m in RU_DOMAINS) else 'eu'
+
 def _prepare_secret(s):
     s = s.strip()
     if all(c in '0123456789abcdefABCDEF' for c in s):
@@ -110,20 +97,6 @@ def _prepare_secret(s):
         missing = len(s)%4
         if missing: s += '='*(4-missing)
         return base64.b64decode(s)
-
-def check_probe_resistance(host, port, expected_domain, timeout=5.0):
-    if not expected_domain: return False
-    try:
-        ctx = ssl.create_default_context()
-        with socket.create_connection((host, port), timeout=timeout) as sock:
-            with ctx.wrap_socket(sock, server_hostname=expected_domain) as ssock:
-                req = f"GET / HTTP/1.1\r\nHost: {expected_domain}\r\nUser-Agent: Mozilla/5.0\r\nConnection: close\r\n\r\n"
-                ssock.sendall(req.encode())
-                resp = ssock.recv(4096).decode(errors='ignore')
-                if resp.startswith('HTTP/1.1') and ('Content-Length' in resp or 'text/html' in resp):
-                    return True
-    except: pass
-    return False
 
 def get_proxies_from_text(text):
     proxies = set()
@@ -155,8 +128,7 @@ def get_proxies_from_text(text):
                         if 'socks5' in str(item).lower() and ('ip' in item or 'host' in item) and 'port' in item:
                             proxies.add(('socks5', item.get('ip') or item.get('host'), int(item['port']), (None, None)))
         except: pass
-    
-    # YAML парсинг (для all.yaml)
+    # YAML
     if text.strip().startswith('proxies:'):
         try:
             import yaml
@@ -170,13 +142,11 @@ def get_proxies_from_text(text):
                             proxies.add(('socks5', server, int(port), (None, None)))
         except Exception:
             pass
-
-    # Специальный парсинг для proxy.txt от CB-X2-Jun: socks5://IP:port:country
+    # Специальный парсинг для CB-X2-Jun
     for match in re.findall(r'(socks5)://([\d.]+):(\d+):\w+', text, re.I):
         protocol, ip, port = match
         if _valid_port(port):
             proxies.add(('socks5', ip, int(port), (None, None)))
-
     return proxies
 
 def decode_domain(secret):
@@ -199,78 +169,7 @@ def fetch_source(url, timeout=15):
         time.sleep(0.5)
     return ''
 
-async def fetch_proxies_from_channel(channel, limit=50):
-    if not TELETHON_AVAILABLE or not API_ID or not API_HASH: return set()
-    proxies = set()
-    client = TelegramClient('channel_reader_session', API_ID, API_HASH)
-    try:
-        await client.start()
-        entity = channel.lstrip('@')
-        chan = await client.get_entity(entity)
-        print(f"📡 Читаем канал @{entity} (последние {limit})...")
-        async for msg in client.iter_messages(chan, limit=limit):
-            if msg.text: proxies.update(get_proxies_from_text(msg.text))
-        print(f"  → Извлечено {len(proxies)} прокси")
-    except FloodWaitError as e:
-        print(f"  ⏳ FloodWait {e.seconds} сек")
-        await asyncio.sleep(e.seconds)
-    except Exception as e:
-        print(f"  ✗ Ошибка: {e}")
-    finally:
-        await client.disconnect()
-        for f in Path('.').glob('channel_reader_session*'):
-            try: f.unlink()
-            except: pass
-    return proxies
-
-async def check_mtproto(p, timeout_sec=10.0):
-    _, host, port, secret = p
-    domain = decode_domain(secret)
-    if _is_blocked(secret, domain): return None
-    try: secret_bytes = _prepare_secret(secret)
-    except: return None
-    client = TelegramClient(f'test_{host.replace(".","_")}_{port}', API_ID, API_HASH,
-                           connection=ConnectionTcpMTProxyRandomizedIntermediate,
-                           proxy=(host, int(port), secret_bytes), timeout=timeout_sec)
-    try:
-        start = time.time()
-        await asyncio.wait_for(client.connect(), timeout=timeout_sec)
-        await asyncio.wait_for(client.get_config(), timeout=timeout_sec)
-        ping = round(time.time()-start, 3)
-        probe = check_probe_resistance(host, port, domain) if domain else False
-        return {'type':'mtproto','host':host,'port':port,'secret':secret,
-                'link':f'tg://proxy?server={host}&port={port}&secret={secret}',
-                'ping':ping,'region':_detect_region(domain),'domain':domain or '',
-                'method':'Telethon_OK','probe_resistant':probe}
-    except: return None
-    finally:
-        try: await client.disconnect()
-        except: pass
-        _cleanup_session(host, port)
-
-async def check_socks5(p, timeout_sec=10.0):
-    _, host, port, auth = p
-    username, password = auth if auth else (None, None)
-    proxy = (5, host, port, username, password)
-    client = TelegramClient(f'test_{host.replace(".","_")}_{port}', API_ID, API_HASH,
-                           connection=ConnectionTcpMTProxyRandomizedIntermediate,
-                           proxy=proxy, timeout=timeout_sec)
-    try:
-        start = time.time()
-        await asyncio.wait_for(client.connect(), timeout=timeout_sec)
-        await asyncio.wait_for(client.get_config(), timeout=timeout_sec)
-        ping = round(time.time()-start, 3)
-        return {'type':'socks5','host':host,'port':port,
-                'link':f'tg://socks?server={host}&port={port}',
-                'ping':ping,'region':'eu','domain':'','method':'Telethon_SOCKS5',
-                'probe_resistant':False}
-    except: return None
-    finally:
-        try: await client.disconnect()
-        except: pass
-        _cleanup_session(host, port)
-
-def check_proxy_tcp(p):
+def check_proxy_tcp(p, timeout=2.0):
     typ, host, port, extra = p
     if typ == 'mtproto':
         secret = extra
@@ -279,22 +178,22 @@ def check_proxy_tcp(p):
         link = f'tg://proxy?server={host}&port={port}&secret={secret}'
         region = _detect_region(domain)
         domain_str = domain or ''
-        probe = False
     else:
         link = f'tg://socks?server={host}&port={port}'
         region = 'eu'
         domain_str = ''
-        probe = False
     try:
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.settimeout(TIMEOUT)
+            s.settimeout(timeout)
             start = time.time()
             s.connect((host, port))
             ping = round(time.time()-start, 3)
-        return {'type':typ,'host':host,'port':port,'secret':extra if typ=='mtproto' else None,
-                'link':link,'ping':ping,'region':region,'domain':domain_str,
-                'method':'TCP_OK','probe_resistant':probe}
-    except: return None
+        return {'type':typ, 'host':host, 'port':port,
+                'secret': extra if typ=='mtproto' else None,
+                'link': link, 'ping': ping, 'region': region,
+                'domain': domain_str, 'method': 'TCP_OK', 'probe_resistant': False}
+    except:
+        return None
 
 def deduplicate_and_sort(proxies):
     seen = set()
@@ -320,13 +219,10 @@ def load_local_proxies(file_path):
     return proxies
 
 async def main_async(args):
-    global TIMEOUT, API_ID, API_HASH, VERIFICATION_LOG
-    VERIFICATION_LOG.clear()
+    global TIMEOUT
     TIMEOUT = args.timeout
-    if args.api_id: API_ID = args.api_id
-    if args.api_hash: API_HASH = args.api_hash
     start = time.time()
-    print('🚀 MTProxy Collector v3.0 (Probe Resistance + SOCKS5)')
+    print('🚀 MTProxy Collector v3.0 (TCP only, без Telethon)')
     print('='*48)
     os.makedirs(args.output_dir, exist_ok=True)
 
@@ -355,45 +251,24 @@ async def main_async(args):
 
     if args.manual:
         all_raw.update(load_local_proxies(args.manual))
-    if args.channel:
-        all_raw.update(await fetch_proxies_from_channel(args.channel, args.channel_limit))
 
     print(f'\n🧩 Уникальных прокси всего: {len(all_raw)}')
     if not all_raw:
         print('\n⚠️ Нет прокси. Завершение.')
         return
 
-    print(f'\n⚡ Проверка {len(all_raw)} прокси...\n')
+    print(f'\n⚡ Проверка {len(all_raw)} прокси (TCP ping)...\n')
     valid = []
     checked = 0
     total = len(all_raw)
-    use_telethon = TELETHON_AVAILABLE and API_ID and API_HASH
-
-    if use_telethon:
-        print('🔥 Режим: Telethon (полная проверка)\n')
-        sem = asyncio.Semaphore(args.workers)
-        async def check_one(p):
-            async with sem:
-                if p[0]=='mtproto': return await check_mtproto(p, args.timeout)
-                else: return await check_socks5(p, args.timeout)
-        tasks = [asyncio.create_task(check_one(p), name=f"{p[0]}_{p[1]}_{p[2]}") for p in all_raw]
-        for task in asyncio.as_completed(tasks):
-            res = await task
+    with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as ex:
+        futures = {ex.submit(check_proxy_tcp, p, args.timeout): p for p in all_raw}
+        for f in concurrent.futures.as_completed(futures):
+            res = f.result()
             checked += 1
-            if res:
-                valid.append(res)
+            if res: valid.append(res)
             if checked % 100 == 0 or checked == total:
                 print(f'  [{checked}/{total}] {checked/total*100:.0f}% | найдено: {len(valid)}')
-    else:
-        print('📡 Режим: TCP ping\n')
-        with concurrent.futures.ThreadPoolExecutor(max_workers=args.workers) as ex:
-            futures = {ex.submit(check_proxy_tcp, p): p for p in all_raw}
-            for f in concurrent.futures.as_completed(futures):
-                res = f.result()
-                checked += 1
-                if res: valid.append(res)
-                if checked % 100 == 0 or checked == total:
-                    print(f'  [{checked}/{total}] {checked/total*100:.0f}% | найдено: {len(valid)}')
 
     if not valid:
         print('\n⚠️ Рабочих прокси не найдено.')
@@ -419,7 +294,6 @@ async def main_async(args):
     with open(f'{args.output_dir}/proxy_all_verified.json','w') as f:
         json.dump(valid[:top], f, indent=2)
 
-    # корневые файлы
     with open('proxy_ru.txt','w') as f: f.write('\n'.join(x['link'] for x in mtproto_ru[:top]))
     with open('proxy_eu.txt','w') as f: f.write('\n'.join(x['link'] for x in mtproto_eu[:top]))
     with open('proxy_all.txt','w') as f: f.write('\n'.join(x['link'] for x in (mtproto_ru+mtproto_eu)[:top]))
@@ -441,13 +315,9 @@ def main():
     p.add_argument('--top', type=int, default=0)
     p.add_argument('--output-dir', default='verified')
     p.add_argument('--manual')
-    p.add_argument('--channel')
-    p.add_argument('--channel-limit', type=int, default=50)
-    p.add_argument('--api-id', type=int)
-    p.add_argument('--api-hash')
+    # Убираем api-id, api-hash, channel — они не нужны для TCP
     args = p.parse_args()
-    if TELETHON_AVAILABLE and not (args.api_id or API_ID) and not (args.api_hash or API_HASH):
-        print("⚠️ Для Telethon укажите --api-id и --api-hash или переменные окружения")
+    # Не проверяем наличие API — он не нужен
     asyncio.run(main_async(args))
 
 if __name__ == '__main__':
