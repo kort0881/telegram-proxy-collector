@@ -2,7 +2,7 @@ name: Update Verified Proxy Lists
 
 on:
   schedule:
-    - cron: '0 */2 * * *' # Каждые часа
+    - cron: '0 */2 * * *'   # Каждые 2 часа
   workflow_dispatch:
 
 jobs:
@@ -18,31 +18,41 @@ jobs:
     - name: Install dependencies
       run: pip install --quiet requests pyyaml
       
-    - name: Run Proxy Collector
-      run: python main.py --top 100 --timeout 2.0 --workers 100
+    - name: Run Proxy Collector (with US and ASIA)
+      run: python main.py --top 100 --timeout 2.0 --workers 100 --output-dir verified
       
-    - name: Copy files to root
+    - name: Copy files to root (optional)
       run: |
         cp verified/proxy_ru_verified.txt proxy_ru.txt
         cp verified/proxy_eu_verified.txt proxy_eu.txt
+        cp verified/proxy_us_verified.txt proxy_us.txt 2>/dev/null || echo "US file not found"
+        cp verified/proxy_asia_verified.txt proxy_asia.txt 2>/dev/null || echo "ASIA file not found"
         cp verified/socks5_proxies.txt socks5.txt
         
-        # Собираем общий файл (RU + EU), так как python-скрипт больше не делает .txt для всех
+        # Общий файл для всех MTProto (если нужен)
+        cat verified/proxy_ru_verified.txt verified/proxy_eu_verified.txt \
+            verified/proxy_us_verified.txt verified/proxy_asia_verified.txt \
+            2>/dev/null > proxy_all_mtproto.txt || true
+        
+        # proxy_all.txt только RU+EU (для обратной совместимости)
         cat verified/proxy_ru_verified.txt verified/proxy_eu_verified.txt > proxy_all.txt
         
     - name: Print Statistics
       run: |
         echo "=================================="
-        echo "✅ MTProto RU: $(grep -c 'tg://' proxy_ru.txt 2>/dev/null || echo 0)"
-        echo "✅ MTProto EU: $(grep -c 'tg://' proxy_eu.txt 2>/dev/null || echo 0)"
-        echo "✅ SOCKS5: $(grep -c 'tg://' socks5.txt 2>/dev/null || echo 0)"
+        echo "📊 MTProto по регионам:"
+        echo "  🇷🇺 RU: $(grep -c 'tg://' proxy_ru.txt 2>/dev/null || echo 0)"
+        echo "  🇪🇺 EU: $(grep -c 'tg://' proxy_eu.txt 2>/dev/null || echo 0)"
+        echo "  🇺🇸 US: $(grep -c 'tg://' proxy_us.txt 2>/dev/null || echo 0)"
+        echo "  🌏 ASIA: $(grep -c 'tg://' proxy_asia.txt 2>/dev/null || echo 0)"
+        echo "  🌐 Всего MTProto: $(grep -c 'tg://' proxy_all_mtproto.txt 2>/dev/null || echo 0)"
+        echo "  🔌 SOCKS5: $(grep -c 'tg://' socks5.txt 2>/dev/null || echo 0)"
         echo "=================================="
         
     - name: Git Commit & Push
       run: |
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
-        git add verified/ proxy_ru.txt proxy_eu.txt proxy_all.txt socks5.txt || true
-        # Коммитим только если есть реальные изменения
+        git add verified/ proxy_*.txt socks5.txt || true
         git diff --staged --quiet || git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
         git push || true
