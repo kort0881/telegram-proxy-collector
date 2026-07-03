@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.1 (TCP only, без Telethon)
+# MTProto & SOCKS5 Proxy Collector v3.2 (с регионами US и ASIA)
 
 import requests
 import re
@@ -16,6 +16,8 @@ from typing import Optional, Set, List, Dict, Any, Tuple
 
 # ------------------ НАСТРОЙКИ ------------------
 RU_DOMAINS = ['.ru', 'yandex', 'vk.com', 'mail.ru', 'ok.ru', 'dzen', 'rutube', 'sber', 'tinkoff', 'vtb', 'gosuslugi', 'nalog', 'mos.ru', 'ozon', 'wildberries', 'avito', 'kinopoisk', 'mts', 'beeline']
+US_DOMAINS = ['.us', '.nyc', '.la', '.sf', '.dallas', 'amazonaws.com', 'digitalocean.com', '.gov', 'cloudflare.com']
+ASIA_DOMAINS = ['.asia', '.jp', '.cn', '.sg', '.hk', '.kr', '.in', '.tw', '.ph', '.my', '.id', '.vn', '.th']
 BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
 
 # ---------- MTProto источники ----------
@@ -32,7 +34,6 @@ SOURCES = [
     "https://raw.githubusercontent.com/seriyps/mtproto_proxy/master/proxies.txt",
     "https://raw.githubusercontent.com/MTProto/MTProtoProxy/master/proxies/mtproto.txt",
     "https://raw.githubusercontent.com/mtProtoProxy/MTProxy-official/master/proxies.txt",
-    # Добавленные источники
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no1.txt",
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no2.txt",
     "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no3.txt",
@@ -73,11 +74,6 @@ SOCKS_SOURCES = [
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt",
 ]
 
-# Убираем из MTProto источников HTTP прокси (они не работают по tg:// ссылке)
-# В твоем списке были: free-proxy-list.net, us-proxy.org и т.д. Я их удалил, 
-# так как парсер всё равно превращал их в нерабочие socks5 без авторизации.
-
-
 def _valid_port(p: str) -> bool:
     try:
         return 1 <= int(p) <= 65535
@@ -88,7 +84,16 @@ def _is_blocked(secret: str, domain: Optional[str]) -> bool:
     return len(secret) < 16 or (domain and any(b in domain for b in BLOCKED))
 
 def _detect_region(domain: Optional[str]) -> str:
-    return 'ru' if domain and any(m in domain for m in RU_DOMAINS) else 'eu'
+    if not domain:
+        return 'eu'
+    domain_lower = domain.lower()
+    if any(m in domain_lower for m in RU_DOMAINS):
+        return 'ru'
+    if any(m in domain_lower for m in US_DOMAINS):
+        return 'us'
+    if any(m in domain_lower for m in ASIA_DOMAINS):
+        return 'asia'
+    return 'eu'
 
 def decode_domain(secret: str) -> Optional[str]:
     """Декодирует домен из секрета MTProto (формат ee...)."""
@@ -107,7 +112,7 @@ def decode_domain(secret: str) -> Optional[str]:
 
 def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
     proxies = set()
-    mtproto_ips = set() # Для быстрой проверки O(1) вместо O(N)
+    mtproto_ips = set()
 
     # 1. MTProto (tg:// и t.me/)
     for h, p, s in re.findall(r'tg://proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', text, re.I):
@@ -142,7 +147,7 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
         if _valid_port(port):
             proxies.add(('socks5', ip, int(port), (None, None)))
 
-    # 6. Оставшиеся IP:PORT (только если это не MTProto)
+    # 6. Оставшиеся IP:PORT
     for h, p in re.findall(r'(\d+\.\d+\.\d+\.\d+):(\d+)', text):
         if _valid_port(p) and (h, int(p)) not in mtproto_ips:
             proxies.add(('socks5', h, int(p), (None, None)))
@@ -180,9 +185,9 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
                         if server and port and _valid_port(port):
                             proxies.add(('socks5', server, int(port), (None, None)))
         except ImportError:
-            pass # Библиотека pyyaml не установлена
+            pass
         except Exception:
-            pass # Ошибка парсинга конкретного YAML
+            pass
 
     return proxies
 
@@ -210,7 +215,7 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
         domain_str = domain or ''
     else:
         link = f'tg://socks?server={host}&port={port}'
-        region = 'eu'
+        region = 'eu'  # для SOCKS5 регион не определяем, оставляем eu
         domain_str = ''
 
     try:
@@ -258,12 +263,11 @@ def load_local_proxies(file_path: str) -> Set[Tuple[str, str, int, Any]]:
 
 def run(args):
     start_time = time.time()
-    print('🚀 MTProxy Collector v3.1 (Optimized TCP check)')
+    print('🚀 MTProxy Collector v3.2 (с регионами US и ASIA)')
     print('=' * 48)
     
     os.makedirs(args.output_dir, exist_ok=True)
 
-    # Инициализируем сессию с User-Agent, чтобы GitHub не отдавал 403
     session = requests.Session()
     session.headers.update({
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
@@ -325,6 +329,8 @@ def run(args):
     valid = deduplicate_and_sort(valid)
     mtproto_ru = [x for x in valid if x['type'] == 'mtproto' and x['region'] == 'ru']
     mtproto_eu = [x for x in valid if x['type'] == 'mtproto' and x['region'] == 'eu']
+    mtproto_us = [x for x in valid if x['type'] == 'mtproto' and x['region'] == 'us']
+    mtproto_asia = [x for x in valid if x['type'] == 'mtproto' and x['region'] == 'asia']
     socks5 = [x for x in valid if x['type'] == 'socks5']
     
     top = args.top if args.top > 0 else len(valid)
@@ -335,6 +341,8 @@ def run(args):
     files_data = {
         'proxy_ru_verified.txt': (mtproto_ru[:top], f'# MTProto RU ({len(mtproto_ru[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
         'proxy_eu_verified.txt': (mtproto_eu[:top], f'# MTProto EU ({len(mtproto_eu[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
+        'proxy_us_verified.txt': (mtproto_us[:top], f'# MTProto US ({len(mtproto_us[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
+        'proxy_asia_verified.txt': (mtproto_asia[:top], f'# MTProto ASIA ({len(mtproto_asia[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
         'socks5_proxies.txt': (socks5[:top], f'# SOCKS5 ({len(socks5[:top])})\n# Updated: {utc}\n\n', lambda x: f'tg://socks?server={x["host"]}&port={x["port"]}'),
     }
     
@@ -347,9 +355,11 @@ def run(args):
 
     elapsed = round(time.time() - start_time, 1)
     print('=' * 48)
-    print(f'✅ MTProto RU: {len(mtproto_ru)}  EU: {len(mtproto_eu)}  SOCKS5: {len(socks5)}')
+    print(f'✅ MTProto RU: {len(mtproto_ru)}  EU: {len(mtproto_eu)}  US: {len(mtproto_us)}  ASIA: {len(mtproto_asia)}  SOCKS5: {len(socks5)}')
     if mtproto_ru: print(f'🏆 Лучший RU: {mtproto_ru[0]["host"]}:{mtproto_ru[0]["port"]} ({mtproto_ru[0]["ping"]}s)')
     if mtproto_eu: print(f'🏆 Лучший EU: {mtproto_eu[0]["host"]}:{mtproto_eu[0]["port"]} ({mtproto_eu[0]["ping"]}s)')
+    if mtproto_us: print(f'🏆 Лучший US: {mtproto_us[0]["host"]}:{mtproto_us[0]["port"]} ({mtproto_us[0]["ping"]}s)')
+    if mtproto_asia: print(f'🏆 Лучший ASIA: {mtproto_asia[0]["host"]}:{mtproto_asia[0]["port"]} ({mtproto_asia[0]["ping"]}s)')
     if socks5: print(f'🏆 Лучший SOCKS5: {socks5[0]["host"]}:{socks5[0]["port"]} ({socks5[0]["ping"]}s)')
     print(f'⏱️ Время: {elapsed}s')
     print('=' * 48)
