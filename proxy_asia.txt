@@ -1,4 +1,4 @@
 # MTProto ASIA (1)
-# Updated: 2026-07-04 13:27:19.981450+00:00
+# Updated: 2026-07-04 15:07:04.553261+00:00
 
 tg://proxy?server=s1.v6n.tech&port=443&secret=eee11484d2c8b928f3d5a19f5da8e182037777772e696465616c6f2e6465
