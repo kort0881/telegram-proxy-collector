@@ -1,7 +1,3 @@
-# MTProto ASIA (4)
-# Updated: 2026-07-05 07:27:34.979859+00:00
+# MTProto ASIA (0)
+# Updated: 2026-07-05 10:14:13.423900+00:00
 
-tg://proxy?server=5.22.223.51&port=443&secret=ee4d9ab7e12eb0566ed3711363f7da88247777772e70636d61672e636f6d
-tg://proxy?server=leon-kennedy.myrka.digital&port=8443&secret=ee7c4e9a1f83d6b0524af17e9c3b8d56026c656f6e2d6b656e6e6564792e6d79726b612e6469676974616c
-tg://proxy?server=tt2.myrka.digital&port=8443&secret=ee888877776666555544443333222211117474322e6d79726b612e6469676974616c
-tg://proxy?server=babushka.myrka.digital&port=8443&secret=eeffffd6345cb22226221e3effff05e0c06764652e6d79726b612e6469676974616c
