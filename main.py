@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.3 (с обновлением proxy_all_tme_verified.txt)
+# MTProto & SOCKS5 Proxy Collector v3.4 (обновляет все файлы)
 
 import requests
 import re
@@ -263,7 +263,7 @@ def load_local_proxies(file_path: str) -> Set[Tuple[str, str, int, Any]]:
 
 def run(args):
     start_time = time.time()
-    print('🚀 MTProxy Collector v3.3 (с регионами US, ASIA и обновлением proxy_all_tme_verified.txt)')
+    print('🚀 MTProxy Collector v3.4 (обновляет все файлы)')
     print('=' * 48)
     
     os.makedirs(args.output_dir, exist_ok=True)
@@ -342,26 +342,74 @@ def run(args):
     all_proxies = mtproto_ru[:top] + mtproto_eu[:top] + mtproto_us[:top] + mtproto_asia[:top] + socks5[:top]
     all_proxies.sort(key=lambda x: (x['region'], x['ping']))
     
+    # Функция для получения ссылки
+    link_formatter = lambda x: x['link']
+    
     files_data = {
-        'proxy_ru_verified.txt': (mtproto_ru[:top], f'# MTProto RU ({len(mtproto_ru[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
-        'proxy_eu_verified.txt': (mtproto_eu[:top], f'# MTProto EU ({len(mtproto_eu[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
-        'proxy_us_verified.txt': (mtproto_us[:top], f'# MTProto US ({len(mtproto_us[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
-        'proxy_asia_verified.txt': (mtproto_asia[:top], f'# MTProto ASIA ({len(mtproto_asia[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
-        'socks5_proxies.txt': (socks5[:top], f'# SOCKS5 ({len(socks5[:top])})\n# Updated: {utc}\n\n', lambda x: f'tg://socks?server={x["host"]}&port={x["port"]}'),
-        # ---- НОВЫЙ ФАЙЛ: все прокси в формате t.me (используется в посте) ----
-        'proxy_all_tme_verified.txt': (
-            all_proxies,
-            f'# Verified Proxies t.me format ({len(all_proxies)})\n# Updated: {utc}\n\n',
-            lambda x: x['link']
-        ),
+        # Региональные MTProto
+        'proxy_ru_verified.txt': (mtproto_ru[:top], f'# MTProto RU ({len(mtproto_ru[:top])})\n# Updated: {utc}\n\n', link_formatter),
+        'proxy_eu_verified.txt': (mtproto_eu[:top], f'# MTProto EU ({len(mtproto_eu[:top])})\n# Updated: {utc}\n\n', link_formatter),
+        'proxy_us_verified.txt': (mtproto_us[:top], f'# MTProto US ({len(mtproto_us[:top])})\n# Updated: {utc}\n\n', link_formatter),
+        'proxy_asia_verified.txt': (mtproto_asia[:top], f'# MTProto ASIA ({len(mtproto_asia[:top])})\n# Updated: {utc}\n\n', link_formatter),
+        # SOCKS5
+        'socks5_proxies.txt': (socks5[:top], f'# SOCKS5 ({len(socks5[:top])})\n# Updated: {utc}\n\n', link_formatter),
+        # Общий файл для Telegram (используется в посте)
+        'proxy_all_tme_verified.txt': (all_proxies, f'# Verified Proxies t.me format ({len(all_proxies)})\n# Updated: {utc}\n\n', link_formatter),
+        # Дополнительные файлы, которые тоже должны обновляться
+        'proxy_all.txt': (all_proxies, f'# All proxies ({len(all_proxies)})\n# Updated: {utc}\n\n', link_formatter),
+        'proxy_all_verified.txt': (all_proxies, f'# All verified proxies ({len(all_proxies)})\n# Updated: {utc}\n\n', link_formatter),
+        'proxy_links.txt': (all_proxies, f'# Proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n', link_formatter),
+        'proxy_links_clean.txt': (all_proxies, f'# Clean proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n', link_formatter),
+        'proxy_links_tme_clean.txt': (all_proxies, f'# Clean t.me proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n', link_formatter),
     }
     
+    # Сохраняем все текстовые файлы
     for filename, (data, header, formatter) in files_data.items():
         with open(f'{args.output_dir}/{filename}', 'w', encoding='utf-8') as f:
             f.write(header + '\n'.join(formatter(x) for x in data))
 
+    # JSON файлы
+    # proxies.json — копия proxy_all_verified.json
     with open(f'{args.output_dir}/proxy_all_verified.json', 'w', encoding='utf-8') as f:
         json.dump(valid[:top], f, indent=2, ensure_ascii=False)
+    
+    # Копируем в proxies.json
+    with open(f'{args.output_dir}/proxies.json', 'w', encoding='utf-8') as f:
+        json.dump(valid[:top], f, indent=2, ensure_ascii=False)
+
+    # proxy_stats_verified.json — минимальная статистика
+    stats = {
+        "timestamp": utc.isoformat(),
+        "total": len(valid),
+        "by_region": {
+            "ru": len(mtproto_ru),
+            "eu": len(mtproto_eu),
+            "us": len(mtproto_us),
+            "asia": len(mtproto_asia),
+            "socks5": len(socks5)
+        },
+        "top": top
+    }
+    with open(f'{args.output_dir}/proxy_stats_verified.json', 'w', encoding='utf-8') as f:
+        json.dump(stats, f, indent=2, ensure_ascii=False)
+
+    # source_stats.json — можно скопировать stats или создать пустой
+    with open(f'{args.output_dir}/source_stats.json', 'w', encoding='utf-8') as f:
+        json.dump({"sources": SOURCES + SOCKS_SOURCES, "last_update": utc.isoformat()}, f, indent=2, ensure_ascii=False)
+
+    # verification.log — простой лог
+    with open(f'{args.output_dir}/verification.log', 'w', encoding='utf-8') as f:
+        f.write(f"Verification completed at {utc}\n")
+        f.write(f"Total proxies checked: {total}\n")
+        f.write(f"Valid proxies found: {len(valid)}\n")
+        f.write(f"Top saved: {top}\n")
+
+    # proxy_domain_verified.txt — список прокси с доменами (для MTProto, где есть домен)
+    domain_proxies = [p for p in all_proxies if p.get('domain')]
+    with open(f'{args.output_dir}/proxy_domain_verified.txt', 'w', encoding='utf-8') as f:
+        f.write(f"# Proxies with domain ({len(domain_proxies)})\n# Updated: {utc}\n\n")
+        for p in domain_proxies:
+            f.write(f"{p['link']} # domain: {p['domain']}\n")
 
     elapsed = round(time.time() - start_time, 1)
     print('=' * 48)
@@ -375,7 +423,7 @@ def run(args):
     print('=' * 48)
 
 def main():
-    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.3")
+    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.4")
     parser.add_argument('--timeout', type=float, default=2.0, help="TCP timeout в секундах")
     parser.add_argument('--workers', type=int, default=100, help="Количество потоков для проверки")
     parser.add_argument('--top', type=int, default=0, help="Сохранить только топ X прокси (0 = все)")
