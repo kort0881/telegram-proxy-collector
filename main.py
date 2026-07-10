@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.2 (с регионами US и ASIA)
+# MTProto & SOCKS5 Proxy Collector v3.3 (с обновлением proxy_all_tme_verified.txt)
 
 import requests
 import re
@@ -263,7 +263,7 @@ def load_local_proxies(file_path: str) -> Set[Tuple[str, str, int, Any]]:
 
 def run(args):
     start_time = time.time()
-    print('🚀 MTProxy Collector v3.2 (с регионами US и ASIA)')
+    print('🚀 MTProxy Collector v3.3 (с регионами US, ASIA и обновлением proxy_all_tme_verified.txt)')
     print('=' * 48)
     
     os.makedirs(args.output_dir, exist_ok=True)
@@ -338,12 +338,22 @@ def run(args):
 
     print(f'\n💾 Сохранение в {args.output_dir}/...')
     
+    # ---- Сбор всех прокси для общего файла ----
+    all_proxies = mtproto_ru[:top] + mtproto_eu[:top] + mtproto_us[:top] + mtproto_asia[:top] + socks5[:top]
+    all_proxies.sort(key=lambda x: (x['region'], x['ping']))
+    
     files_data = {
         'proxy_ru_verified.txt': (mtproto_ru[:top], f'# MTProto RU ({len(mtproto_ru[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
         'proxy_eu_verified.txt': (mtproto_eu[:top], f'# MTProto EU ({len(mtproto_eu[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
         'proxy_us_verified.txt': (mtproto_us[:top], f'# MTProto US ({len(mtproto_us[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
         'proxy_asia_verified.txt': (mtproto_asia[:top], f'# MTProto ASIA ({len(mtproto_asia[:top])})\n# Updated: {utc}\n\n', lambda x: x['link']),
         'socks5_proxies.txt': (socks5[:top], f'# SOCKS5 ({len(socks5[:top])})\n# Updated: {utc}\n\n', lambda x: f'tg://socks?server={x["host"]}&port={x["port"]}'),
+        # ---- НОВЫЙ ФАЙЛ: все прокси в формате t.me (используется в посте) ----
+        'proxy_all_tme_verified.txt': (
+            all_proxies,
+            f'# Verified Proxies t.me format ({len(all_proxies)})\n# Updated: {utc}\n\n',
+            lambda x: x['link']
+        ),
     }
     
     for filename, (data, header, formatter) in files_data.items():
@@ -365,7 +375,7 @@ def run(args):
     print('=' * 48)
 
 def main():
-    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector")
+    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.3")
     parser.add_argument('--timeout', type=float, default=2.0, help="TCP timeout в секундах")
     parser.add_argument('--workers', type=int, default=100, help="Количество потоков для проверки")
     parser.add_argument('--top', type=int, default=0, help="Сохранить только топ X прокси (0 = все)")
