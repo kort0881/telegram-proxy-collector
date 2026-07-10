@@ -1,86 +1,51 @@
-[
-  {
-    "url": "https://raw.githubusercontent.com/ALIILAPRO/MTProtoProxy/main/mtproto.txt",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://mtpro.xyz/api/?type=mtproto-ru",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://raw.githubusercontent.com/yemixzy/proxy-projects/main/proxies/mtproto.txt",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://raw.githubusercontent.com/soroushmirzaei/telegram-proxies-collector/main/proxies/ip/mtproto",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://mtpro.xyz/api/?type=mtproto",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://raw.githubusercontent.com/4IceG/Personal-proxies/master/zap-mtproto",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://raw.githubusercontent.com/hookzof/socks5_list/master/tg/mtproto.txt",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://proxylist.geonode.com/api/proxy-list?protocols=socks5&limit=100&sort_by=speed",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://raw.githubusercontent.com/themrb/mtproto-proxy-data/main/all_proxies.txt",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  },
-  {
-    "url": "https://raw.githubusercontent.com/mheidari98/.proxy/main/all",
-    "fetched": 0,
-    "verified": 0,
-    "pass_rate": 0,
-    "failed": true
-  }
-]
+{
+  "sources": [
+    "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
+    "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",
+    "https://raw.githubusercontent.com/ALIILAPRO/MTProtoProxy/main/mtproto.txt",
+    "https://mtpro.xyz/api/?type=mtproto",
+    "https://mtpro.xyz/api/?type=mtproto-ru",
+    "https://raw.githubusercontent.com/hookzof/socks5_list/master/tg/mtproto.txt",
+    "https://raw.githubusercontent.com/Freedom-Guard/Proxy/main/proxies/mtproto.txt",
+    "https://raw.githubusercontent.com/securemanager/MTPROTO/main/proxies.txt",
+    "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/mtproto_proxies.txt",
+    "https://raw.githubusercontent.com/seriyps/mtproto_proxy/master/proxies.txt",
+    "https://raw.githubusercontent.com/MTProto/MTProtoProxy/master/proxies/mtproto.txt",
+    "https://raw.githubusercontent.com/mtProtoProxy/MTProxy-official/master/proxies.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no1.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no2.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no3.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no4.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no5.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no6.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no7.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no8.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no9.txt",
+    "https://raw.githubusercontent.com/V2RAYCONFIGSPOOL/TELEGRAM_PROXY_SUB/refs/heads/main/telegram_proxy_no10.txt",
+    "https://raw.githubusercontent.com/Surfboardv2ray/TGProto/refs/heads/main/proxies.txt",
+    "https://raw.githubusercontent.com/iwh3n/tg-proxy/refs/heads/main/proxys/All_Proxys.txt",
+    "https://raw.githubusercontent.com/kubiknubika/my-tg-proxies/refs/heads/main/data/proxies.json",
+    "https://raw.githubusercontent.com/shablin/mtproto-proxy/refs/heads/main/data/valid_proxy.json",
+    "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/main/protocols/mtproto.txt",
+    "https://raw.githubusercontent.com/helptmoop/Free-Telegram-Proxies/refs/heads/main/global-iran-russia-proxies.txt",
+    "https://raw.githubusercontent.com/helptmoop/Free-Telegram-Proxies/refs/heads/main/turkmenistan-global-iran-russia.txt",
+    "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/MTProto.txt",
+    "https://raw.githubusercontent.com/McDaived/ProxyDaiv/refs/heads/main/public/proxies.json",
+    "https://raw.githubusercontent.com/klondike0x/mtp4tg-proxies/refs/heads/main/all_proxies.txt",
+    "https://raw.githubusercontent.com/weltimistar777-crypto/MTProxy/refs/heads/main/proxy.txt",
+    "https://raw.githubusercontent.com/Therealwh/MTPproxyLIST/refs/heads/main/verified/proxy_all_verified.txt",
+    "https://raw.githubusercontent.com/Therealwh/MTPproxyLIST/refs/heads/main/verified/proxy_all_tme_verified.txt",
+    "https://raw.githubusercontent.com/Airuop/MTProtoCollector/refs/heads/main/proxy/mtproto.json",
+    "https://raw.githubusercontent.com/blog1703/tgonline/refs/heads/main/proxies.txt",
+    "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt",
+    "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=5000&country=all",
+    "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt",
+    "https://raw.githubusercontent.com/roosterkid/openproxylist/main/SOCKS5_RAW.txt",
+    "https://raw.githubusercontent.com/fyvri/fresh-proxy-list/archive/storage/classic/socks5.txt",
+    "https://gist.githubusercontent.com/December000/fd23d2530ffc29264297a5e687a79ecd/raw/all.yaml",
+    "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/proxy.txt",
+    "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json",
+    "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt"
+  ],
+  "last_update": "2026-07-10T10:46:15.163675+00:00"
+}

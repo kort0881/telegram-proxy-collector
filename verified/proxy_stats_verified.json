@@ -1,14 +1,12 @@
 {
-  "timestamp_utc": "2026-05-29T12:43:05.167056+00:00",
-  "total_raw": 228,
-  "total_verified": 100,
-  "ru_count": 3,
-  "eu_count": 97,
-  "sources_count": 18,
-  "telethon_used": null,
-  "best_ru_ping": 0.112,
-  "best_eu_ping": 0.001,
-  "execution_time": 38.2,
-  "workers": 100,
-  "channel_used": null
+  "timestamp": "2026-07-10T10:46:15.163675+00:00",
+  "total": 63265,
+  "by_region": {
+    "ru": 128,
+    "eu": 571,
+    "us": 26,
+    "asia": 1,
+    "socks5": 62539
+  },
+  "top": 100
 }
