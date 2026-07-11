@@ -167,6 +167,9 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
                         mtproto_ips.add((h, int(p)))
                 elif 'socks5' in str(item).lower() and ('ip' in item or 'host' in item) and 'port' in item:
                     h = item.get('ip') or item.get('host')
+                    # --- ДОБАВЛЕНА ПРОВЕРКА НА None ---
+                    if h is None:
+                        continue
                     p = str(item['port'])
                     if _valid_port(p):
                         proxies.add(('socks5', h, int(p), (None, None)))
@@ -204,7 +207,12 @@ def fetch_source(session: requests.Session, url: str, timeout: int = 15) -> str:
 
 def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Dict[str, Any]]:
     typ, host, port, extra = p
-    
+
+    # ---------- ИСПРАВЛЕНИЕ: приводим host к строке и проверяем на пустоту ----------
+    host = str(host).strip()
+    if not host:
+        return None
+
     if typ == 'mtproto':
         secret = extra
         domain = decode_domain(secret)
@@ -231,7 +239,8 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
             'link': link, 'ping': ping, 'region': region,
             'domain': domain_str, 'method': 'TCP_OK', 'probe_resistant': False
         }
-    except (socket.timeout, socket.error, OSError):
+    except (socket.timeout, socket.error, OSError, TypeError) as e:
+        # Дополнительно перехватываем TypeError на случай, если host всё ещё не подходит
         return None
 
 def deduplicate_and_sort(proxies: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
