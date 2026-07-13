@@ -1,6 +1,7 @@
-# MTProto ASIA (3)
-# Updated: 2026-07-13 19:55:41.967101+00:00
+# MTProto ASIA (4)
+# Updated: 2026-07-13 21:29:28.996842+00:00
 
-tg://proxy?server=neo-vpn.ink&port=443&secret=ee7e0e76915a3255d7aaa9f52d91bd8b286e656f2d76706e2e696e6b
-tg://proxy?server=medblock.ink&port=443&secret=ee1d4c807dc5afc0d8481cc6f3e4f175386d6564626c6f636b2e696e6b
+tg://proxy?server=62.84.124.14&port=443&secret=ee185c0566a0cee9745212609f2a8d6964666173742d70726f78792e696e6b
+tg://proxy?server=62.84.113.134&port=443&secret=ee185c0566a0cee9745212609f2a8d6964666173742d70726f78792e696e6b
 tg://proxy?server=tt2.myrka.digital&port=8443&secret=ee888877776666555544443333222211117474322e6d79726b612e6469676974616c
+tg://proxy?server=medblock.ink&port=443&secret=ee1d4c807dc5afc0d8481cc6f3e4f175386d6564626c6f636b2e696e6b
