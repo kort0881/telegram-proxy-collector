@@ -1,17 +1,11 @@
 {
-  "timestamp": "2026-07-14T14:15:46.343689",
+  "timestamp": "2026-07-14T15:55:29.661024",
   "history_size": 200,
   "source_stats": {
     "eu": {
-      "total": 160,
+      "total": 162,
       "good_percent": 100.0,
       "avg_ping": 0.06,
-      "probe_resistant_percent": 0.0
-    },
-    "asia": {
-      "total": 2,
-      "good_percent": 100.0,
-      "avg_ping": 0.01,
       "probe_resistant_percent": 0.0
     },
     "ru": {
@@ -20,7 +14,7 @@
       "avg_ping": 0.08,
       "probe_resistant_percent": 0.0
     },
-    "us": {
+    "asia": {
       "total": 2,
       "good_percent": 100.0,
       "avg_ping": 0.09,
