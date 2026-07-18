@@ -1,16 +1,13 @@
-# MTProto US (13)
-# Updated: 2026-07-18 14:53:35.224230+00:00
+# MTProto US (10)
+# Updated: 2026-07-18 16:59:34.906665+00:00
 
 tg://proxy?server=31.220.78.146&port=443&secret=ee981c79d929c9fbf81ef6d233940a538a636c6f7564666c6172652e636f6d
-tg://proxy?server=164.68.122.140&port=443&secret=ee87dd4304ba0973ef97a9f14aea404623636c6f7564666c6172652e636f6d
 tg://proxy?server=194.147.34.135&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=116.203.134.165&port=443&secret=ee636c6f7564666c6172652e636f6db6
 tg://proxy?server=83.147.252.64&port=443&secret=ee0452c85fed7aba8a05802eb7b8104ca97777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=116.203.134.165&port=443&secret=ee636c6f7564666c6172652e636f6db6
 tg://proxy?server=212.115.103.198&port=443&secret=ee0123456789abcdef0123456789abcdef7777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=194.116.236.130&port=443&secret=eee6e371e5f6f99760b2b133cdf21848767777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=194.116.236.130&port=443&secret=eee9782aa43b3d51663b4b1f8ad6b206a67777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=194.116.236.130&port=443&secret=eec81a4b8b082ddfd51ebce0502f46b5687777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=shop.royayeman.co.uk&port=443&secret=ee57713eb90cec350e7e7fa910630756b063646e6a732e636c6f7564666c6172652e636f6d
 tg://proxy?server=mihanwebhost_com_freeprx3_ir.thelion.skin&port=443&secret=ee2a35af2474f7ae1b992564615f4e71a27777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=russia.its-work.ru&port=443&secret=ee368601a36ebfafec1604dd8ad6c2d1eb636c6f7564666c6172652e636f6d
 tg://proxy?server=mihanwebhost_com_freeprx2_ir.thelion.skin&port=443&secret=eef5a0b8c8aed5bf46e277fcd566ad32c87777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=proxy.glob.accuratenetworkchecker.ir&port=443&secret=ee56af8f05bdbbdbfa074c637d21f96e8e7777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=russia.its-work.ru&port=443&secret=ee368601a36ebfafec1604dd8ad6c2d1eb636c6f7564666c6172652e636f6d
