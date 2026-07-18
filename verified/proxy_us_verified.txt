@@ -1,14 +1,12 @@
-# MTProto US (11)
-# Updated: 2026-07-18 20:48:41.662559+00:00
+# MTProto US (9)
+# Updated: 2026-07-18 22:51:46.691514+00:00
 
 tg://proxy?server=172.65.234.91&port=443&secret=ee79e344818749bd7ac519130220c25d0973706565642e636c6f7564666c6172652e636f6d
-tg://proxy?server=85.90.244.164&port=443&secret=eed5026c2375e5afa5174552eb8199edbe7777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=89.117.56.109&port=443&secret=eeddb9d66c7ea25bc1e5e917874bc95eda636c6f7564666c6172652e636f6d
-tg://proxy?server=116.203.134.165&port=443&secret=ee636c6f7564666c6172652e636f6db6
-tg://proxy?server=185.204.169.147&port=443&secret=ee41f57ff1da19c1223c9afc459c96308c7777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=shop.royayeman.co.uk&port=443&secret=ee57713eb90cec350e7e7fa910630756b063646e6a732e636c6f7564666c6172652e636f6d
-tg://proxy?server=194.116.236.130&port=443&secret=ee12cc159c7dc59d84069ba187327af6f87777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=mihanwebhost_com_freeprx3_ir.thelion.skin&port=443&secret=ee2a35af2474f7ae1b992564615f4e71a27777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=s2.forwardmt.com&port=2087&secret=ee9a65cb7efd7a4f5b4bf87b6c5de26931636c6f7564666c6172652e636f6d
-tg://proxy?server=russia.its-work.ru&port=443&secret=ee368601a36ebfafec1604dd8ad6c2d1eb636c6f7564666c6172652e636f6d
+tg://proxy?server=85.90.244.164&port=443&secret=eed5026c2375e5afa5174552eb8199edbe7777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=194.147.34.135&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=194.116.236.130&port=443&secret=eec81a4b8b082ddfd51ebce0502f46b5687777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=mihanwebhost_com_freeprx2_ir.thelion.skin&port=443&secret=eef5a0b8c8aed5bf46e277fcd566ad32c87777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=shop.royayeman.co.uk&port=443&secret=ee57713eb90cec350e7e7fa910630756b063646e6a732e636c6f7564666c6172652e636f6d
+tg://proxy?server=s2.forwardmt.com&port=2087&secret=ee9a65cb7efd7a4f5b4bf87b6c5de26931636c6f7564666c6172652e636f6d
+tg://proxy?server=mihanwebhost_com_freeprx3_ir.thelion.skin&port=443&secret=ee2a35af2474f7ae1b992564615f4e71a27777772e636c6f7564666c6172652e636f6d
