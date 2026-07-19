@@ -1,5 +1,5 @@
 # MTProto ASIA (3)
-# Updated: 2026-07-18 22:51:46.691514+00:00
+# Updated: 2026-07-19 03:09:46.296915+00:00
 
 tg://proxy?server=best-proxy.ink&port=443&secret=ee3646eba8c65e0e1d4804a7f9caa6531d626573742d70726f78792e696e6b
 tg://proxy?server=medblock.ink&port=443&secret=ee8665ca3cc6678d1046ae29d1740ab58a6d6564626c6f636b2e696e6b

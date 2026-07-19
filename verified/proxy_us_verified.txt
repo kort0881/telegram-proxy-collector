@@ -1,12 +1,19 @@
-# MTProto US (9)
-# Updated: 2026-07-18 22:51:46.691514+00:00
+# MTProto US (16)
+# Updated: 2026-07-19 03:09:46.296915+00:00
 
 tg://proxy?server=172.65.234.91&port=443&secret=ee79e344818749bd7ac519130220c25d0973706565642e636c6f7564666c6172652e636f6d
+tg://proxy?server=194.238.79.6&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=89.117.56.109&port=443&secret=eeddb9d66c7ea25bc1e5e917874bc95eda636c6f7564666c6172652e636f6d
+tg://proxy?server=207.180.195.37&port=443&secret=eedfa08dad56087f585c3948423aba9841636c6f7564666c6172652e636f6d
 tg://proxy?server=85.90.244.164&port=443&secret=eed5026c2375e5afa5174552eb8199edbe7777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=194.147.34.135&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=theoriginalproxies-5.com&port=443&secret=ee722ba6ba8dca2a31690a58c3a3223e2f7777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=193.233.174.149&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=194.116.236.130&port=443&secret=ee1a55e503202be5fbd50a025201c5196c7777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=194.116.236.130&port=443&secret=eec81a4b8b082ddfd51ebce0502f46b5687777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=mihanwebhost_com_freeprx2_ir.thelion.skin&port=443&secret=eef5a0b8c8aed5bf46e277fcd566ad32c87777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=shop.royayeman.co.uk&port=443&secret=ee57713eb90cec350e7e7fa910630756b063646e6a732e636c6f7564666c6172652e636f6d
+tg://proxy?server=yc3.indigogift.fun&port=443&secret=ee0e61aaf45658c3ef5fc0fef90549fda67777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=s2.forwardmt.com&port=2087&secret=ee9a65cb7efd7a4f5b4bf87b6c5de26931636c6f7564666c6172652e636f6d
+tg://proxy?server=mihanwebhost_com_freeprx2_ir.thelion.skin&port=443&secret=eef5a0b8c8aed5bf46e277fcd566ad32c87777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=proxy.glob.accuratenetworkchecker.ir&port=443&secret=ee56af8f05bdbbdbfa074c637d21f96e8e7777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=mihanwebhost_com_freeprx3_ir.thelion.skin&port=443&secret=ee2a35af2474f7ae1b992564615f4e71a27777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=russia.its-work.ru&port=443&secret=ee368601a36ebfafec1604dd8ad6c2d1eb636c6f7564666c6172652e636f6d
