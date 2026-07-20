@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # MTProto & SOCKS5 Proxy Collector v3.4 (обновляет все файлы)
+# ДОБАВЛЕНА ПРОВЕРКА GEOIP
 
 import requests
 import re
@@ -13,6 +14,9 @@ import os
 import argparse
 import base64
 from typing import Optional, Set, List, Dict, Any, Tuple
+
+# ---------- ДОБАВЛЕНО: импорт для geoip ----------
+import maxminddb
 
 # ------------------ НАСТРОЙКИ ------------------
 RU_DOMAINS = ['.ru', 'yandex', 'vk.com', 'mail.ru', 'ok.ru', 'dzen', 'rutube', 'sber', 'tinkoff', 'vtb', 'gosuslugi', 'nalog', 'mos.ru', 'ozon', 'wildberries', 'avito', 'kinopoisk', 'mts', 'beeline']
@@ -74,6 +78,10 @@ SOCKS_SOURCES = [
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt",
 ]
 
+# ---------- ГЛОБАЛЬНАЯ ПЕРЕМЕННАЯ ДЛЯ GEOIP ----------
+geoip_reader = None
+
+# ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
 def _valid_port(p: str) -> bool:
     try:
         return 1 <= int(p) <= 65535
@@ -167,7 +175,6 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
                         mtproto_ips.add((h, int(p)))
                 elif 'socks5' in str(item).lower() and ('ip' in item or 'host' in item) and 'port' in item:
                     h = item.get('ip') or item.get('host')
-                    # --- ДОБАВЛЕНА ПРОВЕРКА НА None ---
                     if h is None:
                         continue
                     p = str(item['port'])
@@ -205,6 +212,7 @@ def fetch_source(session: requests.Session, url: str, timeout: int = 15) -> str:
         time.sleep(0.5)
     return ''
 
+# ---------- ИЗМЕНЁННАЯ ФУНКЦИЯ check_proxy_tcp с geoip ----------
 def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Dict[str, Any]]:
     typ, host, port, extra = p
 
@@ -212,6 +220,18 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
     host = str(host).strip()
     if not host:
         return None
+
+    # ---------- ДОБАВЛЕНО: проверка страны IP через geoip ----------
+    if geoip_reader:
+        try:
+            info = geoip_reader.get(host)
+            if info and 'country' in info and 'iso_code' in info['country']:
+                country = info['country']['iso_code'].upper()
+                allowed = {'RU','BY','KZ','DE','NL','FI','GB','FR','SE','PL','CZ','AT','CH','IT','ES','NO','DK','BE','IE','LU','EE','LV','LT'}
+                if country not in allowed:
+                    return None  # отбрасываем прокси не из разрешённых стран
+        except Exception:
+            pass
 
     if typ == 'mtproto':
         secret = extra
@@ -240,7 +260,6 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
             'domain': domain_str, 'method': 'TCP_OK', 'probe_resistant': False
         }
     except (socket.timeout, socket.error, OSError, TypeError) as e:
-        # Дополнительно перехватываем TypeError на случай, если host всё ещё не подходит
         return None
 
 def deduplicate_and_sort(proxies: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
@@ -271,10 +290,22 @@ def load_local_proxies(file_path: str) -> Set[Tuple[str, str, int, Any]]:
         return set()
 
 def run(args):
+    global geoip_reader  # чтобы использовать в check_proxy_tcp
+
     start_time = time.time()
     print('🚀 MTProxy Collector v3.4 (обновляет все файлы)')
     print('=' * 48)
-    
+
+    # ---------- ДОБАВЛЕНО: загрузка geoip.dat из аргумента ----------
+    if args.geoip and os.path.exists(args.geoip):
+        try:
+            geoip_reader = maxminddb.open(args.geoip)
+            print(f"✅ geoip.dat loaded from {args.geoip}")
+        except Exception as e:
+            print(f"⚠️ Не удалось загрузить geoip.dat: {e}")
+    else:
+        print("⚠️ geoip.dat не указан или не найден, проверка по стране отключена.")
+
     os.makedirs(args.output_dir, exist_ok=True)
 
     session = requests.Session()
@@ -438,6 +469,8 @@ def main():
     parser.add_argument('--top', type=int, default=0, help="Сохранить только топ X прокси (0 = все)")
     parser.add_argument('--output-dir', default='verified', help="Папка для сохранения результатов")
     parser.add_argument('--manual', type=str, help="Путь к локальному файлу с прокси для добавления")
+    # ДОБАВЛЕН АРГУМЕНТ --geoip
+    parser.add_argument('--geoip', type=str, help="Путь к файлу geoip.dat для проверки страны")
     args = parser.parse_args()
     
     run(args)
