@@ -16,10 +16,15 @@ jobs:
         python-version: '3.11'
         
     - name: Install dependencies
-      run: pip install --quiet requests pyyaml
+      run: pip install --quiet requests pyyaml maxminddb geoip2
+
+    - name: Download geoip.dat from ru-routing-dat
+      run: |
+        mkdir -p data
+        wget -q -O data/geoip.dat https://cdn.jsdelivr.net/gh/GrimbirdUsers/ru-routing-dat@main/geoip.dat
       
     - name: Run Proxy Collector (with US and ASIA)
-      run: python main.py --top 100 --timeout 2.0 --workers 100 --output-dir verified
+      run: python main.py --top 100 --timeout 2.0 --workers 100 --output-dir verified --geoip data/geoip.dat
       
     - name: Copy files to root (optional)
       run: |
