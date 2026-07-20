@@ -59,5 +59,11 @@ jobs:
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
         git add verified/ proxy_*.txt socks5.txt || true
-        git diff --staged --quiet || git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
-        git push || true
+        if git diff --staged --quiet; then
+          echo "Нет изменений для коммита"
+          exit 0
+        fi
+        git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
+        # Добавлен rebase перед push, чтобы избежать конфликтов
+        git pull --rebase origin main
+        git push origin main
