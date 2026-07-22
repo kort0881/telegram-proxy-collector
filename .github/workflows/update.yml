@@ -5,27 +5,36 @@ on:
     - cron: '0 */2 * * *'   # Каждые 2 часа
   workflow_dispatch:
 
+# Явные разрешения для создания тегов и релизов
+permissions:
+  contents: write
+  actions: write
+
 jobs:
   collect:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+
     steps:
     - uses: actions/checkout@v4
-    
+
     - uses: actions/setup-python@v4
       with:
         python-version: '3.11'
-        
+
     - name: Install dependencies
       run: pip install --quiet requests pyyaml maxminddb geoip2
 
-    - name: Download geoip.dat from ru-routing-dat
+    - name: Download geoip.dat
       run: |
         mkdir -p data
         wget -q -O data/geoip.dat https://cdn.jsdelivr.net/gh/GrimbirdUsers/ru-routing-dat@main/geoip.dat
-      
-    - name: Run Proxy Collector (with US and ASIA)
+
+    - name: Run Proxy Collector
       run: python main.py --top 100 --timeout 2.0 --workers 100 --output-dir verified --geoip data/geoip.dat
-      
+
     - name: Copy files to root
       run: |
         cp verified/proxy_ru_verified.txt proxy_ru.txt
@@ -37,15 +46,16 @@ jobs:
             verified/proxy_us_verified.txt verified/proxy_asia_verified.txt \
             2>/dev/null > proxy_all_mtproto.txt || true
         cat verified/proxy_ru_verified.txt verified/proxy_eu_verified.txt > proxy_all.txt
-        
+
     - name: Print Statistics & Set Outputs
       id: stats
       run: |
-        RU=$(grep -c 'tg://' proxy_ru.txt 2>/dev/null || echo 0)
-        EU=$(grep -c 'tg://' proxy_eu.txt 2>/dev/null || echo 0)
-        US=$(grep -c 'tg://' proxy_us.txt 2>/dev/null || echo 0)
-        ASIA=$(grep -c 'tg://' proxy_asia.txt 2>/dev/null || echo 0)
-        SOCKS=$(grep -c 'tg://' socks5.txt 2>/dev/null || echo 0)
+        # Считаем количество непустых строк (без заголовков) – более надёжно
+        RU=$(grep -c '^tg://' proxy_ru.txt 2>/dev/null || echo 0)
+        EU=$(grep -c '^tg://' proxy_eu.txt 2>/dev/null || echo 0)
+        US=$(grep -c '^tg://' proxy_us.txt 2>/dev/null || echo 0)
+        ASIA=$(grep -c '^tg://' proxy_asia.txt 2>/dev/null || echo 0)
+        SOCKS=$(grep -c '^tg://' socks5.txt 2>/dev/null || echo 0)
         TOTAL=$((RU+EU+US+ASIA))
         echo "mtproto_count=$TOTAL" >> $GITHUB_OUTPUT
         echo "socks5_count=$SOCKS" >> $GITHUB_OUTPUT
@@ -58,7 +68,7 @@ jobs:
         echo "  🌐 Всего MTProto: $TOTAL"
         echo "  🔌 SOCKS5: $SOCKS"
         echo "=================================="
-        
+
     - name: Git Commit & Push
       id: commit
       run: |
@@ -79,20 +89,23 @@ jobs:
       if: steps.commit.outputs.changes_detected == 'true'
       id: tag
       run: |
-        TAG="v$(date -u +'%Y.%m.%d-%H%M')"
-        git tag -a "$TAG" -m "Auto-update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
+        # Уникальный тег: дата-время (с секундами) + run_id
+        TAG="v$(date -u +'%Y.%m.%d-%H%M%S')-${{ github.run_id }}"
+        git tag -a "$TAG" -m "Auto-update proxies $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
         git push origin "$TAG"
         echo "tag=$TAG" >> $GITHUB_OUTPUT
 
     - name: Create GitHub Release
       if: steps.commit.outputs.changes_detected == 'true'
-      uses: softprops/action-gh-release@v1
+      # Закрепляем версию action по SHA (для безопасности)
+      uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef2670da
       with:
         tag_name: ${{ steps.tag.outputs.tag }}
         name: "Proxy Update ${{ steps.tag.outputs.tag }}"
+        # Используем только переменные GitHub Actions, без shell-подстановок
         body: |
           Автоматическое обновление списков прокси.
-          - **Дата**: $(date -u +'%Y-%m-%d %H:%M UTC')
+          - **Дата**: ${{ github.event.workflow_run.created_at || github.event.workflow_job.started_at }}
           - **MTProto**: ${{ steps.stats.outputs.mtproto_count }} прокси
           - **SOCKS5**: ${{ steps.stats.outputs.socks5_count }} прокси
         files: |
