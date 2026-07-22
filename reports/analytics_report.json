@@ -1,23 +1,23 @@
 {
-  "timestamp": "2026-07-22T10:55:34.279475",
+  "timestamp": "2026-07-22T13:55:13.852001",
   "history_size": 200,
   "source_stats": {
     "eu": {
-      "total": 162,
+      "total": 146,
       "good_percent": 100.0,
       "avg_ping": 0.09,
       "probe_resistant_percent": 0.0
     },
     "ru": {
-      "total": 36,
+      "total": 42,
       "good_percent": 100.0,
-      "avg_ping": 0.12,
+      "avg_ping": 0.13,
       "probe_resistant_percent": 0.0
     },
     "us": {
-      "total": 2,
+      "total": 12,
       "good_percent": 100.0,
-      "avg_ping": 0.09,
+      "avg_ping": 0.14,
       "probe_resistant_percent": 0.0
     }
   },
