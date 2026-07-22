@@ -2,10 +2,9 @@ name: Update Verified Proxy Lists
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # Каждые 2 часа
+    - cron: '0 */2 * * *'
   workflow_dispatch:
 
-# Явные разрешения для создания тегов и релизов
 permissions:
   contents: write
   actions: write
@@ -50,7 +49,6 @@ jobs:
     - name: Print Statistics & Set Outputs
       id: stats
       run: |
-        # Считаем количество непустых строк (без заголовков) – более надёжно
         RU=$(grep -c '^tg://' proxy_ru.txt 2>/dev/null || echo 0)
         EU=$(grep -c '^tg://' proxy_eu.txt 2>/dev/null || echo 0)
         US=$(grep -c '^tg://' proxy_us.txt 2>/dev/null || echo 0)
@@ -74,7 +72,7 @@ jobs:
       run: |
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
-        git add verified/ proxy_*.txt socks5.txt || true
+        git add verified/proxy_*.txt socks5.txt || true
         if git diff --staged --quiet; then
           echo "Нет изменений для коммита"
           echo "changes_detected=false" >> $GITHUB_OUTPUT
@@ -89,7 +87,6 @@ jobs:
       if: steps.commit.outputs.changes_detected == 'true'
       id: tag
       run: |
-        # Уникальный тег: дата-время (с секундами) + run_id
         TAG="v$(date -u +'%Y.%m.%d-%H%M%S')-${{ github.run_id }}"
         git tag -a "$TAG" -m "Auto-update proxies $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
         git push origin "$TAG"
@@ -97,12 +94,10 @@ jobs:
 
     - name: Create GitHub Release
       if: steps.commit.outputs.changes_detected == 'true'
-      # Закрепляем версию action по SHA (для безопасности)
-      uses: softprops/action-gh-release@c95fe1489396fe8a9eb87c0abf8aa5b2ef2670da
+      uses: softprops/action-gh-release@v2
       with:
         tag_name: ${{ steps.tag.outputs.tag }}
         name: "Proxy Update ${{ steps.tag.outputs.tag }}"
-        # Используем только переменные GitHub Actions, без shell-подстановок
         body: |
           Автоматическое обновление списков прокси.
           - **Дата**: ${{ github.event.workflow_run.created_at || github.event.workflow_job.started_at }}
