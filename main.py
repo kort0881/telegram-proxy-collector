@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # MTProto & SOCKS5 Proxy Collector v3.4 (обновляет все файлы)
 # ДОБАВЛЕНА ПРОВЕРКА GEOIP
+# + добавлены источники moonlunavpn.com (прокси с SNI ya.ru, Финляндия)
 
 import requests
 import re
@@ -63,6 +64,9 @@ SOURCES = [
     "https://raw.githubusercontent.com/Therealwh/MTPproxyLIST/refs/heads/main/verified/proxy_all_tme_verified.txt",
     "https://raw.githubusercontent.com/Airuop/MTProtoCollector/refs/heads/main/proxy/mtproto.json",
     "https://raw.githubusercontent.com/blog1703/tgonline/refs/heads/main/proxies.txt",
+    # ДОБАВЛЕНЫ НОВЫЕ ИСТОЧНИКИ (moonlunavpn)
+    "https://moonlunavpn.com/proxies.txt",
+    "https://moonlunavpn.com/proxies.json",
 ]
 
 # ---------- SOCKS5 источники ----------
