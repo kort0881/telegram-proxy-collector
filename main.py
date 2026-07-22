@@ -25,7 +25,7 @@ US_DOMAINS = ['.us', '.nyc', '.la', '.sf', '.dallas', 'amazonaws.com', 'digitalo
 ASIA_DOMAINS = ['.asia', '.jp', '.cn', '.sg', '.hk', '.kr', '.in', '.tw', '.ph', '.my', '.id', '.vn', '.th']
 BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
 
-# ---------- MTProto источники ----------
+# ---------- MTProto источники (добавлены moonlunavpn) ----------
 SOURCES = [
     "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
     "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",
