@@ -1,6 +1,7 @@
-# MTProto ASIA (5)
-# Updated: 2026-07-22 03:07:23.235613+00:00
+# MTProto ASIA (6)
+# Updated: 2026-07-22 06:56:14.519171+00:00
 
+tg://proxy?server=89.34.230.97&port=443&secret=eebd5ad305b57ce0b14cbaa0f7df014c4d7777772e666173746573742e6d796d6e622e6972
 tg://proxy?server=89.34.230.23&port=443&secret=ee71fe479cbecef04a10072a5c551ccee0666173746573742e6d796d6e622e6972
 tg://proxy?server=5.188.224.178&port=8443&secret=ee47c45aae7505146a5707741697dc34ef706c61792e6d7470726f746f2e6d79
 tg://proxy?server=medblock.ink&port=443&secret=ee8665ca3cc6678d1046ae29d1740ab58a6d6564626c6f636b2e696e6b
