@@ -86,19 +86,8 @@ jobs:
         
         git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
         
-        # Выводим статус для диагностики
-        echo "Статус рабочего каталога после коммита:"
-        git status --porcelain
-        
-        # Проверяем, остались ли незакоммиченные изменения (например, из-за нормализации CRLF) 
-        # и если да - закоммитим их принудительно
-        if ! git diff --quiet; then
-          echo "Обнаружены остаточные изменения, добавляем их..."
-          git add -A
-          git commit -am "chore: normalize line endings"
-        fi
-        
-        git pull --rebase origin main
+        # Добавлен флаг --autostash, чтобы автоматически прятать и восстанавливать остаточные изменения
+        git pull --rebase --autostash origin main
         git push origin main
         echo "changes_detected=true" >> $GITHUB_OUTPUT
 
