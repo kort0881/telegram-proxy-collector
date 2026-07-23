@@ -72,17 +72,32 @@ jobs:
       run: |
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
-        # Принудительно добавляем все изменения в verified (игнорируя .gitignore)
+        
+        # Принудительно добавляем все изменения
+        git add -A
         git add -f verified/
-        # Принудительно добавляем все корневые файлы прокси
-        git add -f proxy_*.txt socks5.txt proxy_all_mtproto.txt proxy_all.txt || true
+        git add -f proxy_*.txt socks5.txt proxy_all_mtproto.txt proxy_all.txt
+        
         if git diff --staged --quiet; then
           echo "Нет изменений для коммита"
           echo "changes_detected=false" >> $GITHUB_OUTPUT
           exit 0
         fi
+        
         git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
-        # Теперь все изменения добавлены, можно безопасно делать pull --rebase
+        
+        # Выводим статус для диагностики
+        echo "Статус рабочего каталога после коммита:"
+        git status --porcelain
+        
+        # Проверяем, остались ли незакоммиченные изменения (например, из-за нормализации CRLF) 
+        # и если да - закоммитим их принудительно
+        if ! git diff --quiet; then
+          echo "Обнаружены остаточные изменения, добавляем их..."
+          git add -A
+          git commit -am "chore: normalize line endings"
+        fi
+        
         git pull --rebase origin main
         git push origin main
         echo "changes_detected=true" >> $GITHUB_OUTPUT
