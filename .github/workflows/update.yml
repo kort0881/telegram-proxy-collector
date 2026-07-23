@@ -72,13 +72,15 @@ jobs:
       run: |
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
-        git add verified/proxy_*.txt socks5.txt || true
+        # Добавляем все изменённые файлы, включая новые в корне
+        git add verified/proxy_*.txt socks5.txt proxy_*.txt proxy_all_mtproto.txt proxy_all.txt || true
         if git diff --staged --quiet; then
           echo "Нет изменений для коммита"
           echo "changes_detected=false" >> $GITHUB_OUTPUT
           exit 0
         fi
         git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
+        # Теперь все изменения добавлены, можно безопасно делать pull --rebase
         git pull --rebase origin main
         git push origin main
         echo "changes_detected=true" >> $GITHUB_OUTPUT
