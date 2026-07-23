@@ -72,16 +72,22 @@ jobs:
       run: |
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
-        # Добавляем все изменённые файлы, включая новые в корне
-        git add verified/proxy_*.txt socks5.txt proxy_*.txt proxy_all_mtproto.txt proxy_all.txt || true
+        
+        # Принудительно добавляем все изменения
+        git add -A
+        git add -f verified/
+        git add -f proxy_*.txt socks5.txt proxy_all_mtproto.txt proxy_all.txt
+        
         if git diff --staged --quiet; then
           echo "Нет изменений для коммита"
           echo "changes_detected=false" >> $GITHUB_OUTPUT
           exit 0
         fi
+        
         git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
-        # Теперь все изменения добавлены, можно безопасно делать pull --rebase
-        git pull --rebase origin main
+        
+        # Добавлен флаг --autostash, чтобы автоматически прятать и восстанавливать остаточные изменения
+        git pull --rebase --autostash origin main
         git push origin main
         echo "changes_detected=true" >> $GITHUB_OUTPUT
 
