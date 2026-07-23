@@ -37,6 +37,8 @@
     "https://raw.githubusercontent.com/Therealwh/MTPproxyLIST/refs/heads/main/verified/proxy_all_tme_verified.txt",
     "https://raw.githubusercontent.com/Airuop/MTProtoCollector/refs/heads/main/proxy/mtproto.json",
     "https://raw.githubusercontent.com/blog1703/tgonline/refs/heads/main/proxies.txt",
+    "https://moonlunavpn.com/proxies.txt",
+    "https://moonlunavpn.com/proxies.json",
     "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt",
     "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=5000&country=all",
     "https://raw.githubusercontent.com/TheSpeedX/SOCKS-List/master/socks5.txt",
@@ -47,5 +49,5 @@
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json",
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt"
   ],
-  "last_update": "2026-07-22T13:54:30.487007+00:00"
+  "last_update": "2026-07-23T15:59:27.699354+00:00"
 }
