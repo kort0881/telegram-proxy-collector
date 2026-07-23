@@ -73,10 +73,8 @@ jobs:
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
         
-        # Принудительно добавляем все изменения
-        git add -A
-        git add -f verified/
-        git add -f proxy_*.txt socks5.txt proxy_all_mtproto.txt proxy_all.txt
+        # Принудительно добавляем ВСЕ изменения (включая игнорируемые)
+        git add -A -f
         
         if git diff --staged --quiet; then
           echo "Нет изменений для коммита"
@@ -86,9 +84,15 @@ jobs:
         
         git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
         
-        # Добавлен флаг --autostash, чтобы автоматически прятать и восстанавливать остаточные изменения
-        git pull --rebase --autostash origin main
+        # СНАЧАЛА пушим наш коммит в удалённый репозиторий
         git push origin main
+        
+        # Теперь тянем новые изменения (если они появились) с автозапоминанием
+        git pull --rebase --autostash origin main
+        
+        # Если были новые изменения, пушим их (они уже в локальной ветке)
+        git push origin main
+        
         echo "changes_detected=true" >> $GITHUB_OUTPUT
 
     - name: Create Tag
