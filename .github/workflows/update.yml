@@ -72,8 +72,10 @@ jobs:
       run: |
         git config user.name "Proxy Bot"
         git config user.email "bot@github.com"
-        # Добавляем все изменённые файлы, включая новые в корне
-        git add verified/proxy_*.txt socks5.txt proxy_*.txt proxy_all_mtproto.txt proxy_all.txt || true
+        # Принудительно добавляем все изменения в verified (игнорируя .gitignore)
+        git add -f verified/
+        # Принудительно добавляем все корневые файлы прокси
+        git add -f proxy_*.txt socks5.txt proxy_all_mtproto.txt proxy_all.txt || true
         if git diff --staged --quiet; then
           echo "Нет изменений для коммита"
           echo "changes_detected=false" >> $GITHUB_OUTPUT
