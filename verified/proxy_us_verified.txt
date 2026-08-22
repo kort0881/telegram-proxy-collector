@@ -1,21 +1,21 @@
 # MTProto US (18)
-# Updated: 2026-08-22 20:22:38.648590+00:00
+# Updated: 2026-08-22 22:22:01.124715+00:00
 
-tg://proxy?server=164.92.132.32&port=443&secret=ee4a5bc618f9ec539a83b1820e19ca4a7f73332e616d617a6f6e6177732e636f6d
+tg://proxy?server=82.152.162.4&port=10002&secret=ee548593a9c0688f4f7d9d57377897d964636c6f7564666c6172652e636f6d
 tg://proxy?server=94.159.106.120&port=443&secret=ee094c74b28fa0195c624b646de6a9f04f7777772e636c6f7564666c6172652e636f6d
 tg://proxy?server=185.184.120.169&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=79.137.196.223&port=13443&secret=eee06596f5753c0dc9b56fe4864a4665e57777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=138.124.113.201&port=443&secret=ee3aff3c6ac00f9a9b6bfe90449249953f636c6f7564666c6172652e636f6d
-tg://proxy?server=79.137.196.223&port=14443&secret=ee9e28cf588967add684c5e759fea036d47777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=191.44.114.219&port=443&secret=ee5024c74cb910d050d450c0b5981bab7f7a6f6f6d2e7573
-tg://proxy?server=flux.lovely.lat&port=443&secret=ee6f8c7d9193585ada7d22acf074ad6d97666c75782e6c6f76656c792e6c6174
-tg://proxy?server=frontend-resources-endpoint-api.website&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=2.27.13.87&port=443&secret=eecbacc37ce9e2bb466ed5c782c6e64f607a6f6f6d2e7573
-tg://proxy?server=79.137.196.223&port=2443&secret=eeeed28dc05b23b7ccba27a3d352abf1467c7777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=89.117.63.176&port=443&secret=ee4e3346cfb87699c595c051b55e3705d2636c6f7564666c6172652e636f6d
 tg://proxy?server=proxy-vreexybot.vreexybots.shop&port=443&secret=ee87d24e171749156ccab4a08f52e12f9e7777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=static-resources-api.website&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=164.92.132.32&port=443&secret=ee4a5bc618f9ec539a83b1820e19ca4a7f73332e616d617a6f6e6177732e636f6d
+tg://proxy?server=79.137.196.223&port=14443&secret=ee9e28cf588967add684c5e759fea036d47777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=frontend-resources-endpoint-api.website&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=79.137.196.223&port=13443&secret=eee06596f5753c0dc9b56fe4864a4665e57777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=flux.lovely.lat&port=443&secret=ee6f8c7d9193585ada7d22acf074ad6d97666c75782e6c6f76656c792e6c6174
 tg://proxy?server=213.165.34.214&port=443&secret=ee82084735ed5a9141d56da583ff8c3bc97a6f6f6d2e7573
+tg://proxy?server=191.44.114.219&port=443&secret=ee5024c74cb910d050d450c0b5981bab7f7a6f6f6d2e7573
+tg://proxy?server=2.27.13.87&port=443&secret=eecbacc37ce9e2bb466ed5c782c6e64f607a6f6f6d2e7573
 tg://proxy?server=pulse.lovely.lat&port=443&secret=ee6f8c7d9193585ada7d22acf074ad6d9770756c73652e6c6f76656c792e6c6174
-tg://proxy?server=live.lovely.lat&port=443&secret=eeec835a34516912f161a0073339be3c646c6976652e6c6f76656c792e6c6174
 tg://proxy?server=tr.silaber.qzz.io&port=8880&secret=eec59c9f50147cb42abf6bfc03185b566a636c6f7564666c6172652e636f6d
+tg://proxy?server=static-resources-api.website&port=80&secret=eefc56fb73c972a2309c4787bc1364c2207777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=live.lovely.lat&port=443&secret=eeec835a34516912f161a0073339be3c646c6976652e6c6f76656c792e6c6174
 tg://proxy?server=finka.flarevpn.icu&port=443&secret=ee1a31e852cedfd9537e1463f6532bd6ce7777772e636c6f7564666c6172652e636f6d
