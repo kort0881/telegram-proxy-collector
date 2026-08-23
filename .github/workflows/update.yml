@@ -99,7 +99,7 @@ jobs:
       if: steps.commit.outputs.changes_detected == 'true'
       id: tag
       run: |
-        TAG="v$(date -u +'%Y.%m.%d-%H%M%S')-${{ github.run_id }}"
+        TAG="v$(date -u +'%Y.%m.%d-%H%M%S')-${{ github.run_id }}-${{ github.run_attempt }}"
         git tag -a "$TAG" -m "Auto-update proxies $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
         git push origin "$TAG"
         echo "tag=$TAG" >> $GITHUB_OUTPUT
