@@ -3,41 +3,74 @@ name: Proxy Analytics
 on:
   workflow_run:
     workflows: ["Update Verified Proxy Lists"]
-    types:
-      - completed
+    types: [completed]
   workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: proxy-analytics
+  cancel-in-progress: false
 
 jobs:
   analyze:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    timeout-minutes: 15
+
     steps:
-    - uses: actions/checkout@v4
-      with:
-        persist-credentials: false
-    
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
-    
-    - name: Install dependencies
-      run: pip install -r requirements.txt
-    
-    - name: Run core analytics
-      run: python analytics.py
-    
-    - name: Run AI analytics (Groq/README update)
-      env:
-        TELEGRAMPROXYCOLLECTOR: ${{ secrets.TELEGRAMPROXYCOLLECTOR }}
-      run: python ai_analytics.py
-    
-    - name: Commit analytics results
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: |
-        git config --global user.name "Analytics Bot"
-        git config --global user.email "bot@github.com"
-        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
-        git add data/ models/ reports/ README.md || true
-        git diff --staged --quiet || git commit -m "📊 AI analytics & README update $(date)"
-        git push || true
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --quiet -r requirements.txt
+
+      - name: Run core analytics
+        run: python analytics.py
+
+      - name: Run AI analytics
+        env:
+          TELEGRAMPROXYCOLLECTOR: ${{ secrets.TELEGRAMPROXYCOLLECTOR }}
+        run: python ai_analytics.py
+
+      - name: Show report preview
+        run: |
+          if [ -f reports/analytics_report.json ]; then
+            echo "### 📄 analytics_report.json" >> "$GITHUB_STEP_SUMMARY"
+            echo '```json' >> "$GITHUB_STEP_SUMMARY"
+            head -c 2000 reports/analytics_report.json >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Commit analytics results
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "Analytics Bot"
+          git config user.email "bot@github.com"
+
+          # добавляем только то, что реально нужно
+          git add data/ reports/ README.md 2>/dev/null || true
+          [ -d models ] && git add models/ || true
+
+          if git diff --staged --quiet; then
+            echo "Нет изменений для коммита"
+            exit 0
+          fi
+
+          git commit -m "📊 AI analytics & README update $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git pull --rebase --autostash origin main || true
+          git push origin main
