@@ -1,8 +1,9 @@
-#!/usr/bin/env python3
+#!usrbinenv python3
 # -*- coding: utf-8 -*-
 # MTProto & SOCKS5 Proxy Collector v3.4 (обновляет все файлы)
 # ДОБАВЛЕНА ПРОВЕРКА GEOIP
 # + добавлены источники moonlunavpn.com (прокси с SNI ya.ru, Финляндия)
+# + добавлены источники tgmtproxy.github.io
 
 import requests
 import re
@@ -25,7 +26,7 @@ US_DOMAINS = ['.us', '.nyc', '.la', '.sf', '.dallas', 'amazonaws.com', 'digitalo
 ASIA_DOMAINS = ['.asia', '.jp', '.cn', '.sg', '.hk', '.kr', '.in', '.tw', '.ph', '.my', '.id', '.vn', '.th']
 BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
 
-# ---------- MTProto источники (добавлены moonlunavpn) ----------
+# ---------- MTProto источники (добавлены moonlunavpn и tgmtproxy) ----------
 SOURCES = [
     "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
     "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",
@@ -67,6 +68,9 @@ SOURCES = [
     # ДОБАВЛЕНЫ НОВЫЕ ИСТОЧНИКИ (moonlunavpn)
     "https://moonlunavpn.com/proxies.txt",
     "https://moonlunavpn.com/proxies.json",
+    # ДОБАВЛЕНЫ НОВЫЕ ИСТОЧНИКИ (tgmtproxy)
+    "https://tgmtproxy.github.io/mtproxy/proxies.txt",
+    "https://tgmtproxy.github.io/mtproxy/proxies.json",
 ]
 
 # ---------- SOCKS5 источники ----------
