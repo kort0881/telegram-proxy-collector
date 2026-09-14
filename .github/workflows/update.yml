@@ -9,116 +9,145 @@ permissions:
   contents: write
   actions: write
 
+concurrency:
+  group: update-proxies
+  cancel-in-progress: false
+
 jobs:
   collect:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      actions: write
+    timeout-minutes: 25
 
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-    - uses: actions/setup-python@v4
-      with:
-        python-version: '3.11'
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
 
-    - name: Install dependencies
-      run: pip install --quiet requests pyyaml maxminddb geoip2
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --quiet -r requirements.txt
 
-    - name: Download geoip.dat
-      run: |
-        mkdir -p data
-        wget -q -O data/geoip.dat https://cdn.jsdelivr.net/gh/GrimbirdUsers/ru-routing-dat@main/geoip.dat
+      - name: Download geoip.dat
+        run: |
+          mkdir -p data
+          wget -q -O data/geoip.dat \
+            https://cdn.jsdelivr.net/gh/GrimbirdUsers/ru-routing-dat@main/geoip.dat
+          ls -lh data/geoip.dat
 
-    - name: Run Proxy Collector
-      run: python main.py --top 100 --timeout 2.0 --workers 100 --output-dir verified --geoip data/geoip.dat
+      - name: Run Proxy Collector
+        run: |
+          python main.py \
+            --top 100 \
+            --timeout 2.0 \
+            --workers 100 \
+            --output-dir verified \
+            --geoip data/geoip.dat
 
-    - name: Copy files to root
-      run: |
-        cp verified/proxy_ru_verified.txt proxy_ru.txt
-        cp verified/proxy_eu_verified.txt proxy_eu.txt
-        cp verified/proxy_us_verified.txt proxy_us.txt 2>/dev/null || echo "US file not found"
-        cp verified/proxy_asia_verified.txt proxy_asia.txt 2>/dev/null || echo "ASIA file not found"
-        cp verified/socks5_proxies.txt socks5.txt
-        cat verified/proxy_ru_verified.txt verified/proxy_eu_verified.txt \
-            verified/proxy_us_verified.txt verified/proxy_asia_verified.txt \
-            2>/dev/null > proxy_all_mtproto.txt || true
-        cat verified/proxy_ru_verified.txt verified/proxy_eu_verified.txt > proxy_all.txt
+      - name: Copy files to root
+        run: |
+          cp verified/proxy_ru_verified.txt   proxy_ru.txt
+          cp verified/proxy_eu_verified.txt   proxy_eu.txt
+          cp verified/proxy_us_verified.txt   proxy_us.txt   2>/dev/null || echo "US file not found"
+          cp verified/proxy_asia_verified.txt proxy_asia.txt 2>/dev/null || echo "ASIA file not found"
+          cp verified/socks5_proxies.txt      socks5.txt
 
-    - name: Print Statistics & Set Outputs
-      id: stats
-      run: |
-        RU=$(grep -c '^tg://' proxy_ru.txt 2>/dev/null || echo 0)
-        EU=$(grep -c '^tg://' proxy_eu.txt 2>/dev/null || echo 0)
-        US=$(grep -c '^tg://' proxy_us.txt 2>/dev/null || echo 0)
-        ASIA=$(grep -c '^tg://' proxy_asia.txt 2>/dev/null || echo 0)
-        SOCKS=$(grep -c '^tg://' socks5.txt 2>/dev/null || echo 0)
-        TOTAL=$((RU+EU+US+ASIA))
-        echo "mtproto_count=$TOTAL" >> $GITHUB_OUTPUT
-        echo "socks5_count=$SOCKS" >> $GITHUB_OUTPUT
-        echo "=================================="
-        echo "📊 MTProto по регионам:"
-        echo "  🇷🇺 RU: $RU"
-        echo "  🇪🇺 EU: $EU"
-        echo "  🇺🇸 US: $US"
-        echo "  🌏 ASIA: $ASIA"
-        echo "  🌐 Всего MTProto: $TOTAL"
-        echo "  🔌 SOCKS5: $SOCKS"
-        echo "=================================="
+          cat verified/proxy_ru_verified.txt \
+              verified/proxy_eu_verified.txt \
+              verified/proxy_us_verified.txt \
+              verified/proxy_asia_verified.txt \
+              2>/dev/null > proxy_all_mtproto.txt || true
 
-    - name: Git Commit & Push
-      id: commit
-      run: |
-        git config user.name "Proxy Bot"
-        git config user.email "bot@github.com"
-        
-        # Принудительно добавляем ВСЕ изменения (включая игнорируемые)
-        git add -A -f
-        
-        if git diff --staged --quiet; then
-          echo "Нет изменений для коммита"
-          echo "changes_detected=false" >> $GITHUB_OUTPUT
-          exit 0
-        fi
-        
-        git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
-        
-        # СНАЧАЛА пушим наш коммит в удалённый репозиторий
-        git push origin main
-        
-        # Теперь тянем новые изменения (если они появились) с автозапоминанием
-        git pull --rebase --autostash origin main
-        
-        # Если были новые изменения, пушим их (они уже в локальной ветке)
-        git push origin main
-        
-        echo "changes_detected=true" >> $GITHUB_OUTPUT
+          cat verified/proxy_ru_verified.txt \
+              verified/proxy_eu_verified.txt \
+              2>/dev/null > proxy_all.txt || true
 
-    - name: Create Tag
-      if: steps.commit.outputs.changes_detected == 'true'
-      id: tag
-      run: |
-        TAG="v$(date -u +'%Y.%m.%d-%H%M%S')-${{ github.run_id }}-${{ github.run_attempt }}"
-        git tag -a "$TAG" -m "Auto-update proxies $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
-        git push origin "$TAG"
-        echo "tag=$TAG" >> $GITHUB_OUTPUT
+      - name: Statistics & Outputs
+        id: stats
+        run: |
+          RU=$(grep -c '^tg://' proxy_ru.txt 2>/dev/null || echo 0)
+          EU=$(grep -c '^tg://' proxy_eu.txt 2>/dev/null || echo 0)
+          US=$(grep -c '^tg://' proxy_us.txt 2>/dev/null || echo 0)
+          ASIA=$(grep -c '^tg://' proxy_asia.txt 2>/dev/null || echo 0)
+          SOCKS=$(grep -c '^tg://' socks5.txt 2>/dev/null || echo 0)
+          TOTAL=$((RU+EU+US+ASIA))
 
-    - name: Create GitHub Release
-      if: steps.commit.outputs.changes_detected == 'true'
-      uses: softprops/action-gh-release@v2
-      with:
-        tag_name: ${{ steps.tag.outputs.tag }}
-        name: "Proxy Update ${{ steps.tag.outputs.tag }}"
-        body: |
-          Автоматическое обновление списков прокси.
-          - **Дата**: ${{ github.event.workflow_run.created_at || github.event.workflow_job.started_at }}
-          - **MTProto**: ${{ steps.stats.outputs.mtproto_count }} прокси
-          - **SOCKS5**: ${{ steps.stats.outputs.socks5_count }} прокси
-        files: |
-          proxy_all_mtproto.txt
-          socks5.txt
-          verified/proxy_all_verified.json
-          verified/proxy_stats_verified.json
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          {
+            echo "mtproto_count=$TOTAL"
+            echo "socks5_count=$SOCKS"
+            echo "ru_count=$RU"
+            echo "eu_count=$EU"
+            echo "us_count=$US"
+            echo "asia_count=$ASIA"
+          } >> "$GITHUB_OUTPUT"
+
+          {
+            echo "## 📊 Итоги обновления"
+            echo ""
+            echo "| Регион | Кол-во |"
+            echo "|---|---|"
+            echo "| 🇷🇺 RU | $RU |"
+            echo "| 🇪🇺 EU | $EU |"
+            echo "| 🇺🇸 US | $US |"
+            echo "| 🌏 ASIA | $ASIA |"
+            echo "| **Всего MTProto** | **$TOTAL** |"
+            echo "| 🔌 SOCKS5 | $SOCKS |"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit & Push
+        id: commit
+        run: |
+          git config user.name "Proxy Bot"
+          git config user.email "bot@github.com"
+
+          # добавляем только нужные файлы, без -f и без -A
+          git add verified/ proxy_*.txt socks5.txt proxy_all*.txt
+
+          if git diff --staged --quiet; then
+            echo "changes_detected=false" >> "$GITHUB_OUTPUT"
+            echo "Нет изменений"
+            exit 0
+          fi
+
+          git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
+
+          # аккуратный push: pull --rebase ДО push
+          git pull --rebase --autostash origin main || true
+          git push origin main
+
+          echo "changes_detected=true" >> "$GITHUB_OUTPUT"
+
+      - name: Create tag
+        if: steps.commit.outputs.changes_detected == 'true'
+        id: tag
+        run: |
+          TAG="v$(date -u +'%Y.%m.%d-%H%M%S')-${{ github.run_id }}-${{ github.run_attempt }}"
+          git tag -a "$TAG" -m "Auto-update proxies $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+          git push origin "$TAG"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        if: steps.commit.outputs.changes_detected == 'true'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          name: "Proxy Update ${{ steps.tag.outputs.tag }}"
+          body: |
+            Автоматическое обновление списков прокси.
+            - **Дата**: $(date -u +'%Y-%m-%d %H:%M UTC')
+            - **MTProto**: ${{ steps.stats.outputs.mtproto_count }}
+            - **SOCKS5**: ${{ steps.stats.outputs.socks5_count }}
+          files: |
+            proxy_all_mtproto.txt
+            socks5.txt
+            verified/proxy_all_verified.json
+            verified/proxy_stats_verified.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
