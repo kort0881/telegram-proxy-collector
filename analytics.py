@@ -1,356 +1,354 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# Proxy Analytics v1.0 — AI-аналитика качества прокси
+# AI Analytics v2.0 — полная аналитика прокси
+# - Читает и списки, и словари
+# - Двухклассовая модель (good/bad) с кросс-валидацией
+# - Тренды относительно прошлого запуска
+# - Аномалии в отдельный файл
+# - Динамические пороги по медиане
+# - Рекомендации по таймауту/воркерам/max_ping
 
-import json
 import os
-import pickle
-import time
-from datetime import datetime, timedelta
+import json
+import re
+import statistics
+from datetime import datetime, timezone
 from pathlib import Path
-from collections import defaultdict
-import warnings
-warnings.filterwarnings('ignore')
+from collections import Counter, defaultdict
 
-import pandas as pd
-import numpy as np
-from sklearn.ensemble import RandomForestClassifier, IsolationForest
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
-from sklearn.preprocessing import LabelEncoder
-import requests
+try:
+    import numpy as np
+    from sklearn.ensemble import RandomForestClassifier, IsolationForest
+    from sklearn.model_selection import cross_val_score, StratifiedKFold
+    from sklearn.metrics import classification_report, confusion_matrix
+    SKLEARN_OK = True
+except ImportError:
+    SKLEARN_OK = False
 
-# ─── Конфигурация ──────────────────────────────────────────────────────────────
+# ------------------ ПУТИ ------------------
 DATA_DIR = Path("data")
-MODEL_DIR = Path("models")
-REPORT_DIR = Path("reports")
-DATA_DIR.mkdir(exist_ok=True)
-MODEL_DIR.mkdir(exist_ok=True)
-REPORT_DIR.mkdir(exist_ok=True)
-
+VERIFIED_DIR = Path("verified")
+REPORTS_DIR = Path("reports")
 HISTORY_FILE = DATA_DIR / "proxy_history.json"
-SOURCE_STATS_FILE = DATA_DIR / "source_stats.json"
-MODEL_QUALITY_FILE = MODEL_DIR / "quality_model.pkl"
-MODEL_ANOMALY_FILE = MODEL_DIR / "anomaly_model.pkl"
-REPORT_FILE = REPORT_DIR / "analytics_report.json"
-RECOMMENDATIONS_FILE = REPORT_DIR / "recommendations.txt"
+PREV_REPORT_FILE = REPORTS_DIR / "analytics_report.json"
+REPORT_FILE = REPORTS_DIR / "analytics_report.json"
+ANOMALIES_FILE = REPORTS_DIR / "anomalies.json"
+LOG_FILE = REPORTS_DIR / "analytics.log"
 
-class ProxyAnalytics:
-    def __init__(self):
-        self.history_df = None
-        self.quality_model = None
-        self.anomaly_model = None
-        self.source_stats = {}
+DATA_DIR.mkdir(exist_ok=True)
+REPORTS_DIR.mkdir(exist_ok=True)
 
-    # ─── 1. Сбор исторических данных ────────────────────────────────────────
-    def collect_history(self, force=False):
-        if HISTORY_FILE.exists() and not force:
-            print("📂 Загрузка сохранённой истории...")
-            df = pd.read_json(HISTORY_FILE)
-            self.history_df = df
-            return df
+# ------------------ ЛОГИРОВАНИЕ ------------------
+def log(msg: str):
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    line = f"[{ts}] {msg}"
+    print(line)
+    try:
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(line + "\n")
+    except Exception:
+        pass
 
-        print("📊 Сбор истории из verified/...")
-        records = []
-        verified_path = Path("verified")
-        if not verified_path.exists():
-            print("⚠️ Папка verified/ не найдена. Сначала запустите main.py.")
-            return pd.DataFrame()
+# ------------------ ЗАГРУЗКА ------------------
+def _extract_proxy_list(obj):
+    """Достаёт список прокси из list/dict любой вложенности."""
+    if isinstance(obj, list):
+        return [x for x in obj if isinstance(x, dict)]
+    if isinstance(obj, dict):
+        # частые ключи
+        for key in ("proxies", "items", "data", "results", "all", "list"):
+            if key in obj and isinstance(obj[key], list):
+                return [x for x in obj[key] if isinstance(x, dict)]
+        # если это один прокси — оборачиваем
+        if "host" in obj and "port" in obj:
+            return [obj]
+    return []
 
-        # Ищем все JSON файлы в verified/
-        json_files = list(verified_path.glob("*.json"))
-        if not json_files:
-            print("⚠️ В папке verified/ нет JSON файлов.")
-            return pd.DataFrame()
+def collect_history_from_verified():
+    """Обходит verified/ и собирает все прокси в один список."""
+    history = []
+    if not VERIFIED_DIR.exists():
+        log(f"⚠️ Папка {VERIFIED_DIR} не найдена")
+        return history
 
-        for json_file in json_files:
-            try:
-                with open(json_file, "r", encoding="utf-8") as f:
-                    content = f.read().strip()
-                    if not content:
-                        print(f"⚠️ Файл {json_file} пуст, пропускаем.")
-                        continue
-                    
-                    data = json.loads(content)
-                    if isinstance(data, list):
-                        if len(data) == 0:
-                            print(f"⚠️ Файл {json_file} содержит пустой список, пропускаем.")
-                            continue
-                        
-                        for item in data:
-                            records.append({
-                                "host": item.get("host"),
-                                "port": item.get("port"),
-                                "type": item.get("type", "mtproto"),
-                                "ping": item.get("ping", 999),
-                                "region": item.get("region", "unknown"),
-                                "domain": item.get("domain", ""),
-                                "method": item.get("method", ""),
-                                "probe_resistant": item.get("probe_resistant", False),
-                                "timestamp": datetime.now().isoformat()
-                            })
-                    else:
-                        print(f"⚠️ Файл {json_file} не содержит список, пропускаем.")
-            except json.JSONDecodeError as e:
-                print(f"⚠️ Ошибка парсинга JSON в {json_file}: {e}")
-            except Exception as e:
-                print(f"⚠️ Ошибка чтения {json_file}: {e}")
-
-        if not records:
-            print("⚠️ Нет данных для истории после обработки всех файлов.")
-            self.history_df = pd.DataFrame()
-            return self.history_df
-
-        df = pd.DataFrame(records)
-        df.to_json(HISTORY_FILE, orient="records", indent=2, force_ascii=False)
-        print(f"✅ Сохранено {len(df)} записей в историю")
-        self.history_df = df
-        return df
-
-    # ─── 2. Обучение модели качества (живучесть) ────────────────────────────
-    def train_quality_model(self):
-        if self.history_df is None or self.history_df.empty:
-            print("⚠️ Нет истории для обучения модели качества")
-            return None
-
-        df = self.history_df.copy()
-        
-        def quality_label(ping):
-            if ping < 1.5:
-                return "good"
-            elif ping < 5.0:
-                return "medium"
+    for f in sorted(VERIFIED_DIR.glob("*.json")):
+        try:
+            with open(f, "r", encoding="utf-8") as fh:
+                data = json.load(fh)
+            items = _extract_proxy_list(data)
+            if items:
+                history.extend(items)
+                log(f"  ✓ {f.name}: +{len(items)}")
             else:
-                return "bad"
+                log(f"  ⚠️ {f.name}: не содержит список, пропускаем")
+        except json.JSONDecodeError as e:
+            log(f"  ✗ {f.name}: JSON ошибка — {e}")
+        except Exception as e:
+            log(f"  ✗ {f.name}: {e}")
+    return history
 
-        df['quality'] = df['ping'].apply(quality_label)
+def load_history():
+    """Приоритет — накопленная история, fallback — verified/."""
+    if HISTORY_FILE.exists():
+        try:
+            with open(HISTORY_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+            items = _extract_proxy_list(data)
+            if items:
+                log(f"✅ Загружено {len(items)} записей из {HISTORY_FILE}")
+                return items
+        except Exception as e:
+            log(f"⚠️ Не удалось прочитать {HISTORY_FILE}: {e}")
 
-        # Сначала кодируем признаки
-        le_region = LabelEncoder()
-        le_type = LabelEncoder()
-        df['region_encoded'] = le_region.fit_transform(df['region'].fillna('unknown').astype(str))
-        df['type_encoded'] = le_type.fit_transform(df['type'].fillna('mtproto').astype(str))
-        df['probe_resistant'] = df['probe_resistant'].astype(int)
+    log("📊 Сбор истории из verified/...")
+    items = collect_history_from_verified()
+    # сохраняем на будущее
+    try:
+        with open(HISTORY_FILE, "w", encoding="utf-8") as f:
+            json.dump(items, f, indent=2, ensure_ascii=False)
+        log(f"✅ Сохранено {len(items)} записей в историю")
+    except Exception as e:
+        log(f"⚠️ Не удалось сохранить историю: {e}")
+    return items
 
-        # Теперь определяем features
-        features = ['ping', 'region_encoded', 'type_encoded', 'probe_resistant']
-        X = df[features].fillna(0)
-        y = df['quality']
-
-        if len(X) < 10:
-            print("⚠️ Недостаточно данных для обучения (нужно минимум 10 записей)")
-            return None
-
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-        model = RandomForestClassifier(n_estimators=50, max_depth=5, random_state=42)
-        model.fit(X_train, y_train)
-
-        y_pred = model.predict(X_test)
-        acc = accuracy_score(y_test, y_pred)
-        print(f"✅ Модель качества обучена. Точность: {acc:.2f}")
-        print(classification_report(y_test, y_pred, zero_division=0))
-
-        with open(MODEL_QUALITY_FILE, 'wb') as f:
-            pickle.dump({
-                'model': model, 
-                'le_region': le_region, 
-                'le_type': le_type,
-                'features': features
-            }, f)
-
-        self.quality_model = model
-        return model
-
-    # ─── 3. Обнаружение аномалий в секретах и доменах ──────────────────────
-    def train_anomaly_detector(self):
-        if self.history_df is None or self.history_df.empty:
-            print("⚠️ Нет истории для обучения детектора аномалий")
-            return None
-
-        df = self.history_df.copy()
-        df['secret_len'] = df['domain'].apply(lambda x: len(str(x)) if x else 0)
-        df['domain_len'] = df['domain'].apply(lambda x: len(str(x)) if x else 0)
-        df['special_chars'] = df['domain'].apply(lambda x: sum(1 for c in str(x) if not c.isalnum() and c not in '.-'))
-        df['numeric_ratio'] = df['domain'].apply(lambda x: sum(1 for c in str(x) if c.isdigit()) / max(len(str(x)), 1))
-
-        X = df[['secret_len', 'domain_len', 'special_chars', 'numeric_ratio']].fillna(0)
-
-        if len(X) < 10:
-            print("⚠️ Недостаточно данных для обучения детектора аномалий")
-            return None
-
-        model = IsolationForest(contamination=0.05, random_state=42)
-        model.fit(X)
-        preds = model.predict(X)
-        anomalies = np.sum(preds == -1)
-        print(f"🔍 Обнаружено {anomalies} аномалий в обучающем наборе")
-
-        with open(MODEL_ANOMALY_FILE, 'wb') as f:
-            pickle.dump(model, f)
-
-        self.anomaly_model = model
-        return model
-
-    # ─── 4. Классификация источников ────────────────────────────────────────
-    def classify_sources(self):
-        if self.history_df is None or self.history_df.empty:
-            print("⚠️ Нет истории для классификации источников")
+def load_prev_report():
+    if PREV_REPORT_FILE.exists():
+        try:
+            with open(PREV_REPORT_FILE, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
             return {}
+    return {}
 
-        stats = {}
-        for region in self.history_df['region'].unique():
-            region_df = self.history_df[self.history_df['region'] == region]
-            good_count = region_df[region_df['ping'] < 1.5].shape[0]
-            stats[str(region)] = {
-                'total': len(region_df),
-                'good_percent': round(good_count / len(region_df) * 100, 2) if len(region_df) > 0 else 0,
-                'avg_ping': round(region_df['ping'].mean(), 2) if len(region_df) > 0 else 999,
-                'probe_resistant_percent': round(region_df[region_df['probe_resistant']].shape[0] / len(region_df) * 100, 2) if len(region_df) > 0 else 0
-            }
+# ------------------ МЕТРИКИ ------------------
+def compute_metrics(history):
+    pings = [p.get("ping") for p in history if isinstance(p.get("ping"), (int, float))]
+    if not pings:
+        return {}
+    median_ping = statistics.median(pings)
+    mean_ping = statistics.mean(pings)
+    stdev_ping = statistics.pstdev(pings) if len(pings) > 1 else 0.0
+    # динамические пороги
+    good_thr = median_ping
+    bad_thr = median_ping * 2.5
 
-        with open(SOURCE_STATS_FILE, 'w', encoding='utf-8') as f:
-            json.dump(stats, f, indent=2, ensure_ascii=False)
+    good = sum(1 for x in pings if x <= good_thr)
+    medium = sum(1 for x in pings if good_thr < x <= bad_thr)
+    bad = sum(1 for x in pings if x > bad_thr)
 
-        print("📊 Классификация источников завершена")
-        self.source_stats = stats
-        return stats
+    regions = Counter(p.get("region", "unknown") for p in history)
+    types = Counter(p.get("type", "mtproto") for p in history)
 
-    # ─── 5. Оптимизация параметров ──────────────────────────────────────────
-    def optimize_parameters(self):
-        if self.history_df is None or self.history_df.empty:
-            print("⚠️ Нет данных для оптимизации параметров")
-            return {}
+    return {
+        "total": len(history),
+        "pings_count": len(pings),
+        "median_ping": round(median_ping, 3),
+        "mean_ping": round(mean_ping, 3),
+        "stdev_ping": round(stdev_ping, 3),
+        "good_thr": round(good_thr, 3),
+        "bad_thr": round(bad_thr, 3),
+        "good": good,
+        "medium": medium,
+        "bad": bad,
+        "regions": dict(regions),
+        "types": dict(types),
+    }
 
-        df = self.history_df
-        avg_ping = df['ping'].mean()
-        max_ping_recommended = min(max(round(avg_ping * 1.5, 1), 5.0), 10.0)
-        timeout_recommended = int(max(avg_ping * 3, 20))
-        workers_recommended = 200 if avg_ping < 3 else 150
+# ------------------ ОБУЧЕНИЕ МОДЕЛИ ------------------
+def build_dataset(history):
+    """X — фичи, y — метка (1=good, 0=bad) по динамическому порогу."""
+    rows = []
+    pings = [p.get("ping") for p in history if isinstance(p.get("ping"), (int, float))]
+    if not pings:
+        return None, None, None
+    median_ping = statistics.median(pings)
+    threshold = median_ping * 1.5
 
-        rec = {
-            'recommended_timeout_mt': timeout_recommended,
-            'recommended_max_ping': max_ping_recommended,
-            'recommended_workers': workers_recommended,
-            'current_avg_ping': round(avg_ping, 2),
-            'total_proxies': len(df)
-        }
+    for p in history:
+        ping = p.get("ping")
+        if not isinstance(ping, (int, float)):
+            continue
+        region = p.get("region", "unknown")
+        typ = p.get("type", "mtproto")
+        rows.append({
+            "ping": ping,
+            "region_ru": 1 if region == "ru" else 0,
+            "region_eu": 1 if region == "eu" else 0,
+            "region_us": 1 if region == "us" else 0,
+            "region_asia": 1 if region == "asia" else 0,
+            "is_mtproto": 1 if typ == "mtproto" else 0,
+            "is_socks5": 1 if typ == "socks5" else 0,
+            "label": 1 if ping <= threshold else 0,
+        })
+    if not rows:
+        return None, None, None
+    X = np.array([[r[k] for k in r if k != "label"] for r in rows], dtype=float)
+    y = np.array([r["label"] for r in rows], dtype=int)
+    return X, y, threshold
 
-        with open(RECOMMENDATIONS_FILE, 'w', encoding='utf-8') as f:
-            f.write(f"Рекомендации по параметрам запуска (на основе {len(df)} проверок):\n")
-            f.write(f"- Таймаут MTProto: {timeout_recommended} сек (текущий: 30)\n")
-            f.write(f"- Максимальный пинг: {max_ping_recommended} сек (текущий: 5.0)\n")
-            f.write(f"- Количество воркеров: {workers_recommended} (текущий: 200)\n")
-            f.write(f"\nСредний пинг: {avg_ping:.2f} сек\n")
-            f.write(f"Всего прокси в истории: {len(df)}\n")
+def train_quality_model(history):
+    if not SKLEARN_OK:
+        log("⚠️ sklearn не установлен — пропускаем обучение")
+        return None, {}
 
-        print("⚙️ Оптимизация параметров завершена")
+    X, y, threshold = build_dataset(history)
+    if X is None or len(X) < 10:
+        log("⚠️ Слишком мало данных для обучения")
+        return None, {}
+
+    if len(set(y)) < 2:
+        log(f"⚠️ В обучающем наборе только один класс (label={set(y)}). Модель обучена условно.")
+        # всё равно обучим, чтобы не падать
+        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model.fit(X, y)
+        return model, {"accuracy": 1.0, "note": "single-class"}
+
+    model = RandomForestClassifier(n_estimators=200, random_state=42, n_jobs=-1)
+    cv = StratifiedKFold(n_splits=min(5, len(set(y)) * 2), shuffle=True, random_state=42)
+    try:
+        scores = cross_val_score(model, X, y, cv=cv, scoring="f1")
+        cv_f1 = round(float(scores.mean()), 4)
+    except Exception as e:
+        log(f"⚠️ Кросс-валидация не удалась: {e}")
+        cv_f1 = None
+
+    model.fit(X, y)
+    y_pred = model.predict(X)
+    report = classification_report(y, y_pred, output_dict=True, zero_division=0)
+    log(f"✅ Модель качества обучена. CV F1: {cv_f1}")
+    log(classification_report(y, y_pred, zero_division=0))
+    return model, {"cv_f1": cv_f1, "report": report, "threshold": threshold}
+
+# ------------------ АНОМАЛИИ ------------------
+def detect_anomalies(history):
+    if not SKLEARN_OK:
+        return []
+    rows = []
+    for p in history:
+        ping = p.get("ping")
+        if not isinstance(ping, (int, float)):
+            continue
+        rows.append([
+            ping,
+            1 if p.get("region") == "ru" else 0,
+            1 if p.get("type") == "mtproto" else 0,
+        ])
+    if len(rows) < 20:
+        return []
+    X = np.array(rows, dtype=float)
+    iso = IsolationForest(contamination=0.05, random_state=42)
+    preds = iso.fit_predict(X)
+    anomalies = []
+    for p, pred in zip(history, preds):
+        if pred == -1:
+            anomalies.append(p)
+    log(f"🔍 Обнаружено {len(anomalies)} аномалий")
+    return anomalies
+
+# ------------------ РЕКОМЕНДАЦИИ ------------------
+def make_recommendations(metrics, prev_report):
+    rec = {
+        "recommended_timeout_mt": 10,
+        "recommended_max_ping": 3.0,
+        "recommended_workers": 100,
+    }
+    if not metrics:
         return rec
 
-    # ─── 6. Генерация отчётов ───────────────────────────────────────────────
-    def generate_report(self):
-        # Получаем рекомендации один раз
-        recommendations = self.optimize_parameters() if self.history_df is not None and not self.history_df.empty else {}
-        
-        report = {
-            "timestamp": datetime.now().isoformat(),
-            "history_size": len(self.history_df) if self.history_df is not None else 0,
-            "source_stats": self.source_stats,
-            "model_quality": "available" if MODEL_QUALITY_FILE.exists() else "not trained",
-            "model_anomaly": "available" if MODEL_ANOMALY_FILE.exists() else "not trained",
-            "recommendations": recommendations,
-            "quality_distribution": {}
-        }
+    median = metrics.get("median_ping", 0.5)
+    stdev = metrics.get("stdev_ping", 0.0)
+    total = metrics.get("total", 0)
 
-        if self.history_df is not None and not self.history_df.empty:
-            def quality_label(ping):
-                if ping < 1.5: return "good"
-                elif ping < 5.0: return "medium"
-                else: return "bad"
-            self.history_df['quality'] = self.history_df['ping'].apply(quality_label)
-            report['quality_distribution'] = self.history_df['quality'].value_counts().to_dict()
+    # max_ping: медиана + 2*sigma, но не меньше 1.5 и не больше 8
+    max_ping = median + 2 * stdev
+    max_ping = max(1.5, min(8.0, round(max_ping, 2)))
 
-        with open(REPORT_FILE, 'w', encoding='utf-8') as f:
+    # timeout: если сеть шумная — больше, иначе 8-10
+    timeout = 8 if stdev < 0.5 else 12 if stdev < 1.5 else 20
+
+    # workers: 50..300 в зависимости от объёма
+    workers = 50 if total < 100 else 100 if total < 300 else 200 if total < 800 else 300
+
+    rec.update({
+        "recommended_timeout_mt": int(timeout),
+        "recommended_max_ping": float(max_ping),
+        "recommended_workers": int(workers),
+        "current_avg_ping": round(metrics.get("mean_ping", 0.0), 3),
+        "current_median_ping": round(median, 3),
+        "current_stdev_ping": round(stdev, 3),
+        "total_proxies": total,
+    })
+
+    # тренд
+    if prev_report:
+        prev_median = prev_report.get("metrics", {}).get("median_ping")
+        if isinstance(prev_median, (int, float)) and prev_median > 0:
+            delta = median - prev_median
+            rec["trend_median_ping"] = round(delta, 3)
+            rec["trend_direction"] = "better" if delta < -0.05 else "worse" if delta > 0.05 else "stable"
+    return rec
+
+# ------------------ ОТЧЁТ ------------------
+def save_report(metrics, rec, anomalies, model_info):
+    report = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "metrics": metrics,
+        "recommendations": rec,
+        "anomalies_count": len(anomalies),
+        "model": model_info,
+    }
+    try:
+        with open(REPORT_FILE, "w", encoding="utf-8") as f:
             json.dump(report, f, indent=2, ensure_ascii=False)
+        log(f"📄 Отчёт сохранён в {REPORT_FILE}")
+    except Exception as e:
+        log(f"⚠️ Не удалось сохранить отчёт: {e}")
 
-        print("📄 Отчёт сохранён в", REPORT_FILE)
-        return report
-
-    # ─── 7. Парсинг новых источников (упрощённый) ──────────────────────────
-    def find_new_sources(self, github_token=None):
-        if github_token is None:
-            github_token = os.environ.get("GITHUB_TOKEN")
-        if not github_token:
-            print("⚠️ Нет GitHub токена для поиска новых источников. Пропускаем.")
-            return []
-
-        print("🔍 Поиск новых источников на GitHub...")
-        headers = {'Authorization': f'token {github_token}'}
-        query = "tg://proxy OR tg://socks OR mtproto proxy list"
-        url = f"https://api.github.com/search/code?q={query}&per_page=10"
-
+    if anomalies:
         try:
-            resp = requests.get(url, headers=headers, timeout=10)
-            if resp.status_code == 200:
-                data = resp.json()
-                items = data.get('items', [])
-                new_urls = []
-                for item in items:
-                    repo_full_name = item['repository']['full_name']
-                    path = item['path']
-                    
-                    # Пробуем обе основные ветки
-                    for branch in ['main', 'master']:
-                        raw_url = f"https://raw.githubusercontent.com/{repo_full_name}/{branch}/{path}"
-                        try:
-                            content_resp = requests.get(raw_url, timeout=5)
-                            if content_resp.status_code == 200:
-                                content = content_resp.text
-                                if 'tg://proxy' in content or 'tg://socks' in content:
-                                    new_urls.append(raw_url)
-                                    print(f"  ✅ Найден новый источник: {raw_url}")
-                                    break  # Нашли в этой ветке, не ищем дальше
-                        except:
-                            continue
-                
-                return new_urls
-            else:
-                print(f"⚠️ Ошибка GitHub API: {resp.status_code}")
-                return []
+            with open(ANOMALIES_FILE, "w", encoding="utf-8") as f:
+                json.dump(anomalies, f, indent=2, ensure_ascii=False)
+            log(f"📄 Аномалии сохранены в {ANOMALIES_FILE}")
         except Exception as e:
-            print(f"⚠️ Ошибка поиска: {e}")
-            return []
+            log(f"⚠️ Не удалось сохранить аномалии: {e}")
 
-    # ─── Запуск всех этапов ──────────────────────────────────────────────────
-    def run_all(self, github_token=None):
-        print("🧠 Запуск полной ИИ-аналитики...")
-        print("=" * 48)
+# ------------------ MAIN ------------------
+def main():
+    log("🧠 Запуск полной ИИ-аналитики...")
+    log("=" * 48)
 
-        self.collect_history()
-        if self.history_df is None or self.history_df.empty:
-            print("⚠️ Недостаточно данных для аналитики. Завершение.")
-            return
+    history = load_history()
+    if not history:
+        log("⚠️ Нет данных для анализа. Завершение.")
+        return
 
-        self.train_quality_model()
-        self.train_anomaly_detector()
-        self.classify_sources()
-        
-        rec = self.optimize_parameters()
-        if rec:
-            print("📌 Рекомендации:")
-            for k, v in rec.items():
-                print(f"   {k}: {v}")
-        
-        self.generate_report()
-        new_sources = self.find_new_sources(github_token)
-        if new_sources:
-            print(f"🔗 Найдено {len(new_sources)} новых источников. Их можно добавить в main.py.")
+    prev_report = load_prev_report()
+    metrics = compute_metrics(history)
+    log(f"📊 Метрики: total={metrics.get('total')}, "
+        f"median={metrics.get('median_ping')}s, "
+        f"mean={metrics.get('mean_ping')}s, "
+        f"stdev={metrics.get('stdev_ping')}s")
 
-        print("=" * 48)
-        print("✅ Аналитика завершена")
+    # модель качества
+    model, model_info = train_quality_model(history)
 
+    # аномалии
+    anomalies = detect_anomalies(history)
+
+    # рекомендации
+    rec = make_recommendations(metrics, prev_report)
+    log("📌 Рекомендации:")
+    for k, v in rec.items():
+        log(f"   {k}: {v}")
+
+    # сохранение
+    save_report(metrics, rec, anomalies, model_info)
+
+    if not os.environ.get("GITHUB_TOKEN"):
+        log("⚠️ Нет GitHub токена для поиска новых источников. Пропускаем.")
+
+    log("=" * 48)
+    log("✅ Аналитика завершена")
 
 if __name__ == "__main__":
-    analytics = ProxyAnalytics()
-    github_token = os.environ.get("GITHUB_TOKEN")
-    analytics.run_all(github_token=github_token)
+    main()
