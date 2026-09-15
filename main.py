@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.7
+# MTProto & SOCKS5 Proxy Collector v3.8
 # - Фикс GeoIP: maxminddb.open_database + fallback на geoip2
-# - Фильтр подозрительных портов (SSH, MySQL, Postgres и т.д.)
-# - TTL для seen-кэша (не более 48 часов)
-# - FIX: seen-кэш теперь учитывает secret (разные MTProto на одном IP:port)
+# - Расширенный фильтр подозрительных портов (Tomcat, Minecraft, RDP…)
+# - Расширенный ALLOWED_COUNTRIES (Азия)
+# - FIX: seen-кэш учитывает secret
 
 import requests
 import re
@@ -18,9 +18,9 @@ import os
 import argparse
 from typing import Optional, Set, List, Dict, Any, Tuple
 
-# ---------- GEOIP (с fallback) ----------
+# ---------- GEOIP ----------
 geoip_reader = None
-GEOIP_MODE = None   # 'maxminddb' | 'geoip2' | None
+GEOIP_MODE = None
 
 try:
     import maxminddb
@@ -42,17 +42,30 @@ US_DOMAINS = ['.us', '.nyc', '.la', '.sf', '.dallas', 'amazonaws.com', 'digitalo
 ASIA_DOMAINS = ['.asia', '.jp', '.cn', '.sg', '.hk', '.kr', '.in', '.tw', '.ph', '.my', '.id', '.vn', '.th']
 BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
 
+# Порты, которые НЕ бывают MTProto
 SUSPICIOUS_PORTS = {
-    21, 22, 23, 25, 53, 80, 110, 111, 135, 139, 143, 161, 162,
-    389, 445, 465, 514, 587, 631, 993, 995, 1080, 1433, 1521,
-    2049, 3306, 3389, 5432, 5900, 6379, 9200, 11211, 27017
+    # Системные
+    21, 22, 23, 25, 53, 110, 111, 135, 139, 143, 161, 162,
+    389, 445, 465, 514, 587, 631, 993, 995,
+    # БД и кэши
+    1433, 1521, 2049, 3306, 5432, 5900, 6379, 9200, 11211, 27017,
+    # Веб и прочее
+    80, 1080, 3389,
+    # Tomcat, Minecraft, прочие VPS
+    8009, 8080, 8443, 25565,
 }
 
 ALLOWED_COUNTRIES = {
+    # СНГ + Восточная Европа
     'RU','BY','KZ','UA','MD','AM','GE','AZ','UZ','KG','TJ','TM',
+    # Западная Европа
     'DE','NL','FI','GB','FR','SE','PL','CZ','AT','CH','IT','ES',
     'NO','DK','BE','IE','LU','EE','LV','LT','PT','GR','RO','BG',
-    'HU','SK','SI','HR','RS','TR','CA','US'
+    'HU','SK','SI','HR','RS','TR',
+    # Северная Америка
+    'CA','US',
+    # Азия
+    'JP','KR','SG','HK','IN','TW','PH','MY','ID','VN','TH','MN',
 }
 
 # ---------- Источники ----------
@@ -316,22 +329,17 @@ def load_local_proxies(file_path: str) -> Set[Tuple[str, str, int, Any]]:
         print(f"✗ Ошибка чтения {file_path}: {e}")
         return set()
 
-# ---------- SEEN-КЭШ (с secret и TTL) ----------
+# ---------- SEEN-КЭШ ----------
 def _cache_key(p) -> Tuple:
-    """Ключ кэша: (type, host, port, secret-or-credentials).
-    Разные secret на одном IP:port считаются разными прокси."""
     if len(p) >= 4:
         extra = p[3]
         if isinstance(extra, str):
             return (p[0], p[1], p[2], extra)
         if isinstance(extra, tuple):
-            # socks5 с логином/паролем
             return (p[0], p[1], p[2], f"{extra[0] or ''}:{extra[1] or ''}")
     return (p[0], p[1], p[2], '')
 
 def load_seen(path: str, ttl_hours: int = 48) -> Set[Tuple]:
-    """Возвращает множество ключей, проверенных за последние ttl_hours.
-    Ключи из старого 3-элементного формата игнорируются (автосброс)."""
     if not path or not os.path.isfile(path):
         return set()
     try:
@@ -348,7 +356,6 @@ def load_seen(path: str, ttl_hours: int = 48) -> Set[Tuple]:
         if isinstance(item, dict) and 'k' in item and 'ts' in item:
             try:
                 ts = datetime.fromisoformat(item['ts'].replace('Z', '+00:00'))
-                # берём только 4-элементные ключи (новый формат)
                 if now - ts <= timedelta(hours=ttl_hours) and len(item['k']) >= 4:
                     seen_set.add(tuple(item['k']))
             except Exception:
@@ -374,7 +381,7 @@ def run(args):
     global geoip_reader
 
     start_time = time.time()
-    print('🚀 MTProxy Collector v3.7')
+    print('🚀 MTProxy Collector v3.8')
     print('=' * 48)
 
     if args.geoip and os.path.exists(args.geoip):
@@ -550,7 +557,7 @@ def run(args):
     print('=' * 48)
 
 def main():
-    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.7")
+    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.8")
     parser.add_argument('--timeout', type=float, default=2.0)
     parser.add_argument('--workers', type=int, default=100)
     parser.add_argument('--top', type=int, default=0)
