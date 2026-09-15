@@ -1,11 +1,4 @@
 🛡️ Telegram Proxy Collector: Anti‑Censorship Edition
-https://github.com/kort0881/telegram-proxy-collector/actions/workflows/update_proxies.yml/badge.svg
-https://github.com/kort0881/telegram-proxy-collector/actions/workflows/proxy_analytics.yml/badge.svg
-https://img.shields.io/badge/dynamic/json?url=https%253A%252F%252Fraw.githubusercontent.com%252Fkort0881%252Ftelegram-proxy-collector%252Fmain%252Fverified%252Fproxy_stats_verified.json&query=%2524.by_region.ru&label=MTProto%2520RU&color=blue
-https://img.shields.io/badge/dynamic/json?url=https%253A%252F%252Fraw.githubusercontent.com%252Fkort0881%252Ftelegram-proxy-collector%252Fmain%252Fverified%252Fproxy_stats_verified.json&query=%2524.by_region.eu&label=MTProto%2520EU&color=green
-https://img.shields.io/badge/dynamic/json?url=https%253A%252F%252Fraw.githubusercontent.com%252Fkort0881%252Ftelegram-proxy-collector%252Fmain%252Fverified%252Fproxy_stats_verified.json&query=%2524.by_region.us&label=MTProto%2520US&color=orange
-https://img.shields.io/badge/dynamic/json?url=https%253A%252F%252Fraw.githubusercontent.com%252Fkort0881%252Ftelegram-proxy-collector%252Fmain%252Fverified%252Fproxy_stats_verified.json&query=%2524.by_region.socks5&label=SOCKS5&color=purple
-
 https://api.oosmetrics.com/api/v1/badge/achievement/21322b63-7982-4e81-99f7-ada7354f9c21.svg
 
 Умный комбайн для сбора, анализа и отбора MTProto и SOCKS5 прокси.
@@ -45,148 +38,176 @@ https://api.oosmetrics.com/api/v1/badge/achievement/21322b63-7982-4e81-99f7-ada7
 
 ⚙️ 200 воркеров — 30 000 прокси проверяются за ~40 секунд.
 
-❓ FAQ
-<details> <summary><b>Что такое MTProto-прокси и зачем он нужен?</b></summary>
-MTProto — это собственный протокол Telegram. Прокси на его основе работают быстрее и стабильнее, чем SOCKS5, и позволяют маскировать трафик под обычный HTTPS.
-
-</details><details> <summary><b>Что значит «Fake-TLS» и «золотые прокси»?</b></summary>
-MTProto-прокси может маскироваться под HTTPS-сайт, отправляя фейковый SNI-домен (например, yandex.ru). DPI не может отличить такой трафик от настоящего HTTPS — это делает прокси устойчивым к блокировкам.
-
-«Золотые» — это прокси, у которых в secret зашит известный доверенный домен: yandex.ru, vk.com, gosuslugi.ru, sber.ru. Они работают лучше всего в РФ и Иране.
-
-</details><details> <summary><b>Почему EU-прокси так много, а RU — мало?</b></summary>
-Потому что большинство открытых источников публикуют прокси из Европы. RU-прокси часто блокируются хостерами, и их сложнее найти. Мы фильтруем по GeoIP и оставляем только доверенные страны — поэтому итоговый список RU меньше, но он реально рабочий.
-
-</details><details> <summary><b>Чем отличается `proxy_ru.txt` от `proxy_eu.txt`?</b></summary>
-По SNI-домену в secret:
-
-RU — домен из списка .ru, yandex, vk.com, mail.ru, gosuslugi, sber, mos.ru и др.
-
-EU — всё остальное (Google, Amazon, Cloudflare, случайные домены).
-
-Если SNI пустой — прокси попадает в EU.
-
-</details><details> <summary><b>Что такое probe_resistant?</b></summary>
-Флаг, означающий, что прокси устойчив к активному зондированию (DPI отправляет запрос и смотрит, отвечает ли сервер как настоящий HTTPS).
-
-⚠️ Сейчас флаг всегда false — полноценный handshake-тест ещё не реализован. Это в планах.
-
-</details><details> <summary><b>Как часто обновляются списки?</b></summary>
-Каждые 2 часа через GitHub Actions. Можно запустить вручную: Actions → Update Verified Proxy Lists → Run workflow.
-
-</details><details> <summary><b>Безопасно ли использовать эти прокси?</b></summary>
-Нет. Бесплатные прокси могут логировать трафик. Не передавай через них пароли, банковские данные и личную информацию. Для приватности лучше поднять свой MTProto-сервер или использовать платный VPN.
-
-</details><details> <summary><b>Почему некоторые прокси не работают в Telegram?</b></summary>
-TCP-порт может быть открыт, но MTProto-handshake не проходит. Мы отсеиваем явный мусор (порты 22, 80, 3306), но 100% гарантии нет. Всегда проверяй в Telegram перед использованием.
-
-</details><details> <summary><b>Как добавить свой источник прокси?</b></summary>
-Форкни репозиторий, добавь URL в список SOURCES или SOCKS_SOURCES в main.py и запусти workflow. Формат — любой из поддерживаемых (tg://, t.me/, host:port:secret, JSON, YAML).
-
-</details><details> <summary><b>Что за AI-аналитика в конце README?</b></summary>
-Скрипт ai_analytics.py раз в 2 часа отправляет статистику в Groq (openai/gpt-oss-120b) и получает короткий отчёт о качестве прокси. Если ключа Groq нет — генерирует локально.
-
-</details>
 🛠️ Community Tools: утилиты от пользователей
 Инструмент	Описание	Автор
-Parser‑telegram‑proxies	Windows‑утилита с отображением пинга в реальном времени.	ComradeBingo
-Proxy‑Telegram‑Android	Android‑приложение для парсинга прокси и пинга серверов.	ComradeBingo
-Proxy‑telegram‑windows	Парсер прокси для Windows, версия 1.2.	ComradeBingo
+Parser‑telegram‑proxies	Удобная Windows‑утилита для парсинга и проверки MTProto‑прокси с отображением пинга в реальном времени.	ComradeBingo
+Proxy‑Telegram‑Android	Приложение для Android, которое парсит прокси‑списки, проверяет их доступность и показывает пинг серверов.	ComradeBingo
+Proxy‑telegram‑windows	Парсер прокси‑серверов для Telegram на Windows. Версия 1.2: переработан GUI, меню «Справка».	ComradeBingo
 🔥 Актуальные списки (обновляются каждые 2 часа)
+Скрипт запускается через GitHub Actions, собирает прокси, фильтрует, проверяет и обновляет списки. Результаты сохраняются в verified/ и копируются в корень репозитория.
+
+📦 Прямые ссылки:
+
 Регион / Тип	Список	Примечание
-🇷🇺 RU (MTProto)	proxy_ru.txt	Маскировка под Yandex, VK, Mail.ru, Gosuslugi
-🇪🇺 EU (MTProto)	proxy_eu.txt	Маскировка под Google, Amazon, Cloudflare
-🇺🇸 US (MTProto)	proxy_us.txt	США и Канада
-🌏 ASIA (MTProto)	proxy_asia.txt	JP, KR, SG, HK, IN, TW, PH, MY, ID, VN, TH
-🌍 Все MTProto	proxy_all_mtproto.txt	Все регионы вместе
-🔒 SOCKS5	socks5.txt	Без маскировки
+🇷🇺 RU (MTProto)	proxy_ru.txt	Маскировка под Yandex, VK, Mail.ru, Gosuslugi и др.
+🇪🇺 EU (MTProto)	proxy_eu.txt	Маскировка под Google, Amazon, Cloudflare и др.
+🇺🇸 US (MTProto)	proxy_us.txt	США и Канада.
+🌏 ASIA (MTProto)	proxy_asia.txt	JP, KR, SG, HK, IN, TW, PH, MY, ID, VN, TH.
+🌍 Все MTProto	proxy_all_mtproto.txt	Все регионы вместе.
+🔒 SOCKS5	socks5.txt	Прокси без маскировки.
 📱 Использование с телефона
-Открой https://kort0881.github.io/telegram-proxy-collector/
+Если открыл репозиторий с телефона и не хочешь копировать прокси вручную:
 
-Выбери вкладку MTProto RU / EU / US / ASIA / SOCKS5
+Открой страницу:
+https://kort0881.github.io/telegram-proxy-collector/
 
-Нажми — Telegram сам предложит подключиться
+На странице — вкладки MTProto RU / EU / US / ASIA / SOCKS5.
 
-Мобильная версия: mobile.html
+Нажми на любую кнопку — Telegram сам предложит подключиться.
+
+Мобильная версия:
+👉 mobile.html
 
 🚀 Как это работает?
-Скрипт запускается каждые 2 часа через GitHub Actions и проходит 6 этапов:
+Скрипт запускается каждые 2 часа через GitHub Actions и проходит шесть этапов:
 
 1. Сбор (Harvesting)
-40+ MTProto-источников и 9 SOCKS5-источников. Парсинг всех форматов: tg://proxy?…, t.me/proxy?…, host:port:secret, socks5://user:pass@host:port, JSON, YAML.
+Скачивает прокси из 40+ MTProto-источников и 9 SOCKS5-источников:
+
+GitHub-репозитории (SoliSpirit, Grim1313, ALIILAPRO, hookzof, V2RAYCONFIGSPOOL, Surfboardv2ray и др.)
+
+mtpro.xyz, moonlunavpn.com, tgmtproxy.github.io
+
+Парсит все форматы: tg://proxy?…, t.me/proxy?…, host:port:secret, socks5://user:pass@host:port, JSON, YAML.
 
 2. Seen-кэш (TTL 48 часов)
-Ключ = (type, host, port, secret). Если проверялся < 48ч назад — пропускается.
+Перед проверкой прокси сверяются с verified/seen.json:
 
-3. Фильтрация
-🚫 Порты: 45+ мусорных портов отбрасываются.
+ключ = (type, host, port, secret),
 
-🌍 GeoIP: только 60+ доверенных стран.
+если проверялся < 48 часов назад — пропускается,
+
+если старше — проверяется заново.
+
+3. Фильтрация (Smart Filter)
+🚫 Порты: SUSPICIOUS_PORTS (22, 80, 3306, 5432, 8080, 8443, 25565, …) — не бывают MTProto.
+
+🌍 GeoIP: GeoLite2-Country.mmdb — оставляем только 60+ доверенных стран.
 
 ❌ Blacklist: Instagram, Facebook, Twitter, BBC, Meduza, LinkedIn, Tor.
 
-4. Декодирование (Fake-TLS)
-Расшифровка secret (ee...) → извлечение SNI-домена → определение региона.
+4. Dекодирование (Fake-TLS Analysis)
+Расшифровывает secret формата ee....
+
+Извлекает SNI-домен (Yandex, VK, Google, Cloudflare, …).
+
+Определяет регион: RU / EU / US / ASIA по домену.
 
 5. TCP-проверка
-200 воркеров, socket.connect(), таймаут 2s. Сортировка: probe_resistant → MTProto → SOCKS5.
+200 воркеров параллельно.
 
-6. Сборка списков
-Разделение по регионам, запись в proxy_*.txt и verified/*.json.
+socket.connect() с таймаутом 2.0s.
+
+Сортировка: probe_resistant → MTProto → SOCKS5, внутри — по возрастанию ping.
+
+6. Сборка итоговых списков
+Разделение по регионам.
+
+Запись в proxy_*.txt, verified/*.json, verified/*.txt.
 
 📁 Итоговые файлы
-Корень репозитория:
+Корень репозитория (для прямых ссылок):
 
-proxy_ru.txt, proxy_eu.txt, proxy_us.txt, proxy_asia.txt
+proxy_ru.txt, proxy_eu.txt, proxy_us.txt, proxy_asia.txt — MTProto tg://proxy?...
 
-proxy_all_mtproto.txt, proxy_all.txt, socks5.txt
+proxy_all_mtproto.txt — все MTProto
 
-Папка verified/:
+proxy_all.txt — RU + EU
 
-proxy_*_verified.txt — с заголовками и статистикой
+socks5.txt — SOCKS5 tg://socks?...
 
-proxy_all_verified.json — массив с полями type, host, port, secret, link, ping, region, domain
+Папка verified/ (детально):
 
-proxy_stats_verified.json — статистика по запуску
+proxy_ru_verified.txt, proxy_eu_verified.txt, … — с заголовками и статистикой.
 
-proxy_domain_verified.txt — Fake-TLS прокси с доменами
+proxy_all_verified.json — массив с полями:
+type, host, port, secret, link, ping, region, domain, method, probe_resistant.
 
-seen.json — TTL-кэш
+proxy_stats_verified.json — статистика по запуску.
 
+proxy_domain_verified.txt — только прокси с Fake-TLS доменом.
+
+seen.json — TTL-кэш проверенных прокси.
+
+🎭 Fake-TLS: «золотые» прокси
+MTProto-прокси могут маскироваться под HTTPS, отправляя фейковый SNI популярных сервисов. Это делает их устойчивыми к DPI-блокировкам.
+
+Наш детектор извлекает домен из secret (ee...) и определяет регион:
+
+SNI-домен	Регион
+yandex.ru, vk.com, mail.ru, gosuslugi.ru, sber.ru	🇷🇺 RU
+amazonaws.com, cloudflare.com, digitalocean.com	🇺🇸 US
+*.jp, *.sg, *.hk, *.kr	🌏 ASIA
+остальные	🇪🇺 EU
+Все прокси с распознанным доменом попадают в verified/proxy_domain_verified.txt:
+
+text
+tg://proxy?server=...&port=443&secret=ee... # domain: ya.ru
 🌍 GeoIP-фильтрация
-База GeoLite2-Country.mmdb от Dreamacro/maxmind-geoip.
+Используется база GeoLite2-Country.mmdb (обновляется ежедневно из Dreamacro/maxmind-geoip).
 
 Разрешённые страны:
 
-СНГ: RU, BY, KZ, UA, MD, AM, GE, AZ, UZ, KG, TJ, TM
+СНГ + Восточная Европа: RU, BY, KZ, UA, MD, AM, GE, AZ, UZ, KG, TJ, TM
 
-Европа: DE, NL, FI, GB, FR, SE, PL, CZ, AT, CH, IT, ES, NO, DK, BE, IE, LU, EE, LV, LT, PT, GR, RO, BG, HU, SK, SI, HR, RS, TR
+Западная Европа: DE, NL, FI, GB, FR, SE, PL, CZ, AT, CH, IT, ES, NO, DK, BE, IE, LU, EE, LV, LT, PT, GR, RO, BG, HU, SK, SI, HR, RS, TR
 
-Америка: CA, US
+Северная Америка: CA, US
 
 Азия: JP, KR, SG, HK, IN, TW, PH, MY, ID, VN, TH, MN
 
+Прокси из других стран отбрасываются до TCP-проверки — экономит время и трафик.
+
+🔗 Мои проекты
+Проект	Описание	Ссылка
+VPN KEY VLESS	Основной канал с конфигами и новостями.	Telegram
+KiberSos New	Резервный канал.	Telegram
+VlessBots	Бот для выдачи ключей и прокси.	Bot
+Internet Access	Сайт проекта.	Website
+VPN Key Repo	Репозиторий VLESS-скриптов.	GitHub
 🛠️ Локальный запуск
 bash
+# 1. Клонировать
 git clone https://github.com/kort0881/telegram-proxy-collector.git
 cd telegram-proxy-collector
+
+# 2. Установить зависимости
 pip install -r requirements.txt
 
+# 3. Скачать GeoIP
 mkdir -p data
 wget -O data/GeoLite2-Country.mmdb \
   https://raw.githubusercontent.com/Dreamacro/maxmind-geoip/release/Country.mmdb
 
+# 4. Запустить
 python main.py \
-  --top 100 --timeout 2.0 --workers 200 \
-  --max-check 30000 --output-dir verified \
-  --geoip data/GeoLite2-Country.mmdb --seen-ttl 48
+  --top 100 \
+  --timeout 2.0 \
+  --workers 200 \
+  --max-check 30000 \
+  --output-dir verified \
+  --geoip data/GeoLite2-Country.mmdb \
+  --seen-ttl 48
 
-python analytics.py                     # ML-аналитика
-export TELEGRAMPROXYCOLLECTOR=gsk_...   # ключ Groq
-python ai_analytics.py                  # AI-отчёт
-Параметры
+# 5. ML-аналитика
+python analytics.py
+
+# 6. AI-отчёт (нужен Groq-ключ)
+export TELEGRAMPROXYCOLLECTOR=gsk_...
+python ai_analytics.py
+Параметры main.py
 Флаг	По умолчанию	Описание
---timeout	2.0	TCP timeout
+--timeout	2.0	TCP timeout в секундах
 --workers	100	Потоки проверки
 --top	0 (все)	Топ X на регион
 --output-dir	verified	Папка результатов
@@ -197,13 +218,28 @@ python ai_analytics.py                  # AI-отчёт
 --manual	—	Локальный файл с доп. прокси
 🧪 AI и ML
 analytics.py
-RandomForest (good/bad) с CV, IsolationForest для аномалий, тренды. Сохраняет reports/analytics_report.json, reports/anomalies.json, reports/analytics.log.
+Читает историю проверок, обучает RandomForest (good/bad) с CV.
+
+Ищет аномалии через IsolationForest.
+
+Считает тренды: медиана ping, stdev, направление.
+
+Сохраняет: reports/analytics_report.json, reports/anomalies.json, reports/analytics.log.
 
 ai_analytics.py
-Groq через OpenAI-совместимый API, модель openai/gpt-oss-120b (Apache 2.0, MoE, 5.1B активных параметров). Обновляет блок в README. Fallback — локальная генерация.
+Читает proxy_history.json, формирует промпт.
 
-⚠️ Дисклеймер
-Репозиторий не гарантирует анонимность. Прокси предоставляются «как есть».
+Отправляет в Groq через OpenAI-совместимый API.
+
+Модель: openai/gpt-oss-120b (Apache 2.0, MoE, 5.1B активных параметров).
+
+Обновляет блок в README между <!-- AI_ANALYTICS_START --> / <!-- AI_ANALYTICS_END -->.
+
+Fallback — локальная генерация без LLM.
+
+⚠️ Дисклеймер и безопасность
+Этот репозиторий не гарантирует анонимность и защиту от компрометации.
+Все прокси предоставляются «как есть», их качество зависит от внешних источников.
 Бесплатные прокси небезопасны — не передавай через них пароли и платёжные данные.
 
 📊 AI-аналитика (автоматическая)
@@ -224,11 +260,3 @@ Groq через OpenAI-совместимый API, модель openai/gpt-oss-1
 Рекомендация: для большинства задач лучше использовать MTProto-прокси из региона EU.
 
 <!-- AI_ANALYTICS_END -->
-<details> <summary>🔗 <b>Мои проекты</b> (нажми, чтобы раскрыть)</summary>
-Проект	Описание	Ссылка
-VPN KEY VLESS	Основной канал с конфигами и новостями	Telegram
-KiberSos New	Резервный канал	Telegram
-VlessBots	Бот для выдачи ключей	Bot
-Internet Access	Сайт проекта	Website
-VPN Key Repo	VLESS-скрипты	GitHub
-</details>
