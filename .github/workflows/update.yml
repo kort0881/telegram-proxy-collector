@@ -107,8 +107,14 @@ jobs:
           git config user.name "Proxy Bot"
           git config user.email "bot@github.com"
 
-          # добавляем только нужные файлы, без -f и без -A
-          git add verified/ proxy_*.txt socks5.txt proxy_all*.txt
+          # verified/ в .gitignore → добавляем принудительно ТОЛЬКО её
+          git add -f verified/ 2>/dev/null || true
+
+          # корневые файлы — по обычным правилам
+          for f in proxy_ru.txt proxy_eu.txt proxy_us.txt proxy_asia.txt \
+                   socks5.txt proxy_all.txt proxy_all_mtproto.txt; do
+            [ -f "$f" ] && git add "$f" || true
+          done
 
           if git diff --staged --quiet; then
             echo "changes_detected=false" >> "$GITHUB_OUTPUT"
@@ -118,7 +124,7 @@ jobs:
 
           git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
 
-          # аккуратный push: pull --rebase ДО push
+          # pull --rebase ДО push
           git pull --rebase --autostash origin main || true
           git push origin main
 
