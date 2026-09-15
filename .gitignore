@@ -31,13 +31,14 @@ build/
 dist/
 *.spec
 
-# Verified output
-verified/
+# Verified output – теперь папка НЕ игнорируется,
+# а все .txt внутри неё разрешены
 *.txt
 !proxy_ru.txt
 !proxy_eu.txt
 !proxy_all.txt
 !socks5.txt
+!verified/*.txt
 
 # Configs
 config.yml
