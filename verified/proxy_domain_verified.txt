@@ -1,15 +1,13 @@
-# Proxies with domain (12)
-# Updated: 2026-09-15 21:00:51.973769+00:00
+# Proxies with domain (10)
+# Updated: 2026-09-15 23:59:15.050194+00:00
 
-tg://proxy?server=45.32.185.184&port=443&secret=ee7e64482ae9c237e98f5475bf3fc18ebf7777772e676d61696c2e636f6d # domain: ~dh*7tu?www.gmail.com
-tg://proxy?server=82.21.117.211&port=443&secret=eed68ca126ce59a445b0b038ef701c4c1a6974756e65732e6170706c652e636f6d # domain: &ye8plitunes.apple.com
-tg://proxy?server=188.245.144.93&port=443&secret=eec862057ba49a7ecdf0ad4eb44cd5bb11646f776e6c6f61642e77696e646f77737570646174652e636f6d # domain: b{~nldownload.windowsupdate.com
-tg://proxy?server=focus-ultimate.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b # domain: t3f)}+mt.akenai.click
-tg://proxy?server=iran.brettanderson.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
-tg://proxy?server=s3.postpulse.space&port=443&secret=eede09f27f5ed0877907c31d53a7aca5526164332e617269786f2e73686f70 # domain: ^ysrad3.arixo.shop
-tg://proxy?server=8.210.108.162&port=443&secret=ee286eea6f22477002c9739119479fe712617a7572652e6d6963726f736f66742e636f6d # domain: (no"gpsgazure.microsoft.com
-tg://proxy?server=connect.0xl1r.cfd&port=853&secret=eea1f31ce5039ccb8331e906d5ab00a31777622e7275 # domain: 1
-tg://proxy?server=app.rknwatch.digital&port=443&secret=ee2a830e2b3d40853e9799515a616d3f4d6170702e726b6e77617463682e6469676974616c # domain: *+=@>qzam?mapp.rknwatch.digital
-tg://proxy?server=2.26.7.251&port=443&secret=ee9945c587716452618a218583a2d4aaeb73747265616d2e782d627573792e7275 # domain: eqdra!stream.x-busy.ru
-tg://proxy?server=194.163.170.186&port=443&secret=ee6563b226ac5c6c3959481f1605f442f9636c6f7564666c6172652e636f6d # domain: ec&\l9yhbcloudflare.com
-tg://proxy?server=144.91.118.127&port=443&secret=eed3d0797e6033939e7fae7f095c307991636c6f7564666c6172652e636f6d # domain: y~`3\0ycloudflare.com
+tg://proxy?server=166.88.225.172&port=443&secret=eeb7a1f8c9d2e4b6a5c3d7f1e8a9b2c4d6746173732e636f6d # domain: tass.com
+tg://proxy?server=212.127.78.100&port=443&secret=eed362e57d2e5aa3c7999e6c2f73dbc1fc626c61636b2e636174636f6e6e6563742e6d65 # domain: b}.zl/sblack.catconnect.me
+tg://proxy?server=i-love-cu.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b # domain: t3f)}+mt.akenai.click
+tg://proxy?server=hetzner.muffinnoliershatelcomingsoon.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff6865747a6e65722e636f6d # domain: /hetzner.com
+tg://proxy?server=iran.brettanderson.co.uk&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
+tg://proxy?server=gate.soluqent.pro&port=443&secret=eed66f4a5efedfdb0b2a74cf0596b12d17676174652e736f6c7571656e742e70726f # domain: oj^*t-gate.soluqent.pro
+tg://proxy?server=193.233.139.92&port=443&secret=eede9514d46c8d152452b6de4879c15299706574726f766963682e7275 # domain: l$rhyrpetrovich.ru
+tg://proxy?server=MTPROTO.online&port=443&secret=ee139e0ee36150c1ea3bf299796586b5457777772e7674622e7275 # domain: ap;yeewww.vtb.ru
+tg://proxy?server=31.220.78.93&port=443&secret=ee5fcec9b1bf68764858dcb930f393ee72636c6f7564666c6172652e636f6d # domain: _hvhx0rcloudflare.com
+tg://proxy?server=213.156.152.176&port=443&secret=eeccccb375ce86c0d90e662b05c97f10187777772e636c6f7564666c6172652e636f6d # domain: uf+www.cloudflare.com
