@@ -8,6 +8,7 @@ python-socks[asyncio]>=2.4.0
 
 # --- GeoIP ---
 maxminddb>=2.6.0
+geoip2>=4.8.0
 
 # --- Data / ML ---
 numpy>=1.24.0
