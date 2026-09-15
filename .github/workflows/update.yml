@@ -16,7 +16,7 @@ concurrency:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 45        # было 25 — подняли с запасом
+    timeout-minutes: 45
 
     steps:
       - name: Checkout
@@ -35,15 +35,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install --quiet -r requirements.txt
 
-      - name: Download geoip.dat
+      - name: Download GeoLite2-Country.mmdb
         run: |
           mkdir -p data
-          wget -q -O data/geoip.dat \
-            https://cdn.jsdelivr.net/gh/GrimbirdUsers/ru-routing-dat@main/geoip.dat
-          ls -lh data/geoip.dat
+          wget -q -O data/GeoLite2-Country.mmdb \
+            https://raw.githubusercontent.com/Dreamacro/maxmind-geoip/release/Country.mmdb
+          ls -lh data/GeoLite2-Country.mmdb
+          file data/GeoLite2-Country.mmdb
 
       - name: Run Proxy Collector
-        timeout-minutes: 35     # лимит самого шага
+        timeout-minutes: 35
         run: |
           python main.py \
             --top 100 \
@@ -51,7 +52,7 @@ jobs:
             --workers 200 \
             --max-check 30000 \
             --output-dir verified \
-            --geoip data/geoip.dat
+            --geoip data/GeoLite2-Country.mmdb
 
       - name: Copy files to root
         run: |
