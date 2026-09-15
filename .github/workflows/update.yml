@@ -75,11 +75,13 @@ jobs:
       - name: Statistics & Outputs
         id: stats
         run: |
-          RU=$(grep -c '^tg://' proxy_ru.txt 2>/dev/null || echo 0)
-          EU=$(grep -c '^tg://' proxy_eu.txt 2>/dev/null || echo 0)
-          US=$(grep -c '^tg://' proxy_us.txt 2>/dev/null || echo 0)
-          ASIA=$(grep -c '^tg://' proxy_asia.txt 2>/dev/null || echo 0)
-          SOCKS=$(grep -c '^tg://' socks5.txt 2>/dev/null || echo 0)
+          RU=$(grep -c '^tg://' proxy_ru.txt 2>/dev/null || true)
+          EU=$(grep -c '^tg://' proxy_eu.txt 2>/dev/null || true)
+          US=$(grep -c '^tg://' proxy_us.txt 2>/dev/null || true)
+          ASIA=$(grep -c '^tg://' proxy_asia.txt 2>/dev/null || true)
+          SOCKS=$(grep -c '^tg://' socks5.txt 2>/dev/null || true)
+
+          RU=${RU:-0}; EU=${EU:-0}; US=${US:-0}; ASIA=${ASIA:-0}; SOCKS=${SOCKS:-0}
           TOTAL=$((RU+EU+US+ASIA))
 
           {
@@ -110,10 +112,8 @@ jobs:
           git config user.name "Proxy Bot"
           git config user.email "bot@github.com"
 
-          # verified/ в .gitignore → добавляем принудительно ТОЛЬКО её
           git add -f verified/ 2>/dev/null || true
 
-          # корневые файлы — по обычным правилам
           for f in proxy_ru.txt proxy_eu.txt proxy_us.txt proxy_asia.txt \
                    socks5.txt proxy_all.txt proxy_all_mtproto.txt; do
             [ -f "$f" ] && git add "$f" || true
@@ -127,7 +127,6 @@ jobs:
 
           git commit -m "🔥 Update proxies $(date -u +'%Y-%m-%d %H:%M UTC')"
 
-          # pull --rebase ДО push
           git pull --rebase --autostash origin main || true
           git push origin main
 
