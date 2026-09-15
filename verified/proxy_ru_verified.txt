@@ -1,8 +1,5 @@
-# MTProto RU (5)
-# Updated: 2026-09-15 13:10:47.098085+00:00
+# MTProto RU (2)
+# Updated: 2026-09-15 17:57:26.482703+00:00
 
-tg://proxy?server=177.3.213.2&port=443&secret=ee38d14fd01a0235aa1087fd5421270db86d2e6265626f6f2e7275
-tg://proxy?server=welcome.kisex.top&port=443&secret=ee0fff527a5a724628bab1a2ae5fff27d379612e7275
-tg://proxy?server=prater.shoeblack.sunny.teleseryepinoytv.com&port=443&secret=eedd184c9cc739c88d2c2e9fa110ca6281647a656e2e7275
-tg://proxy?server=media3.happtg.org&port=443&secret=ee8fc9c7632b344b1b76639c501ae7cfb5766b2e7275
-tg://proxy?server=proxy65.arixo.shop&port=443&secret=ee3ceb82a3b4254e6e6ae1971021f3c209617669746f2e7275
+tg://proxy?server=s05.neo-trading.org&port=443&secret=eef4f43f6c7b01f2f5f5644af6473a61d0686f66662e7275
+tg://proxy?server=s04.neo-trading.org&port=443&secret=ee364a7bd5b928139fbc6b2b458e9fef9d686f66662e7275
