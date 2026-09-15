@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.5
-# - Отключён мусорный парсинг IP:PORT (шаг 6)
-# - Добавлен --max-check (случайная подвыборка)
-# - Добавлен seen-кэш (не проверяем одно и то же дважды)
-# - Ускорен прогресс (каждые 500 вместо 100)
+# MTProto & SOCKS5 Proxy Collector v3.6
+# - Фикс GeoIP: maxminddb.open_database + fallback на geoip2
+# - Фильтр подозрительных портов (SSH, MySQL, Postgres и т.д.)
+# - TTL для seen-кэша (не более 48 часов)
 
 import requests
 import re
@@ -12,13 +11,29 @@ import socket
 import concurrent.futures
 import time
 import random
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 import json
 import os
 import argparse
 from typing import Optional, Set, List, Dict, Any, Tuple
 
-import maxminddb
+# ---------- GEOIP (с fallback) ----------
+geoip_reader = None
+GEOIP_MODE = None   # 'maxminddb' | 'geoip2' | None
+
+try:
+    import maxminddb
+    _HAS_MAXMIND = hasattr(maxminddb, 'open_database')
+except ImportError:
+    maxminddb = None
+    _HAS_MAXMIND = False
+
+try:
+    from geoip2.database import Reader as GeoIP2Reader
+    _HAS_GEOIP2 = True
+except ImportError:
+    GeoIP2Reader = None
+    _HAS_GEOIP2 = False
 
 # ------------------ НАСТРОЙКИ ------------------
 RU_DOMAINS = ['.ru', 'yandex', 'vk.com', 'mail.ru', 'ok.ru', 'dzen', 'rutube', 'sber', 'tinkoff', 'vtb', 'gosuslugi', 'nalog', 'mos.ru', 'ozon', 'wildberries', 'avito', 'kinopoisk', 'mts', 'beeline']
@@ -26,7 +41,21 @@ US_DOMAINS = ['.us', '.nyc', '.la', '.sf', '.dallas', 'amazonaws.com', 'digitalo
 ASIA_DOMAINS = ['.asia', '.jp', '.cn', '.sg', '.hk', '.kr', '.in', '.tw', '.ph', '.my', '.id', '.vn', '.th']
 BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
 
-# ---------- MTProto источники ----------
+# Порты, которые НЕ бывают MTProto (SSH, БД, почта, web)
+SUSPICIOUS_PORTS = {
+    21, 22, 23, 25, 53, 80, 110, 111, 135, 139, 143, 161, 162,
+    389, 445, 465, 514, 587, 631, 993, 995, 1080, 1433, 1521,
+    2049, 3306, 3389, 5432, 5900, 6379, 9200, 11211, 27017
+}
+
+ALLOWED_COUNTRIES = {
+    'RU','BY','KZ','UA','MD','AM','GE','AZ','UZ','KG','TJ','TM',
+    'DE','NL','FI','GB','FR','SE','PL','CZ','AT','CH','IT','ES',
+    'NO','DK','BE','IE','LU','EE','LV','LT','PT','GR','RO','BG',
+    'HU','SK','SI','HR','RS','TR','CA','US'
+}
+
+# ---------- Источники ----------
 SOURCES = [
     "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt",
     "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt",
@@ -71,7 +100,6 @@ SOURCES = [
     "https://tgmtproxy.github.io/mtproxy/proxies.json",
 ]
 
-# ---------- SOCKS5 источники ----------
 SOCKS_SOURCES = [
     "https://raw.githubusercontent.com/hookzof/socks5_list/master/proxy.txt",
     "https://api.proxyscrape.com/v2/?request=displayproxies&protocol=socks5&timeout=5000&country=all",
@@ -83,8 +111,6 @@ SOCKS_SOURCES = [
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json",
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt",
 ]
-
-geoip_reader = None
 
 # ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
 def _valid_port(p: str) -> bool:
@@ -119,50 +145,73 @@ def decode_domain(secret: str) -> Optional[str]:
     except (ValueError, IndexError):
         return None
 
+def _load_geoip(path: str):
+    """Загружает geoip.dat через maxminddb.open_database или geoip2.Reader."""
+    global GEOIP_MODE
+    # 1) пробуем maxminddb.open_database
+    if _HAS_MAXMIND:
+        try:
+            reader = maxminddb.open_database(path)
+            GEOIP_MODE = 'maxminddb'
+            return reader
+        except Exception as e:
+            print(f'⚠️ maxminddb.open_database не сработал: {e}')
+    # 2) пробуем geoip2.database.Reader
+    if _HAS_GEOIP2:
+        try:
+            reader = GeoIP2Reader(path)
+            GEOIP_MODE = 'geoip2'
+            return reader
+        except Exception as e:
+            print(f'⚠️ geoip2.Reader не сработал: {e}')
+    return None
+
+def _geo_country(host: str) -> Optional[str]:
+    """Возвращает ISO-код страны для host или None."""
+    if geoip_reader is None:
+        return None
+    try:
+        info = geoip_reader.get(host)
+        if not info:
+            return None
+        # maxminddb (raw dict)
+        if GEOIP_MODE == 'maxminddb':
+            return (info.get('country') or {}).get('iso_code')
+        # geoip2 (объект)
+        if GEOIP_MODE == 'geoip2':
+            return info.country.iso_code if info.country else None
+    except Exception:
+        return None
+    return None
+
 def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
     proxies = set()
     mtproto_ips = set()
 
-    # 1. MTProto tg://
     for h, p, s in re.findall(r'tg://proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', text, re.I):
         if _valid_port(p):
-            proxies.add(('mtproto', h, int(p), s))
-            mtproto_ips.add((h, int(p)))
-
-    # 1b. MTProto t.me/
+            proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
     for h, p, s in re.findall(r't\.me/proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', text, re.I):
         if _valid_port(p):
-            proxies.add(('mtproto', h, int(p), s))
-            mtproto_ips.add((h, int(p)))
-
-    # 2. MTProto IP:PORT:SECRET
+            proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
     for h, p, s in re.findall(r'([A-Za-z0-9\.-]+):(\d+):([A-Fa-f0-9]{16,})', text):
         if _valid_port(p):
-            proxies.add(('mtproto', h, int(p), s))
-            mtproto_ips.add((h, int(p)))
-
-    # 3. SOCKS5 tg://socks
+            proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
     for h, p in re.findall(r'tg://socks\?server=([^&\s]+)&port=(\d+)', text, re.I):
         if _valid_port(p):
             proxies.add(('socks5', h, int(p), (None, None)))
-
-    # 4. SOCKS5 socks5://user:pass@ip:port
     for u, pw, h, p in re.findall(r'socks5://(?:([^:@]+):([^@]+)@)?([A-Za-z0-9\.-]+):(\d+)', text, re.I):
         if _valid_port(p):
             proxies.add(('socks5', h, int(p), (u or None, pw or None)))
-
-    # 5. Специальный формат CB-X2-Jun
     for match in re.findall(r'(socks5)://([\d.]+):(\d+):\w+', text, re.I):
         ip, port = match[1], match[2]
         if _valid_port(port):
             proxies.add(('socks5', ip, int(port), (None, None)))
 
-    # 6. Оставшиеся IP:PORT — ОТКЛЮЧЕНО (давало ~90% мусора)
+    # 6. IP:PORT — оставляем отключённым (мусор)
     # for h, p in re.findall(r'(\d+\.\d+\.\d+\.\d+):(\d+)', text):
-    #     if _valid_port(p) and (h, int(p)) not in mtproto_ips:
-    #         proxies.add(('socks5', h, int(p), (None, None)))
+    #     ...
 
-    # 7. JSON
     txt = text.strip()
     if txt.startswith('[') or txt.startswith('{'):
         try:
@@ -173,8 +222,7 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
                 if 'host' in item and 'port' in item and 'secret' in item:
                     h, p, s = item['host'], str(item['port']), str(item['secret'])
                     if _valid_port(p):
-                        proxies.add(('mtproto', h, int(p), s))
-                        mtproto_ips.add((h, int(p)))
+                        proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
                 elif 'socks5' in str(item).lower() and ('ip' in item or 'host' in item) and 'port' in item:
                     h = item.get('ip') or item.get('host')
                     if h is None: continue
@@ -184,7 +232,6 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
         except json.JSONDecodeError:
             pass
 
-    # 8. YAML
     if 'proxies:' in txt:
         try:
             import yaml
@@ -195,9 +242,7 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
                         server, port = item.get('server'), str(item.get('port'))
                         if server and port and _valid_port(port):
                             proxies.add(('socks5', server, int(port), (None, None)))
-        except ImportError:
-            pass
-        except Exception:
+        except (ImportError, Exception):
             pass
 
     return proxies
@@ -219,16 +264,15 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
     if not host:
         return None
 
-    if geoip_reader:
-        try:
-            info = geoip_reader.get(host)
-            if info and 'country' in info and 'iso_code' in info['country']:
-                country = info['country']['iso_code'].upper()
-                allowed = {'RU','BY','KZ','DE','NL','FI','GB','FR','SE','PL','CZ','AT','CH','IT','ES','NO','DK','BE','IE','LU','EE','LV','LT'}
-                if country not in allowed:
-                    return None
-        except Exception:
-            pass
+    # ---------- ФИЛЬТР ПОДОЗРИТЕЛЬНЫХ ПОРТОВ ----------
+    if typ == 'mtproto' and port in SUSPICIOUS_PORTS:
+        return None
+
+    # ---------- GEOIP ----------
+    if geoip_reader is not None:
+        country = _geo_country(host)
+        if country and country.upper() not in ALLOWED_COUNTRIES:
+            return None
 
     if typ == 'mtproto':
         secret = extra
@@ -284,43 +328,64 @@ def load_local_proxies(file_path: str) -> Set[Tuple[str, str, int, Any]]:
         print(f"✗ Ошибка чтения {file_path}: {e}")
         return set()
 
-def load_seen(path: str) -> Set[Tuple[str, str, int]]:
+# ---------- SEEN-КЭШ С TTL ----------
+def load_seen(path: str, ttl_hours: int = 48) -> Set[Tuple[str, str, int]]:
+    """Возвращает множество (type, host, port), проверенных за последние ttl_hours."""
     if not path or not os.path.isfile(path):
         return set()
     try:
         with open(path, 'r', encoding='utf-8') as f:
             data = json.load(f)
-        return {tuple(x) for x in data.get('seen', [])}
     except Exception as e:
         print(f'⚠️ Не удалось прочитать seen-кэш: {e}')
         return set()
+
+    # новый формат: {'seen': [{'k': [...], 'ts': '...'}, ...]}
+    # старый формат: {'seen': [[...], ...]} — считаем устаревшим
+    seen_set = set()
+    now = datetime.now(timezone.utc)
+
+    items = data.get('seen', [])
+    for item in items:
+        if isinstance(item, dict) and 'k' in item and 'ts' in item:
+            try:
+                ts = datetime.fromisoformat(item['ts'].replace('Z', '+00:00'))
+                if now - ts <= timedelta(hours=ttl_hours):
+                    seen_set.add(tuple(item['k']))
+            except Exception:
+                pass
+        # старый формат игнорируем → автоматически чистится
+    return seen_set
 
 def save_seen(path: str, seen: Set[Tuple[str, str, int]]):
     if not path:
         return
     try:
-        # ограничиваем размер кэша
-        seen_list = list(seen)[-100000:]
         os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
+        # ограничиваем размер
+        keys = list(seen)[-80000:]
+        now = datetime.now(timezone.utc).isoformat()
+        payload = {'seen': [{'k': list(k), 'ts': now} for k in keys]}
         with open(path, 'w', encoding='utf-8') as f:
-            json.dump({'seen': [list(x) for x in seen_list]}, f)
-        print(f'💾 Seen-кэш сохранён: {len(seen_list)} записей')
+            json.dump(payload, f)
+        print(f'💾 Seen-кэш сохранён: {len(keys)} записей (TTL 48ч)')
     except Exception as e:
         print(f'⚠️ Не удалось сохранить seen-кэш: {e}')
 
+# ---------- MAIN ----------
 def run(args):
     global geoip_reader
 
     start_time = time.time()
-    print('🚀 MTProxy Collector v3.5')
+    print('🚀 MTProxy Collector v3.6')
     print('=' * 48)
 
     if args.geoip and os.path.exists(args.geoip):
-        try:
-            geoip_reader = maxminddb.open(args.geoip)
-            print(f"✅ geoip.dat loaded from {args.geoip}")
-        except Exception as e:
-            print(f"⚠️ Не удалось загрузить geoip.dat: {e}")
+        geoip_reader = _load_geoip(args.geoip)
+        if geoip_reader is not None:
+            print(f"✅ geoip.dat загружен ({GEOIP_MODE}) из {args.geoip}")
+        else:
+            print("⚠️ Не удалось загрузить geoip.dat, проверка по стране отключена")
     else:
         print("⚠️ geoip.dat не указан или не найден, проверка по стране отключена.")
 
@@ -365,10 +430,9 @@ def run(args):
         print('\n⚠️ Нет прокси. Завершение.')
         return
 
-    # ---------- SEEN-КЭШ ----------
-    seen = load_seen(args.seen_file)
+    seen = load_seen(args.seen_file, ttl_hours=args.seen_ttl)
     if seen:
-        print(f'📦 Загружено {len(seen)} ранее проверенных прокси из кэша')
+        print(f'📦 Загружено {len(seen)} ранее проверенных прокси из кэша (TTL {args.seen_ttl}ч)')
 
     fresh_raw = {p for p in all_raw if (p[0], p[1], p[2]) not in seen}
     skipped = len(all_raw) - len(fresh_raw)
@@ -376,7 +440,6 @@ def run(args):
         print(f'♻️ Пропущено (уже проверялись): {skipped}')
     all_raw = fresh_raw
 
-    # ---------- ОГРАНИЧЕНИЕ ОБЪЁМА ----------
     if args.max_check and len(all_raw) > args.max_check:
         all_raw = set(random.sample(list(all_raw), args.max_check))
         print(f'⚠️ Ограничено до {args.max_check} случайных прокси')
@@ -400,7 +463,6 @@ def run(args):
             if checked % 500 == 0 or checked == total:
                 print(f'  [{checked}/{total}] {checked/total*100:.0f}% | найдено: {len(valid)}')
 
-    # обновляем seen-кэш ДО возможного return
     updated_seen = seen | {(p[0], p[1], p[2]) for p in all_raw}
     save_seen(args.seen_file, updated_seen)
 
@@ -453,13 +515,12 @@ def run(args):
         "timestamp": utc.isoformat(),
         "total": len(valid),
         "by_region": {
-            "ru": len(mtproto_ru),
-            "eu": len(mtproto_eu),
-            "us": len(mtproto_us),
-            "asia": len(mtproto_asia),
+            "ru": len(mtproto_ru), "eu": len(mtproto_eu),
+            "us": len(mtproto_us), "asia": len(mtproto_asia),
             "socks5": len(socks5)
         },
-        "top": top
+        "top": top,
+        "geoip_mode": GEOIP_MODE,
     }
     with open(f'{args.output_dir}/proxy_stats_verified.json', 'w', encoding='utf-8') as f:
         json.dump(stats, f, indent=2, ensure_ascii=False)
@@ -469,6 +530,7 @@ def run(args):
 
     with open(f'{args.output_dir}/verification.log', 'w', encoding='utf-8') as f:
         f.write(f"Verification completed at {utc}\n")
+        f.write(f"GeoIP mode: {GEOIP_MODE}\n")
         f.write(f"Total proxies checked: {total}\n")
         f.write(f"Valid proxies found: {len(valid)}\n")
         f.write(f"Top saved: {top}\n")
@@ -491,17 +553,17 @@ def run(args):
     print('=' * 48)
 
 def main():
-    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.5")
+    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.6")
     parser.add_argument('--timeout', type=float, default=2.0)
     parser.add_argument('--workers', type=int, default=100)
     parser.add_argument('--top', type=int, default=0)
     parser.add_argument('--output-dir', default='verified')
     parser.add_argument('--manual', type=str)
     parser.add_argument('--geoip', type=str)
-    parser.add_argument('--max-check', type=int, default=30000,
-                        help="Максимум прокси для TCP-проверки (0 = без лимита)")
-    parser.add_argument('--seen-file', type=str, default='verified/seen.json',
-                        help="Файл с уже проверенными прокси (кэш)")
+    parser.add_argument('--max-check', type=int, default=30000)
+    parser.add_argument('--seen-file', type=str, default='verified/seen.json')
+    parser.add_argument('--seen-ttl', type=int, default=48,
+                        help="TTL seen-кэша в часах (по умолчанию 48)")
     args = parser.parse_args()
     run(args)
 
