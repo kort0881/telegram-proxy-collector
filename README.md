@@ -1,7 +1,3 @@
-Понял — сохраняю **всю твою структуру 1:1** (Community Tools, Мои проекты, стиль, эмодзи, дисклеймер), меняю только **фактическую информацию**, чтобы она соответствовала реальному коду v3.8. Ничего не удаляю, ничего не переставляю.
-
----
-
 # 🛡️ Telegram Proxy Collector: Anti‑Censorship Edition
 
 [![oosmetrics — Топ‑5 в категории Crypto](https://api.oosmetrics.com/api/v1/badge/achievement/21322b63-7982-4e81-99f7-ada7354f9c21.svg)](https://oosmetrics.com/repo/kort0881/telegram-proxy-collector)
