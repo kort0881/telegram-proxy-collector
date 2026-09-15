@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.6
+# MTProto & SOCKS5 Proxy Collector v3.7
 # - Фикс GeoIP: maxminddb.open_database + fallback на geoip2
 # - Фильтр подозрительных портов (SSH, MySQL, Postgres и т.д.)
 # - TTL для seen-кэша (не более 48 часов)
+# - FIX: seen-кэш теперь учитывает secret (разные MTProto на одном IP:port)
 
 import requests
 import re
@@ -41,7 +42,6 @@ US_DOMAINS = ['.us', '.nyc', '.la', '.sf', '.dallas', 'amazonaws.com', 'digitalo
 ASIA_DOMAINS = ['.asia', '.jp', '.cn', '.sg', '.hk', '.kr', '.in', '.tw', '.ph', '.my', '.id', '.vn', '.th']
 BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
 
-# Порты, которые НЕ бывают MTProto (SSH, БД, почта, web)
 SUSPICIOUS_PORTS = {
     21, 22, 23, 25, 53, 80, 110, 111, 135, 139, 143, 161, 162,
     389, 445, 465, 514, 587, 631, 993, 995, 1080, 1433, 1521,
@@ -146,9 +146,7 @@ def decode_domain(secret: str) -> Optional[str]:
         return None
 
 def _load_geoip(path: str):
-    """Загружает geoip.dat через maxminddb.open_database или geoip2.Reader."""
     global GEOIP_MODE
-    # 1) пробуем maxminddb.open_database
     if _HAS_MAXMIND:
         try:
             reader = maxminddb.open_database(path)
@@ -156,7 +154,6 @@ def _load_geoip(path: str):
             return reader
         except Exception as e:
             print(f'⚠️ maxminddb.open_database не сработал: {e}')
-    # 2) пробуем geoip2.database.Reader
     if _HAS_GEOIP2:
         try:
             reader = GeoIP2Reader(path)
@@ -167,17 +164,14 @@ def _load_geoip(path: str):
     return None
 
 def _geo_country(host: str) -> Optional[str]:
-    """Возвращает ISO-код страны для host или None."""
     if geoip_reader is None:
         return None
     try:
         info = geoip_reader.get(host)
         if not info:
             return None
-        # maxminddb (raw dict)
         if GEOIP_MODE == 'maxminddb':
             return (info.get('country') or {}).get('iso_code')
-        # geoip2 (объект)
         if GEOIP_MODE == 'geoip2':
             return info.country.iso_code if info.country else None
     except Exception:
@@ -207,10 +201,6 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
         ip, port = match[1], match[2]
         if _valid_port(port):
             proxies.add(('socks5', ip, int(port), (None, None)))
-
-    # 6. IP:PORT — оставляем отключённым (мусор)
-    # for h, p in re.findall(r'(\d+\.\d+\.\d+\.\d+):(\d+)', text):
-    #     ...
 
     txt = text.strip()
     if txt.startswith('[') or txt.startswith('{'):
@@ -264,11 +254,9 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
     if not host:
         return None
 
-    # ---------- ФИЛЬТР ПОДОЗРИТЕЛЬНЫХ ПОРТОВ ----------
     if typ == 'mtproto' and port in SUSPICIOUS_PORTS:
         return None
 
-    # ---------- GEOIP ----------
     if geoip_reader is not None:
         country = _geo_country(host)
         if country and country.upper() not in ALLOWED_COUNTRIES:
@@ -328,9 +316,22 @@ def load_local_proxies(file_path: str) -> Set[Tuple[str, str, int, Any]]:
         print(f"✗ Ошибка чтения {file_path}: {e}")
         return set()
 
-# ---------- SEEN-КЭШ С TTL ----------
-def load_seen(path: str, ttl_hours: int = 48) -> Set[Tuple[str, str, int]]:
-    """Возвращает множество (type, host, port), проверенных за последние ttl_hours."""
+# ---------- SEEN-КЭШ (с secret и TTL) ----------
+def _cache_key(p) -> Tuple:
+    """Ключ кэша: (type, host, port, secret-or-credentials).
+    Разные secret на одном IP:port считаются разными прокси."""
+    if len(p) >= 4:
+        extra = p[3]
+        if isinstance(extra, str):
+            return (p[0], p[1], p[2], extra)
+        if isinstance(extra, tuple):
+            # socks5 с логином/паролем
+            return (p[0], p[1], p[2], f"{extra[0] or ''}:{extra[1] or ''}")
+    return (p[0], p[1], p[2], '')
+
+def load_seen(path: str, ttl_hours: int = 48) -> Set[Tuple]:
+    """Возвращает множество ключей, проверенных за последние ttl_hours.
+    Ключи из старого 3-элементного формата игнорируются (автосброс)."""
     if not path or not os.path.isfile(path):
         return set()
     try:
@@ -340,30 +341,26 @@ def load_seen(path: str, ttl_hours: int = 48) -> Set[Tuple[str, str, int]]:
         print(f'⚠️ Не удалось прочитать seen-кэш: {e}')
         return set()
 
-    # новый формат: {'seen': [{'k': [...], 'ts': '...'}, ...]}
-    # старый формат: {'seen': [[...], ...]} — считаем устаревшим
     seen_set = set()
     now = datetime.now(timezone.utc)
 
-    items = data.get('seen', [])
-    for item in items:
+    for item in data.get('seen', []):
         if isinstance(item, dict) and 'k' in item and 'ts' in item:
             try:
                 ts = datetime.fromisoformat(item['ts'].replace('Z', '+00:00'))
-                if now - ts <= timedelta(hours=ttl_hours):
+                # берём только 4-элементные ключи (новый формат)
+                if now - ts <= timedelta(hours=ttl_hours) and len(item['k']) >= 4:
                     seen_set.add(tuple(item['k']))
             except Exception:
                 pass
-        # старый формат игнорируем → автоматически чистится
     return seen_set
 
-def save_seen(path: str, seen: Set[Tuple[str, str, int]]):
+def save_seen(path: str, seen):
     if not path:
         return
     try:
         os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
-        # ограничиваем размер
-        keys = list(seen)[-80000:]
+        keys = list(seen)[-100000:]
         now = datetime.now(timezone.utc).isoformat()
         payload = {'seen': [{'k': list(k), 'ts': now} for k in keys]}
         with open(path, 'w', encoding='utf-8') as f:
@@ -377,7 +374,7 @@ def run(args):
     global geoip_reader
 
     start_time = time.time()
-    print('🚀 MTProxy Collector v3.6')
+    print('🚀 MTProxy Collector v3.7')
     print('=' * 48)
 
     if args.geoip and os.path.exists(args.geoip):
@@ -434,7 +431,7 @@ def run(args):
     if seen:
         print(f'📦 Загружено {len(seen)} ранее проверенных прокси из кэша (TTL {args.seen_ttl}ч)')
 
-    fresh_raw = {p for p in all_raw if (p[0], p[1], p[2]) not in seen}
+    fresh_raw = {p for p in all_raw if _cache_key(p) not in seen}
     skipped = len(all_raw) - len(fresh_raw)
     if skipped:
         print(f'♻️ Пропущено (уже проверялись): {skipped}')
@@ -463,7 +460,7 @@ def run(args):
             if checked % 500 == 0 or checked == total:
                 print(f'  [{checked}/{total}] {checked/total*100:.0f}% | найдено: {len(valid)}')
 
-    updated_seen = seen | {(p[0], p[1], p[2]) for p in all_raw}
+    updated_seen = seen | {_cache_key(p) for p in all_raw}
     save_seen(args.seen_file, updated_seen)
 
     if not valid:
@@ -553,7 +550,7 @@ def run(args):
     print('=' * 48)
 
 def main():
-    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.6")
+    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.7")
     parser.add_argument('--timeout', type=float, default=2.0)
     parser.add_argument('--workers', type=int, default=100)
     parser.add_argument('--top', type=int, default=0)
@@ -562,8 +559,7 @@ def main():
     parser.add_argument('--geoip', type=str)
     parser.add_argument('--max-check', type=int, default=30000)
     parser.add_argument('--seen-file', type=str, default='verified/seen.json')
-    parser.add_argument('--seen-ttl', type=int, default=48,
-                        help="TTL seen-кэша в часах (по умолчанию 48)")
+    parser.add_argument('--seen-ttl', type=int, default=48)
     args = parser.parse_args()
     run(args)
 
