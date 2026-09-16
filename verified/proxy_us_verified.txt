@@ -1,5 +1,7 @@
-# MTProto US (2)
-# Updated: 2026-09-15 23:59:15.050194+00:00
+# MTProto US (4)
+# Updated: 2026-09-16 04:38:24.357565+00:00
 
-tg://proxy?server=31.220.78.93&port=443&secret=ee5fcec9b1bf68764858dcb930f393ee72636c6f7564666c6172652e636f6d
-tg://proxy?server=213.156.152.176&port=443&secret=eeccccb375ce86c0d90e662b05c97f10187777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=95.182.114.239&port=443&secret=eeeb07bebf3a073e4c4bb4d5a19ca676ee7777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=138.124.113.201&port=443&secret=ee3aff3c6ac00f9a9b6bfe90449249953f636c6f7564666c6172652e636f6d
+tg://proxy?server=tel.granddatacloud.xyz&port=6556&secret=ee3d6897647be51e704f58c5cc7d0b18a8636c6f7564666c6172652e636f6d
+tg://proxy?server=love.roseprox.xyz&port=2443&secret=ee74e3501358c742b6ec0d4e5d8ffa2bf47777772e636c6f7564666c6172652e636f6d
