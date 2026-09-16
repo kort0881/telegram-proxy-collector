@@ -1,13 +1,15 @@
-# Proxies with domain (10)
-# Updated: 2026-09-16 16:15:14.881847+00:00
+# Proxies with domain (12)
+# Updated: 2026-09-16 20:56:08.992609+00:00
 
-tg://proxy?server=178.105.226.182&port=443&secret=ee396219a1e9b2aebf6f245a1495777811706c61792e676f6f676c652e636f6d # domain: 9bo$zwxplay.google.com
-tg://proxy?server=89.167.40.214&port=443&secret=eea21bf437ed6f38a5b03c6e66b036d301676f6f676c65617069732e636f6d # domain: 7o8<nf6googleapis.com
-tg://proxy?server=jkkeb.demo.personal-mtp.online&port=443&secret=eed0d6e111bada5511fcce9584deadbeef6a6b6b65622e64656d6f2e706572736f6e616c2d6d74702e6f6e6c696e65 # domain: ujkkeb.demo.personal-mtp.online
-tg://proxy?server=31.220.77.123&port=443&secret=eedac749bb24f965a81b697e1418be00f2636c6f7564666c6172652e636f6d # domain: i$ei~
-tg://proxy?server=150.241.65.151&port=443&secret=ee6d6963726f736f66742e636f6d2e03 # domain: microsoft.com.
-tg://proxy?server=2.26.98.223&port=443&secret=ee3f354f86e59e2c166c83031772d92d6379612e7275 # domain: ?5o,lr-cya.ru
-tg://proxy?server=93.77.179.16&port=443&secret=ee6a0333c1db3f8eaba5c76731a44203b6617669746f2e7275 # domain: j3?g1bavito.ru
-tg://proxy?server=s2.fluctuation.online&port=443&secret=eedd345afe9188a4e5a94dc706e1aa6cef78352e7275 # domain: 4zmlx5.ru
-tg://proxy?server=109.120.183.224&port=443&secret=eea1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d679616e6465782e7275 # domain: yandex.ru
-tg://proxy?server=31.220.75.141&port=443&secret=ee5bddeb17a67936f654c740e97bb4cad1636c6f7564666c6172652e636f6d # domain: [y6t@{cloudflare.com
+tg://proxy?server=46.21.82.211&port=443&secret=eede5dadfed75443ebc0598b2af1ed594b67686f73746e65742e6f6e6c696e65 # domain: ]tcy*ykghostnet.online
+tg://proxy?server=91.196.161.7&port=443&secret=ee5f6ec37f1f920300fc478faae87d92fe7562756e74752e636f6d # domain: _n
+tg://proxy?server=185.228.232.82&port=443&secret=ee8f67321c5e68a7801876fa6b8ee406c06465697474692e6e6574 # domain: g2^hvkdeitti.net
+tg://proxy?server=93.77.162.246&port=443&secret=ee34cce08e4b2b62d5f9b3c4d71f6bd2646d61696c2e70726f78797a2e73697465 # domain: 4k+bkdmail.proxyz.site
+tg://proxy?server=drill.gizamoff.trade&port=69&secret=eebde76db082bb05e04cb5c63a32b5853d6472696c6c2e67697a616d6f66662e7472616465 # domain: ml:2=drill.gizamoff.trade
+tg://proxy?server=93.189.228.56&port=443&secret=eef2f44e0cc16ad0e07ae25f665aac5c # domain: njz_fz\
+tg://proxy?server=cdn.coreunit.ru&port=443&secret=eececef6563bce080cccda8dcc61cedbf663646e2e6a7364656c6976722e6e6574 # domain: v;acdn.jsdelivr.net
+tg://proxy?server=154.64.243.69&port=443&secret=ee3cf87a31a783f101c52036db860619ed73332e616d617a6f6e6177732e636f6d # domain: <z1 6s3.amazonaws.com
+tg://proxy?server=173.212.229.99&port=443&secret=eefea85401978c4b18d790fe3aaed5764c636c6f7564666c6172652e636f6d # domain: tk:vlcloudflare.com
+tg://proxy?server=you.happylink.top&port=2053&secret=ee7b02831e4bdcd4054861ae18c98c7edd73332e616d617a6f6e6177732e636f6d # domain: {kha~s3.amazonaws.com
+tg://proxy?server=love.roseprox.xyz&port=5443&secret=ee74e3501358c742b6ec0d4e5d8ffa2bf47777772e636c6f7564666c6172652e636f6d # domain: tpxbn]+www.cloudflare.com
+tg://proxy?server=love.roseprox.xyz&port=443&secret=ee74e3501358c742b6ec0d4e5d8ffa2bf47777772e636c6f7564666c6172652e636f6d # domain: tpxbn]+www.cloudflare.com
