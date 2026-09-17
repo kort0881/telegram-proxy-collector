@@ -1,52 +1,52 @@
 {
-  "timestamp": "2026-09-17T13:06:58.272836+00:00",
+  "timestamp": "2026-09-17T17:58:45.476465+00:00",
   "metrics": {
     "total": 200,
     "pings_count": 200,
-    "median_ping": 0.137,
-    "mean_ping": 0.158,
-    "stdev_ping": 0.137,
-    "good_thr": 0.137,
-    "bad_thr": 0.343,
-    "good": 104,
-    "medium": 86,
-    "bad": 10,
+    "median_ping": 0.143,
+    "mean_ping": 0.146,
+    "stdev_ping": 0.065,
+    "good_thr": 0.143,
+    "bad_thr": 0.357,
+    "good": 102,
+    "medium": 94,
+    "bad": 4,
     "regions": {
-      "eu": 192,
       "us": 6,
-      "ru": 2
+      "eu": 186,
+      "ru": 8
     },
     "types": {
-      "mtproto": 74,
-      "socks5": 126
+      "mtproto": 62,
+      "socks5": 138
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
     "recommended_workers": 100,
-    "current_avg_ping": 0.158,
-    "current_median_ping": 0.137,
-    "current_stdev_ping": 0.137,
+    "current_avg_ping": 0.146,
+    "current_median_ping": 0.143,
+    "current_stdev_ping": 0.065,
     "total_proxies": 200,
-    "trend_median_ping": 0.046,
+    "trend_median_ping": 0.006,
     "trend_direction": "stable"
   },
   "anomalies_count": 10,
   "model": {
-    "cv_f1": 1.0,
+    "cv_f1": 0.9947,
     "report": {
       "0": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 20.0
+        "support": 16.0
       },
       "1": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 180.0
+        "support": 184.0
       },
       "accuracy": 1.0,
       "macro avg": {
@@ -62,6 +62,6 @@
         "support": 200.0
       }
     },
-    "threshold": 0.20550000000000002
+    "threshold": 0.21449999999999997
   }
 }
