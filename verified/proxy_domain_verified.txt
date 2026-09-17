@@ -1,10 +1,17 @@
-# Proxies with domain (7)
-# Updated: 2026-09-17 13:06:11.341552+00:00
+# Proxies with domain (14)
+# Updated: 2026-09-17 17:57:36.359931+00:00
 
-tg://proxy?server=165.232.81.38&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd2768797374657269612e616c7a6f636c6f75642e73697465 # domain: }>r@c'hysteria.alzocloud.site
-tg://proxy?server=107.189.28.32&port=443&secret=eebe9ba010e83c95aa690b10c541d1db227777772e676f6f676c652e636f6d # domain: <ia"www.google.com
-tg://proxy?server=93.77.178.5&port=443&secret=ee1e355000114cdb95628c1564225a404b36326334346231662e6b6f73686b6170726f78792e73686f70 # domain: 5p
-tg://proxy?server=150.241.75.150&port=443&secret=ee79616e6465782e7275450845a3ade2 # domain: yandex.ruee
-tg://proxy?server=62.171.183.101&port=443&secret=ee36ee4a84e1fa2cca6f1d430eee851de7636c6f7564666c6172652e636f6d # domain: 6j,occloudflare.com
-tg://proxy?server=194.163.165.73&port=443&secret=ee5b0d176070681ea5d49184d258f65601636c6f7564666c6172652e636f6d # domain: [`phxvcloudflare.com
-tg://proxy?server=spider.synoserver.com&port=443&secret=eeac4e10848f6bc0250d1660875987e2447777772e636c6f7564666c6172652e636f6d # domain: nk%`ydwww.cloudflare.com
+tg://proxy?server=77.239.105.219&port=443&secret=ee6c083120393936fb881456da3ec073777777772e676f6f676c652e636f6d # domain: l1 996v>swwww.google.com
+tg://proxy?server=62.182.197.26&port=443&secret=ee63f4406b12426f2151314e76a8ff11bf7777772e676f6f676c652e636f6d # domain: c@kbo!q1nvwww.google.com
+tg://proxy?server=194.233.95.205&port=443&secret=eed0ed90376601d3a5e8a71cfd42d50944676f6f676c65617069732e636f6d # domain: 7fbdgoogleapis.com
+tg://proxy?server=owner-explain.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b # domain: t3f)}+mt.akenai.click
+tg://proxy?server=akenai.tg&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b # domain: t3f)}+mt.akenai.click
+tg://proxy?server=pl.gptru.pro&port=443&secret=ee20b1dfaf8512ed32a1048a55094b000e766b2e636f6d # domain:  2uk
+tg://proxy?server=espress0-macch1ato-p0r-favor3.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b # domain: t3f)}+mt.akenai.click
+tg://proxy?server=185.99.98.173&port=443&secret=ee60746dd99256de80626c773640d33f866d2e6265626f6f2e7275 # domain: `tmvblw6@?m.beboo.ru
+tg://proxy?server=72.56.243.171&port=443&secret=ee7190e483dab187a65ad852cea67ad2757765622e6d61782e7275 # domain: qzrzuweb.max.ru
+tg://proxy?server=193.233.88.103&port=443&secret=eea3de94e6a3963f34ab8e050e6696a502647a656e2e7275 # domain: ?4fdzen.ru
+tg://proxy?server=iloveasians.club&port=443&secret=ee25cbb92cbe5ef91a21da4e802e60675f6164732e78352e7275 # domain: %,^!n.`g_ads.x5.ru
+tg://proxy?server=45.38.249.69&port=443&secret=ee698fd974cbcaf89cb4d3f57788efdeff7777772e636c6f7564666c6172652e636f6d # domain: itwwww.cloudflare.com
+tg://proxy?server=79.137.196.223&port=16443&secret=ee64cb94437cedd507cf9c4d83fbc229287777772e636c6f7564666c6172652e636f6d # domain: dc|m)(www.cloudflare.com
+tg://proxy?server=150.241.68.124&port=443&secret=ee1962473803f39d85ddf276ba56f8e70e636c6f7564666c6172652e636f6d # domain: bg8vvcloudflare.com
