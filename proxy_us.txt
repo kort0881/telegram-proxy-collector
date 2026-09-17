@@ -1,5 +1,4 @@
-# MTProto US (2)
-# Updated: 2026-09-17 00:08:48.282136+00:00
+# MTProto US (1)
+# Updated: 2026-09-17 07:13:49.852286+00:00
 
-tg://proxy?server=158.220.115.76&port=443&secret=ee5ca225658ba14e61d864b4ea5e07bcda636c6f7564666c6172652e636f6d
-tg://proxy?server=pro.azxjet.ir&port=443&secret=ee7c0e41cdb7ecdd7c4ca99cacbadb4fac7777772e636c6f7564666c6172652e636f6d
+tg://proxy?server=s2.forwardmt.com&port=2087&secret=ee9a65cb7efd7a4f5b4bf87b6c5de26931636c6f7564666c6172652e636f6d

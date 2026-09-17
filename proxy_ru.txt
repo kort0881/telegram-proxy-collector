@@ -1,5 +1,21 @@
-# MTProto RU (2)
-# Updated: 2026-09-17 00:08:48.282136+00:00
+# MTProto RU (18)
+# Updated: 2026-09-17 07:13:49.852286+00:00
 
-tg://proxy?server=51.250.32.76&port=443&secret=ee5636d7729d8726e81dbc5c3388b73549617669746f2e7275
-tg://proxy?server=ghostnode.ru&port=443&secret=ee8383301585e1f78b055c64165c824cad676f2e73616d706f2e7275
+tg://proxy?server=anointment.corrugation.pieceless.wowteleserye.com&port=443&secret=ee9883053d47b46a4c91ccb3dee227011e647a656e2e7275
+tg://proxy?server=interwind.jailhouse.warmly.teleseryepinoytv.com&port=443&secret=eeec94711031177847fe7d1a42efdd5fd1647a656e2e7275
+tg://proxy?server=blowhard.newsy.snook.teleseryeshd.com&port=443&secret=ee3120a328dbe4ffc9a5b4f96ef82a92be647a656e2e7275
+tg://proxy?server=clinical.leonides.preview.teleseryeepisodes.com&port=443&secret=ee1fe25ad746a7172b4c929b0c38705bdc647a656e2e7275
+tg://proxy?server=divorcee.hutting.spaceless.pinoywebtv.com&port=443&secret=ee7d0765d3f7b468ebbbc89bed8a471ff6647a656e2e7275
+tg://proxy?server=exudative.uncurl.unprocessed.gmateleserye.com&port=443&secret=eebae98330d9c23d2684a34d3a9848ebe7647a656e2e7275
+tg://proxy?server=liberate.shave.valedictory.teleseryeepisodes.com&port=443&secret=ee8e85e11e6b67d91ac09f06ee7de11287647a656e2e7275
+tg://proxy?server=goniometrical.juggernaut.overhear.teleseryepinoytv.com&port=443&secret=ee29d5c41bf8720697ec5ad65292d22ea9647a656e2e7275
+tg://proxy?server=depicted.husker.waters.pilipinoteleserye.com&port=443&secret=eee3cf82ccb7f0dfdf6ceda06493dcf43c647a656e2e7275
+tg://proxy?server=lith.paddle.sank.compinoy.com&port=443&secret=ee155f6a42cc14eb162c7720986706d583647a656e2e7275
+tg://proxy?server=brabble.pronate.teehee.teleseryegroup.com&port=443&secret=eef1ca264d6cacfb7b8717d41c96dc2e7d647a656e2e7275
+tg://proxy?server=boob.plutonium.saturator.teleseryeepisodes.com&port=443&secret=ee79f494e4de87dea2dd5e7fc9cee0e4df647a656e2e7275
+tg://proxy?server=oblational.oka.timorous.teleseryestv.com&port=443&secret=ee4537f421f42e5a7b9ff87bcdf412200b647a656e2e7275
+tg://proxy?server=finder.lithiasis.nomadism.teleseryestv.com&port=443&secret=ee530e6d3fd625937b72c59303ea18bc0e647a656e2e7275
+tg://proxy?server=irrepealable.subnucleon.unbuilt.pilipinoteleserye.com&port=443&secret=ee9adfe87994557e990da35fbe9c9b20a7647a656e2e7275
+tg://proxy?server=cracklings.descendable.rangoon.teleseryerepaly.com&port=443&secret=ee0cb8055ed28d45a4cc20cbe67325489d647a656e2e7275
+tg://proxy?server=ovular.quartering.undeservedly.teleseryetvreplay.com&port=443&secret=ee0732b887959a965de817458d1f1383e0647a656e2e7275
+tg://proxy?server=he.de-nu.7.mtproto.ru&port=443&secret=ee2111222233334444555566667777888862726f777365722e79616e6465782e636f6d

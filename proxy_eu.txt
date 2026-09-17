@@ -1,37 +1,30 @@
-# MTProto EU (34)
-# Updated: 2026-09-17 00:08:48.282136+00:00
+# MTProto EU (27)
+# Updated: 2026-09-17 07:13:49.852286+00:00
 
-tg://proxy?server=172.65.234.91&port=9443&secret=ee09db815a6d82a31fda76f872230c69d7706b676275696c642e6f7267
-tg://proxy?server=web.wikidev.shop&port=443&secret=23b962c6c46545a38261d61bc7347e6d
-tg://proxy?server=155.138.225.119&port=443&secret=e945cfbd472ec321cdddeb4c9a0aed9e
-tg://proxy?server=45.76.231.32&port=443&secret=d4fb97d637ce07988ad90444fc481dd6
-tg://proxy?server=103.161.35.56&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0
-tg://proxy?server=best.ir.agrescjarkahdgs.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e6961626364656667682e696a
-tg://proxy?server=moon.talebi.co.uk&port=443&secret=ee1603010200010001fc030386e24c3add626973636f7474692e79656b74616e65742e636f6
-tg://proxy?server=178.104.160.179&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=64.188.65.136&port=443&secret=eec11798ab008831b474066c9e1ebf5c997777772e78352e7275
-tg://proxy?server=login.kerfilia.info&port=6775&secret=7umk8jsddowEqNfzkSDKW25iaXNjb3R0aS55ZWt0YW5ldC5jb20
-tg://proxy?server=messi2.nisti.co.uk&port=8880&secret=79e344818749bd7ac519130220c25d09
-tg://proxy?server=144.124.225.30&port=443&secret=eeDDNEgYdJvXrFGRMCIMJQ
-tg://proxy?server=51.20.131.3&port=443&secret=dd79e7010200010007f0030386e24c3add
-tg://proxy?server=mashtibash.vafadari.co.uk&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=65.108.50.120&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=webhook.vingardium.co.uk.&port=443&secret=7t3__FoRaLL_Proxy_93ZWIuYmFsZS5haQ==
-tg://proxy?server=65.108.3.106&port=443&secret=7hBEYoISSb16xRkTAiDCXQk=
-tg://proxy?server=95.216.22.207&port=443&secret=7HQighJPBNMYVRNB6tdkVw
-tg://proxy?server=zentyo.co.uk.&port=443&secret=ddf0eeb0bd9adc4fd4a93994ee3b2a216b
-tg://proxy?server=speed-speed.co.uk.&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d
-tg://proxy?server=eu.geo-cdn.ru&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQtY2RueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-tg://proxy?server=109.248.168.94&port=443&secret=4253e0968e3cbf14a03e60f16a71bea1
-tg://proxy?server=webhook.vingardium.co.uk.&port=443&secret=7t3____FoRaLL_Proxy___93ZWIuYmFsZS5haQ==
-tg://proxy?server=vase-hamas.ir.kjhsdjhads.info.&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=manavi.masnavi.info&port=443&secret=ee1603010200010001fc030386e24c3add626973636f7474692e79656b74616e65742e636f6d
-tg://proxy?server=94.184.39.6.aprawood.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
-tg://proxy?server=zagros.ir.ghsisncbv.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e69626973636f7474692e79656b74616e65742e636f6d
-tg://proxy?server=best.ir.agrescjarkahdgs.info&port=88&secret=ee0000f00f0f775555fffffff5006e2e6961626364656667682e696a
-tg://proxy?server=t.sibvpn.com&port=443&secret=7je0vaprgTJNB6pKyex6tDFkbC5zb2Z0OTguaXI
-tg://proxy?server=mtproto.vtworainforever.ir&port=284&secret=ee140362504c40f5a376cb851c2b51c2c97777772e676f6f676c652e636f6d
-tg://proxy?server=207pana.denatara.info&port=443&secret=ee1603010200010001fc030386e24c3add626973636f7474692e79656b74616e65742e636f6d
-tg://proxy?server=hetzner.sammarkham.co.uk.&port=443&secret=7pR7ojB4pNUZd8pcEBczQBloZXR6bmVyLmNvbQ==
-tg://proxy?server=fi.tg.blook.red&port=443&secret=4634d8605673b722d19b11a45e34a1db
-tg://proxy?server=tcpdash-local.technom.info&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
+tg://proxy?server=ma.ikco.shop&port=443&secret=7gAA8A8Pd1VV____9QBuLmktLS0tLS1pbi5hcHBjZW50ZXIubXMtLS0tLS0=
+tg://proxy?server=5.255.97.150&port=443&secret=15115115115115115115115115115115
+tg://proxy?server=78.141.223.93&port=443&secret=ec3e57e6a70defcfb931bf5bba9344c0
+tg://proxy?server=91.99.97.107&port=443&secret=7gD_AA___wD_9VVf______VtZWRpYS5zdGVhbXBvd2VyZWQuY29t
+tg://proxy?server=188.40.70.227&port=443&secret=104462821249bd7ac519130220c25d09
+tg://proxy?server=91.99.213.141&port=443&secret=dd104462821249bd7ac519130220c25d09
+tg://proxy?server=nick.ciaude.co.uk&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=116.203.121.51&port=443&secret=1603010200010001fc030386e24c3add
+tg://proxy?server=209.250.238.192&port=443&secret=6c87b1eac5d66e8df9d561965b85d2f7
+tg://proxy?server=201.4.76.117&port=443&secret=eedffa323b22e7ab155f9806c3c9629f8c756c74696d612e74656c6568656c702e746f70
+tg://proxy?server=glodxe.dknin.cyou&port=443&secret=YyEEgYdJXfrFmgMCIMJdjjRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAgYdJXfrFmgMCIMJdjjRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29t
+tg://proxy?server=45.66.11.224&port=443&secret=dd2efb3fbae16446f3b021b7069b592367
+tg://proxy?server=95.217.24.79&port=443&secret=dd1603010200010001fc031386e24c3add
+tg://proxy?server=65.108.200.224&port=443&secret=EERighJJvXrFGRMCIMJdCQ
+tg://proxy?server=agony.drudgery.intermarriage.teleseryestvheaven.com&port=443&secret=ee682a1cf1a5aac21db73a0900efc5a82f647a656e2e7275
+tg://proxy?server=distant.hellenian.horseplayer.workpiece.xenomania.tupko.com&port=21698&secret=5ccc99ae70fcc5817f00c14d1e62c71f
+tg://proxy?server=84.252.131.153&port=443&secret=ee00819c04340f17fabac7f07b463f8b15617669746f2e7275
+tg://proxy?server=tg.unibot.work&port=443&secret=dd4d90d8c4c45d25aa849135d4e73c27c7
+tg://proxy?server=del-tange-toam.ir.kkhfkasfhkasdx.info.&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=Just-iraninan.com.the-nice-mtproto.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d
+tg://proxy?server=hi.notmescat.net&port=7443&secret=ee4b9ba5fcb813d00ef6f7c5a0302f182f68692e6e6f746d65736361742e6e6574
+tg://proxy?server=Focos-altama.bohran-vertica.https.polarizio.info&port=443&secret=1320PuNyHw_LQKT_Y7XNJw==
+tg://proxy?server=matey.mollify.topgallant.pinoywebtv.com&port=443&secret=eef13d00e79d07db08abe860dc407f527b647a656e2e7275
+tg://proxy?server=brisket.varomax.co.uk.&port=44300&secret=EEABAzJJlbB8AwOG6Ibn8Q
+tg://proxy?server=rkn.tg&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b
+tg://proxy?server=proxy.deal-market.xyz&port=443&secret=eeaedf1835244c5bd42c7698f35b7cd18870726f78792e6465616c2d6d61726b65742e78797a
+tg://proxy?server=fav.dynme.ovh&port=9444&secret=7qCfYnOlIcmIHQyhsRpd0PFmYXYuZHlubWUub3
