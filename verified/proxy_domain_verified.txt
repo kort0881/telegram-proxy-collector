@@ -1,11 +1,9 @@
-# Proxies with domain (8)
-# Updated: 2026-09-17 21:06:58.661456+00:00
+# Proxies with domain (6)
+# Updated: 2026-09-17 23:56:18.338420+00:00
 
-tg://proxy?server=82.38.65.52&port=443&secret=eeddb9e20cc7ef26e5b804f00300d0690b6974756e65732e6170706c652e636f6d # domain: &
-tg://proxy?server=relay.surfvpn.app&port=443&secret=eedf44a4347c1eb8938c7e63340bd1ca4972656c61792e7375726676706e2e617070 # domain: d4|~c4irelay.surfvpn.app
-tg://proxy?server=82.40.49.99&port=443&secret=ee94506e2d9fd384a8df9249305ccd0a3962726f777365722e79616e6465782e636f6d # domain: pn-i0\9browser.yandex.com
-tg://proxy?server=athematic.mydriasis.paco.steatoma.warring.lamidix.com&port=1450&secret=eec94ed77bf66cc3866481beb8cff1fdf0647a656e2e7275 # domain: n{lddzen.ru
-tg://proxy?server=173.249.42.146&port=443&secret=ee9c358bfbf24551ff7bb4a7f2c33bc298636c6f7564666c6172652e636f6d # domain: 5eq{;cloudflare.com
-tg://proxy?server=95.111.234.50&port=443&secret=ee349a239357a92e695d3fa1af04bf3e2c636c6f7564666c6172652e636f6d # domain: 4#w.i]?>,cloudflare.com
-tg://proxy?server=62.171.185.192&port=443&secret=ee212563d6d8816a43be5143606cdadb35636c6f7564666c6172652e636f6d # domain: !%cjcqc`l5cloudflare.com
-tg://proxy?server=31.70.68.130&port=443&secret=eea1b2c3d4e5f60123456789adadadadad73332e616d617a6f6e6177732e636f6d # domain: #egs3.amazonaws.com
+tg://proxy?server=185.121.233.89&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D # domain: }>r@c'media.steampowered.com
+tg://proxy?server=91.99.201.44&port=443&secret=eec862057ba49a7ecdf0ad4eb44cd5bb11646f776e6c6f61642e77696e646f77737570646174652e636f6d # domain: b{~nldownload.windowsupdate.com
+tg://proxy?server=172.65.234.91&port=443&secret=ee79e344818749bd7ac519130220c25d0973706565642e636c6f7564666c6172652e636f6d # domain: ydiz ]speed.cloudflare.com
+tg://proxy?server=95.111.251.92&port=443&secret=ee17de246c63382bc403747b78889f167f636c6f7564666c6172652e636f6d # domain: $lc8+t{xcloudflare.com
+tg://proxy?server=95.216.195.146&port=443&secret=ee04901ee18641067c6df1e28cccbbb01f636c6f7564666c6172652e636f6d # domain: a|mcloudflare.com
+tg://proxy?server=proxy.pushvpn.space&port=443&secret=ee27c7f948bc8c223e13ae240911e783ab7777772e636c6f7564666c6172652e636f6d # domain: 'h">$www.cloudflare.com

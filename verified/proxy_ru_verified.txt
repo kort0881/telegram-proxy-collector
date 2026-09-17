@@ -1,5 +1,3 @@
-# MTProto RU (2)
-# Updated: 2026-09-17 21:06:58.661456+00:00
+# MTProto RU (0)
+# Updated: 2026-09-17 23:56:18.338420+00:00
 
-tg://proxy?server=82.40.49.99&port=443&secret=ee94506e2d9fd384a8df9249305ccd0a3962726f777365722e79616e6465782e636f6d
-tg://proxy?server=athematic.mydriasis.paco.steatoma.warring.lamidix.com&port=1450&secret=eec94ed77bf66cc3866481beb8cff1fdf0647a656e2e7275
