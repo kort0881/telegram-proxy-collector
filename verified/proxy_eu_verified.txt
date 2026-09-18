@@ -1,22 +1,18 @@
-# MTProto EU (19)
-# Updated: 2026-09-18 14:08:03.074877+00:00
+# MTProto EU (15)
+# Updated: 2026-09-18 18:55:05.523139+00:00
 
-tg://proxy?server=194.120.230.120&port=443&secret=dd79e7010200010007f0030386e24c3add
-tg://proxy?server=78.153.130.254&port=443&secret=ee3de7eb6a9f002bf50e149267ac33c9d06d2e6265626f6f2e7275
-tg://proxy?server=just-money.co.uk&port=443&secret=ee1603010200010001fc030386e24c3add626973636f7474692e79656b74616e65742e636f6d
-tg://proxy?server=happtg.org&port=443&secret=99936411a955d9ea59ac17e550a845cb
-tg://proxy?server=Haji.nisti.co.uk&port=8880&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=167.233.53.190&port=443&secret=ddd77db43ee3721f0fcb40a4ff63b5cd27
-tg://proxy?server=167.233.30.194&port=443&secret=YyEEgYdJXfrFmgMCIMJdjjRueWVrdGFuZXQ
-tg://proxy?server=portal.mizbanonline.info&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=0xb00b5.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b
-tg://proxy?server=ultra.transiiantanialnmiomana.info&port=443&secret=eee9a4f23b1d768c04a8d7f39120ca5b6e6D656469612E737465616D706F77657265642E636F6D
-tg://proxy?server=a-za-oknom-sjigaet-fonari.proklyatiy-dojd.play-online.win&port=443&secret=ee4f68b7b81499f47b616cf3c370322f75612d7a612d6f6b6e6f6d2d736a69676165742d666f6e6172692e70726f6b6c79617469792d646f6a642e706c61792d6f6e6c696e652e77696e
-tg://proxy?server=srv-rfcoxb.reverib.com&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d
-tg://proxy?server=www.yzffffff450.co.uk&port=443&secret=eecBAgABAAfwAwOG4kw63QAAAARueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-tg://proxy?server=dvkdvj.360r.ir&port=443&secret=dd79e7010200010007f0030386e24c3add
-tg://proxy?server=goodman.lamari.info&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1iaXNjb3R0aS55ZWt0YW5ldC5jb20
-tg://proxy?server=free.euthanasia.website&port=443&secret=7iNz/L4bCOGfaoTGHwRyZJh3d3cuY2xvdWRmbGFyZS5jb20
-tg://proxy?server=panel-portal.managep.info&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=94.184.32.109.aprawood.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA==
-tg://proxy?server=api-v1.syscorea.info&port=7443&secret=4dfaa18e4b11a2f022262347bcf0e2c1
+tg://proxy?server=91.99.93.242&port=443&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
+tg://proxy?server=146.103.120.241&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=167.233.60.38&port=443&secret=ddd77db43ee3721f0fcb40a4ff63b5cd27
+tg://proxy?server=92.246.87.242&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0
+tg://proxy?server=157.180.95.47&port=443&secret=79e344818749bd7ac519130220c25d09
+tg://proxy?server=135.181.129.178&port=443&secret=dd79e7010200010007f0030386e24c3add
+tg://proxy?server=65.109.212.177&port=443&secret=6b3c4b3a62438b95b35c17b99885cfc5
+tg://proxy?server=For.dear-iranian-people.com.heazshddd.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d
+tg://proxy?server=mail.muffinnoliershatelcomingsoon.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ%3D%3D
+tg://proxy?server=always.for.you.ir.mausjakaqd.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e6963646e2e79656b74616e65742e636f6d
+tg://proxy?server=srv-qdewfw.reverib.com&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d
+tg://proxy?server=burner.paid.pantshoes.ramiform.tippler.pinoyfilms.net&port=8400&secret=3e39b3881bc146caa294c4a6ea64c601
+tg://proxy?server=ns1.what-ever.co.uk.&port=443&secret=7t3____FoRaLL_Proxy___93ZWIuYmFsZS5haQ==
+tg://proxy?server=1.evoevoevo.com&port=443&secret=59ecc03bfbc542556d7ea2919d688663
+tg://proxy?server=94.184.32.109.aprawood.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D

@@ -1,13 +1,9 @@
-# Proxies with domain (10)
-# Updated: 2026-09-18 14:08:03.074877+00:00
+# Proxies with domain (6)
+# Updated: 2026-09-18 18:55:05.523139+00:00
 
-tg://proxy?server=78.153.130.254&port=443&secret=ee3de7eb6a9f002bf50e149267ac33c9d06d2e6265626f6f2e7275 # domain: =j
-tg://proxy?server=0xb00b5.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b # domain: t3f)}+mt.akenai.click
-tg://proxy?server=ultra.transiiantanialnmiomana.info&port=443&secret=eee9a4f23b1d768c04a8d7f39120ca5b6e6D656469612E737465616D706F77657265642E636F6D # domain: ;v [nmedia.steampowered.com
-tg://proxy?server=a-za-oknom-sjigaet-fonari.proklyatiy-dojd.play-online.win&port=443&secret=ee4f68b7b81499f47b616cf3c370322f75612d7a612d6f6b6e6f6d2d736a69676165742d666f6e6172692e70726f6b6c79617469792d646f6a642e706c61792d6f6e6c696e652e77696e # domain: oh{alp2/ua-za-oknom-sjigaet-fonari.proklyatiy-dojd.play-online.win
-tg://proxy?server=srv-rfcoxb.reverib.com&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d # domain: %8nr7^microsoft.com
-tg://proxy?server=62.60.239.13&port=443&secret=eee98102f646da6e5c8e7d90f018b8a75a6f7a6f6e2e7275 # domain: fn\}zozon.ru
-tg://proxy?server=nl.cdnflow.store&port=443&secret=ee92f105b4a4ebf5db49735eb9149fb06b766b2e636f6d # domain: is^kvk.com
-tg://proxy?server=104.128.140.193&port=443&secret=ee9ff3a71711f7cb3e172e01535197f688766b766964656f2e7275 # domain: >.sqvkvideo.ru
-tg://proxy?server=95.179.244.184&port=2525&secret=eec5e6b7a22ff4cb9422d895fad79bf2a97777772e636c6f7564666c6172652e636f6d # domain: /"www.cloudflare.com
-tg://proxy?server=150.241.75.150&port=443&secret=ee636c6f7564666c6172652e636f6dcb # domain: cloudflare.com
+tg://proxy?server=srv-qdewfw.reverib.com&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d # domain: %8nr7^microsoft.com
+tg://proxy?server=144.31.167.194&port=443&secret=ee52af82771595b7d7e9eeeda3a7aa4f1a77622e7275 # domain: rwowb.ru
+tg://proxy?server=150.241.75.150&port=443&secret=ee79616e6465782e72757f81f31151d7 # domain: yandex.ruq
+tg://proxy?server=network.flashgatevpn.ru&port=443&secret=eee8d5c4d8214b722017d8fd09de82e934636c69636b2e666c6173686761746576706e2e7275 # domain: !kr 4click.flashgatevpn.ru
+tg://proxy?server=207.180.240.199&port=443&secret=eea53b6e987fc7b16bb71bff869731448e636c6f7564666c6172652e636f6d # domain: ;nk1dcloudflare.com
+tg://proxy?server=87.106.137.212&port=443&secret=eea1b2c3d4e5f60123456789abcdef012373332e616d617a6f6e6177732e636f6d # domain: #eg#s3.amazonaws.com
