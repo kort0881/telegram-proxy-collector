@@ -1,9 +1,5 @@
-# Proxies with domain (6)
-# Updated: 2026-09-17 23:56:18.338420+00:00
+# Proxies with domain (2)
+# Updated: 2026-09-18 03:35:53.280091+00:00
 
-tg://proxy?server=185.121.233.89&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D # domain: }>r@c'media.steampowered.com
-tg://proxy?server=91.99.201.44&port=443&secret=eec862057ba49a7ecdf0ad4eb44cd5bb11646f776e6c6f61642e77696e646f77737570646174652e636f6d # domain: b{~nldownload.windowsupdate.com
-tg://proxy?server=172.65.234.91&port=443&secret=ee79e344818749bd7ac519130220c25d0973706565642e636c6f7564666c6172652e636f6d # domain: ydiz ]speed.cloudflare.com
-tg://proxy?server=95.111.251.92&port=443&secret=ee17de246c63382bc403747b78889f167f636c6f7564666c6172652e636f6d # domain: $lc8+t{xcloudflare.com
-tg://proxy?server=95.216.195.146&port=443&secret=ee04901ee18641067c6df1e28cccbbb01f636c6f7564666c6172652e636f6d # domain: a|mcloudflare.com
-tg://proxy?server=proxy.pushvpn.space&port=443&secret=ee27c7f948bc8c223e13ae240911e783ab7777772e636c6f7564666c6172652e636f6d # domain: 'h">$www.cloudflare.com
+tg://proxy?server=91.99.194.148&port=443&secret=ee151151151151151151151151151151156D656469612E737465616D706F77657265642E636F6D # domain: qqqqqmedia.steampowered.com
+tg://proxy?server=tel-turk.granddatacloud.xyz&port=6556&secret=ee1fb7b586910e5ca3b444f99ba61728d6636c6f7564666c6172652e636f6d # domain: \d(cloudflare.com
