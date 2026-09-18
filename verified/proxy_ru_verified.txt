@@ -1,6 +1,4 @@
-# MTProto RU (3)
-# Updated: 2026-09-18 18:55:05.523139+00:00
+# MTProto RU (1)
+# Updated: 2026-09-18 22:21:19.777410+00:00
 
-tg://proxy?server=144.31.167.194&port=443&secret=ee52af82771595b7d7e9eeeda3a7aa4f1a77622e7275
-tg://proxy?server=150.241.75.150&port=443&secret=ee79616e6465782e72757f81f31151d7
-tg://proxy?server=network.flashgatevpn.ru&port=443&secret=eee8d5c4d8214b722017d8fd09de82e934636c69636b2e666c6173686761746576706e2e7275
+tg://proxy?server=p2.cryptokazancev.ru&port=443&secret=eec3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f879612e7275
