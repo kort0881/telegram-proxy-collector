@@ -1,9 +1,6 @@
-# MTProto RU (6)
-# Updated: 2026-09-18 08:48:34.713903+00:00
+# MTProto RU (3)
+# Updated: 2026-09-18 14:08:03.074877+00:00
 
-tg://proxy?server=78.135.73.33&port=443&secret=ee897867104f62fbcd5445d07208de66047777772e646e732d73686f702e7275
-tg://proxy?server=lentigerous.monopolism.reestablish.teleseryestvheaven.com&port=443&secret=ee1b8215520e6e688ed21db4323e511b01647a656e2e7275
-tg://proxy?server=producing.pursuing.ray.teleseryerepaly.com&port=443&secret=ee82f5b8d48da811dc644fded8461cd56c647a656e2e7275
-tg://proxy?server=cabbala.spqr.triapsidal.wowteleserye.com&port=443&secret=ee78203a8b5a7dcf6c1f7b387ee7eaaff7647a656e2e7275
-tg://proxy?server=canaliculate.dago.isobaric.washability.welterweight.umatno.info&port=37806&secret=eeb8d8bd031598309e066afffc53a4c665647a656e2e7275
-tg://proxy?server=herod.roomful.stepsister.wowteleserye.com&port=443&secret=eec05ae92d8a9cbd7ee8ed5d8ca74d6f53647a656e2e7275
+tg://proxy?server=62.60.239.13&port=443&secret=eee98102f646da6e5c8e7d90f018b8a75a6f7a6f6e2e7275
+tg://proxy?server=nl.cdnflow.store&port=443&secret=ee92f105b4a4ebf5db49735eb9149fb06b766b2e636f6d
+tg://proxy?server=104.128.140.193&port=443&secret=ee9ff3a71711f7cb3e172e01535197f688766b766964656f2e7275
