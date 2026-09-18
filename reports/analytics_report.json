@@ -1,35 +1,35 @@
 {
-  "timestamp": "2026-09-18T08:49:23.182799+00:00",
+  "timestamp": "2026-09-18T14:08:45.888026+00:00",
   "metrics": {
-    "total": 200,
-    "pings_count": 200,
-    "median_ping": 0.12,
-    "mean_ping": 0.135,
-    "stdev_ping": 0.052,
-    "good_thr": 0.12,
-    "bad_thr": 0.3,
-    "good": 102,
-    "medium": 92,
-    "bad": 6,
+    "total": 190,
+    "pings_count": 190,
+    "median_ping": 0.095,
+    "mean_ping": 0.239,
+    "stdev_ping": 0.344,
+    "good_thr": 0.095,
+    "bad_thr": 0.237,
+    "good": 96,
+    "medium": 62,
+    "bad": 32,
     "regions": {
-      "eu": 186,
-      "us": 2,
-      "ru": 12
+      "eu": 180,
+      "us": 4,
+      "ru": 6
     },
     "types": {
-      "mtproto": 52,
-      "socks5": 148
+      "mtproto": 48,
+      "socks5": 142
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
     "recommended_workers": 100,
-    "current_avg_ping": 0.135,
-    "current_median_ping": 0.12,
-    "current_stdev_ping": 0.052,
-    "total_proxies": 200,
-    "trend_median_ping": -0.014,
+    "current_avg_ping": 0.239,
+    "current_median_ping": 0.095,
+    "current_stdev_ping": 0.344,
+    "total_proxies": 190,
+    "trend_median_ping": -0.025,
     "trend_direction": "stable"
   },
   "anomalies_count": 10,
@@ -40,28 +40,28 @@
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 24.0
+        "support": 42.0
       },
       "1": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 176.0
+        "support": 148.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 200.0
+        "support": 190.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 200.0
+        "support": 190.0
       }
     },
-    "threshold": 0.18
+    "threshold": 0.14250000000000002
   }
 }
