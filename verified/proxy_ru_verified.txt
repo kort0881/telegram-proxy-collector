@@ -1,3 +1,9 @@
-# MTProto RU (0)
-# Updated: 2026-09-18 03:35:53.280091+00:00
+# MTProto RU (6)
+# Updated: 2026-09-18 08:48:34.713903+00:00
 
+tg://proxy?server=78.135.73.33&port=443&secret=ee897867104f62fbcd5445d07208de66047777772e646e732d73686f702e7275
+tg://proxy?server=lentigerous.monopolism.reestablish.teleseryestvheaven.com&port=443&secret=ee1b8215520e6e688ed21db4323e511b01647a656e2e7275
+tg://proxy?server=producing.pursuing.ray.teleseryerepaly.com&port=443&secret=ee82f5b8d48da811dc644fded8461cd56c647a656e2e7275
+tg://proxy?server=cabbala.spqr.triapsidal.wowteleserye.com&port=443&secret=ee78203a8b5a7dcf6c1f7b387ee7eaaff7647a656e2e7275
+tg://proxy?server=canaliculate.dago.isobaric.washability.welterweight.umatno.info&port=37806&secret=eeb8d8bd031598309e066afffc53a4c665647a656e2e7275
+tg://proxy?server=herod.roomful.stepsister.wowteleserye.com&port=443&secret=eec05ae92d8a9cbd7ee8ed5d8ca74d6f53647a656e2e7275

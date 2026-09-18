@@ -1,5 +1,11 @@
-# Proxies with domain (2)
-# Updated: 2026-09-18 03:35:53.280091+00:00
+# Proxies with domain (8)
+# Updated: 2026-09-18 08:48:34.713903+00:00
 
-tg://proxy?server=91.99.194.148&port=443&secret=ee151151151151151151151151151151156D656469612E737465616D706F77657265642E636F6D # domain: qqqqqmedia.steampowered.com
-tg://proxy?server=tel-turk.granddatacloud.xyz&port=6556&secret=ee1fb7b586910e5ca3b444f99ba61728d6636c6f7564666c6172652e636f6d # domain: \d(cloudflare.com
+tg://proxy?server=www.minetor.co.uk&port=443&secret=ee104462821249bd7ac519130220c25d09 # domain: dbiz ]
+tg://proxy?server=78.135.73.33&port=443&secret=ee897867104f62fbcd5445d07208de66047777772e646e732d73686f702e7275 # domain: xgobterfwww.dns-shop.ru
+tg://proxy?server=lentigerous.monopolism.reestablish.teleseryestvheaven.com&port=443&secret=ee1b8215520e6e688ed21db4323e511b01647a656e2e7275 # domain: rnh2>qdzen.ru
+tg://proxy?server=producing.pursuing.ray.teleseryerepaly.com&port=443&secret=ee82f5b8d48da811dc644fded8461cd56c647a656e2e7275 # domain: dofldzen.ru
+tg://proxy?server=cabbala.spqr.triapsidal.wowteleserye.com&port=443&secret=ee78203a8b5a7dcf6c1f7b387ee7eaaff7647a656e2e7275 # domain: x :z}l{8~dzen.ru
+tg://proxy?server=canaliculate.dago.isobaric.washability.welterweight.umatno.info&port=37806&secret=eeb8d8bd031598309e066afffc53a4c665647a656e2e7275 # domain: 0jsedzen.ru
+tg://proxy?server=herod.roomful.stepsister.wowteleserye.com&port=443&secret=eec05ae92d8a9cbd7ee8ed5d8ca74d6f53647a656e2e7275 # domain: z-~]mosdzen.ru
+tg://proxy?server=62.171.135.77&port=443&secret=eeca4579380da2228bf1e70bc43b666d8c636c6f7564666c6172652e636f6d # domain: ey8";fmcloudflare.com

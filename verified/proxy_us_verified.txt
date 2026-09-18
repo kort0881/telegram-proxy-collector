@@ -1,4 +1,4 @@
 # MTProto US (1)
-# Updated: 2026-09-18 03:35:53.280091+00:00
+# Updated: 2026-09-18 08:48:34.713903+00:00
 
-tg://proxy?server=tel-turk.granddatacloud.xyz&port=6556&secret=ee1fb7b586910e5ca3b444f99ba61728d6636c6f7564666c6172652e636f6d
+tg://proxy?server=62.171.135.77&port=443&secret=eeca4579380da2228bf1e70bc43b666d8c636c6f7564666c6172652e636f6d

@@ -1,25 +1,30 @@
-# MTProto RU (0)
-# Updated: 2026-09-18 03:35:53.280091+00:00
+# MTProto RU (6)
+# Updated: 2026-09-18 08:48:34.713903+00:00
 
-# MTProto EU (19)
-# Updated: 2026-09-18 03:35:53.280091+00:00
+tg://proxy?server=78.135.73.33&port=443&secret=ee897867104f62fbcd5445d07208de66047777772e646e732d73686f702e7275
+tg://proxy?server=lentigerous.monopolism.reestablish.teleseryestvheaven.com&port=443&secret=ee1b8215520e6e688ed21db4323e511b01647a656e2e7275
+tg://proxy?server=producing.pursuing.ray.teleseryerepaly.com&port=443&secret=ee82f5b8d48da811dc644fded8461cd56c647a656e2e7275
+tg://proxy?server=cabbala.spqr.triapsidal.wowteleserye.com&port=443&secret=ee78203a8b5a7dcf6c1f7b387ee7eaaff7647a656e2e7275
+tg://proxy?server=canaliculate.dago.isobaric.washability.welterweight.umatno.info&port=37806&secret=eeb8d8bd031598309e066afffc53a4c665647a656e2e7275
+tg://proxy?server=herod.roomful.stepsister.wowteleserye.com&port=443&secret=eec05ae92d8a9cbd7ee8ed5d8ca74d6f53647a656e2e7275# MTProto EU (19)
+# Updated: 2026-09-18 08:48:34.713903+00:00
 
-tg://proxy?server=45.32.199.82&port=443&secret=2fb91f63ba98b4f9a39b0b3640a93eea
-tg://proxy?server=94.237.47.158&port=443&secret=dd8dd8cc4e02625114d308dac05094c3c0____
-tg://proxy?server=178.105.34.79&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=91.99.194.148&port=443&secret=ee151151151151151151151151151151156D656469612E737465616D706F77657265642E636F6D
-tg://proxy?server=188.245.84.53&port=443&secret=7HQighJPBNMYVRNB6tdkVw
-tg://proxy?server=144.31.158.234&port=443&secret=0840332709963bc2621073e6a26847f1
-tg://proxy?server=31.220.78.13&port=443&secret=7rdZMJGytphTy8KSwuIIS4BjbG91ZGZsYXJlLmNvbQ
-tg://proxy?server=Best.Ping.ir.hdhdhfdrde.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e69626973636f7474692e79656b74616e65742e636f6d
-tg://proxy?server=89.167.103.249&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=89.167.40.214&port=443&secret=7qIb9DftbzilsDxuZrA20wFnb29nbGVhcGlzLmNvbQ
-tg://proxy?server=94.184.39.7.aprawood.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
-tg://proxy?server=you.happylink.top.&port=2053&secret=7nsCgx5L3NQFSGGuGMmMft1zMy5hbWF6b25hd3MuY29t
-tg://proxy?server=Just-iraninan.com.the-nice-mtproto.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e69626973636f7474692e79656b74616e65742e636f6d
-tg://proxy?server=94.184.32.117.ir-vlue3.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
-tg://proxy?server=94.184.32.101.aprawood.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
-tg://proxy?server=212.108.98.5.aprawood.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
-tg://proxy?server=topproxy.fml-subs.ru&port=443&secret=dde71c854efc71f477856bd59728888359
-tg://proxy?server=tg.belka.network&port=443&secret=107cb7c1a3e23228d9e45226a2ac0785
-tg://proxy?server=207-pana.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
+tg://proxy?server=sakura.proxy.rlwy.net&port=17248&secret=9fa066aa24a4ec842d406eafbb889bcf
+tg://proxy?server=144.202.103.219&port=443&secret=ffacf741c82121f919a4a6a783ec85fd
+tg://proxy?server=117.55.202.134&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=87.229.100.14&port=443&secret=EEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8QEEABAzJJlbB8AwOG6Ibn8Q==
+tg://proxy?server=45.63.43.130&port=443&secret=2f218706df4cf2dd2d026e9871308289
+tg://proxy?server=94.183.219.141&port=443&secret=91f5fd16db2720f5948f7cb89805f95d
+tg://proxy?server=brookswashere.space&port=443&secret=10dadd1e7c27a20098abb5bf53ca26a8
+tg://proxy?server=49.13.145.62&port=443&secret=3QAAAAAAAAAAAAAAAAAAAAA=
+tg://proxy?server=95.217.91.28&port=443&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
+tg://proxy?server=www.minetor.co.uk&port=443&secret=ee104462821249bd7ac519130220c25d09
+tg://proxy?server=gorbeye-7000-sale.asiaadomainsshatelhamrahaval.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ==
+tg://proxy?server=sabon.tashkilat.info&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
+tg://proxy?server=danmarki.tokhmemorgh.info.&port=7799&secret=dd10400103324995b07c030386e886e7f1
+tg://proxy?server=wise-link.ngstream.top&port=443&secret=ddfdad73de75d0f5621396dbfaa8959381
+tg://proxy?server=main.geodns.info&port=4455&secret=7nnjRIGHSb16xRkTAiDCXQk=
+tg://proxy?server=pro.cafeshop1.org&port=443&secret=3VEksMLazUEtAf4kXdIMVig
+tg://proxy?server=sop.foodpatuy.ir&port=443&secret=3RBEYoISSb16xRkTAiDCXQk=
+tg://proxy?server=yakhchalnepal.ir&port=443&secret=ddf0eeb0bd9adc4fd4a93994ee3b2a216b
+tg://proxy?server=tiny-folk.ngstream.top&port=443&secret=ddcab9e5a1d760135ab952b968052cba5b
