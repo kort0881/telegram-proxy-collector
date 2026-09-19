@@ -1,22 +1,6 @@
-# Proxies with domain (19)
-# Updated: 2026-09-19 08:34:55.165684+00:00
+# Proxies with domain (3)
+# Updated: 2026-09-19 13:43:03.934045+00:00
 
-tg://proxy?server=shop.royayeman.co.uk&port=443&secret=ee79e344818749bd7ac519130220c25d092e2e626973636f7474692e79656b74616e65742e636f6d # domain: ydiz ]..biscotti.yektanet.com
-tg://proxy?server=yard-yaystal-menyat.yard-tg-bot.online&port=443&secret=ee6a441d3845f1bfec1100662ce671d8ed76762e636f6d # domain: jd8e
-tg://proxy?server=65.109.218.46&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d # domain: o9;*!kcdn.yektanet.com
-tg://proxy?server=srv-ppokcm.reverib.com&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d # domain: %8nr7^microsoft.com
-tg://proxy?server=etherealvpn.uk&port=443&secret=ee47e15341ad5117d1bc6d0b4b20d177187777772e6d6963726f736f66742e636f6d # domain: gsaqmk wwww.microsoft.com
-tg://proxy?server=alluvia.banffshire.electronically.gmateleserye.com&port=443&secret=eedca73550b3763a18c8b72c4d7118f6f1647a656e2e7275 # domain: 5pv:,mqdzen.ru
-tg://proxy?server=dogfight.foretoken.horizonless.teleseryetvreplay.com&port=443&secret=ee5f700b50344f1487fa477f9bc9fd29f9647a656e2e7275 # domain: _pp4og)dzen.ru
-tg://proxy?server=kiushu.unsusceptible.uppish.teleseryetvreplay.com&port=443&secret=ee75595de1d97d37257c501d092288576c647a656e2e7275 # domain: uy]}7%|p"wldzen.ru
-tg://proxy?server=cheyenne.overwrap.phthisic.teleseryeme.com&port=443&secret=ee3f9438591f486e2672a133a8e4f06e92647a656e2e7275 # domain: ?8yhn&r3ndzen.ru
-tg://proxy?server=kilometer.peasant.tun.teleseryeme.com&port=443&secret=eee7b3779c83c631dea50e16cf41cc0d3e647a656e2e7275 # domain: w1a>dzen.ru
-tg://proxy?server=agile.anima.trinitrobenzene.gmateleserye.com&port=443&secret=eee28f80d67a7b161f5b46deab52369714647a656e2e7275 # domain: z{[fr6dzen.ru
-tg://proxy?server=achromat.bandoleer.middling.teleseryeepisodes.com&port=443&secret=ee0fb42049d10ac4fbec237e2e1e464c6d647a656e2e7275 # domain:  i#~.flmdzen.ru
-tg://proxy?server=departmental.dryer.pekoe.pilipinoteleserye.com&port=443&secret=ee85fe76b8510323f50f507a93f615a450647a656e2e7275 # domain: vq#pzpdzen.ru
-tg://proxy?server=habitude.landfill.relapse.pilipinoteleserye.com&port=443&secret=ee7987b2f1758e244c6d1b0376348d548b647a656e2e7275 # domain: yu$lmv4tdzen.ru
-tg://proxy?server=beaked.feldspar.preform.teleseryestv.com&port=443&secret=eee21c1b1b20037ba2e5677dd356f26457647a656e2e7275 # domain:  {g}vdwdzen.ru
-tg://proxy?server=and.call-away.chicklette.teleseryeme.com&port=443&secret=ee96a58415489db3b7c4fb9456bb5403c8647a656e2e7275 # domain: hvtdzen.ru
-tg://proxy?server=45.63.43.17&port=443&secret=eeaaaec011f390d6374cb23aa62ef798867777772e636c6f7564666c6172652e636f6d # domain: 7l:.www.cloudflare.com
-tg://proxy?server=45.63.43.17&port=443&secret=ee705b60818b6a175b3b819f1c7ab629277777772e636c6f7564666c6172652e636f6d # domain: p[`j[;z)'www.cloudflare.com
-tg://proxy?server=31.56.206.50&port=443&secret=ee3d8fd974cbcaf86cb4d3f57788efd6cc7777772e636c6f7564666c6172652e636f6d # domain: =tlwwww.cloudflare.com
+tg://proxy?server=65.cloudflare.com.nokia.com.co.uk.do_yo.want_to.clash_with.this.www.microsoft.com.there_is_no.place_like.localhost.www.bing.com.count_with_me.cyou.com.now_sudo.rm_rf.ddns.net.we_are_here.again_to_fight.everyone.i_am.the_internet.speci.onetop.khseuxc.xyz&port=40913&secret=eedb29c9365624639dc25f1ecc5b107585617a7572652e6d6963726f736f66742e636f6d # domain: )6v$c_[uazure.microsoft.com
+tg://proxy?server=ftp.jinxandjack.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
+tg://proxy?server=cloud.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275 # domain: ?kj7xapi.ozon.ru
