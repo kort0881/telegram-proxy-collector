@@ -1,6 +1,9 @@
-# Proxies with domain (3)
-# Updated: 2026-09-19 13:43:03.934045+00:00
+# Proxies with domain (6)
+# Updated: 2026-09-19 17:01:31.130549+00:00
 
-tg://proxy?server=65.cloudflare.com.nokia.com.co.uk.do_yo.want_to.clash_with.this.www.microsoft.com.there_is_no.place_like.localhost.www.bing.com.count_with_me.cyou.com.now_sudo.rm_rf.ddns.net.we_are_here.again_to_fight.everyone.i_am.the_internet.speci.onetop.khseuxc.xyz&port=40913&secret=eedb29c9365624639dc25f1ecc5b107585617a7572652e6d6963726f736f66742e636f6d # domain: )6v$c_[uazure.microsoft.com
-tg://proxy?server=ftp.jinxandjack.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
-tg://proxy?server=cloud.mtproxy.pw&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275 # domain: ?kj7xapi.ozon.ru
+tg://proxy?server=134.209.88.105&port=443&secret=eec80ff604fa45408f1d152624d3bffcf26b65746161626f6e6c696e652e636f6d # domain: e@&$ketaabonline.com
+tg://proxy?server=104.248.26.196&port=443&secret=eec80ff604fa45408f1d152624d3bffcf276616e2e6e616a76612e636f6d # domain: e@&$van.najva.com
+tg://proxy?server=2.26.87.147&port=443&secret=eed6f017e6cbbec55395dd93fbdf3d2c967777772e62696e672e636f6d # domain: s=,www.bing.com
+tg://proxy?server=89.117.60.213&port=443&secret=ee137e94060269ba033f73273b03c89b5c636c6f7564666c6172652e636f6d # domain: ~i?s';\cloudflare.com
+tg://proxy?server=212.115.103.198&port=443&secret=ee0123456789abcdef0123456789abcdef7777772e636c6f7564666c6172652e636f6d # domain: #eg#egwww.cloudflare.com
+tg://proxy?server=213.232.204.27&port=443&secret=ee78b79b63fea647558240b178cf5a99a87777772e636c6f7564666c6172652e636f6d696d616765732e6170706c652e636f6d # domain: xcgu@xzwww.cloudflare.comimages.apple.com
