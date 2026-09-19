@@ -1,4 +1,5 @@
-# MTProto RU (1)
-# Updated: 2026-09-18 22:21:19.777410+00:00
+# MTProto RU (2)
+# Updated: 2026-09-19 03:23:12.343501+00:00
 
-tg://proxy?server=p2.cryptokazancev.ru&port=443&secret=eec3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f879612e7275
+tg://proxy?server=rdp.nl.2.mtproto.ru&port=443&secret=ee2111222233334444555566667777888862726f777365722e79616e6465782e636f6d
+tg://proxy?server=proxyfsociety.mooo.com&port=443&secret=eeec5071a832c00b83ea970629d08ef2fe706574726f766963682e7275

@@ -1,6 +1,14 @@
-# Proxies with domain (3)
-# Updated: 2026-09-18 22:21:19.777410+00:00
+# Proxies with domain (11)
+# Updated: 2026-09-19 03:23:12.343501+00:00
 
-tg://proxy?server=89.117.1.234&port=443&secret=eeb821a0ec7efc336d521069d6db22d9 # domain: !~3mri"
-tg://proxy?server=torobchesho.co.uk.&port=443&secret=ee5f7ce28a2c4816c6c923dfd4d5630e01746f726f6263686573686f2e636f2e756b # domain: _|,h#ctorobchesho.co.uk
-tg://proxy?server=p2.cryptokazancev.ru&port=443&secret=eec3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f879612e7275 # domain: ya.ru
+tg://proxy?server=172.65.38.26&port=9443&secret=ee09db815a6d82a31fda76f872230c69d7706b676275696c642e6f7267 # domain: zmvr#ipkgbuild.org
+tg://proxy?server=a.red-eyes.co.uk&port=443&secret=ee3d452ace1dc3eba3f6064fe8291dfd59612e7265642d657965732e636f2e756b # domain: =e*o)ya.red-eyes.co.uk
+tg://proxy?server=212.111.80.159&port=443&secret=eed77db43ee3721f0fcb40a4ff63b5cd276D656469612E737465616D706F77657265642E636F6D # domain: }>r@c'media.steampowered.com
+tg://proxy?server=194.233.82.137&port=443&secret=ee853310ac258556e04970d42f4d2c0023676f6f676c65617069732e636f6d # domain: 3%vip/m,
+tg://proxy?server=194.26.141.32&port=443&secret=ee100404ff0f48064fffffff9001b8696d696d656469612e737465616d706f77657265642e636f6d # domain: hoimimedia.steampowered.com
+tg://proxy?server=45.129.199.72&port=443&secret=ee100404ff0f48064fffffff9001b8696d696d656469612e737465616d706f77657265642e636f6d # domain: hoimimedia.steampowered.com
+tg://proxy?server=83.166.233.56&port=443&secret=ee8248a72e460a5da4bdf6bb11d9579487 # domain: h.f]w
+tg://proxy?server=yastatic.co.uk&port=443&secret=ee4d529b445ca1cfa716b340ef99877570727a796d68702e79617374617469632e6e6574 # domain: mrd\@uprzymhp.yastatic.net
+tg://proxy?server=217.60.98.160&port=443&secret=eed9fd89062ab62abcbf1bd82dfe9140047777772e6d6963726f736f66742e636f6d # domain: **-@www.microsoft.com
+tg://proxy?server=rdp.nl.2.mtproto.ru&port=443&secret=ee2111222233334444555566667777888862726f777365722e79616e6465782e636f6d # domain: !""33dduuffwwbrowser.yandex.com
+tg://proxy?server=proxyfsociety.mooo.com&port=443&secret=eeec5071a832c00b83ea970629d08ef2fe706574726f766963682e7275 # domain: pq2)petrovich.ru
