@@ -1,5 +1,14 @@
-# MTProto RU (2)
-# Updated: 2026-09-19 03:23:12.343501+00:00
+# MTProto RU (11)
+# Updated: 2026-09-19 08:34:55.165684+00:00
 
-tg://proxy?server=rdp.nl.2.mtproto.ru&port=443&secret=ee2111222233334444555566667777888862726f777365722e79616e6465782e636f6d
-tg://proxy?server=proxyfsociety.mooo.com&port=443&secret=eeec5071a832c00b83ea970629d08ef2fe706574726f766963682e7275
+tg://proxy?server=alluvia.banffshire.electronically.gmateleserye.com&port=443&secret=eedca73550b3763a18c8b72c4d7118f6f1647a656e2e7275
+tg://proxy?server=dogfight.foretoken.horizonless.teleseryetvreplay.com&port=443&secret=ee5f700b50344f1487fa477f9bc9fd29f9647a656e2e7275
+tg://proxy?server=kiushu.unsusceptible.uppish.teleseryetvreplay.com&port=443&secret=ee75595de1d97d37257c501d092288576c647a656e2e7275
+tg://proxy?server=cheyenne.overwrap.phthisic.teleseryeme.com&port=443&secret=ee3f9438591f486e2672a133a8e4f06e92647a656e2e7275
+tg://proxy?server=kilometer.peasant.tun.teleseryeme.com&port=443&secret=eee7b3779c83c631dea50e16cf41cc0d3e647a656e2e7275
+tg://proxy?server=agile.anima.trinitrobenzene.gmateleserye.com&port=443&secret=eee28f80d67a7b161f5b46deab52369714647a656e2e7275
+tg://proxy?server=achromat.bandoleer.middling.teleseryeepisodes.com&port=443&secret=ee0fb42049d10ac4fbec237e2e1e464c6d647a656e2e7275
+tg://proxy?server=departmental.dryer.pekoe.pilipinoteleserye.com&port=443&secret=ee85fe76b8510323f50f507a93f615a450647a656e2e7275
+tg://proxy?server=habitude.landfill.relapse.pilipinoteleserye.com&port=443&secret=ee7987b2f1758e244c6d1b0376348d548b647a656e2e7275
+tg://proxy?server=beaked.feldspar.preform.teleseryestv.com&port=443&secret=eee21c1b1b20037ba2e5677dd356f26457647a656e2e7275
+tg://proxy?server=and.call-away.chicklette.teleseryeme.com&port=443&secret=ee96a58415489db3b7c4fb9456bb5403c8647a656e2e7275
