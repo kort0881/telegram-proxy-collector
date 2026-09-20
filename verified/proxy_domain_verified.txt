@@ -1,13 +1,16 @@
-# Proxies with domain (10)
-# Updated: 2026-09-20 03:40:18.820165+00:00
+# Proxies with domain (13)
+# Updated: 2026-09-20 09:06:36.512536+00:00
 
-tg://proxy?server=185.92.182.44&port=443&secret=eea3f91c2d88b4e6aa11bb22cc33dd44ee7777772e676f6f676c652e636f6d # domain: -"3dwww.google.com
-tg://proxy?server=91.99.152.221&port=443&secret=eee6607B90889CC60719D2170CB2851962737465616D706F77657265642E636F6D # domain: `{bsteampowered.com
-tg://proxy?server=best-sellerst.co.uk&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d # domain: o9;*!kcdn.yektanet.com
-tg://proxy?server=starstg.neverspy.tech&port=443&secret=eee19ef78b188ec248d8187c787a46ccca737461727374672e6e657665727370792e74656368 # domain: h|xzfstarstg.neverspy.tech
-tg://proxy?server=s5.postpulse.space&port=443&secret=ee846d23933361faa6211c7ac6765023be6164322e617269786f2e73686f70 # domain: m#3a!zvp#ad2.arixo.shop
-tg://proxy?server=proxy9.chunkycorp.shop&port=443&secret=ee6a0333c1db3f8eaba5c76731a44203b6617669746f2e7275 # domain: j3?g1bavito.ru
-tg://proxy?server=89.117.61.184&port=443&secret=eedec404cfa8eda63cce9e838547dee3dc636c6f7564666c6172652e636f6d # domain: <gcloudflare.com
-tg://proxy?server=164.68.122.140&port=443&secret=ee6346164eb9fd41c57c1256c5f6c63757636c6f7564666c6172652e636f6d # domain: cfna|v7wcloudflare.com
-tg://proxy?server=167.86.81.232&port=443&secret=ee225f29b78fa2a218d8bd70158e9ecc2c636c6f7564666c6172652e636f6d # domain: "_)p,cloudflare.com
-tg://proxy?server=yc3.indigogift.fun&port=443&secret=ee0e61aaf45658c3ef5fc0fef90549fda67777772e636c6f7564666c6172652e636f6d # domain: avx_iwww.cloudflare.com
+tg://proxy?server=94.103.169.103&port=443&secret=ee7f568e2c2b75b68b3075d35008aa37357777772e676f6f676c652e636f6d # domain: v,+u0up75www.google.com
+tg://proxy?server=setsevwodpx.freexpaths.com.tr&port=443&secret=ee298e8b88eb36f37f332b8907ab2663f2736574736576776f6470782e667265657870617468732e636f6d2e7472 # domain: )63+&csetsevwodpx.freexpaths.com.tr
+tg://proxy?server=setsevwodpx.freexpaths.com.tr&port=443&secret=eebead184b5dcfc74adb1182044a6bd5e7736574736576776f6470782e667265657870617468732e636f6d2e7472 # domain: k]jjksetsevwodpx.freexpaths.com.tr
+tg://proxy?server=bale-ai.vingardium.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
+tg://proxy?server=for-persian.collegealabama.co.uk&port=443&secret=ee71889eb517157210d61df330a5f11d956d656469612e737465616d706f77657265642e636f6d # domain: qr0media.steampowered.com
+tg://proxy?server=logs.jinxandjack.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
+tg://proxy?server=setsevwodpx.freexpaths.com.tr&port=443&secret=eefbd97e5c412b0ea326945b540dd6d3ed736574736576776f6470782e667265657870617468732e636f6d2e7472 # domain: ~\a+&[tsetsevwodpx.freexpaths.com.tr
+tg://proxy?server=anthologize.granuloma.phantasmagoric.teleseryepinoytv.com&port=443&secret=ee426b729ff683efc4a976f79d276aa413647a656e2e7275 # domain: bkrv'jdzen.ru
+tg://proxy?server=ethnicity.garbageology.unalienable.teleseryerepaly.com&port=443&secret=eedd3eb34cad64c5cf10dc277942e08750647a656e2e7275 # domain: >ld'ybpdzen.ru
+tg://proxy?server=lamely.potability.suppliance.teleseryeme.com&port=443&secret=ee16f1153ee144f5470dc26b2793b7130b647a656e2e7275 # domain: >dgk'dzen.ru
+tg://proxy?server=interactive.mesonic.signalman.teleseryestv.com&port=443&secret=ee3e11e56b332d2a8ddf5f21a88c57588c647a656e2e7275 # domain: >k3-*_!wxdzen.ru
+tg://proxy?server=89.117.63.176&port=443&secret=ee4e3346cfb87699c595c051b55e3705d2636c6f7564666c6172652e636f6d # domain: n3fvq^7cloudflare.com
+tg://proxy?server=207.180.195.37&port=443&secret=eedfa08dad56087f585c3948423aba9841636c6f7564666c6172652e636f6d # domain: vx\9hb:acloudflare.com
