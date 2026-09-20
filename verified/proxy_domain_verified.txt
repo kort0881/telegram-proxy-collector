@@ -1,10 +1,13 @@
-# Proxies with domain (7)
-# Updated: 2026-09-19 23:55:33.263879+00:00
+# Proxies with domain (10)
+# Updated: 2026-09-20 03:40:18.820165+00:00
 
-tg://proxy?server=186.246.16.55&port=443&secret=ee7d21ac88a75bdb5887ec4918a20386927777772e6d6963726f736f66742e636f6d # domain: }![xiwww.microsoft.com
-tg://proxy?server=91.107.186.142&port=443&secret=ee95a61741e286c3b2053183d57388593b7777772e6d6963726f736f66742e636f6d # domain: a1sy;www.microsoft.com
-tg://proxy?server=openhostings.co.uk.&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d # domain: o9;*!kcdn.yektanet.com
-tg://proxy?server=rudmoain.co.uk.&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d # domain: o9;*!kcdn.yektanet.com
-tg://proxy?server=47.87.64.133&port=443&secret=ee43e9a1e06d788f87e0b468e3f643448c617a7572652e6d6963726f736f66742e636f6d # domain: cmxhcdazure.microsoft.com
-tg://proxy?server=joinchanell.henzovpn.selqora.ir&port=444&secret=ee766f0404a3331d21ae61b8e9f2b04e977777772e676f6f676c652e636f6d # domain: vo3!anwww.google.com
-tg://proxy?server=83.147.252.64&port=443&secret=ee0452c85fed7aba8a05802eb7b8104ca97777772e636c6f7564666c6172652e636f6d # domain: r_z.lwww.cloudflare.com
+tg://proxy?server=185.92.182.44&port=443&secret=eea3f91c2d88b4e6aa11bb22cc33dd44ee7777772e676f6f676c652e636f6d # domain: -"3dwww.google.com
+tg://proxy?server=91.99.152.221&port=443&secret=eee6607B90889CC60719D2170CB2851962737465616D706F77657265642E636F6D # domain: `{bsteampowered.com
+tg://proxy?server=best-sellerst.co.uk&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d # domain: o9;*!kcdn.yektanet.com
+tg://proxy?server=starstg.neverspy.tech&port=443&secret=eee19ef78b188ec248d8187c787a46ccca737461727374672e6e657665727370792e74656368 # domain: h|xzfstarstg.neverspy.tech
+tg://proxy?server=s5.postpulse.space&port=443&secret=ee846d23933361faa6211c7ac6765023be6164322e617269786f2e73686f70 # domain: m#3a!zvp#ad2.arixo.shop
+tg://proxy?server=proxy9.chunkycorp.shop&port=443&secret=ee6a0333c1db3f8eaba5c76731a44203b6617669746f2e7275 # domain: j3?g1bavito.ru
+tg://proxy?server=89.117.61.184&port=443&secret=eedec404cfa8eda63cce9e838547dee3dc636c6f7564666c6172652e636f6d # domain: <gcloudflare.com
+tg://proxy?server=164.68.122.140&port=443&secret=ee6346164eb9fd41c57c1256c5f6c63757636c6f7564666c6172652e636f6d # domain: cfna|v7wcloudflare.com
+tg://proxy?server=167.86.81.232&port=443&secret=ee225f29b78fa2a218d8bd70158e9ecc2c636c6f7564666c6172652e636f6d # domain: "_)p,cloudflare.com
+tg://proxy?server=yc3.indigogift.fun&port=443&secret=ee0e61aaf45658c3ef5fc0fef90549fda67777772e636c6f7564666c6172652e636f6d # domain: avx_iwww.cloudflare.com
