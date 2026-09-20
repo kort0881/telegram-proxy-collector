@@ -1,36 +1,23 @@
-# MTProto RU (1)
-# Updated: 2026-09-20 17:23:37.663329+00:00
+# MTProto RU (0)
+# Updated: 2026-09-20 20:24:16.987733+00:00
 
-tg://proxy?server=fi-1.quomis.pw&port=443&secret=ee6b13503e2e0bbb66b5dad03ba89088b56d61782e7275# MTProto EU (24)
-# Updated: 2026-09-20 17:23:37.663329+00:00
+# MTProto EU (11)
+# Updated: 2026-09-20 20:24:16.987733+00:00
 
-tg://proxy?server=193.17.95.81&port=2222&secret=eecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQeecBAgAeeAfwEEOGEkwEeQ==
-tg://proxy?server=117.55.202.45&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-tg://proxy?server=217.60.23.120&port=443&secret=ee97654a92160168eb92147da1a8c33aaf676f6f676c652e636f6d
-tg://proxy?server=212.34.154.203&port=443&secret=eecBAgABAAfwAwOG4kw63QAAAARueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29t
-tg://proxy?server=91.107.246.35&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=168.222.254.49&port=443&secret=4a53898470c53c8426164f614167df06
-tg://proxy?server=178.104.32.163&port=443&secret=dd104462821248bd7vc509130220c25d99
-tg://proxy?server=foxkhabar.iranbetter.site&port=443&secret=dd8c3f948ef155b7af5b669504553de3ff
-tg://proxy?server=89.167.25.170&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=65.21.30.247&port=443&secret=KOScyrEWg4DikWIh4rV7rQ
-tg://proxy?server=65.109.43.120&port=443&secret=dd79e344818749bd7ac519130220c25d09
-tg://proxy?server=zabol.ir.khdhdjyfdjhy.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e69626973636f7474692e79656b74616e65742e636f6d
-tg://proxy?server=co.uk.org.articlemtv.info&port=8880&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=benz.peachsoft.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ%3D%3D
-tg://proxy?server=new.nchnch.co.uk&port=4455&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=web.jinxandjack.co.uk.&port=443&secret=7t3____FoRaLL_Proxy___93ZWIuYmFsZS5haQ==
-tg://proxy?server=himan.dano-vaks.co.uk.&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=cdnpulse.org&port=443&secret=dd93ca4f625e3fe727f9f3b42abef3fcf6
-tg://proxy?server=2.masi.cloudflare.com.nokia.com.co.uk.do_yo.want_to.clash_with.this.www.microsoft.com.there_is_no.place_like.localhost.www.bing.com.count_with_me.cyou.net.digikala.com.www.enamad.ir.www.google.com.again_to_fight.everyone.i_am.the_internet.brobalair.ink&port=8888&secret=FgMBAgABAAH8AwOG4kw63Q
-tg://proxy?server=sorfezh.malfilk-voq.co.uk&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=pofak.opensusebase.co.uk&port=443&secret=ee1603010200010001fc030386e24c3add6d656469612e737465616d706f77657265642e636f6d
-tg://proxy?server=exp.proxy.digitalresistance.dog&port=443&secret=7tQdjNmPALIE6YAJmOz4Mi53d3cuZ29vZ2xlLmNvbQ
-tg://proxy?server=tg.smartaisupport.ru&port=443&secret=4b3503c268b3d097fe4fb96624cec676
-tg://proxy?server=nnn.hotelghooo.ir&port=443&secret=ee000000000000000000000000000000007777772e4869646550726f78692e696f# MTProto US (2)
-# Updated: 2026-09-20 17:23:37.663329+00:00
+tg://proxy?server=146.103.120.97&port=443&secret=eeDDNEgYdJvXrFGRMCIMJQ
+tg://proxy?server=2.27.59.225&port=443&secret=eebe232d8569992025370b3fd21684a9576c696e6b2
+tg://proxy?server=87.120.216.254&port=443&secret=ee1603010200010001fc030386e24c3add626973636f7474692e79656b74616e65742e636f6d
+tg://proxy?server=always.for.you.ir.mausjakaqd.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e697374617469632e666172616b61762e636f6d
+tg://proxy?server=95.179.170.71&port=443&secret=ee087576c42c25c5eba36d215835cc03
+tg://proxy?server=204.168.145.16&port=443&secret=8f604a7e17871ca0b6e39e5435ac2e10
+tg://proxy?server=tg.proxywing.net&port=443&secret=dd398e9112420ca2ad72bac8bfd851ff42
+tg://proxy?server=team.fast--pro.co.uk.&port=443&secret=3RBEYoISSb16xRkTAiDCXQk%3D
+tg://proxy?server=coffee.chunkystars.ru&port=443&secret=8f3c7a1d4b92e6c51a7d0fb843c2e91f
+tg://proxy?server=itg.sivlena.ir&port=2053&secret=eea8e6d9b47b709022e52b2462ff91732a6974672e7369766c656e612e6972
+tg://proxy?server=6.masi.cloudflare.com.nokia.com.co.uk.do_yo.want_to.clash_with.this.www.microsoft.com.there_is_no.place_like.localhost.www.bing.com.count_with_me.cyou.net.digikala.com.www.enamad.ir.www.google.com.again_to_fight.everyone.i_am.the_internet.brobalair.ink&port=8888&secret=FgMBAgABAAH8AwOG4kw63Q# MTProto US (2)
+# Updated: 2026-09-20 20:24:16.987733+00:00
 
-tg://proxy?server=66.151.43.7&port=443&secret=ee27c7f948bc8c223e13ae240911e783ab7777772e636c6f7564666c6172652e636f6d
-tg://proxy?server=194.163.172.168&port=443&secret=eeb8798284526fa810d61ad46d79f9f785636c6f7564666c6172652e636f6d# MTProto ASIA (0)
-# Updated: 2026-09-20 17:23:37.663329+00:00
+tg://proxy?server=204.168.192.220&port=443&secret=eee35ed3d65d03b78f3618f6c209e488be636c6f7564666c6172652e636f6d
+tg://proxy?server=dl.sorfema.ir&port=443&secret=eede668170dc53797cb6af0995cbbb50a17777772e636c6f7564666c6172652e636f6d# MTProto ASIA (0)
+# Updated: 2026-09-20 20:24:16.987733+00:00
 

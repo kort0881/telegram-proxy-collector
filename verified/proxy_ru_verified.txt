@@ -1,4 +1,3 @@
-# MTProto RU (1)
-# Updated: 2026-09-20 17:23:37.663329+00:00
+# MTProto RU (0)
+# Updated: 2026-09-20 20:24:16.987733+00:00
 
-tg://proxy?server=fi-1.quomis.pw&port=443&secret=ee6b13503e2e0bbb66b5dad03ba89088b56d61782e7275
