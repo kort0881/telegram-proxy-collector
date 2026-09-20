@@ -1,4 +1,4 @@
 # MTProto RU (1)
-# Updated: 2026-09-20 13:58:50.665252+00:00
+# Updated: 2026-09-20 17:23:37.663329+00:00
 
-tg://proxy?server=159.194.249.57&port=443&secret=eedddddddddddddddddddddddddddddddd6d2e6265626f6f2e7275
+tg://proxy?server=fi-1.quomis.pw&port=443&secret=ee6b13503e2e0bbb66b5dad03ba89088b56d61782e7275

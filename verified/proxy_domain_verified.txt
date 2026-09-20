@@ -1,13 +1,7 @@
-# Proxies with domain (10)
-# Updated: 2026-09-20 13:58:50.665252+00:00
+# Proxies with domain (4)
+# Updated: 2026-09-20 17:23:37.663329+00:00
 
-tg://proxy?server=167.233.183.231&port=444&secret=ee7d92268111fd5fbb06a23c2ed87f24567661727a657368332e636f6d # domain: }&_<.$vvarzesh3.com
-tg://proxy?server=2.26.255.73&port=443&secret=eeab03f51ca82ec9e172a5eba3b169f6cd7777772e77702e706c # domain: .riwww.wp.pl
-tg://proxy?server=foxkhabar.iranbetter.site&port=443&secret=ee8c3f948ef155b7af5b669504553de3ff7777772e7961686f6f2e636f6d # domain: ?u[fu=www.yahoo.com
-tg://proxy?server=mtproto.eu&port=443&secret=eebd22cd34081c9420e8515a153186e63273647a74656c65636f6d2e726f # domain: "4 qz12sdztelecom.ro
-tg://proxy?server=blue.collegealabama.co.uk&port=443&secret=ee71889eb517157210d61df330a5f11d956d656469612e737465616d706f77657265642e636f6d # domain: qr0media.steampowered.com
-tg://proxy?server=159.194.242.112&port=443&secret=eec842f4523a7dd76d831eb5cd236885af63646e2e736869706661737465726c6162732e636f6d # domain: br:}m#hcdn.shipfasterlabs.com
-tg://proxy?server=c.ce.ee.r.e.e.0co.eu&port=6&secret=eeaa3ca6f4ddbe2971abbace139f32138c31313131313131316531653165316531316531653065303164783030653165316430636430 # domain: <)q211111111e1e1e1e11e1e0e01dx00e1e1d0cd0
-tg://proxy?server=159.194.249.57&port=443&secret=eedddddddddddddddddddddddddddddddd6d2e6265626f6f2e7275 # domain: m.beboo.ru
-tg://proxy?server=194.163.176.31&port=443&secret=ee5ef4c4585425038d6a4cdad33fb89980636c6f7564666c6172652e636f6d # domain: ^xt%jl?cloudflare.com
-tg://proxy?server=31.220.72.60&port=443&secret=ee399a6e8dbe6399816eba10c0fa78609d636c6f7564666c6172652e636f6d # domain: 9ncnx`cloudflare.com
+tg://proxy?server=217.60.23.120&port=443&secret=ee97654a92160168eb92147da1a8c33aaf676f6f676c652e636f6d # domain: ejh}:google.com
+tg://proxy?server=fi-1.quomis.pw&port=443&secret=ee6b13503e2e0bbb66b5dad03ba89088b56d61782e7275 # domain: kp>.f;max.ru
+tg://proxy?server=66.151.43.7&port=443&secret=ee27c7f948bc8c223e13ae240911e783ab7777772e636c6f7564666c6172652e636f6d # domain: 'h">$www.cloudflare.com
+tg://proxy?server=194.163.172.168&port=443&secret=eeb8798284526fa810d61ad46d79f9f785636c6f7564666c6172652e636f6d # domain: yromycloudflare.com
