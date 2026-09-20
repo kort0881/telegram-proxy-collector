@@ -1,16 +1,13 @@
-# Proxies with domain (13)
-# Updated: 2026-09-20 09:06:36.512536+00:00
+# Proxies with domain (10)
+# Updated: 2026-09-20 13:58:50.665252+00:00
 
-tg://proxy?server=94.103.169.103&port=443&secret=ee7f568e2c2b75b68b3075d35008aa37357777772e676f6f676c652e636f6d # domain: v,+u0up75www.google.com
-tg://proxy?server=setsevwodpx.freexpaths.com.tr&port=443&secret=ee298e8b88eb36f37f332b8907ab2663f2736574736576776f6470782e667265657870617468732e636f6d2e7472 # domain: )63+&csetsevwodpx.freexpaths.com.tr
-tg://proxy?server=setsevwodpx.freexpaths.com.tr&port=443&secret=eebead184b5dcfc74adb1182044a6bd5e7736574736576776f6470782e667265657870617468732e636f6d2e7472 # domain: k]jjksetsevwodpx.freexpaths.com.tr
-tg://proxy?server=bale-ai.vingardium.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
-tg://proxy?server=for-persian.collegealabama.co.uk&port=443&secret=ee71889eb517157210d61df330a5f11d956d656469612e737465616d706f77657265642e636f6d # domain: qr0media.steampowered.com
-tg://proxy?server=logs.jinxandjack.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
-tg://proxy?server=setsevwodpx.freexpaths.com.tr&port=443&secret=eefbd97e5c412b0ea326945b540dd6d3ed736574736576776f6470782e667265657870617468732e636f6d2e7472 # domain: ~\a+&[tsetsevwodpx.freexpaths.com.tr
-tg://proxy?server=anthologize.granuloma.phantasmagoric.teleseryepinoytv.com&port=443&secret=ee426b729ff683efc4a976f79d276aa413647a656e2e7275 # domain: bkrv'jdzen.ru
-tg://proxy?server=ethnicity.garbageology.unalienable.teleseryerepaly.com&port=443&secret=eedd3eb34cad64c5cf10dc277942e08750647a656e2e7275 # domain: >ld'ybpdzen.ru
-tg://proxy?server=lamely.potability.suppliance.teleseryeme.com&port=443&secret=ee16f1153ee144f5470dc26b2793b7130b647a656e2e7275 # domain: >dgk'dzen.ru
-tg://proxy?server=interactive.mesonic.signalman.teleseryestv.com&port=443&secret=ee3e11e56b332d2a8ddf5f21a88c57588c647a656e2e7275 # domain: >k3-*_!wxdzen.ru
-tg://proxy?server=89.117.63.176&port=443&secret=ee4e3346cfb87699c595c051b55e3705d2636c6f7564666c6172652e636f6d # domain: n3fvq^7cloudflare.com
-tg://proxy?server=207.180.195.37&port=443&secret=eedfa08dad56087f585c3948423aba9841636c6f7564666c6172652e636f6d # domain: vx\9hb:acloudflare.com
+tg://proxy?server=167.233.183.231&port=444&secret=ee7d92268111fd5fbb06a23c2ed87f24567661727a657368332e636f6d # domain: }&_<.$vvarzesh3.com
+tg://proxy?server=2.26.255.73&port=443&secret=eeab03f51ca82ec9e172a5eba3b169f6cd7777772e77702e706c # domain: .riwww.wp.pl
+tg://proxy?server=foxkhabar.iranbetter.site&port=443&secret=ee8c3f948ef155b7af5b669504553de3ff7777772e7961686f6f2e636f6d # domain: ?u[fu=www.yahoo.com
+tg://proxy?server=mtproto.eu&port=443&secret=eebd22cd34081c9420e8515a153186e63273647a74656c65636f6d2e726f # domain: "4 qz12sdztelecom.ro
+tg://proxy?server=blue.collegealabama.co.uk&port=443&secret=ee71889eb517157210d61df330a5f11d956d656469612e737465616d706f77657265642e636f6d # domain: qr0media.steampowered.com
+tg://proxy?server=159.194.242.112&port=443&secret=eec842f4523a7dd76d831eb5cd236885af63646e2e736869706661737465726c6162732e636f6d # domain: br:}m#hcdn.shipfasterlabs.com
+tg://proxy?server=c.ce.ee.r.e.e.0co.eu&port=6&secret=eeaa3ca6f4ddbe2971abbace139f32138c31313131313131316531653165316531316531653065303164783030653165316430636430 # domain: <)q211111111e1e1e1e11e1e0e01dx00e1e1d0cd0
+tg://proxy?server=159.194.249.57&port=443&secret=eedddddddddddddddddddddddddddddddd6d2e6265626f6f2e7275 # domain: m.beboo.ru
+tg://proxy?server=194.163.176.31&port=443&secret=ee5ef4c4585425038d6a4cdad33fb89980636c6f7564666c6172652e636f6d # domain: ^xt%jl?cloudflare.com
+tg://proxy?server=31.220.72.60&port=443&secret=ee399a6e8dbe6399816eba10c0fa78609d636c6f7564666c6172652e636f6d # domain: 9ncnx`cloudflare.com

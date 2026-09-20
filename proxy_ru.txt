@@ -1,7 +1,4 @@
-# MTProto RU (4)
-# Updated: 2026-09-20 09:06:36.512536+00:00
+# MTProto RU (1)
+# Updated: 2026-09-20 13:58:50.665252+00:00
 
-tg://proxy?server=anthologize.granuloma.phantasmagoric.teleseryepinoytv.com&port=443&secret=ee426b729ff683efc4a976f79d276aa413647a656e2e7275
-tg://proxy?server=ethnicity.garbageology.unalienable.teleseryerepaly.com&port=443&secret=eedd3eb34cad64c5cf10dc277942e08750647a656e2e7275
-tg://proxy?server=lamely.potability.suppliance.teleseryeme.com&port=443&secret=ee16f1153ee144f5470dc26b2793b7130b647a656e2e7275
-tg://proxy?server=interactive.mesonic.signalman.teleseryestv.com&port=443&secret=ee3e11e56b332d2a8ddf5f21a88c57588c647a656e2e7275
+tg://proxy?server=159.194.249.57&port=443&secret=eedddddddddddddddddddddddddddddddd6d2e6265626f6f2e7275
