@@ -1,8 +1,8 @@
 # Proxies with domain (5)
-# Updated: 2026-09-20 23:52:40.055556+00:00
+# Updated: 2026-09-21 03:34:59.739256+00:00
 
-tg://proxy?server=213.226.127.61&port=443&secret=eec8f164f338f20e2e3c7a0f4e0408a51270726f787974672e666974 # domain: d8.<znproxytg.fit
-tg://proxy?server=promo.dealer.ac&port=443&secret=ee6aa3b7302162fefaffdcfafa34ab94ba7477656e7475722e636f6d # domain: j0!b4twentur.com
-tg://proxy?server=194.233.94.9&port=443&secret=eee3727d72c23452d6928e9a5ea16f0940676f6f676c65617069732e636f6d # domain: r}r4r^o@googleapis.com
-tg://proxy?server=85.90.244.164&port=443&secret=eed5026c2375e5afa5174552eb8199edbe7777772e636c6f7564666c6172652e636f6d # domain: l#uerwww.cloudflare.com
-tg://proxy?server=164.68.111.163&port=443&secret=ee9fc1d5793a3a7470f6b5aba24abd476a636c6f7564666c6172652e636f6d # domain: y::tpjgjcloudflare.com
+tg://proxy?server=46.8.237.133&port=443&secret=eec75f059df930c15fc270247a62f83d3b # domain: _0_p$zb=;
+tg://proxy?server=log.romanssystem.store&port=443&secret=eee9a4f23b1d768c04a8d7f39120ca5b6e6D656469612E737465616D706F77657265642E636F6D # domain: ;v [nmedia.steampowered.com
+tg://proxy?server=47.243.7.197&port=443&secret=eee5e4bf3ea829b0530f705f8e9776c0e9617a7572652e6d6963726f736f66742e636f6d # domain: >)sp_vazure.microsoft.com
+tg://proxy?server=8.220.177.234&port=443&secret=eef69e84da327041b4c67d8632550fff7e617a7572652e6d6963726f736f66742e636f6d # domain: 2pa}2u~azure.microsoft.com
+tg://proxy?server=89.117.60.193&port=443&secret=ee59a54d5935a329a98829eb1ac0e3e173636c6f7564666c6172652e636f6d # domain: ymy5))scloudflare.com
