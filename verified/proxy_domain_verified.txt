@@ -1,8 +1,14 @@
-# Proxies with domain (5)
-# Updated: 2026-09-21 03:34:59.739256+00:00
+# Proxies with domain (11)
+# Updated: 2026-09-21 09:39:10.455692+00:00
 
-tg://proxy?server=46.8.237.133&port=443&secret=eec75f059df930c15fc270247a62f83d3b # domain: _0_p$zb=;
-tg://proxy?server=log.romanssystem.store&port=443&secret=eee9a4f23b1d768c04a8d7f39120ca5b6e6D656469612E737465616D706F77657265642E636F6D # domain: ;v [nmedia.steampowered.com
-tg://proxy?server=47.243.7.197&port=443&secret=eee5e4bf3ea829b0530f705f8e9776c0e9617a7572652e6d6963726f736f66742e636f6d # domain: >)sp_vazure.microsoft.com
-tg://proxy?server=8.220.177.234&port=443&secret=eef69e84da327041b4c67d8632550fff7e617a7572652e6d6963726f736f66742e636f6d # domain: 2pa}2u~azure.microsoft.com
-tg://proxy?server=89.117.60.193&port=443&secret=ee59a54d5935a329a98829eb1ac0e3e173636c6f7564666c6172652e636f6d # domain: ymy5))scloudflare.com
+tg://proxy?server=209.127.228.162&port=443&secret=ee32b920dffb51643028e2f6b878d4eac16170706c652e636f6d # domain: 2 qd0(xapple.com
+tg://proxy?server=64.226.79.168&port=443&secret=eec80ff604fa45408f1d152624d3bffcf276616e2e6e616a76612e636f6d # domain: e@&$van.najva.com
+tg://proxy?server=89.167.12.40&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d # domain: %8nr7^microsoft.com
+tg://proxy?server=47.81.12.133&port=443&secret=ee04092608cc8fa7b1b5d7b46792e24759617a7572652e6d6963726f736f66742e636f6d # domain: &ggyazure.microsoft.com
+tg://proxy?server=94.228.163.130&port=443&secret=ee86f01ace1d0fa34dc83418c75e08879d6f7a6f6e2e7275 # domain: m4^ozon.ru
+tg://proxy?server=castrati.delict.wale.teleseryeshd.com&port=443&secret=ee6d42ed89a87032e899ec9ca42a9b52fa647a656e2e7275 # domain: mbp2*rdzen.ru
+tg://proxy?server=impermissible.shingly.worry.teleseryerepaly.com&port=443&secret=eec20aaa97e3cdc54f5a41bf039b77cb04647a656e2e7275 # domain: ozawdzen.ru
+tg://proxy?server=constructive.pericardia.undrinkable.teleseryepinoytv.com&port=443&secret=eec64effb030d8d2a3331aad8b431b55fe647a656e2e7275 # domain: n03cudzen.ru
+tg://proxy?server=173.249.36.34&port=443&secret=ee13012cfc85c1d5d1e970636d6fe5b542636c6f7564666c6172652e636f6d # domain: ,pcmobcloudflare.com
+tg://proxy?server=164.68.119.250&port=443&secret=eee232555f829c81c2193b08f59b08ca19636c6f7564666c6172652e636f6d # domain: 2u_;cloudflare.com
+tg://proxy?server=79.137.196.223&port=18443&secret=eefd7ec32323aa5b4fc5cdd6b7dd28836a7777772e636c6f7564666c6172652e636f6d # domain: ~##[o(jwww.cloudflare.com

@@ -1,3 +1,7 @@
-# MTProto RU (0)
-# Updated: 2026-09-21 03:34:59.739256+00:00
+# MTProto RU (4)
+# Updated: 2026-09-21 09:39:10.455692+00:00
 
+tg://proxy?server=94.228.163.130&port=443&secret=ee86f01ace1d0fa34dc83418c75e08879d6f7a6f6e2e7275
+tg://proxy?server=castrati.delict.wale.teleseryeshd.com&port=443&secret=ee6d42ed89a87032e899ec9ca42a9b52fa647a656e2e7275
+tg://proxy?server=impermissible.shingly.worry.teleseryerepaly.com&port=443&secret=eec20aaa97e3cdc54f5a41bf039b77cb04647a656e2e7275
+tg://proxy?server=constructive.pericardia.undrinkable.teleseryepinoytv.com&port=443&secret=eec64effb030d8d2a3331aad8b431b55fe647a656e2e7275
