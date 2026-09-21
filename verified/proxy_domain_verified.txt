@@ -1,11 +1,8 @@
-# Proxies with domain (8)
-# Updated: 2026-09-21 16:14:30.125241+00:00
+# Proxies with domain (5)
+# Updated: 2026-09-21 21:44:58.059491+00:00
 
-tg://proxy?server=189.24.106.20&port=2001&secret=ee789b69d937c22a545cd99b51270292117869756e6f2e636e # domain: xi7*t\q'xiuno.cn
-tg://proxy?server=189.24.106.201&port=2001&secret=ee6b91e8d1f404cb5e6f0d3bf8bafb859c7869756e6f2e636e # domain: k^o;xiuno.cn
-tg://proxy?server=189.24.82.151&port=2001&secret=ee445304eb01ed57a842e8519f19ddda207869756e6f2e636e # domain: dswbq xiuno.cn
-tg://proxy?server=212.74.39.121&port=443&secret=ee8c3f948ef155b7af5b669504553de3ff7777772e7961686f6f2e636f6d # domain: ?u[fu=www.yahoo.com
-tg://proxy?server=app.what-ever.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
-tg://proxy?server=8.220.186.24&port=443&secret=eefb8c98ae8fb08f1e9633ed19a6e9098f617a7572652e6d6963726f736f66742e636f6d # domain: 3azure.microsoft.com
-tg://proxy?server=srv-qdewfw.reverib.com&port=443&secret=ee2eaa838768a8d24521233656516106d56d6963726f736f66742e636f6d # domain: .he!#6vqamicrosoft.com
-tg://proxy?server=srv-eootkd.giverra.sbs&port=443&secret=ee9a9e37aec9d8f3a111ca6da3f01f21cf636c6f7564666c6172652e636f6d # domain: 7m!cloudflare.com
+tg://proxy?server=192.142.1.99&port=443&secret=ee0123456789abcdef0123456789abcdef7777772e676f6f676c652e636f6d # domain: #eg#egwww.google.com
+tg://proxy?server=213.176.92.144&port=443&secret=eea339ca5cc76d3f7946a1356a63f0947d6b69636b2e636f6d # domain: 9\m?yf5jc}kick.com
+tg://proxy?server=free-niderl.kimt.space&port=443&secret=ee7d025179c3b272e9631a5e2eb313b6b36164732e78352e7275 # domain: }qyrc^.ads.x5.ru
+tg://proxy?server=proxtstar.live&port=443&secret=ee6a0333c1db3f8eaba5c76731a44203b6617669746f2e7275 # domain: j3?g1bavito.ru
+tg://proxy?server=155.133.26.82&port=443&secret=ee6bb5d5b77515b3ec4fe6d1c558aa47a9636c6f7564666c6172652e636f6d # domain: kuoxgcloudflare.com

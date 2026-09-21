@@ -1,3 +1,5 @@
-# MTProto RU (0)
-# Updated: 2026-09-21 16:14:30.125241+00:00
+# MTProto RU (2)
+# Updated: 2026-09-21 21:44:58.059491+00:00
 
+tg://proxy?server=free-niderl.kimt.space&port=443&secret=ee7d025179c3b272e9631a5e2eb313b6b36164732e78352e7275
+tg://proxy?server=proxtstar.live&port=443&secret=ee6a0333c1db3f8eaba5c76731a44203b6617669746f2e7275

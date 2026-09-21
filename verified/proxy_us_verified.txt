@@ -1,4 +1,4 @@
 # MTProto US (1)
-# Updated: 2026-09-21 16:14:30.125241+00:00
+# Updated: 2026-09-21 21:44:58.059491+00:00
 
-tg://proxy?server=srv-eootkd.giverra.sbs&port=443&secret=ee9a9e37aec9d8f3a111ca6da3f01f21cf636c6f7564666c6172652e636f6d
+tg://proxy?server=155.133.26.82&port=443&secret=ee6bb5d5b77515b3ec4fe6d1c558aa47a9636c6f7564666c6172652e636f6d
