@@ -1,26 +1,24 @@
-# MTProto EU (23)
-# Updated: 2026-09-21 09:39:10.455692+00:00
+# MTProto EU (21)
+# Updated: 2026-09-21 16:14:30.125241+00:00
 
-tg://proxy?server=51.79.13.176&port=443&secret=1cede63ff061265ad39ff8193da5214b
-tg://proxy?server=209.127.228.162&port=443&secret=ee32b920dffb51643028e2f6b878d4eac16170706c652e636f6d
-tg://proxy?server=https.polarizio.info&port=443&secret=1320PuNyHw_LQKT_Y7XNJw==
-tg://proxy?server=198.16.107.91&port=443&secret=ee1603010200010001fc030386e24c3add76616e2e6e616a76612e636f6d
-tg://proxy?server=144.124.230.25&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=94.249.148.16&port=88&secret=ee0000f00f0f775555fffffff5006e2e697374617469632e666172616b61762e636f6d
-tg://proxy?server=64.226.79.168&port=443&secret=eec80ff604fa45408f1d152624d3bffcf276616e2e6e616a76612e636f6d
-tg://proxy?server=146.103.112.154&port=443&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=91.99.228.195&port=443&secret=7gD_AA___wD_9VVf______VtZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=192.248.176.10&port=443&secret=d79ce6447e2bd4c35fd9c61db59dad78
-tg://proxy?server=138.201.195.175&port=443&secret=EERighJJvXrFGRMCIMJdCQ==
-tg://proxy?server=83.228.229.24&port=443&secret=ee1603010200010001fc030386e24c3add626973636F7474692E79656B74616E65742E636F6D
-tg://proxy?server=65.20.113.105&port=443&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=web.arixo.shop&port=443&secret=27e57f496bbf279605f0198ea6d26067
-tg://proxy?server=89.167.12.40&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d
-tg://proxy?server=cdn.yektanet.com.rashkapo.info&port=443&secret=ee1603010200010001fc030386e24c3add626973636F7474692E79656B74616E65742E636F6D
-tg://proxy?server=65.109.133.143&port=443&secret=8fced22f0dd7294e2be797040419b87d
-tg://proxy?server=Qavi.Baryc6w.co.uk&port=443&secret=ProxyQavi____Proxymelg
-tg://proxy?server=95.142.47.134&port=443&secret=eecBAgABAAfwAwOG4kw63QAAAARueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29t
-tg://proxy?server=bia-vasl-shim.ir.hitwsaloa-ighfs.space&port=443&secret=e9a4f23b1d768c04a8d7f39120ca5b6e
-tg://proxy?server=fasle-zivaye.ir.paeez-amad.info&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=64.188.80.92&port=443&secret=ca66dbb8b5d66a92fe3c01c441972826
-tg://proxy?server=47.81.12.133&port=443&secret=ee04092608cc8fa7b1b5d7b46792e24759617a7572652e6d6963726f736f66742e636f6d
+tg://proxy?server=144.202.119.145&port=443&secret=ddf72f0a03ec9611d860e974cda000a769
+tg://proxy?server=212.74.39.121&port=443&secret=ee8c3f948ef155b7af5b669504553de3ff7777772e7961686f6f2e636f6d
+tg://proxy?server=91.84.117.61&port=443&secret=eecBAgABAAfwAwOG4kw63QAAAARueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29t
+tg://proxy?server=138.201.195.175&port=443&secret=EERighJJvXrFGRMCIMJdCQ
+tg://proxy?server=168.119.142.46&port=443&secret=dd79e7010200010007f0030386e24c3add
+tg://proxy?server=for.you.ir.zigoraaat.info.&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=138.124.71.179&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557
+tg://proxy?server=for.iranian.ir.zigoraaat.info.&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=95.216.66.254&port=443&secret=dd104462821249bd7ac519130220c25d09
+tg://proxy?server=77.42.124.215&port=443&secret=dd104462821249bd7ac519130220c25d09
+tg://proxy?server=app.what-ever.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169
+tg://proxy?server=157.180.39.126&port=443&secret=7HQighJPBNMYVRNB6tdkVw
+tg://proxy?server=95.217.28.96&port=443&secret=1603010200010001fc031386e24c3add
+tg://proxy?server=remix.cdnwave.org&port=443&secret=dd7391242569590e01416101927d38b565
+tg://proxy?server=2.evoevoevo.com&port=443&secret=7e9dcba07510a31d25d200c685e67556
+tg://proxy?server=8.220.186.24&port=443&secret=eefb8c98ae8fb08f1e9633ed19a6e9098f617a7572652e6d6963726f736f66742e636f6d
+tg://proxy?server=srv-qdewfw.reverib.com&port=443&secret=ee2eaa838768a8d24521233656516106d56d6963726f736f66742e636f6d
+tg://proxy?server=4444.atousa4sam.co.uk&port=6773&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=portal.what-ever.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ%3D%3D
+tg://proxy?server=www.fast.com.fast-film.ir&port=443&secret=7n45KVByqUOil8EmfiLLJdxzMy5hbWF6b25hd3MuY29t
+tg://proxy?server=qwik.assetflux.org&port=443&secret=dd2e7c3d85e469cb8f825f4678a716a363

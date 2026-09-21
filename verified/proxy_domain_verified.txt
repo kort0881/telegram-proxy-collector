@@ -1,14 +1,11 @@
-# Proxies with domain (11)
-# Updated: 2026-09-21 09:39:10.455692+00:00
+# Proxies with domain (8)
+# Updated: 2026-09-21 16:14:30.125241+00:00
 
-tg://proxy?server=209.127.228.162&port=443&secret=ee32b920dffb51643028e2f6b878d4eac16170706c652e636f6d # domain: 2 qd0(xapple.com
-tg://proxy?server=64.226.79.168&port=443&secret=eec80ff604fa45408f1d152624d3bffcf276616e2e6e616a76612e636f6d # domain: e@&$van.najva.com
-tg://proxy?server=89.167.12.40&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d # domain: %8nr7^microsoft.com
-tg://proxy?server=47.81.12.133&port=443&secret=ee04092608cc8fa7b1b5d7b46792e24759617a7572652e6d6963726f736f66742e636f6d # domain: &ggyazure.microsoft.com
-tg://proxy?server=94.228.163.130&port=443&secret=ee86f01ace1d0fa34dc83418c75e08879d6f7a6f6e2e7275 # domain: m4^ozon.ru
-tg://proxy?server=castrati.delict.wale.teleseryeshd.com&port=443&secret=ee6d42ed89a87032e899ec9ca42a9b52fa647a656e2e7275 # domain: mbp2*rdzen.ru
-tg://proxy?server=impermissible.shingly.worry.teleseryerepaly.com&port=443&secret=eec20aaa97e3cdc54f5a41bf039b77cb04647a656e2e7275 # domain: ozawdzen.ru
-tg://proxy?server=constructive.pericardia.undrinkable.teleseryepinoytv.com&port=443&secret=eec64effb030d8d2a3331aad8b431b55fe647a656e2e7275 # domain: n03cudzen.ru
-tg://proxy?server=173.249.36.34&port=443&secret=ee13012cfc85c1d5d1e970636d6fe5b542636c6f7564666c6172652e636f6d # domain: ,pcmobcloudflare.com
-tg://proxy?server=164.68.119.250&port=443&secret=eee232555f829c81c2193b08f59b08ca19636c6f7564666c6172652e636f6d # domain: 2u_;cloudflare.com
-tg://proxy?server=79.137.196.223&port=18443&secret=eefd7ec32323aa5b4fc5cdd6b7dd28836a7777772e636c6f7564666c6172652e636f6d # domain: ~##[o(jwww.cloudflare.com
+tg://proxy?server=189.24.106.20&port=2001&secret=ee789b69d937c22a545cd99b51270292117869756e6f2e636e # domain: xi7*t\q'xiuno.cn
+tg://proxy?server=189.24.106.201&port=2001&secret=ee6b91e8d1f404cb5e6f0d3bf8bafb859c7869756e6f2e636e # domain: k^o;xiuno.cn
+tg://proxy?server=189.24.82.151&port=2001&secret=ee445304eb01ed57a842e8519f19ddda207869756e6f2e636e # domain: dswbq xiuno.cn
+tg://proxy?server=212.74.39.121&port=443&secret=ee8c3f948ef155b7af5b669504553de3ff7777772e7961686f6f2e636f6d # domain: ?u[fu=www.yahoo.com
+tg://proxy?server=app.what-ever.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
+tg://proxy?server=8.220.186.24&port=443&secret=eefb8c98ae8fb08f1e9633ed19a6e9098f617a7572652e6d6963726f736f66742e636f6d # domain: 3azure.microsoft.com
+tg://proxy?server=srv-qdewfw.reverib.com&port=443&secret=ee2eaa838768a8d24521233656516106d56d6963726f736f66742e636f6d # domain: .he!#6vqamicrosoft.com
+tg://proxy?server=srv-eootkd.giverra.sbs&port=443&secret=ee9a9e37aec9d8f3a111ca6da3f01f21cf636c6f7564666c6172652e636f6d # domain: 7m!cloudflare.com
