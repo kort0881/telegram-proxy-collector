@@ -1,3 +1,7 @@
-# MTProto RU (0)
-# Updated: 2026-09-22 00:37:21.121829+00:00
+# MTProto RU (4)
+# Updated: 2026-09-22 07:22:45.984903+00:00
 
+tg://proxy?server=proxy-de.wearvpn.online&port=443&secret=eee707742c789a4d4551f7f13c07fe7a31766b2e7275
+tg://proxy?server=antagonism.unwittingly.upon.teleseryegroup.com&port=443&secret=ee36e93dba8fe3abb3a8faea8f754c2304647a656e2e7275
+tg://proxy?server=alevin.ekistics.sparrowhawk.gmateleserye.com&port=443&secret=ee6050cd496935a7f49cd37ca30493d05c647a656e2e7275
+tg://proxy?server=esurient.lobbyist.location.teleseryeme.com&port=443&secret=eea11523a87cd89fead908fe3d2fbf95c7647a656e2e7275
