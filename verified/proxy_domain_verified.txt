@@ -1,11 +1,8 @@
-# Proxies with domain (8)
-# Updated: 2026-09-22 07:22:45.984903+00:00
+# Proxies with domain (5)
+# Updated: 2026-09-22 13:08:57.681228+00:00
 
-tg://proxy?server=161.97.169.231&port=443&secret=eecfcd09956992b6d4dd0bf6aa2a8f63cd676f6f676c65617069732e636f6d # domain: i*cgoogleapis.com
-tg://proxy?server=31.76.77.192&port=443&secret=ee5018602bc9cb9124a5c1cb0154634ad2706c617932676f2e636c6f7564 # domain: p`+$tcjplay2go.cloud
-tg://proxy?server=mrak.store&port=443&secret=ee30274009c2a2aa9bf4448ddc81fca2bb7777772e676f6f676c652e636f6d # domain: 0'@dwww.google.com
-tg://proxy?server=mota.sivlena.ir&port=2053&secret=eefb8482ca85d5cc38e92a8902960fe5926d6f74612e7369766c656e612e6972 # domain: 8*mota.sivlena.ir
-tg://proxy?server=proxy-de.wearvpn.online&port=443&secret=eee707742c789a4d4551f7f13c07fe7a31766b2e7275 # domain: t,xmeq<z1vk.ru
-tg://proxy?server=antagonism.unwittingly.upon.teleseryegroup.com&port=443&secret=ee36e93dba8fe3abb3a8faea8f754c2304647a656e2e7275 # domain: 6=ul#dzen.ru
-tg://proxy?server=alevin.ekistics.sparrowhawk.gmateleserye.com&port=443&secret=ee6050cd496935a7f49cd37ca30493d05c647a656e2e7275 # domain: `pii5|\dzen.ru
-tg://proxy?server=esurient.lobbyist.location.teleseryeme.com&port=443&secret=eea11523a87cd89fead908fe3d2fbf95c7647a656e2e7275 # domain: #|=/dzen.ru
+tg://proxy?server=85.9.193.178&port=443&secret=ee7777772e676f6f676c652e636f6d9d # domain: www.google.com
+tg://proxy?server=web.xomodz.fit&port=2053&secret=eefd1de992024a723fca2c6f8ebff531bc7765622e786f6d6f647a2e666974 # domain: jr?,o1web.xomodz.fit
+tg://proxy?server=at1.cdntube.monster&port=443&secret=ee77f3f762df1311d3b732245c9f0e30e16174312e63646e747562652e6d6f6e73746572 # domain: wb2$\0at1.cdntube.monster
+tg://proxy?server=media7.happtg.org&port=443&secret=ee6ec9f7e082baf2397b450727ce78447e686f66662e7275 # domain: n9{e'xd~hoff.ru
+tg://proxy?server=levrun.ru&port=443&secret=ee13c3d6e347b050e2278e5bbe1346021679616e6465782e7275 # domain: gp'[fyandex.ru

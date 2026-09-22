@@ -1,17 +1,16 @@
-# MTProto EU (14)
-# Updated: 2026-09-22 07:22:45.984903+00:00
+# MTProto EU (13)
+# Updated: 2026-09-22 13:08:57.681228+00:00
 
-tg://proxy?server=209.250.252.84&port=443&secret=9513c29bc6ace12bc69d403369a77cf2
-tg://proxy?server=161.97.169.231&port=443&secret=eecfcd09956992b6d4dd0bf6aa2a8f63cd676f6f676c65617069732e636f6d
-tg://proxy?server=91.99.199.17&port=443&secret=7gD_AA___wD_9VVf______VtZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=136.244.89.222&port=443&secret=ddbd2987d30ee982c15f81014943a2b6f3
-tg://proxy?server=49.12.117.37&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=example.miosen.cyou&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=media.benzcls.co.uk&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=31.76.77.192&port=443&secret=ee5018602bc9cb9124a5c1cb0154634ad2706c617932676f2e636c6f7564
-tg://proxy?server=mrak.store&port=443&secret=ee30274009c2a2aa9bf4448ddc81fca2bb7777772e676f6f676c652e636f6d
-tg://proxy?server=157.180.90.85&port=443&secret=1603010200010001fc030386e24c3add
-tg://proxy?server=mota.sivlena.ir&port=2053&secret=eefb8482ca85d5cc38e92a8902960fe5926d6f74612e7369766c656e612e6972
-tg://proxy?server=proxy.jubaoku.com&port=9443&secret=2adab36179e7a39026adf74034615248
-tg://proxy?server=94.184.32.109.canlira.ir&port=4142&secret=AAAAAAAAAAAAAAAAAAAAAA==
-tg://proxy?server=apps.blueheartz.ir&port=443&secret=b895e7d683b7fb2c7cb59a2e820fb90c
+tg://proxy?server=172.65.186.19&port=443&secret=7gnbgVptgqMf2nb4ciMMaddwa2didWlsZC5vcmc=
+tg://proxy?server=85.9.193.178&port=443&secret=ee7777772e676f6f676c652e636f6d9d
+tg://proxy?server=109.199.122.32&port=62119&secret=0be225c098590033badc5805ffe2b4a6
+tg://proxy?server=65.21.234.12&port=443&secret=dd79e7010200010007f0030386e24c3add
+tg://proxy?server=iran.miosen.cyou&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=public.benzcls.co.uk&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=assets.helps.help&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=status.helps.help&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=gateway.helps.help&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=web.xomodz.fit&port=2053&secret=eefd1de992024a723fca2c6f8ebff531bc7765622e786f6d6f647a2e666974
+tg://proxy?server=at1.cdntube.monster&port=443&secret=ee77f3f762df1311d3b732245c9f0e30e16174312e63646e747562652e6d6f6e73746572
+tg://proxy?server=212.108.98.25.suser.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
+tg://proxy?server=benz.peachsoft.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ==
