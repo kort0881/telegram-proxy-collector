@@ -1,25 +1,18 @@
-# MTProto RU (2)
-# Updated: 2026-09-22 13:08:57.681228+00:00
+# MTProto RU (1)
+# Updated: 2026-09-22 17:58:24.819237+00:00
 
-tg://proxy?server=media7.happtg.org&port=443&secret=ee6ec9f7e082baf2397b450727ce78447e686f66662e7275
-tg://proxy?server=levrun.ru&port=443&secret=ee13c3d6e347b050e2278e5bbe1346021679616e6465782e7275# MTProto EU (13)
-# Updated: 2026-09-22 13:08:57.681228+00:00
+tg://proxy?server=89.169.173.127&port=443&secret=ee0f8e5e42ea0dd0f9639d851090e69760617669746f2e7275# MTProto EU (7)
+# Updated: 2026-09-22 17:58:24.819237+00:00
 
-tg://proxy?server=172.65.186.19&port=443&secret=7gnbgVptgqMf2nb4ciMMaddwa2didWlsZC5vcmc=
-tg://proxy?server=85.9.193.178&port=443&secret=ee7777772e676f6f676c652e636f6d9d
-tg://proxy?server=109.199.122.32&port=62119&secret=0be225c098590033badc5805ffe2b4a6
-tg://proxy?server=65.21.234.12&port=443&secret=dd79e7010200010007f0030386e24c3add
-tg://proxy?server=iran.miosen.cyou&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=public.benzcls.co.uk&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=assets.helps.help&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=status.helps.help&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=gateway.helps.help&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=web.xomodz.fit&port=2053&secret=eefd1de992024a723fca2c6f8ebff531bc7765622e786f6d6f647a2e666974
-tg://proxy?server=at1.cdntube.monster&port=443&secret=ee77f3f762df1311d3b732245c9f0e30e16174312e63646e747562652e6d6f6e73746572
-tg://proxy?server=212.108.98.25.suser.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
-tg://proxy?server=benz.peachsoft.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ==# MTProto US (0)
-# Updated: 2026-09-22 13:08:57.681228+00:00
+tg://proxy?server=5.78.226.79&port=443&secret=dd104462821249bd7ac519130220c25d09
+tg://proxy?server=77.239.112.81&port=443&secret=de9c430f1164f4eb2b2742dcab429252
+tg://proxy?server=we.are.iran.ir.abcyrajslklhga.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e69626973636f7474692e79656b74616e65742e636f6d
+tg://proxy?server=51.250.64.161&port=443&secret=4e43ae171d135959078c3ea87a0fcd38
+tg://proxy?server=just-iraninan.com.the-nice-mtproto.info.&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=czr.eights.cloud&port=443&secret=ee9eb94476b50257ed1d92cf2504d81ab9637a722e6569676874732e636c6f7564
+tg://proxy?server=just-iraninan.com.the-nice-mtproto.info&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ# MTProto US (1)
+# Updated: 2026-09-22 17:58:24.819237+00:00
 
-# MTProto ASIA (0)
-# Updated: 2026-09-22 13:08:57.681228+00:00
+tg://proxy?server=91.99.209.184&port=443&secret=ee843dd3bd4c6c16114013adfac338c7cd7777772e636c6f7564666c6172652e636f6d# MTProto ASIA (0)
+# Updated: 2026-09-22 17:58:24.819237+00:00
 

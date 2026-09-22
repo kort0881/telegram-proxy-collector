@@ -1,8 +1,6 @@
-# Proxies with domain (5)
-# Updated: 2026-09-22 13:08:57.681228+00:00
+# Proxies with domain (3)
+# Updated: 2026-09-22 17:58:24.819237+00:00
 
-tg://proxy?server=85.9.193.178&port=443&secret=ee7777772e676f6f676c652e636f6d9d # domain: www.google.com
-tg://proxy?server=web.xomodz.fit&port=2053&secret=eefd1de992024a723fca2c6f8ebff531bc7765622e786f6d6f647a2e666974 # domain: jr?,o1web.xomodz.fit
-tg://proxy?server=at1.cdntube.monster&port=443&secret=ee77f3f762df1311d3b732245c9f0e30e16174312e63646e747562652e6d6f6e73746572 # domain: wb2$\0at1.cdntube.monster
-tg://proxy?server=media7.happtg.org&port=443&secret=ee6ec9f7e082baf2397b450727ce78447e686f66662e7275 # domain: n9{e'xd~hoff.ru
-tg://proxy?server=levrun.ru&port=443&secret=ee13c3d6e347b050e2278e5bbe1346021679616e6465782e7275 # domain: gp'[fyandex.ru
+tg://proxy?server=czr.eights.cloud&port=443&secret=ee9eb94476b50257ed1d92cf2504d81ab9637a722e6569676874732e636c6f7564 # domain: dvw%czr.eights.cloud
+tg://proxy?server=89.169.173.127&port=443&secret=ee0f8e5e42ea0dd0f9639d851090e69760617669746f2e7275 # domain: ^bc`avito.ru
+tg://proxy?server=91.99.209.184&port=443&secret=ee843dd3bd4c6c16114013adfac338c7cd7777772e636c6f7564666c6172652e636f6d # domain: =ll@8www.cloudflare.com
