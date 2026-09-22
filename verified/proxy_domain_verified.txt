@@ -1,6 +1,4 @@
-# Proxies with domain (3)
-# Updated: 2026-09-22 17:58:24.819237+00:00
+# Proxies with domain (1)
+# Updated: 2026-09-22 21:08:24.667599+00:00
 
-tg://proxy?server=czr.eights.cloud&port=443&secret=ee9eb94476b50257ed1d92cf2504d81ab9637a722e6569676874732e636c6f7564 # domain: dvw%czr.eights.cloud
-tg://proxy?server=89.169.173.127&port=443&secret=ee0f8e5e42ea0dd0f9639d851090e69760617669746f2e7275 # domain: ^bc`avito.ru
-tg://proxy?server=91.99.209.184&port=443&secret=ee843dd3bd4c6c16114013adfac338c7cd7777772e636c6f7564666c6172652e636f6d # domain: =ll@8www.cloudflare.com
+tg://proxy?server=164.68.120.227&port=443&secret=ee97886115d3021360b6c86f077b384389636c6f7564666c6172652e636f6d # domain: a`o{8ccloudflare.com

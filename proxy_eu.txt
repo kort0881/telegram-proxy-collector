@@ -1,10 +1,4 @@
-# MTProto EU (7)
-# Updated: 2026-09-22 17:58:24.819237+00:00
+# MTProto EU (1)
+# Updated: 2026-09-22 21:08:24.667599+00:00
 
-tg://proxy?server=5.78.226.79&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=77.239.112.81&port=443&secret=de9c430f1164f4eb2b2742dcab429252
-tg://proxy?server=we.are.iran.ir.abcyrajslklhga.info.&port=88&secret=ee0000f00f0f775555fffffff5006e2e69626973636f7474692e79656b74616e65742e636f6d
-tg://proxy?server=51.250.64.161&port=443&secret=4e43ae171d135959078c3ea87a0fcd38
-tg://proxy?server=just-iraninan.com.the-nice-mtproto.info.&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=czr.eights.cloud&port=443&secret=ee9eb94476b50257ed1d92cf2504d81ab9637a722e6569676874732e636c6f7564
-tg://proxy?server=just-iraninan.com.the-nice-mtproto.info&port=7443&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=crow.anime-fox.ru&port=443&secret=8f3c7a1d4b92e6c51a7d0fb843c2e91f
