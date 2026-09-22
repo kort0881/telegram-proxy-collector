@@ -1,8 +1,3 @@
-# Proxies with domain (5)
-# Updated: 2026-09-21 21:44:58.059491+00:00
+# Proxies with domain (0)
+# Updated: 2026-09-22 00:37:21.121829+00:00
 
-tg://proxy?server=192.142.1.99&port=443&secret=ee0123456789abcdef0123456789abcdef7777772e676f6f676c652e636f6d # domain: #eg#egwww.google.com
-tg://proxy?server=213.176.92.144&port=443&secret=eea339ca5cc76d3f7946a1356a63f0947d6b69636b2e636f6d # domain: 9\m?yf5jc}kick.com
-tg://proxy?server=free-niderl.kimt.space&port=443&secret=ee7d025179c3b272e9631a5e2eb313b6b36164732e78352e7275 # domain: }qyrc^.ads.x5.ru
-tg://proxy?server=proxtstar.live&port=443&secret=ee6a0333c1db3f8eaba5c76731a44203b6617669746f2e7275 # domain: j3?g1bavito.ru
-tg://proxy?server=155.133.26.82&port=443&secret=ee6bb5d5b77515b3ec4fe6d1c558aa47a9636c6f7564666c6172652e636f6d # domain: kuoxgcloudflare.com

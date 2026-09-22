@@ -1,4 +1,3 @@
-# MTProto US (1)
-# Updated: 2026-09-21 21:44:58.059491+00:00
+# MTProto US (0)
+# Updated: 2026-09-22 00:37:21.121829+00:00
 
-tg://proxy?server=155.133.26.82&port=443&secret=ee6bb5d5b77515b3ec4fe6d1c558aa47a9636c6f7564666c6172652e636f6d

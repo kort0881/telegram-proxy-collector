@@ -1,22 +1,9 @@
-# MTProto RU (2)
-# Updated: 2026-09-21 21:44:58.059491+00:00
+# MTProto RU (0)
+# Updated: 2026-09-22 00:37:21.121829+00:00
 
-tg://proxy?server=free-niderl.kimt.space&port=443&secret=ee7d025179c3b272e9631a5e2eb313b6b36164732e78352e7275
-tg://proxy?server=proxtstar.live&port=443&secret=ee6a0333c1db3f8eaba5c76731a44203b6617669746f2e7275# MTProto EU (15)
-# Updated: 2026-09-21 21:44:58.059491+00:00
+# MTProto EU (3)
+# Updated: 2026-09-22 00:37:21.121829+00:00
 
-tg://proxy?server=1.masi.cloudflare.com.nokia.com.co.uk.do_yo.want_to.clash_with.this.www.microsoft.com.there_is_no.place_like.localhost.www.bing.com.count_with_me.cyou.net.digikala.com.www.enamad.ir.www.google.com.again_to_fight.everyone.i_am.the_internet.brobalair.ink&port=8888&secret=FgMBAgABAAH8AwOG4kw63Q
-tg://proxy?server=77.238.231.249&port=443&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=lastochka.cloud&port=443&secret=dd0426cabb3e5005b4cb51debb2e2510dd
-tg://proxy?server=94.130.191.164&port=443&secret=dd104462821249bd7ac519130220c25d09
-tg://proxy?server=192.142.1.99&port=443&secret=ee0123456789abcdef0123456789abcdef7777772e676f6f676c652e636f6d
-tg://proxy?server=91.99.160.0&port=443&secret=7gD_AA___wD_9VVf______VtZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=65.108.44.87&port=443&secret=79e7010200010007f0030386e24c3add
-tg://proxy?server=204.168.250.138&port=443&secret=b3f0c7f6af7dc2dc2e9c80d0d80e8162
-tg://proxy?server=91.234.147.15.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA==
-tg://proxy?server=farrowing.forgiven.guantanamo.homey.wagtail.hapka.info&port=47019&secret=3c7dde3640ac06c5dd3e77a57ffc96cd
-tg://proxy?server=91.234.147.4.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
-tg://proxy?server=213.176.92.144&port=443&secret=eea339ca5cc76d3f7946a1356a63f0947d6b69636b2e636f6d
-tg://proxy?server=91.234.147.15.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D
-tg://proxy?server=212.108.98.5.aprawood.ir&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA==
-tg://proxy?server=151.80.199.88&port=443&secret=05e9973d00168e1dc7e09f368ee94545
+tg://proxy?server=91.234.147.4.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA==
+tg://proxy?server=91.234.147.15.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA
+tg://proxy?server=91.234.147.4.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA
