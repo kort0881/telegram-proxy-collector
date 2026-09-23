@@ -1,7 +1,4 @@
-# Proxies with domain (4)
-# Updated: 2026-09-23 13:23:46.553048+00:00
+# Proxies with domain (1)
+# Updated: 2026-09-23 15:55:18.913380+00:00
 
-tg://proxy?server=cdn.wlrus.fun&port=7443&secret=eeb6d06df2fabaa65f86d2a2018867a17263646e2e776c7275732e66756e # domain: m_grcdn.wlrus.fun
-tg://proxy?server=186.246.18.244&port=443&secret=ee2086691bf3db011a90a21bbd34cc29647777772e6d6963726f736f66742e636f6d # domain:  i4)dwww.microsoft.com
-tg://proxy?server=cdn7.cdnwave.org&port=443&secret=ee6ec9f7e082baf2397b450727ce78447e686f66662e7275 # domain: n9{e'xd~hoff.ru
-tg://proxy?server=tg.magproxy.com&port=443&secret=eeb30fc4df699024f7a5dec0b0e66524b165682e766b2e636f6d # domain: i$e$eh.vk.com
+tg://proxy?server=itg.sivlena.ir&port=2053&secret=eef553b1b2335dfcc006552c227fb51fea6974672e7369766c656e612e6972 # domain: s3]u,"itg.sivlena.ir

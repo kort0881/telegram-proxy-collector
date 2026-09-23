@@ -1,20 +1,10 @@
-# MTProto RU (2)
-# Updated: 2026-09-23 13:23:46.553048+00:00
+# MTProto RU (0)
+# Updated: 2026-09-23 15:55:18.913380+00:00
 
-tg://proxy?server=cdn7.cdnwave.org&port=443&secret=ee6ec9f7e082baf2397b450727ce78447e686f66662e7275
-tg://proxy?server=tg.magproxy.com&port=443&secret=eeb30fc4df699024f7a5dec0b0e66524b165682e766b2e636f6d# MTProto EU (13)
-# Updated: 2026-09-23 13:23:46.553048+00:00
+# MTProto EU (4)
+# Updated: 2026-09-23 15:55:18.913380+00:00
 
-tg://proxy?server=95.179.152.29&port=443&secret=3b6989c4974ba7fc9b1d3e00f3eed276
-tg://proxy?server=80.240.25.41&port=443&secret=15de5f7014cea2772249646fd96ac491
-tg://proxy?server=94.130.15.206&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0
-tg://proxy?server=94.130.70.101&port=443&secret=104462821249bd7ac519130220c25d09
-tg://proxy?server=167.235.249.231&port=443&secret=dd104462821249bd7ac519130220c25d09vbb
-tg://proxy?server=168.222.254.174&port=443&secret=968cc5da3ebacdc3f0c99ba9e2d82d07
-tg://proxy?server=valla.chemidonam.co.uk&port=443&secret=79e344818749bd7ac519130220c25d09
-tg://proxy?server=82.38.66.98&port=443&secret=a1a29a12bc4725f9901a4981ad8c867c
-tg://proxy?server=77.42.56.66&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0
-tg://proxy?server=109.172.87.223&port=443&secret=7td9tD7jch8Py0Ck_2O1zSdtZWRpYS5zdGVhbXBvd2VyZWQuY29t
-tg://proxy?server=cdn.wlrus.fun&port=7443&secret=eeb6d06df2fabaa65f86d2a2018867a17263646e2e776c7275732e66756e
-tg://proxy?server=186.246.18.244&port=443&secret=ee2086691bf3db011a90a21bbd34cc29647777772e6d6963726f736f66742e636f6d
-tg://proxy?server=2.namenewok.info&port=2096&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=miomio.setado.co.uk&port=8880&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=park.monik.hamintori.co.uk&port=443&secret=7l984oosSBbGySPf1NVjDgE=
+tg://proxy?server=yesno.setado.co.uk&port=8880&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=itg.sivlena.ir&port=2053&secret=eef553b1b2335dfcc006552c227fb51fea6974672e7369766c656e612e6972
