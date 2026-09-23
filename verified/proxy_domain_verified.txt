@@ -1,18 +1,20 @@
-# Proxies with domain (15)
-# Updated: 2026-09-23 18:17:02.407366+00:00
+# Proxies with domain (17)
+# Updated: 2026-09-23 22:43:41.547745+00:00
 
-tg://proxy?server=82.27.116.212&port=20030&secret=ee63262ef083723e5e1a9f74fa3f1018287777772e6d6963726f736f66742e636f6d # domain: c&.r>^t?(www.microsoft.com
-tg://proxy?server=full-vasl.peachsoft.co.uk&port=443&secret=eeddff05e65a69a6a7fd1a28a28a121fff7765622e62616c652e6169 # domain: zi(web.bale.ai
-tg://proxy?server=connect.0xl1r.cfd&port=853&secret=eea1f31ce5039ccb8331e906d5ab00a31777622e7275 # domain: 1
-tg://proxy?server=pinklove.top&port=853&secret=ee54ce330e4690cc297d2b031ff3f288b06d742e616b656e61692e636c69636b # domain: t3f)}+mt.akenai.click
-tg://proxy?server=setsevwodpx.freexpaths.com.tr&port=443&secret=eeb0e791d8c24c850fe8c0fb6975b752f66c61727363686f6f6c2e6972 # domain: liurlarschool.ir
-tg://proxy?server=love.roseprox.xyz&port=2096&secret=ee74e3501358c742b6ec0d4e5d8ffa2bf47777772e646967696b616c612e636f6d # domain: tpxbn]+www.digikala.com
-tg://proxy?server=www.381-012.ir.&port=443&secret=ee1044048187495dfac59a030220c25cb37777772e7961686f6f2e636f6d # domain: di] \www.yahoo.com
-tg://proxy?server=itg.sivlena.ir&port=2053&secret=eea8e6d9b47b709022e52b2462ff91732a6974672e7369766c656e612e6972 # domain: {p"+$bs*itg.sivlena.ir
-tg://proxy?server=t.sibvpn.com&port=443&secret=ee37b4bdaa6b81324d07aa4ac9ec7ab431646c2e736f667439382e6972 # domain: 7k2mjz1dl.soft98.ir
-tg://proxy?server=150.241.68.141&port=443&secret=eedde11061a48b7ba74b71d20fa24e8a9379616e6465782e7275 # domain: a{kqnyandex.ru
-tg://proxy?server=89.125.113.11&port=443&secret=eebcb694130943ff7dcaf08c93b0564ff179616e6465782e7275 # domain: c}voyandex.ru
-tg://proxy?server=annexationist.barometrically.rudderpost.pinoywebtv.com&port=443&secret=ee08a86cc796e4874ed8a451a8f7f00964647a656e2e7275 # domain: lnqddzen.ru
-tg://proxy?server=178.104.98.160&port=443&secret=ee636c6f7564666c6172652e636f6db6 # domain: cloudflare.com
-tg://proxy?server=173.249.42.146&port=443&secret=ee9c358bfbf24551ff7bb4a7f2c33bc298636c6f7564666c6172652e636f6d # domain: 5eq{;cloudflare.com
-tg://proxy?server=love.roseprox.xyz&port=2443&secret=ee74e3501358c742b6ec0d4e5d8ffa2bf47777772e636c6f7564666c6172652e636f6d # domain: tpxbn]+www.cloudflare.com
+tg://proxy?server=193.181.209.158&port=443&secret=ee073286ccf52eb77fecb824310ca500d7636c6f7564666c6172652e636f6d # domain: 2.$1
+tg://proxy?server=31.76.241.51&port=443&secret=eea339ca5cc76d3f7946a1356a63f0947d6b69636b2e636f6d # domain: 9\m?yf5jc}kick.com
+tg://proxy?server=31.76.241.53&port=443&secret=eea339ca5cc76d3f7946a1356a63f0947d6b69636b2e636f6d # domain: 9\m?yf5jc}kick.com
+tg://proxy?server=82.27.116.188&port=20007&secret=ee4378e4366ab0f75e67eac75905edef587777772e6d6963726f736f66742e636f6d # domain: cx6j^gyxwww.microsoft.com
+tg://proxy?server=82.27.116.208&port=20026&secret=eec4e4a9bd5a9967e98ced13ac3039af997777772e6d6963726f736f66742e636f6d # domain: zg09www.microsoft.com
+tg://proxy?server=82.27.116.209&port=20027&secret=ee4325e8a36e5f3c087095431eefa257807777772e6d6963726f736f66742e636f6d # domain: c%n_<pcwwww.microsoft.com
+tg://proxy?server=82.27.116.185&port=20006&secret=ee07baf642ff3822b53292618d9b1d2eda7777772e6d6963726f736f66742e636f6d # domain: b8"2a.www.microsoft.com
+tg://proxy?server=82.27.116.211&port=20029&secret=eeb9b5b96d9bbb9d79cf30a9893494f2a977777772e6d6963726f736f66742e636f6d # domain: my04wwwr7&6gb6
+tg://proxy?server=ftp.jinxandjack.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
+tg://proxy?server=65.109.218.46&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d # domain: o9;*!kcdn.yektanet.com
+tg://proxy?server=shop.royayeman.co.uk&port=443&secret=ee79e344818749bd7ac519130220c25d092e2e626973636f7474692e79656b74616e65742e636f6d # domain: ydiz ]..biscotti.yektanet.com
+tg://proxy?server=dl3.soft98.net&port=2053&secret=ee277b571aff100fbafc2e3efebac80b2b736f667439382e6972 # domain: '{w.>+soft98.ir
+tg://proxy?server=93.189.228.56&port=443&secret=eef2f44e0cc16ad0e07ae25f665aac5c # domain: njz_fz\
+tg://proxy?server=167-233-163-149.nip.io&port=443&secret=ee93bd45ba1c67dd629f27c65c2a222ca1646967696b616c612e636f6d # domain: egb'\*",digikala.com
+tg://proxy?server=2.26.83.93&port=2401&secret=ee15f939d5e1581e8b2754efd673946cb47777772e77696c64626572726965732e7275 # domain: 9x'tslwww.wildberries.ru
+tg://proxy?server=av.1.mtproto.ru&port=443&secret=ee2111222233334444555566667777888862726f777365722e79616e6465782e636f6d # domain: !""33dduuffwwbrowser.yandex.com
+tg://proxy?server=edge.mtp.mom&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275 # domain: ?kj7xapi.ozon.ru

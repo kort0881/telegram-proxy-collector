@@ -1,6 +1,6 @@
 # MTProto RU (3)
-# Updated: 2026-09-23 18:17:02.407366+00:00
+# Updated: 2026-09-23 22:43:41.547745+00:00
 
-tg://proxy?server=150.241.68.141&port=443&secret=eedde11061a48b7ba74b71d20fa24e8a9379616e6465782e7275
-tg://proxy?server=89.125.113.11&port=443&secret=eebcb694130943ff7dcaf08c93b0564ff179616e6465782e7275
-tg://proxy?server=annexationist.barometrically.rudderpost.pinoywebtv.com&port=443&secret=ee08a86cc796e4874ed8a451a8f7f00964647a656e2e7275
+tg://proxy?server=2.26.83.93&port=2401&secret=ee15f939d5e1581e8b2754efd673946cb47777772e77696c64626572726965732e7275
+tg://proxy?server=av.1.mtproto.ru&port=443&secret=ee2111222233334444555566667777888862726f777365722e79616e6465782e636f6d
+tg://proxy?server=edge.mtp.mom&port=443&secret=ee3f8a91c2d7e04b6a9f12c5e8370bd4aa786170692e6f7a6f6e2e7275
