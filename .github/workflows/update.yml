@@ -51,6 +51,7 @@ jobs:
             --timeout 2.0 \
             --workers 200 \
             --max-check 30000 \
+            --seen-ttl 6 \
             --output-dir verified \
             --geoip data/GeoLite2-Country.mmdb
 
