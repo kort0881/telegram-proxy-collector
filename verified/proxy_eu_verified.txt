@@ -1,4 +1,8 @@
-# MTProto EU (1)
-# Updated: 2026-09-23 00:02:27.248913+00:00
+# MTProto EU (5)
+# Updated: 2026-09-23 07:25:00.369705+00:00
 
-tg://proxy?server=chaldea.impel.monopathy.pure.wallah.pinoyteleseryerewind.org&port=5650&secret=8ebb2512295182a9d66e85313ea78185
+tg://proxy?server=78.141.199.167&port=443&secret=dd8b08245bd4f849723f7934e3e70e307f
+tg://proxy?server=144.31.221.15&port=443&secret=bfb063cc6d861de10f6a39c795fc66e4
+tg://proxy?server=93.123.30.203&port=443&secret=6356ebb33a57b6deda8a1c3cf2aee557
+tg://proxy?server=at2.cdntube.monster&port=443&secret=ee177eb13ee6095288c860ddba086d781b6174322e63646e747562652e6d6f6e73746572
+tg://proxy?server=ca.dataxshop.ir&port=443&secret=eeH9Ehpm_N29EBr8_dR99Q==

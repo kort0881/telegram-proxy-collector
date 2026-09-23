@@ -1,3 +1,9 @@
-# Proxies with domain (0)
-# Updated: 2026-09-23 00:02:27.248913+00:00
+# Proxies with domain (6)
+# Updated: 2026-09-23 07:25:00.369705+00:00
 
+tg://proxy?server=at2.cdntube.monster&port=443&secret=ee177eb13ee6095288c860ddba086d781b6174322e63646e747562652e6d6f6e73746572 # domain: ~>r`mxat2.cdntube.monster
+tg://proxy?server=45.150.110.32&port=443&secret=ee1c88677acf461e09e68f4ff0cef5724a617669746f2e7275 # domain: gzforjavito.ru
+tg://proxy?server=miscegenation.radiosensitive.transpicuous.teleseryepinoytv.com&port=443&secret=ee3deb756520d545aa83c9f354c39c88f7647a656e2e7275 # domain: =ue etdzen.ru
+tg://proxy?server=corruption.drudgingly.pompously.compinoy.com&port=443&secret=ee847b55e04c230b412fce6b73275f4940647a656e2e7275 # domain: {ul#a/ks'_i@dzen.ru
+tg://proxy?server=173.212.245.154&port=443&secret=ee887896e32705c777dbc6741c11069fde636c6f7564666c6172652e636f6d # domain: x'wtcloudflare.com
+tg://proxy?server=31.220.76.169&port=443&secret=eedb527145eb548da774b24e6c11d02021636c6f7564666c6172652e636f6d # domain: rqettnl !cloudflare.com
