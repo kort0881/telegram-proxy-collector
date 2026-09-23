@@ -1,67 +1,66 @@
 {
-  "timestamp": "2026-09-23T07:25:48.922015+00:00",
+  "timestamp": "2026-09-23T13:24:32.861771+00:00",
   "metrics": {
-    "total": 72,
-    "pings_count": 72,
-    "median_ping": 0.167,
-    "mean_ping": 0.322,
-    "stdev_ping": 0.319,
-    "good_thr": 0.167,
-    "bad_thr": 0.418,
-    "good": 36,
-    "medium": 18,
-    "bad": 18,
+    "total": 200,
+    "pings_count": 200,
+    "median_ping": 0.091,
+    "mean_ping": 0.153,
+    "stdev_ping": 0.216,
+    "good_thr": 0.091,
+    "bad_thr": 0.227,
+    "good": 110,
+    "medium": 74,
+    "bad": 16,
     "regions": {
-      "eu": 62,
-      "us": 4,
-      "ru": 6
+      "eu": 196,
+      "ru": 4
     },
     "types": {
-      "mtproto": 20,
-      "socks5": 52
+      "mtproto": 30,
+      "socks5": 170
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
-    "recommended_workers": 50,
-    "current_avg_ping": 0.322,
-    "current_median_ping": 0.167,
-    "current_stdev_ping": 0.319,
-    "total_proxies": 72,
-    "trend_median_ping": 0.07,
-    "trend_direction": "worse"
+    "recommended_workers": 100,
+    "current_avg_ping": 0.153,
+    "current_median_ping": 0.091,
+    "current_stdev_ping": 0.216,
+    "total_proxies": 200,
+    "trend_median_ping": -0.076,
+    "trend_direction": "better"
   },
-  "anomalies_count": 4,
+  "anomalies_count": 10,
   "model": {
-    "cv_f1": 1.0,
+    "cv_f1": 0.9944,
     "report": {
       "0": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 20.0
+        "support": 24.0
       },
       "1": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 52.0
+        "support": 176.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 72.0
+        "support": 200.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 72.0
+        "support": 200.0
       }
     },
-    "threshold": 0.2505
+    "threshold": 0.1365
   }
 }
