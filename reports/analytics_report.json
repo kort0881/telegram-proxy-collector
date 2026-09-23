@@ -1,68 +1,40 @@
 {
-  "timestamp": "2026-09-23T15:56:08.133464+00:00",
+  "timestamp": "2026-09-23T16:01:53.857115+00:00",
   "metrics": {
-    "total": 116,
-    "pings_count": 116,
-    "median_ping": 0.137,
-    "mean_ping": 0.346,
-    "stdev_ping": 0.4,
-    "good_thr": 0.137,
-    "bad_thr": 0.343,
-    "good": 60,
-    "medium": 32,
-    "bad": 24,
+    "total": 200,
+    "pings_count": 200,
+    "median_ping": 0.102,
+    "mean_ping": 0.094,
+    "stdev_ping": 0.023,
+    "good_thr": 0.102,
+    "bad_thr": 0.255,
+    "good": 126,
+    "medium": 74,
+    "bad": 0,
     "regions": {
-      "eu": 10,
-      "us": 86,
-      "ru": 2,
-      "asia": 18
+      "us": 22,
+      "eu": 166,
+      "ru": 8,
+      "asia": 4
     },
     "types": {
-      "mtproto": 8,
-      "socks5": 108
+      "mtproto": 200
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
     "recommended_workers": 100,
-    "current_avg_ping": 0.346,
-    "current_median_ping": 0.137,
-    "current_stdev_ping": 0.4,
-    "total_proxies": 116,
-    "trend_median_ping": 0.046,
+    "current_avg_ping": 0.094,
+    "current_median_ping": 0.102,
+    "current_stdev_ping": 0.023,
+    "total_proxies": 200,
+    "trend_median_ping": -0.035,
     "trend_direction": "stable"
   },
-  "anomalies_count": 6,
+  "anomalies_count": 10,
   "model": {
-    "cv_f1": 1.0,
-    "report": {
-      "0": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 32.0
-      },
-      "1": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 84.0
-      },
-      "accuracy": 1.0,
-      "macro avg": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 116.0
-      },
-      "weighted avg": {
-        "precision": 1.0,
-        "recall": 1.0,
-        "f1-score": 1.0,
-        "support": 116.0
-      }
-    },
-    "threshold": 0.20550000000000002
+    "accuracy": 1.0,
+    "note": "single-class"
   }
 }
