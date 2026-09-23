@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.8
-# - Фикс GeoIP: maxminddb.open_database + fallback на geoip2
+# MTProto & SOCKS5 Proxy Collector v3.9
+# - FIX: регион определяется по GeoIP (ISO-коду страны), а не только по домену в secret
+# - FIX: GeoIP: maxminddb.open_database + fallback на geoip2
 # - Расширенный фильтр подозрительных портов (Tomcat, Minecraft, RDP…)
 # - Расширенный ALLOWED_COUNTRIES (Азия)
 # - FIX: seen-кэш учитывает secret
@@ -41,6 +42,11 @@ RU_DOMAINS = ['.ru', 'yandex', 'vk.com', 'mail.ru', 'ok.ru', 'dzen', 'rutube', '
 US_DOMAINS = ['.us', '.nyc', '.la', '.sf', '.dallas', 'amazonaws.com', 'digitalocean.com', '.gov', 'cloudflare.com']
 ASIA_DOMAINS = ['.asia', '.jp', '.cn', '.sg', '.hk', '.kr', '.in', '.tw', '.ph', '.my', '.id', '.vn', '.th']
 BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'torproject']
+
+# ISO-коды стран → регион сайта
+RU_COUNTRIES   = {'RU', 'BY', 'KZ', 'UA', 'MD', 'AM', 'GE', 'AZ', 'UZ', 'KG', 'TJ', 'TM'}
+US_COUNTRIES   = {'US', 'CA'}
+ASIA_COUNTRIES = {'JP', 'KR', 'SG', 'HK', 'IN', 'TW', 'PH', 'MY', 'ID', 'VN', 'TH', 'MN'}
 
 # Порты, которые НЕ бывают MTProto
 SUSPICIOUS_PORTS = {
@@ -96,7 +102,7 @@ SOURCES = [
     "https://raw.githubusercontent.com/iwh3n/tg-proxy/refs/heads/main/proxys/All_Proxys.txt",
     "https://raw.githubusercontent.com/kubiknubika/my-tg-proxies/refs/heads/main/data/proxies.json",
     "https://raw.githubusercontent.com/shablin/mtproto-proxy/refs/heads/main/data/valid_proxy.json",
-    "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/main/protocols/mtproto.txt",
+    "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/protocols/mtproto.txt",
     "https://raw.githubusercontent.com/helptmoop/Free-Telegram-Proxies/refs/heads/main/global-iran-russia-proxies.txt",
     "https://raw.githubusercontent.com/helptmoop/Free-Telegram-Proxies/refs/heads/main/turkmenistan-global-iran-russia.txt",
     "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/MTProto.txt",
@@ -135,7 +141,18 @@ def _valid_port(p: str) -> bool:
 def _is_blocked(secret: str, domain: Optional[str]) -> bool:
     return len(secret) < 16 or (domain and any(b in domain for b in BLOCKED))
 
+def _region_from_country(iso_code: Optional[str]) -> str:
+    """Превращает ISO-код страны в регион сайта."""
+    if not iso_code:
+        return 'eu'
+    code = iso_code.upper()
+    if code in RU_COUNTRIES:   return 'ru'
+    if code in US_COUNTRIES:   return 'us'
+    if code in ASIA_COUNTRIES: return 'asia'
+    return 'eu'
+
 def _detect_region(domain: Optional[str]) -> str:
+    """Определяет регион по домену внутри secret. Если домена нет — EU (потом GeoIP уточнит)."""
     if not domain:
         return 'eu'
     d = domain.lower()
@@ -270,6 +287,8 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
     if typ == 'mtproto' and port in SUSPICIOUS_PORTS:
         return None
 
+    # GeoIP нужен дважды: сначала для фильтра страны, потом для региона
+    country = None
     if geoip_reader is not None:
         country = _geo_country(host)
         if country and country.upper() not in ALLOWED_COUNTRIES:
@@ -281,11 +300,17 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
         if _is_blocked(secret, domain):
             return None
         link = f'tg://proxy?server={host}&port={port}&secret={secret}'
-        region = _detect_region(domain)
+        # 1) если в secret зашит домен — определяем регион по нему
+        # 2) иначе — по ISO-коду страны из GeoIP
+        if domain:
+            region = _detect_region(domain)
+        else:
+            region = _region_from_country(country)
         domain_str = domain or ''
     else:
         link = f'tg://socks?server={host}&port={port}'
-        region = 'eu'
+        # SOCKS5 тоже раскладываем по регионам через GeoIP
+        region = _region_from_country(country)
         domain_str = ''
 
     try:
@@ -381,7 +406,7 @@ def run(args):
     global geoip_reader
 
     start_time = time.time()
-    print('🚀 MTProxy Collector v3.8')
+    print('🚀 MTProxy Collector v3.9')
     print('=' * 48)
 
     if args.geoip and os.path.exists(args.geoip):
@@ -557,7 +582,7 @@ def run(args):
     print('=' * 48)
 
 def main():
-    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.8")
+    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.9")
     parser.add_argument('--timeout', type=float, default=2.0)
     parser.add_argument('--workers', type=int, default=100)
     parser.add_argument('--top', type=int, default=0)
