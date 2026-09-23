@@ -1,12 +1,12 @@
 # MTProto RU (0)
-# Updated: 2026-09-22 21:08:24.667599+00:00
+# Updated: 2026-09-23 00:02:27.248913+00:00
 
 # MTProto EU (1)
-# Updated: 2026-09-22 21:08:24.667599+00:00
+# Updated: 2026-09-23 00:02:27.248913+00:00
 
-tg://proxy?server=crow.anime-fox.ru&port=443&secret=8f3c7a1d4b92e6c51a7d0fb843c2e91f# MTProto US (1)
-# Updated: 2026-09-22 21:08:24.667599+00:00
+tg://proxy?server=chaldea.impel.monopathy.pure.wallah.pinoyteleseryerewind.org&port=5650&secret=8ebb2512295182a9d66e85313ea78185# MTProto US (0)
+# Updated: 2026-09-23 00:02:27.248913+00:00
 
-tg://proxy?server=164.68.120.227&port=443&secret=ee97886115d3021360b6c86f077b384389636c6f7564666c6172652e636f6d# MTProto ASIA (0)
-# Updated: 2026-09-22 21:08:24.667599+00:00
+# MTProto ASIA (0)
+# Updated: 2026-09-23 00:02:27.248913+00:00
 
