@@ -1,15 +1,12 @@
-# Proxies with domain (12)
-# Updated: 2026-09-24 03:24:19.160526+00:00
+# Proxies with domain (9)
+# Updated: 2026-09-24 09:02:35.046041+00:00
 
-tg://proxy?server=134.209.88.105&port=443&secret=eec80ff604fa45408f1d152624d3bffcf26b65746161626f6e6c696e652e636f6d # domain: e@&$ketaabonline.com
-tg://proxy?server=etherealvpn.uk&port=443&secret=ee5ef5207bf96aff8d40ca1c59d6eaa2437777772e6d6963726f736f66742e636f6d # domain: ^ {j@ycwww.microsoft.com
-tg://proxy?server=64.226.79.168&port=443&secret=eec80ff604fa45408f1d152624d3bffcf276616e2e6e616a76612e636f6d # domain: e@&$van.najva.com
-tg://proxy?server=hel-hi.co.uk&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d # domain: o9;*!kcdn.yektanet.com
-tg://proxy?server=suodbo.co.uk.&port=443&secret=eef0eeb0bd9adc4fd4a93994ee3b2a216b63646e2e79656b74616e65742e636f6d # domain: o9;*!kcdn.yektanet.com
-tg://proxy?server=mt.glitchgame.ir&port=2096&secret=ee9797badcac423cf7c0c66c8e2a93b721706c61792e676f6f676c652e636f6d # domain: b<l*!play.google.com
-tg://proxy?server=he.fi.2.mtproto.ru&port=443&secret=ee2111222233334444555566667777888862726f777365722e79616e6465782e636f6d # domain: !""33dduuffwwbrowser.yandex.com
-tg://proxy?server=bonus.growthtrade.eu&port=443&secret=ee0fff11aae73289dec968ad854b3ffe0279612e7275 # domain: 2hk?ya.ru
-tg://proxy?server=became.dissenter.houseless.observed.reminiscent.ugara.net&port=18384&secret=ee6d51b6b69a15c40867d5c588bfd0a96b647a656e2e7275 # domain: mqgkdzen.ru
-tg://proxy?server=my.silvpn.su&port=443&secret=eeea7a1978e167c0842ce31a16749038da6d792e6e657763646e2e7275 # domain: zxg,t8my.newcdn.ru
-tg://proxy?server=79.137.196.223&port=10443&secret=ee63fccdeb9951e5f99d66d274148278b97777772e636c6f7564666c6172652e636f6d # domain: cqftxwww.cloudflare.com
-tg://proxy?server=79.137.196.223&port=8843&secret=eeeecd971a62719a1ccaee3177da037511167777772e636c6f7564666c6172652e636f6d # domain: bq1wuwww.cloudflare.com
+tg://proxy?server=185.92.182.44&port=443&secret=eea3f91c2d88b4e6aa11bb22cc33dd44ee7777772e676f6f676c652e636f6d # domain: -"3dwww.google.com
+tg://proxy?server=201.4.76.117&port=443&secret=eedffa323b22e7ab155f9806c3c9629f8c756c74696d612e74656c656 # domain: 2;"_bultima.tele
+tg://proxy?server=194.233.95.205&port=443&secret=eed0ed90376601d3a5e8a71cfd42d50944676f6f676c65617069732e636f6d # domain: 7fbdgoogleapis.com
+tg://proxy?server=srv-aoxfya.giverra.sbs&port=443&secret=ee251e38db136e1ce2047237c71e5e1e866d6963726f736f66742e636f6d # domain: %8nr7^microsoft.com
+tg://proxy?server=s1.postpulse.space&port=443&secret=ee402900cd57c3daef160c3a2aef80a29c6164312e617269786f2e73686f70 # domain: @)
+tg://proxy?server=app.what-ever.co.uk.&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169 # domain: /web.bale.ai
+tg://proxy?server=46.243.232.222&port=443&secret=eeccedf4acf58a2f639b0c3e3f6b0a78d56d61782e7275 # domain: /c>?kxmax.ru
+tg://proxy?server=80.96.112.222&port=443&secret=ee2e7fcf4666472ebd58e4fea75357105f7777772e79616e6465782e7275 # domain: .ffg.xsw_www.yandex.ru
+tg://proxy?server=irreceptive.longish.recoup.teleseryestvheaven.com&port=443&secret=ee0b2a6554bd251184775151584aabd77e647a656e2e7275 # domain: *et%wqqxj~dzen.ru
