@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v3.9
+# MTProto & SOCKS5 Proxy Collector v4.0
 # - FIX: регион определяется по GeoIP (ISO-коду страны), а не только по домену в secret
 # - FIX: GeoIP: maxminddb.open_database + fallback на geoip2
 # - Расширенный фильтр подозрительных портов (Tomcat, Minecraft, RDP…)
-# - Расширенный ALLOWED_COUNTRIES (Азия)
+# - Расширенный ALLOWED_COUNTRIES: Азия, Ближний Восток, Мексика
 # - FIX: seen-кэш учитывает secret
 
 import requests
@@ -45,8 +45,9 @@ BLOCKED = ['instagram', 'facebook', 'twitter', 'bbc', 'meduza', 'linkedin', 'tor
 
 # ISO-коды стран → регион сайта
 RU_COUNTRIES   = {'RU', 'BY', 'KZ', 'UA', 'MD', 'AM', 'GE', 'AZ', 'UZ', 'KG', 'TJ', 'TM'}
-US_COUNTRIES   = {'US', 'CA'}
-ASIA_COUNTRIES = {'JP', 'KR', 'SG', 'HK', 'IN', 'TW', 'PH', 'MY', 'ID', 'VN', 'TH', 'MN'}
+US_COUNTRIES   = {'US', 'CA', 'MX'}
+ASIA_COUNTRIES = {'JP', 'KR', 'SG', 'HK', 'IN', 'TW', 'PH', 'MY', 'ID', 'VN', 'TH', 'MN',
+                  'CN', 'MO', 'AE', 'SA', 'IL', 'PK', 'BD', 'NP', 'LK', 'KH', 'MM', 'LA', 'BN'}
 
 # Порты, которые НЕ бывают MTProto
 SUSPICIOUS_PORTS = {
@@ -69,9 +70,10 @@ ALLOWED_COUNTRIES = {
     'NO','DK','BE','IE','LU','EE','LV','LT','PT','GR','RO','BG',
     'HU','SK','SI','HR','RS','TR',
     # Северная Америка
-    'CA','US',
-    # Азия
+    'CA','US','MX',
+    # Азия + Ближний Восток
     'JP','KR','SG','HK','IN','TW','PH','MY','ID','VN','TH','MN',
+    'CN','MO','AE','SA','IL','PK','BD','NP','LK','KH','MM','LA','BN',
 }
 
 # ---------- Источники ----------
@@ -397,7 +399,7 @@ def save_seen(path: str, seen):
         payload = {'seen': [{'k': list(k), 'ts': now} for k in keys]}
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(payload, f)
-        print(f'💾 Seen-кэш сохранён: {len(keys)} записей (TTL 48ч)')
+        print(f'💾 Seen-кэш сохранён: {len(keys)} записей')
     except Exception as e:
         print(f'⚠️ Не удалось сохранить seen-кэш: {e}')
 
@@ -406,7 +408,7 @@ def run(args):
     global geoip_reader
 
     start_time = time.time()
-    print('🚀 MTProxy Collector v3.9')
+    print('🚀 MTProxy Collector v4.0')
     print('=' * 48)
 
     if args.geoip and os.path.exists(args.geoip):
@@ -582,7 +584,7 @@ def run(args):
     print('=' * 48)
 
 def main():
-    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v3.9")
+    parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v4.0")
     parser.add_argument('--timeout', type=float, default=2.0)
     parser.add_argument('--workers', type=int, default=100)
     parser.add_argument('--top', type=int, default=0)
