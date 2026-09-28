@@ -1,12 +1,12 @@
 {
-  "timestamp": "2026-09-27T22:51:27.961507+00:00",
-  "total": 1888,
+  "timestamp": "2026-09-28T03:57:14.190399+00:00",
+  "total": 1490,
   "by_region": {
-    "ru": 165,
-    "eu": 579,
-    "us": 50,
+    "ru": 173,
+    "eu": 580,
+    "us": 43,
     "asia": 1,
-    "socks5": 1093
+    "socks5": 693
   },
   "top": 100,
   "geoip_mode": "maxminddb"
