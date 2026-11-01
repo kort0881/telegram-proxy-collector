@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-01T08:49:16.104775+00:00",
+  "timestamp": "2026-11-01T16:38:52.744297+00:00",
   "metrics": {
     "total": 200,
     "pings_count": 200,
@@ -12,9 +12,9 @@
     "medium": 0,
     "bad": 0,
     "regions": {
-      "us": 18,
-      "ru": 26,
-      "eu": 156
+      "eu": 178,
+      "ru": 10,
+      "us": 12
     },
     "types": {
       "mtproto": 200
@@ -29,7 +29,7 @@
     "current_stdev_ping": 0.0,
     "total_proxies": 200
   },
-  "anomalies_count": 0,
+  "anomalies_count": 10,
   "model": {
     "accuracy": 1.0,
     "note": "single-class"
