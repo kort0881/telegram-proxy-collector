@@ -31,8 +31,15 @@ jobs:
           python -m pip install --upgrade pip >/dev/null
           pip install ruff pytest pytest-asyncio >/dev/null
           for f in requirements.txt requirements-dev.txt; do
-            [ -f "$f" ] && pip install -r "$f" >/dev/null 2>&1 || true
+            if [ -f "$f" ]; then
+              echo "--- $f"
+              pip install -r "$f" 2>&1 | tail -5 || true
+            fi
           done
+          if [ ! -f requirements.txt ] && [ -f pyproject.toml ]; then
+            echo "--- pyproject.toml"
+            pip install -e ".[dev]" 2>&1 | tail -5 || pip install -e . 2>&1 | tail -5 || true
+          fi
 
       - name: Синтаксис Python
         run: |
