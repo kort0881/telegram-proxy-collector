@@ -1,0 +1,63 @@
+name: Audit
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: audit-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Зависимости
+        run: |
+          python -m pip install --upgrade pip >/dev/null
+          pip install ruff pytest >/dev/null
+          for f in requirements.txt requirements-dev.txt; do
+            [ -f "$f" ] && pip install -r "$f" >/dev/null 2>&1 || true
+          done
+
+      - name: Синтаксис Python
+        run: |
+          if find . -name '*.py' -not -path './.git/*' | grep -q .; then
+            python -m compileall -q . -x '(/\.git/|/venv/|/\.venv/)'
+          else
+            echo "Python-файлов нет, шаг пропущен"
+          fi
+
+      - name: Линтер (ruff, отчёт)
+        run: |
+          if find . -name '*.py' -not -path './.git/*' | grep -q .; then
+            ruff check . --exit-zero --output-format=concise | tail -40 || true
+          fi
+
+      - name: Тесты (если есть)
+        run: |
+          if [ -d tests ]; then
+            pytest -q --maxfail=5 || exit 1
+          else
+            echo "Каталога tests нет, шаг пропущен"
+          fi
+
+      - name: Поиск секретов (gitleaks, отчёт)
+        run: |
+          curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz | tar -xz gitleaks
+          ./gitleaks detect --source . --redact --no-banner --report-format json --report-path /tmp/leaks.json --exit-code 0 || true
+          python -c "import json,os;d=json.load(open('/tmp/leaks.json')) if os.path.exists('/tmp/leaks.json') else [];print('Потенциальных секретов:',len(d));[print('-',x.get('File'),x.get('RuleID'),x.get('StartLine')) for x in d[:25]]" | tee -a "$GITHUB_STEP_SUMMARY"
