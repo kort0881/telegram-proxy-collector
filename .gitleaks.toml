@@ -10,4 +10,10 @@ paths = [
     '''^verified/''',
     '''^reports/''',
     '''^data/''',
+    '''^models/''',
+    '''^proxy_.*\.txt$''',
+    '''^socks5\.txt$''',
+    '''^tcp16\.json$''',
+    '''^domains\.txt$''',
+    '''^ping_history\.json$''',
 ]
