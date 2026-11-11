@@ -29,7 +29,7 @@ jobs:
       - name: Зависимости
         run: |
           python -m pip install --upgrade pip >/dev/null
-          pip install ruff pytest >/dev/null
+          pip install ruff pytest pytest-asyncio >/dev/null
           for f in requirements.txt requirements-dev.txt; do
             [ -f "$f" ] && pip install -r "$f" >/dev/null 2>&1 || true
           done
@@ -61,3 +61,10 @@ jobs:
           curl -sSL https://github.com/gitleaks/gitleaks/releases/download/v8.28.0/gitleaks_8.28.0_linux_x64.tar.gz | tar -xz gitleaks
           ./gitleaks detect --source . --redact --no-banner --report-format json --report-path /tmp/leaks.json --exit-code 0 || true
           python -c "import json,os;d=json.load(open('/tmp/leaks.json')) if os.path.exists('/tmp/leaks.json') else [];print('Потенциальных секретов:',len(d));[print('-',x.get('File'),x.get('RuleID'),x.get('StartLine')) for x in d[:25]]" | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gitleaks-report
+          path: /tmp/leaks.json
+          if-no-files-found: ignore
