@@ -1,0 +1,13 @@
+# Gitleaks для telegram-proxy-collector.
+# verified/ и reports/ — собранные сторонние данные (каналы, отчёты),
+# они дают ~1.7 млн ложных срабатываний. Настоящие секреты живут
+# в корне и в config/ — их продолжаем сканировать правилами по умолчанию.
+[extend]
+useDefault = true
+
+[allowlist]
+paths = [
+    '''^verified/''',
+    '''^reports/''',
+    '''^data/''',
+]
