@@ -1,19 +1,23 @@
-# MTProto ASIA (16)
-# Updated: 2026-11-11 13:41:10.930369+00:00
+# MTProto ASIA (20)
+# Updated: 2026-11-11 21:05:34.520311+00:00
 
-tg://proxy?server=89.34.230.23&port=443&secret=ee71fe479cbecef04a10072a5c551ccee0666173746573742e6d796d6e622e6972
-tg://proxy?server=t4.myrka.digital&port=443&secret=ee1111222233334444555566667777888874342e6d79726b612e6469676974616c
-tg://proxy?server=153.121.43.226&port=22335&secret=dd48f19a3a20ab6a77c98abf837a9bfb1e
-tg://proxy?server=89.34.230.97&port=443&secret=eebd5ad305b57ce0b14cbaa0f7df014c4d7777772e666173746573742e6d796d6e622e6972
-tg://proxy?server=103.161.35.23&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0
-tg://proxy?server=103.161.34.42&port=443&secret=dd79e7010200010007f0030386e24c3add
-tg://proxy?server=27.124.29.201&port=33306&secret=dd01cdd354110000000000000000415251
-tg://proxy?server=103.161.35.56&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0
-tg://proxy?server=78.17.8.163&port=443&secret=7dca6b75dc099aa1aee504098de965fd
-tg://proxy?server=78.40.196.111&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQ
-tg://proxy?server=78.40.197.122&port=443&secret=eeDDNEgYdJvXrFGRMCIMJQ
-tg://proxy?server=t3.myrka.digital&port=444&secret=ee8888777766665555444433332222111174332e6d79726b612e6469676974616c
 tg://proxy?server=143.110.179.199&port=443&secret=4f78efbe7db10d486caba4ea33862315
+tg://proxy?server=lynette.myrka.digital&port=443&secret=ee54701e1686de96a44721501a7bee9e4c6c796e657474652e6d79726b612e6469676974616c
+tg://proxy?server=103.161.35.56&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0
+tg://proxy?server=103.161.35.23&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0
+tg://proxy?server=78.40.197.122&port=443&secret=eeDDNEgYdJvXrFGRMCIMJQ
+tg://proxy?server=4x4.subaru-volga.com&port=443&secret=ee54701e1686de96a44721501a7bee9e4c6c796e657474652e6d79726b612e6469676974616c
+tg://proxy?server=27.124.29.201&port=33306&secret=dd01cdd354110000000000000000415251
 tg://proxy?server=78.40.197.139&port=443&secret=eeXifpB2GBv9shh2kvi5l
+tg://proxy?server=awd.subaru-volga.com&port=443&secret=ee1111222233334444555566667777888874342e6d79726b612e6469676974616c
+tg://proxy?server=78.17.8.163&port=443&secret=7dca6b75dc099aa1aee504098de965fd
+tg://proxy?server=89.34.230.97&port=443&secret=eebd5ad305b57ce0b14cbaa0f7df014c4d7777772e666173746573742e6d796d6e622e6972
+tg://proxy?server=barsik.subaru-volga.com&port=443&secret=ee04daa35f7150d1d16c43f270c26831086a61726b6f2e6d79726b612e6469676974616c
 tg://proxy?server=207.148.71.230&port=443&secret=57fead292571e8c81dd4fdf3e9dfc33d
+tg://proxy?server=t3.myrka.digital&port=444&secret=ee8888777766665555444433332222111174332e6d79726b612e6469676974616c
+tg://proxy?server=103.161.34.42&port=443&secret=dd79e7010200010007f0030386e24c3add
 tg://proxy?server=94.237.76.119&port=443&secret=dd00000000000000000000000000000000
+tg://proxy?server=t4.myrka.digital&port=443&secret=ee1111222233334444555566667777888874342e6d79726b612e6469676974616c
+tg://proxy?server=78.40.196.111&port=443&secret=eeNEgYdJvXrFGRMCIMJdCQ
+tg://proxy?server=89.34.230.23&port=443&secret=ee71fe479cbecef04a10072a5c551ccee0666173746573742e6d796d6e622e6972
+tg://proxy?server=153.121.43.226&port=22335&secret=dd48f19a3a20ab6a77c98abf837a9bfb1e
