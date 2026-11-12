@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-11T21:08:44.148413+00:00",
+  "timestamp": "2026-11-12T02:45:25.639212+00:00",
   "metrics": {
     "total": 200,
     "pings_count": 200,
@@ -12,10 +12,9 @@
     "medium": 0,
     "bad": 0,
     "regions": {
-      "eu": 154,
-      "us": 24,
-      "ru": 20,
-      "asia": 2
+      "us": 20,
+      "eu": 160,
+      "ru": 20
     },
     "types": {
       "mtproto": 200
