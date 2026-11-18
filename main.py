@@ -185,14 +185,34 @@ def _valid_port(p: str) -> bool:
     except ValueError:
         return False
 
-def _check_socks5_handshake(host: str, port: int, timeout: float) -> bool:
-    """Проверяет, что на порту действительно SOCKS5 (method negotiation, no-auth)."""
+def _check_socks5_handshake(host: str, port: int, timeout: float,
+                            auth: Optional[Tuple[Optional[str], Optional[str]]] = None) -> bool:
+    """Проверяет, что на порту действительно SOCKS5.
+
+    Поддерживает метод 0x00 (no-auth) и 0x02 (username/password, RFC 1929).
+    SOCKS5 с обязательной авторизацией раньше отсеивался целиком — теперь
+    проверяется, если креды есть в источнике; без кредов такой прокси не проходит.
+    """
+    user, pw = (auth or (None, None))
+    has_auth = bool(user) and pw is not None
     try:
         with socket.create_connection((host, port), timeout=timeout) as s:
             s.settimeout(timeout)
-            s.sendall(b"\x05\x01\x00")
+            methods = b"\x05\x02\x00\x02" if has_auth else b"\x05\x01\x00"
+            s.sendall(methods)
             resp = s.recv(2)
-            return len(resp) == 2 and resp[0] == 5 and resp[1] == 0
+            if len(resp) != 2 or resp[0] != 5:
+                return False
+            method = resp[1]
+            if method == 0x00:
+                return True
+            if method == 0x02 and has_auth:
+                u = str(user).encode("utf-8")[:255]
+                p = str(pw).encode("utf-8")[:255]
+                s.sendall(b"\x01" + bytes([len(u)]) + u + bytes([len(p)]) + p)
+                ok = s.recv(2)
+                return len(ok) == 2 and ok[0] == 1 and ok[1] == 0
+            return False
     except (socket.timeout, socket.error, OSError):
         return False
 
@@ -288,9 +308,9 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
         for h, p, s in re.findall(pattern, text, flags):
             if _valid_port(p):
                 proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
-    for h, p in re.findall(r'tg://socks\?server=([^&\s]+)&port=(\d+)', text, re.I):
+    for h, p, u, pw in re.findall(r'tg://socks\?server=([^&\s]+)&port=(\d+)(?:&(?:user|username)=([^&\s]*))?(?:&(?:pass|password)=([^&\s]*))?', text, re.I):
         if _valid_port(p):
-            proxies.add(('socks5', h, int(p), (None, None)))
+            proxies.add(('socks5', h, int(p), (u or None, pw or None)))
     for u, pw, h, p in re.findall(r'socks5://(?:([^:@]+):([^@]+)@)?([A-Za-z0-9\.-]+):(\d+)', text, re.I):
         if _valid_port(p):
             proxies.add(('socks5', h, int(p), (u or None, pw or None)))
@@ -387,8 +407,10 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
         with socket.create_connection((host, port), timeout=timeout) as s:
             s.settimeout(timeout)
         ping = round(time.time() - start, 3)
-        if typ == 'socks5' and not _check_socks5_handshake(host, port, timeout):
-            return None
+        if typ == 'socks5':
+            creds = extra if isinstance(extra, tuple) and len(extra) == 2 else (None, None)
+            if not _check_socks5_handshake(host, port, timeout, creds):
+                return None
         return {
             'type': typ, 'host': host, 'port': port,
             'secret': extra if typ == 'mtproto' else None,
