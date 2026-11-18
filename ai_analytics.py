@@ -5,15 +5,16 @@
 import os
 import json
 import re
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from collections import Counter
 from openai import OpenAI   # <--- заменили requests
 
 DATA_DIR = Path("data")
+VERIFIED_DIR = Path("verified")
 README_FILE = Path("README.md")
 HISTORY_FILE = DATA_DIR / "proxy_history.json"
-SOURCE_STATS_FILE = DATA_DIR / "source_stats.json"
+SOURCE_STATS_FILE = VERIFIED_DIR / "source_stats.json"
 
 def load_history():
     if not HISTORY_FILE.exists():
@@ -27,16 +28,40 @@ def load_source_stats():
     with open(SOURCE_STATS_FILE, 'r', encoding='utf-8') as f:
         return json.load(f)
 
+def _compute_stats(history):
+    """Единый расчёт метрик — используется и промптом, и локальным отчётом."""
+    return {
+        'total': len(history),
+        'good': sum(1 for p in history if p.get('ping', 999) < 1.5),
+        'medium': sum(1 for p in history if 1.5 <= p.get('ping', 999) < 5.0),
+        'bad': sum(1 for p in history if p.get('ping', 999) >= 5.0),
+        'regions': Counter(p.get('region', 'unknown') for p in history),
+        'types': Counter(p.get('type', 'mtproto') for p in history),
+    }
+
+def _clean_markdown(text):
+    """Убирает вступление модели («Sure, here is...») — режем до первого # или **."""
+    if not text:
+        return text
+    text = text.strip()
+    if text.startswith("```"):
+        lines = text.splitlines()
+        text = "\n".join(lines[1:]) if len(lines) >= 2 else ""
+        if text.rstrip().endswith("```"):
+            text = text.rstrip()[:-3]
+    cuts = [i for i in (text.find('#'), text.find('**')) if i != -1]
+    if cuts:
+        text = text[min(cuts):]
+    return text.strip()
+
 def build_prompt(history, stats):
-    total = len(history)
+    m = _compute_stats(history)
+    total = m['total']
     if total == 0:
         return "Нет данных для анализа."
 
-    good = sum(1 for p in history if p.get('ping', 999) < 1.5)
-    medium = sum(1 for p in history if 1.5 <= p.get('ping', 999) < 5.0)
-    bad = sum(1 for p in history if p.get('ping', 999) >= 5.0)
-    regions = Counter(p.get('region', 'unknown') for p in history)
-    types = Counter(p.get('type', 'mtproto') for p in history)
+    good, medium, bad = m['good'], m['medium'], m['bad']
+    regions, types = m['regions'], m['types']
 
     prompt = f"""
 Проанализируй следующие данные о прокси-серверах и сформируй краткий отчёт (на русском языке) для раздела README.md.
@@ -62,14 +87,15 @@ def call_openai_api(prompt, api_key):
     """Вызов OpenAI-совместимого API Groq (бесплатно)"""
     client = OpenAI(
         api_key=api_key,
-        base_url="https://api.groq.com/openai/v1"
+        base_url="https://api.groq.com/openai/v1",
+        timeout=30.0
     )
     try:
         response = client.chat.completions.create(
             model="openai/gpt-oss-120b",   # новая модель
             messages=[{"role": "user", "content": prompt}],
             temperature=0.7,
-            max_tokens=500
+            max_tokens=800
         )
         return response.choices[0].message.content
     except Exception as e:
@@ -78,15 +104,13 @@ def call_openai_api(prompt, api_key):
 
 def generate_local_report(history, stats):
     """Локальная генерация (если нет API-ключа или API недоступен)"""
-    total = len(history)
+    m = _compute_stats(history)
+    total = m['total']
     if total == 0:
         return "Нет данных для анализа."
 
-    good = sum(1 for p in history if p.get('ping', 999) < 1.5)
-    medium = sum(1 for p in history if 1.5 <= p.get('ping', 999) < 5.0)
-    bad = sum(1 for p in history if p.get('ping', 999) >= 5.0)
-    regions = Counter(p.get('region', 'unknown') for p in history)
-    types = Counter(p.get('type', 'mtproto') for p in history)
+    good, medium, bad = m['good'], m['medium'], m['bad']
+    regions, types = m['regions'], m['types']
 
     lines = []
     lines.append(f"**📊 Текущее состояние списков**")
@@ -130,7 +154,7 @@ def update_readme_with_report(report_text):
 
     start_marker = "<!-- AI_ANALYTICS_START -->"
     end_marker = "<!-- AI_ANALYTICS_END -->"
-    full_report = f"*Отчёт сгенерирован {datetime.now().strftime('%Y-%m-%d %H:%M UTC')}*\n\n{report_text}"
+    full_report = f"*Отчёт сгенерирован {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')}*\n\n{report_text}"
 
     if start_marker not in content or end_marker not in content:
         content += f"\n\n## 📊 AI-аналитика (автоматическая)\n\n{start_marker}\n{full_report}\n{end_marker}"
@@ -157,12 +181,12 @@ def main():
         return
 
     # Если есть ключ Groq
-    if api_key and api_key.startswith("gsk_"):
+    if api_key:
         print("📤 Отправка запроса к Groq API через OpenAI-клиент...")
         prompt = build_prompt(history, stats)
         report_text = call_openai_api(prompt, api_key)
         if report_text:
-            update_readme_with_report(report_text)
+            update_readme_with_report(_clean_markdown(report_text))
             print("✅ README обновлён через Groq (openai/gpt-oss-120b)")
             return
         else:
