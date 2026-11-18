@@ -399,6 +399,11 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
         domain_str = domain or ''
     else:
         link = f'tg://socks?server={host}&port={port}'
+        if isinstance(extra, tuple) and len(extra) == 2 and extra[0]:
+            from urllib.parse import quote
+            link += f'&user={quote(str(extra[0]), safe="")}'
+            if extra[1] is not None:
+                link += f'&pass={quote(str(extra[1]), safe="")}'
         region = _region_from_country(country)
         domain_str = ''
 
