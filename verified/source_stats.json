@@ -1,11 +1,11 @@
 {
-  "last_update": "2026-11-18T12:30:15.347427+00:00",
-  "unique_collected": 3685,
-  "checked": 3685,
-  "valid": 1180,
-  "manual_count": 5,
-  "sources_ok": 35,
-  "sources_failed": 21,
+  "last_update": "2026-11-18T12:45:31.204889+00:00",
+  "unique_collected": 3602,
+  "checked": 3602,
+  "valid": 1224,
+  "manual_count": 9,
+  "sources_ok": 34,
+  "sources_failed": 22,
   "sources": {
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_ru.txt": {
       "stage": "mtproto",
@@ -30,16 +30,16 @@
     },
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_asia.txt": {
       "stage": "mtproto",
-      "mtproto": 21,
+      "mtproto": 19,
       "socks5": 0,
-      "total": 21,
+      "total": 19,
       "ok": true
     },
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_all_mtproto.txt": {
       "stage": "mtproto",
-      "mtproto": 321,
+      "mtproto": 319,
       "socks5": 0,
-      "total": 321,
+      "total": 319,
       "ok": true
     },
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_all.txt": {
@@ -369,7 +369,7 @@
       "mtproto": 0,
       "socks5": 0,
       "total": 0,
-      "ok": true
+      "ok": false
     },
     "https://gist.githubusercontent.com/December000/fd23d2530ffc29264297a5e687a79ecd/raw/all.yaml": {
       "stage": "socks5",
@@ -395,8 +395,8 @@
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt": {
       "stage": "socks5",
       "mtproto": 0,
-      "socks5": 1341,
-      "total": 1341,
+      "socks5": 1282,
+      "total": 1282,
       "ok": true
     }
   }
