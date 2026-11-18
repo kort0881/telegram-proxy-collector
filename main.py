@@ -143,6 +143,8 @@ SOURCES = [
     "https://raw.githubusercontent.com/Therealwh/MTPproxyLIST/refs/heads/main/verified/proxy_all_tme_verified.txt",
     "https://raw.githubusercontent.com/Airuop/MTProtoCollector/refs/heads/main/proxy/mtproto.json",
     "https://raw.githubusercontent.com/blog1703/tgonline/refs/heads/main/proxies.txt",
+    # из issue #40 (VestraNet-Nodes, 310 прокси на 18.11)
+    "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/main/protocols/mtproto.txt",
     "https://moonlunavpn.com/proxies.txt",
     "https://moonlunavpn.com/proxies.json",
     "https://tgmtproxy.github.io/mtproxy/proxies.txt",
