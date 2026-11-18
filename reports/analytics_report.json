@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-11-18T12:46:05.260101+00:00",
+  "timestamp": "2026-11-18T13:05:52.783416+00:00",
   "metrics": {
     "total": 100,
     "pings_count": 100,
@@ -28,7 +28,9 @@
     "current_avg_ping": 0.077,
     "current_median_ping": 0.09,
     "current_stdev_ping": 0.027,
-    "total_proxies": 100
+    "total_proxies": 100,
+    "trend_median_ping": 0.0,
+    "trend_direction": "stable"
   },
   "anomalies_count": 5,
   "model": {
