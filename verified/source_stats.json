@@ -1,8 +1,8 @@
 {
-  "last_update": "2026-11-18T13:19:14.843293+00:00",
-  "unique_collected": 3985,
-  "checked": 3985,
-  "valid": 1232,
+  "last_update": "2026-11-18T18:41:39.914829+00:00",
+  "unique_collected": 3778,
+  "checked": 3778,
+  "valid": 1225,
   "manual_count": 9,
   "sources_ok": 36,
   "sources_failed": 20,
@@ -198,9 +198,9 @@
     },
     "https://raw.githubusercontent.com/Surfboardv2ray/TGProto/refs/heads/main/proxies.txt": {
       "stage": "mtproto",
-      "mtproto": 295,
+      "mtproto": 296,
       "socks5": 0,
-      "total": 295,
+      "total": 296,
       "ok": true
     },
     "https://raw.githubusercontent.com/iwh3n/tg-proxy/refs/heads/main/proxys/All_Proxys.txt": {
@@ -212,16 +212,16 @@
     },
     "https://raw.githubusercontent.com/kubiknubika/my-tg-proxies/refs/heads/main/data/proxies.json": {
       "stage": "mtproto",
-      "mtproto": 208,
+      "mtproto": 215,
       "socks5": 0,
-      "total": 208,
+      "total": 215,
       "ok": true
     },
     "https://raw.githubusercontent.com/shablin/mtproto-proxy/refs/heads/main/data/valid_proxy.json": {
       "stage": "mtproto",
-      "mtproto": 297,
+      "mtproto": 296,
       "socks5": 0,
-      "total": 297,
+      "total": 296,
       "ok": true
     },
     "https://raw.githubusercontent.com/helptmoop/Free-Telegram-Proxies/refs/heads/main/global-iran-russia-proxies.txt": {
@@ -296,9 +296,9 @@
     },
     "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/main/protocols/mtproto.txt": {
       "stage": "mtproto",
-      "mtproto": 290,
+      "mtproto": 342,
       "socks5": 0,
-      "total": 290,
+      "total": 342,
       "ok": true
     },
     "https://moonlunavpn.com/proxies.txt": {
@@ -388,15 +388,15 @@
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json": {
       "stage": "socks5",
       "mtproto": 0,
-      "socks5": 24,
-      "total": 24,
+      "socks5": 16,
+      "total": 16,
       "ok": true
     },
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt": {
       "stage": "socks5",
       "mtproto": 0,
-      "socks5": 1425,
-      "total": 1425,
+      "socks5": 1141,
+      "total": 1141,
       "ok": true
     }
   }
