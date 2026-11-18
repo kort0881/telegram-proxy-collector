@@ -89,6 +89,11 @@ MANUAL_PROXIES = [
     "tg://proxy?server=monorail.proxy.rlwy.net&port=52938&secret=654e03cc7529c0da7164ecad503d9d0d",
     "tg://proxy?server=monorail.proxy.rlwy.net&port=52938&secret=dd654e03cc7529c0da7164ecad503d9d0d",
     "tg://proxy?server=ballast.proxy.rlwy.net&port=31126&secret=e8fa724103180483b35921b1d926118a",
+    # из issues #64 (NormOne, 26.10.2026)
+    "tg://proxy?server=tg.normone.cc&port=443&secret=ee8e1b968cc826dbb4c2d6f288b4313d337777772e676f6f676c652e636f6d",
+    "tg://proxy?server=proxy-a.normone.cc&port=8444&secret=ee0579c89b293b8ed2cc6cf535da97b28a706574726f766963682e7275",
+    "tg://proxy?server=proxy-b.normone.cc&port=9443&secret=ddae0e2ca6e12d135fe03ae3bac49ce415",
+    "tg://proxy?server=proxy-c.normone.cc&port=10443&secret=ee248678d3439f2b14508773c98c3b46787777772e6d6963726f736f66742e636f6d",
 ]
 
 # ---------- Источники ----------
@@ -162,6 +167,7 @@ SOCKS_SOURCES = [
 
 # ---------- Пути выходных данных ----------
 HISTORY_FILE = os.path.join('data', 'proxy_history.json')
+HISTORY_MAX = 2000  # потолок накопленной истории (записей)
 
 # ---------- Регэкспы MTProto (единый источник правды) ----------
 # (pattern, flags) — флаги у формата host:port:secret отличаются, поэтому они в паре
@@ -340,6 +346,10 @@ def fetch_source(session: requests.Session, url: str, timeout: int = 15) -> str:
         time.sleep(0.5 * (2 ** attempt))
     return ''
 
+def _hist_key(rec: Dict[str, Any]) -> Tuple:
+    return (rec.get('type'), rec.get('host'), rec.get('port'), rec.get('secret'))
+
+
 def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Dict[str, Any]]:
     typ, host, port, extra = p
     host = str(host).strip()
@@ -372,10 +382,10 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
         domain_str = ''
 
     try:
+        start = time.time()
         with socket.create_connection((host, port), timeout=timeout) as s:
-            start = time.time()
             s.settimeout(timeout)
-            ping = round(time.time() - start, 3)
+        ping = round(time.time() - start, 3)
         if typ == 'socks5' and not _check_socks5_handshake(host, port, timeout):
             return None
         return {
@@ -603,14 +613,26 @@ def run(args):
     all_proxies = mtproto_ru[:top] + mtproto_eu[:top] + mtproto_us[:top] + mtproto_asia[:top] + socks5[:top]
     all_proxies.sort(key=lambda x: (x['region'], x['ping']))
 
-    # История для AI-аналитики
+    # История для AI-аналитики — НАКАПЛИВАЕМ между прогонами, а не перезаписываем
     try:
         hist_dir = os.path.dirname(HISTORY_FILE)
         if hist_dir:
             os.makedirs(hist_dir, exist_ok=True)
+        merged: Dict[Tuple, Dict[str, Any]] = {}
+        try:
+            with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
+                for rec in json.load(f):
+                    if isinstance(rec, dict):
+                        merged[_hist_key(rec)] = rec
+        except (OSError, ValueError, TypeError):
+            merged = {}
+        old_count = len(merged)
+        for rec in valid[:top]:
+            merged[_hist_key(rec)] = dict(rec, seen_at=utc.isoformat())
+        items = list(merged.values())[-HISTORY_MAX:]
         with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
-            json.dump(valid[:top], f, indent=2, ensure_ascii=False)
-        print(f'🧠 История для AI-аналитики: {len(valid[:top])} записей → {HISTORY_FILE}')
+            json.dump(items, f, indent=2, ensure_ascii=False)
+        print(f'🧠 История для AI-аналитики: было {old_count}, стало {len(items)} записей → {HISTORY_FILE}')
     except OSError as e:
         print(f'⚠️ Не удалось записать историю: {e}')
 

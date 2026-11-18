@@ -63,15 +63,19 @@ jobs:
           cp verified/proxy_asia_verified.txt proxy_asia.txt 2>/dev/null || echo "ASIA file not found"
           cp verified/socks5_proxies.txt      socks5.txt
 
-          cat verified/proxy_ru_verified.txt \
-              verified/proxy_eu_verified.txt \
-              verified/proxy_us_verified.txt \
-              verified/proxy_asia_verified.txt \
-              2>/dev/null > proxy_all_mtproto.txt || true
-
-          cat verified/proxy_ru_verified.txt \
-              verified/proxy_eu_verified.txt \
-              2>/dev/null > proxy_all.txt || true
+          UTC=$(date -u +%Y-%m-%dT%H:%M:%S+00:00)
+          build_all() {   # $1=выходной файл, $2=подпись, далее входные файлы
+            out="$1"; label="$2"; shift 2
+            grep -h '^tg://' "$@" 2>/dev/null | awk '!seen[$0]++' > /tmp/all_links.txt || true
+            cnt=$(wc -l < /tmp/all_links.txt | tr -d ' ')
+            { echo "# $label ($cnt)"; echo "# Updated: $UTC"; echo; cat /tmp/all_links.txt; } > "$out"
+            echo "$out: $cnt ссылок"
+          }
+          build_all proxy_all_mtproto.txt "MTProto ALL (RU+EU+US+ASIA)" \
+            verified/proxy_ru_verified.txt verified/proxy_eu_verified.txt \
+            verified/proxy_us_verified.txt verified/proxy_asia_verified.txt
+          build_all proxy_all.txt "MTProto RU+EU" \
+            verified/proxy_ru_verified.txt verified/proxy_eu_verified.txt
 
       - name: Statistics & Outputs
         id: stats
@@ -114,6 +118,7 @@ jobs:
           git config user.email "bot@github.com"
 
           git add -f verified/ 2>/dev/null || true
+          git add -f data/proxy_history.json 2>/dev/null || true
 
           for f in proxy_ru.txt proxy_eu.txt proxy_us.txt proxy_asia.txt \
                    socks5.txt proxy_all.txt proxy_all_mtproto.txt; do

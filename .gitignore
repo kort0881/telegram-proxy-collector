@@ -16,6 +16,7 @@ models/*.joblib
 data/*.csv
 data/*.json
 data/*.mmdb
+!data/proxy_history.json
 !data/analytics_report.json
 reports/*.json
 !reports/analytics_report.json
