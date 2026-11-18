@@ -15,6 +15,7 @@ models/*.pkl
 models/*.joblib
 data/*.csv
 data/*.json
+data/*.mmdb
 !data/analytics_report.json
 reports/*.json
 !reports/analytics_report.json

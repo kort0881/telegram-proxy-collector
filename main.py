@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# MTProto & SOCKS5 Proxy Collector v4.1
+# MTProto & SOCKS5 Proxy Collector v4.2
 # - FIX: регион определяется по GeoIP (ISO-коду страны), а не только по домену в secret
 # - FIX: GeoIP: maxminddb.open_database + fallback на geoip2
 # - Расширенный фильтр подозрительных портов (Tomcat, Minecraft, RDP…)
@@ -9,6 +9,10 @@
 # - FIX: decode_domain корректно пропускает 34 символа (ee + 32 hex secret) перед чтением домена
 # - ADD: источники kort0881/telegram-proxy-collector (regional + all + socks5)
 # - ADD: MANUAL_PROXIES — всегда проверяемые прокси
+# - ADD: SOCKS5 handshake — не-SOCKS5 сервера отсеиваются
+# - ADD: --seen-ttl 0 полностью отключает seen-кэш (ни чтения, ни записи)
+# - ADD: data/proxy_history.json — история для AI-аналитики
+# - ADD: verified/source_stats.json — реальная добыча каждого источника
 
 import requests
 import re
@@ -156,11 +160,33 @@ SOCKS_SOURCES = [
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt",
 ]
 
+# ---------- Пути выходных данных ----------
+HISTORY_FILE = os.path.join('data', 'proxy_history.json')
+
+# ---------- Регэкспы MTProto (единый источник правды) ----------
+# (pattern, flags) — флаги у формата host:port:secret отличаются, поэтому они в паре
+MTPROTO_PATTERNS = [
+    (r'tg://proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', re.I),
+    (r't\.me/proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', re.I),
+    (r'([A-Za-z0-9\.-]+):(\d+):([A-Fa-f0-9]{16,})', 0),
+]
+
 # ---------- ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ----------
 def _valid_port(p: str) -> bool:
     try:
         return 1 <= int(p) <= 65535
     except ValueError:
+        return False
+
+def _check_socks5_handshake(host: str, port: int, timeout: float) -> bool:
+    """Проверяет, что на порту действительно SOCKS5 (method negotiation, no-auth)."""
+    try:
+        with socket.create_connection((host, port), timeout=timeout) as s:
+            s.settimeout(timeout)
+            s.sendall(b"\x05\x01\x00")
+            resp = s.recv(2)
+            return len(resp) == 2 and resp[0] == 5 and resp[1] == 0
+    except (socket.timeout, socket.error, OSError):
         return False
 
 def _is_blocked(secret: str, domain: Optional[str]) -> bool:
@@ -251,15 +277,10 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
     proxies = set()
     mtproto_ips = set()
 
-    for h, p, s in re.findall(r'tg://proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', text, re.I):
-        if _valid_port(p):
-            proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
-    for h, p, s in re.findall(r't\.me/proxy\?server=([^&\s]+)&port=(\d+)&secret=([A-Za-z0-9_=+/%-]+)', text, re.I):
-        if _valid_port(p):
-            proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
-    for h, p, s in re.findall(r'([A-Za-z0-9\.-]+):(\d+):([A-Fa-f0-9]{16,})', text):
-        if _valid_port(p):
-            proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
+    for pattern, flags in MTPROTO_PATTERNS:
+        for h, p, s in re.findall(pattern, text, flags):
+            if _valid_port(p):
+                proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
     for h, p in re.findall(r'tg://socks\?server=([^&\s]+)&port=(\d+)', text, re.I):
         if _valid_port(p):
             proxies.add(('socks5', h, int(p), (None, None)))
@@ -325,7 +346,7 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
     if not host:
         return None
 
-    if typ == 'mtproto' and port in SUSPICIOUS_PORTS:
+    if typ == 'mtproto' and port in SUSPICIOUS_PORTS and _cache_key(p) not in MANUAL_KEYS:
         return None
 
     country = None
@@ -355,13 +376,13 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
             start = time.time()
             s.settimeout(timeout)
             ping = round(time.time() - start, 3)
-        quality_score = max(0, min(100, int(100 - ping * 50)))
+        if typ == 'socks5' and not _check_socks5_handshake(host, port, timeout):
+            return None
         return {
             'type': typ, 'host': host, 'port': port,
             'secret': extra if typ == 'mtproto' else None,
             'link': link, 'ping': ping, 'region': region,
             'domain': domain_str, 'method': 'TCP_OK', 'probe_resistant': False,
-            'quality_score': quality_score
         }
     except (socket.timeout, socket.error, OSError, TypeError):
         return None
@@ -376,7 +397,6 @@ def deduplicate_and_sort(proxies: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
             unique.append(p)
     unique.sort(key=lambda x: (
         0 if (x['type'] == 'mtproto' and x.get('probe_resistant', False)) else 1 if x['type'] == 'mtproto' else 2,
-        -x.get('quality_score', 0),
         x['ping']
     ))
     return unique
@@ -403,7 +423,12 @@ def _cache_key(p) -> Tuple:
             return (p[0], p[1], p[2], f"{extra[0] or ''}:{extra[1] or ''}")
     return (p[0], p[1], p[2], '')
 
+# Ключи прокси из MANUAL_PROXIES — для них фильтр SUSPICIOUS_PORTS не применяется
+MANUAL_KEYS: Set[Tuple] = {_cache_key(p) for p in get_proxies_from_text('\n'.join(MANUAL_PROXIES))}
+
 def load_seen(path: str, ttl_hours: int = 48) -> Set[Tuple]:
+    if ttl_hours <= 0:
+        return set()
     if not path or not os.path.isfile(path):
         return set()
     try:
@@ -445,7 +470,7 @@ def run(args):
     global geoip_reader
 
     start_time = time.time()
-    print('🚀 MTProxy Collector v4.1')
+    print('🚀 MTProxy Collector v4.2')
     print('=' * 48)
 
     if args.geoip and os.path.exists(args.geoip):
@@ -465,6 +490,7 @@ def run(args):
     })
 
     all_raw: Set[Tuple[str, str, int, Any]] = set()
+    source_stats: Dict[str, Dict[str, Any]] = {}
 
     print('\n📥 Сбор MTProto...')
     for url in SOURCES:
@@ -474,8 +500,12 @@ def run(args):
             ext = get_proxies_from_text(text)
             cnt = sum(1 for x in ext if x[0] == 'mtproto')
             all_raw.update(ext)
+            source_stats[url] = {'stage': 'mtproto', 'mtproto': cnt,
+                                 'socks5': sum(1 for x in ext if x[0] == 'socks5'),
+                                 'total': len(ext), 'ok': True}
             print(f'  ✓ {name:<42} +{cnt} MTProto')
         else:
+            source_stats[url] = {'stage': 'mtproto', 'mtproto': 0, 'socks5': 0, 'total': 0, 'ok': False}
             print(f'  ✗ {name:<42} недоступен')
 
     print('\n📥 Сбор SOCKS5...')
@@ -486,8 +516,11 @@ def run(args):
             ext = get_proxies_from_text(text)
             cnt = sum(1 for x in ext if x[0] == 'socks5')
             all_raw.update(ext)
+            source_stats[url] = {'stage': 'socks5', 'mtproto': sum(1 for x in ext if x[0] == 'mtproto'),
+                                 'socks5': cnt, 'total': len(ext), 'ok': True}
             print(f'  ✓ {name:<42} +{cnt} SOCKS5')
         else:
+            source_stats[url] = {'stage': 'socks5', 'mtproto': 0, 'socks5': 0, 'total': 0, 'ok': False}
             print(f'  ✗ {name:<42} недоступен')
 
     # MANUAL_PROXIES — всегда
@@ -500,6 +533,7 @@ def run(args):
         all_raw.update(load_local_proxies(args.manual))
 
     print(f'\n🧩 Уникальных прокси всего: {len(all_raw)}')
+    unique_raw = len(all_raw)
     if not all_raw:
         print('\n⚠️ Нет прокси. Завершение.')
         return
@@ -545,7 +579,10 @@ def run(args):
                 print(f'  [{checked}/{total}] {checked/total*100:.0f}% | найдено: {len(valid)}')
 
     updated_seen = seen | {_cache_key(p) for p in all_raw}
-    save_seen(args.seen_file, updated_seen)
+    if args.seen_ttl > 0:
+        save_seen(args.seen_file, updated_seen)
+    else:
+        print('📦 Seen-кэш отключён (--seen-ttl 0): не читаем и не пишем')
 
     if not valid:
         print('\n⚠️ Рабочих прокси не найдено.')
@@ -566,25 +603,34 @@ def run(args):
     all_proxies = mtproto_ru[:top] + mtproto_eu[:top] + mtproto_us[:top] + mtproto_asia[:top] + socks5[:top]
     all_proxies.sort(key=lambda x: (x['region'], x['ping']))
 
-    link_formatter = lambda x: x['link']
+    # История для AI-аналитики
+    try:
+        hist_dir = os.path.dirname(HISTORY_FILE)
+        if hist_dir:
+            os.makedirs(hist_dir, exist_ok=True)
+        with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
+            json.dump(valid[:top], f, indent=2, ensure_ascii=False)
+        print(f'🧠 История для AI-аналитики: {len(valid[:top])} записей → {HISTORY_FILE}')
+    except OSError as e:
+        print(f'⚠️ Не удалось записать историю: {e}')
 
     files_data = {
-        'proxy_ru_verified.txt':   (mtproto_ru[:top],   f'# MTProto RU ({len(mtproto_ru[:top])})\n# Updated: {utc}\n\n',   link_formatter),
-        'proxy_eu_verified.txt':   (mtproto_eu[:top],   f'# MTProto EU ({len(mtproto_eu[:top])})\n# Updated: {utc}\n\n',   link_formatter),
-        'proxy_us_verified.txt':   (mtproto_us[:top],   f'# MTProto US ({len(mtproto_us[:top])})\n# Updated: {utc}\n\n',   link_formatter),
-        'proxy_asia_verified.txt': (mtproto_asia[:top], f'# MTProto ASIA ({len(mtproto_asia[:top])})\n# Updated: {utc}\n\n', link_formatter),
-        'socks5_proxies.txt':      (socks5[:top],       f'# SOCKS5 ({len(socks5[:top])})\n# Updated: {utc}\n\n',          link_formatter),
-        'proxy_all_tme_verified.txt': (all_proxies, f'# Verified Proxies t.me format ({len(all_proxies)})\n# Updated: {utc}\n\n', link_formatter),
-        'proxy_all.txt':           (all_proxies, f'# All proxies ({len(all_proxies)})\n# Updated: {utc}\n\n',           link_formatter),
-        'proxy_all_verified.txt':  (all_proxies, f'# All verified proxies ({len(all_proxies)})\n# Updated: {utc}\n\n',  link_formatter),
-        'proxy_links.txt':         (all_proxies, f'# Proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n',          link_formatter),
-        'proxy_links_clean.txt':   (all_proxies, f'# Clean proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n',    link_formatter),
-        'proxy_links_tme_clean.txt': (all_proxies, f'# Clean t.me proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n', link_formatter),
+        'proxy_ru_verified.txt':   (mtproto_ru[:top],   f'# MTProto RU ({len(mtproto_ru[:top])})\n# Updated: {utc}\n\n'),
+        'proxy_eu_verified.txt':   (mtproto_eu[:top],   f'# MTProto EU ({len(mtproto_eu[:top])})\n# Updated: {utc}\n\n'),
+        'proxy_us_verified.txt':   (mtproto_us[:top],   f'# MTProto US ({len(mtproto_us[:top])})\n# Updated: {utc}\n\n'),
+        'proxy_asia_verified.txt': (mtproto_asia[:top], f'# MTProto ASIA ({len(mtproto_asia[:top])})\n# Updated: {utc}\n\n'),
+        'socks5_proxies.txt':      (socks5[:top],       f'# SOCKS5 ({len(socks5[:top])})\n# Updated: {utc}\n\n'),
+        'proxy_all_tme_verified.txt': (all_proxies, f'# Verified Proxies t.me format ({len(all_proxies)})\n# Updated: {utc}\n\n'),
+        'proxy_all.txt':           (all_proxies, f'# All proxies ({len(all_proxies)})\n# Updated: {utc}\n\n'),
+        'proxy_all_verified.txt':  (all_proxies, f'# All verified proxies ({len(all_proxies)})\n# Updated: {utc}\n\n'),
+        'proxy_links.txt':         (all_proxies, f'# Proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n'),
+        'proxy_links_clean.txt':   (all_proxies, f'# Clean proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n'),
+        'proxy_links_tme_clean.txt': (all_proxies, f'# Clean t.me proxy links ({len(all_proxies)})\n# Updated: {utc}\n\n'),
     }
 
-    for filename, (data, header, formatter) in files_data.items():
+    for filename, (data, header) in files_data.items():
         with open(f'{args.output_dir}/{filename}', 'w', encoding='utf-8') as f:
-            f.write(header + '\n'.join(formatter(x) for x in data))
+            f.write(header + '\n'.join(x['link'] for x in data))
 
     with open(f'{args.output_dir}/proxy_all_verified.json', 'w', encoding='utf-8') as f:
         json.dump(valid[:top], f, indent=2, ensure_ascii=False)
@@ -608,7 +654,16 @@ def run(args):
         json.dump(stats, f, indent=2, ensure_ascii=False)
 
     with open(f'{args.output_dir}/source_stats.json', 'w', encoding='utf-8') as f:
-        json.dump({"sources": SOURCES + SOCKS_SOURCES, "last_update": utc.isoformat()}, f, indent=2, ensure_ascii=False)
+        json.dump({
+            "last_update": utc.isoformat(),
+            "unique_collected": unique_raw,
+            "checked": total,
+            "valid": len(valid),
+            "manual_count": len(MANUAL_PROXIES),
+            "sources_ok": sum(1 for s in source_stats.values() if s.get('ok')),
+            "sources_failed": sum(1 for s in source_stats.values() if not s.get('ok')),
+            "sources": source_stats,
+        }, f, indent=2, ensure_ascii=False)
 
     with open(f'{args.output_dir}/verification.log', 'w', encoding='utf-8') as f:
         f.write(f"Verification completed at {utc}\n")
