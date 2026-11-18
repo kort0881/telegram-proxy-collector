@@ -132,7 +132,6 @@ SOURCES = [
     "https://raw.githubusercontent.com/iwh3n/tg-proxy/refs/heads/main/proxys/All_Proxys.txt",
     "https://raw.githubusercontent.com/kubiknubika/my-tg-proxies/refs/heads/main/data/proxies.json",
     "https://raw.githubusercontent.com/shablin/mtproto-proxy/refs/heads/main/data/valid_proxy.json",
-    "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/protocols/mtproto.txt",
     "https://raw.githubusercontent.com/helptmoop/Free-Telegram-Proxies/refs/heads/main/global-iran-russia-proxies.txt",
     "https://raw.githubusercontent.com/helptmoop/Free-Telegram-Proxies/refs/heads/main/turkmenistan-global-iran-russia.txt",
     "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/MTProto.txt",
