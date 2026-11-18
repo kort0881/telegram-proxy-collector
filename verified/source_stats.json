@@ -1,11 +1,11 @@
 {
-  "last_update": "2026-11-18T13:13:27.901664+00:00",
-  "unique_collected": 4019,
-  "checked": 4019,
-  "valid": 1268,
+  "last_update": "2026-11-18T13:19:14.843293+00:00",
+  "unique_collected": 3985,
+  "checked": 3985,
+  "valid": 1232,
   "manual_count": 9,
   "sources_ok": 36,
-  "sources_failed": 21,
+  "sources_failed": 20,
   "sources": {
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_ru.txt": {
       "stage": "mtproto",
@@ -30,16 +30,16 @@
     },
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_asia.txt": {
       "stage": "mtproto",
-      "mtproto": 19,
+      "mtproto": 20,
       "socks5": 0,
-      "total": 19,
+      "total": 20,
       "ok": true
     },
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_all_mtproto.txt": {
       "stage": "mtproto",
-      "mtproto": 319,
+      "mtproto": 320,
       "socks5": 0,
-      "total": 319,
+      "total": 320,
       "ok": true
     },
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_all.txt": {
@@ -224,13 +224,6 @@
       "total": 297,
       "ok": true
     },
-    "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/protocols/mtproto.txt": {
-      "stage": "mtproto",
-      "mtproto": 0,
-      "socks5": 0,
-      "total": 0,
-      "ok": false
-    },
     "https://raw.githubusercontent.com/helptmoop/Free-Telegram-Proxies/refs/heads/main/global-iran-russia-proxies.txt": {
       "stage": "mtproto",
       "mtproto": 1,
@@ -303,9 +296,9 @@
     },
     "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/main/protocols/mtproto.txt": {
       "stage": "mtproto",
-      "mtproto": 310,
+      "mtproto": 290,
       "socks5": 0,
-      "total": 310,
+      "total": 290,
       "ok": true
     },
     "https://moonlunavpn.com/proxies.txt": {
