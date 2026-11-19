@@ -1,67 +1,67 @@
 {
-  "timestamp": "2026-11-19T01:46:33.663845+00:00",
+  "timestamp": "2026-11-19T09:58:23.906343+00:00",
   "metrics": {
-    "total": 230,
-    "pings_count": 230,
-    "median_ping": 0.092,
-    "mean_ping": 0.108,
+    "total": 243,
+    "pings_count": 243,
+    "median_ping": 0.094,
+    "mean_ping": 0.098,
     "stdev_ping": 0.039,
-    "good_thr": 0.092,
-    "bad_thr": 0.23,
-    "good": 116,
-    "medium": 114,
+    "good_thr": 0.094,
+    "bad_thr": 0.235,
+    "good": 124,
+    "medium": 119,
     "bad": 0,
     "regions": {
-      "eu": 135,
-      "us": 67,
-      "ru": 20,
+      "eu": 143,
+      "us": 70,
+      "ru": 22,
       "asia": 8
     },
     "types": {
-      "mtproto": 230
+      "mtproto": 243
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
     "recommended_workers": 100,
-    "current_avg_ping": 0.108,
-    "current_median_ping": 0.092,
+    "current_avg_ping": 0.098,
+    "current_median_ping": 0.094,
     "current_stdev_ping": 0.039,
-    "total_proxies": 230,
-    "trend_median_ping": 0.001,
+    "total_proxies": 243,
+    "trend_median_ping": 0.002,
     "trend_direction": "stable"
   },
-  "anomalies_count": 12,
+  "anomalies_count": 13,
   "model": {
-    "cv_f1": 0.9962,
+    "cv_f1": 0.9867,
     "report": {
       "0": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 97.0
+        "support": 58.0
       },
       "1": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 133.0
+        "support": 185.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 230.0
+        "support": 243.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 230.0
+        "support": 243.0
       }
     },
-    "threshold": 0.138
+    "threshold": 0.14100000000000001
   }
 }
