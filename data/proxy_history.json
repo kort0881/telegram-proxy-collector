@@ -5,12 +5,12 @@
     "port": 443,
     "secret": "ee09db815a6d82a31fda76f872230c69d7706b676275696c642e6f7267",
     "link": "tg://proxy?server=172.65.186.19&port=443&secret=ee09db815a6d82a31fda76f872230c69d7706b676275696c642e6f7267",
-    "ping": 0.006,
+    "ping": 0.01,
     "region": "eu",
     "domain": "pkgbuild.org",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -23,7 +23,7 @@
     "domain": "speed.cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -31,12 +31,12 @@
     "port": 9443,
     "secret": "ee09db815a6d82a31fda76f872230c69d7706b676275696c642e6f7267",
     "link": "tg://proxy?server=172.65.234.91&port=9443&secret=ee09db815a6d82a31fda76f872230c69d7706b676275696c642e6f7267",
-    "ping": 0.011,
+    "ping": 0.008,
     "region": "eu",
     "domain": "pkgbuild.org",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -49,7 +49,7 @@
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -57,12 +57,12 @@
     "port": 443,
     "secret": "dd00000000000000000000000000000000",
     "link": "tg://proxy?server=104.21.21.77&port=443&secret=dd00000000000000000000000000000000",
-    "ping": 0.051,
+    "ping": 0.045,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -70,12 +70,12 @@
     "port": 9443,
     "secret": "ee09db815a6d82a31fda76f872230c69d7706b676275696c642e6f7267",
     "link": "tg://proxy?server=172.65.38.26&port=9443&secret=ee09db815a6d82a31fda76f872230c69d7706b676275696c642e6f7267",
-    "ping": 0.006,
+    "ping": 0.005,
     "region": "eu",
     "domain": "pkgbuild.org",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -83,12 +83,12 @@
     "port": 443,
     "secret": "664133833064b3db1c7ab1a4f20e6401",
     "link": "tg://proxy?server=45.32.215.249&port=443&secret=664133833064b3db1c7ab1a4f20e6401",
-    "ping": 0.059,
+    "ping": 0.058,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -96,12 +96,12 @@
     "port": 443,
     "secret": "cec9750aa6c4c149e9d997b0de2335a2",
     "link": "tg://proxy?server=155.138.225.7&port=443&secret=cec9750aa6c4c149e9d997b0de2335a2",
-    "ping": 0.058,
+    "ping": 0.057,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -114,7 +114,7 @@
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -122,12 +122,12 @@
     "port": 6793,
     "secret": "ee000000000000000000000000000000",
     "link": "tg://proxy?server=31.57.82.212&port=6793&secret=ee000000000000000000000000000000",
-    "ping": 0.065,
+    "ping": 0.064,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -135,12 +135,12 @@
     "port": 443,
     "secret": "eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169",
     "link": "tg://proxy?server=api.jinxandjack.co.uk&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169",
-    "ping": 0.031,
+    "ping": 0.075,
     "region": "eu",
     "domain": "web.bale.ai",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -148,12 +148,12 @@
     "port": 443,
     "secret": "d4fb97d637ce07988ad90444fc481dd6",
     "link": "tg://proxy?server=45.76.231.32&port=443&secret=d4fb97d637ce07988ad90444fc481dd6",
-    "ping": 0.046,
+    "ping": 0.047,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -161,12 +161,12 @@
     "port": 443,
     "secret": "dda5a7b5711e648c7bd534e4e87de2241b",
     "link": "tg://proxy?server=mash.drproxy.pro&port=443&secret=dda5a7b5711e648c7bd534e4e87de2241b",
-    "ping": 0.048,
+    "ping": 0.09,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -174,12 +174,12 @@
     "port": 52938,
     "secret": "dd654e03cc7529c0da7164ecad503d9d0d",
     "link": "tg://proxy?server=monorail.proxy.rlwy.net&port=52938&secret=dd654e03cc7529c0da7164ecad503d9d0d",
-    "ping": 0.078,
+    "ping": 0.091,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -213,12 +213,12 @@
     "port": 443,
     "secret": "eeddff05e65a69a6a7fd1a28a28a121fff7765622e62616c652e6169",
     "link": "tg://proxy?server=portal.old-but-new.co.uk&port=443&secret=eeddff05e65a69a6a7fd1a28a28a121fff7765622e62616c652e6169",
-    "ping": 0.018,
+    "ping": 0.045,
     "region": "eu",
     "domain": "web.bale.ai",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -226,12 +226,12 @@
     "port": 45066,
     "secret": "eebb8410139359861806644276b18735327777772e636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=iriguchi.proxy.rlwy.net&port=45066&secret=eebb8410139359861806644276b18735327777772e636c6f7564666c6172652e636f6d",
-    "ping": 0.147,
+    "ping": 0.067,
     "region": "us",
     "domain": "www.cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -239,12 +239,12 @@
     "port": 443,
     "secret": "ee197f462f1b8d59a053ea0a90fe6cd66073352e646967696b616c612e636f6d",
     "link": "tg://proxy?server=95.182.91.199&port=443&secret=ee197f462f1b8d59a053ea0a90fe6cd66073352e646967696b616c612e636f6d",
-    "ping": 0.032,
+    "ping": 0.027,
     "region": "eu",
     "domain": "s5.digikala.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -252,12 +252,12 @@
     "port": 443,
     "secret": "7hl_Ri8bjVmgU-oKkP5s1mBzNS5kaWdpa2FsYS5jb20=",
     "link": "tg://proxy?server=95.182.91.199&port=443&secret=7hl_Ri8bjVmgU-oKkP5s1mBzNS5kaWdpa2FsYS5jb20=",
-    "ping": 0.029,
+    "ping": 0.03,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -265,12 +265,12 @@
     "port": 443,
     "secret": "197f462f1b8d59a053ea0a90fe6cd660",
     "link": "tg://proxy?server=95.182.91.199&port=443&secret=197f462f1b8d59a053ea0a90fe6cd660",
-    "ping": 0.027,
+    "ping": 0.031,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -278,12 +278,12 @@
     "port": 443,
     "secret": "dd197f462f1b8d59a053ea0a90fe6cd660",
     "link": "tg://proxy?server=95.182.91.199&port=443&secret=dd197f462f1b8d59a053ea0a90fe6cd660",
-    "ping": 0.027,
+    "ping": 0.031,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -296,7 +296,7 @@
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -304,12 +304,12 @@
     "port": 52938,
     "secret": "654e03cc7529c0da7164ecad503d9d0d",
     "link": "tg://proxy?server=monorail.proxy.rlwy.net&port=52938&secret=654e03cc7529c0da7164ecad503d9d0d",
-    "ping": 0.145,
+    "ping": 0.075,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -317,12 +317,12 @@
     "port": 443,
     "secret": "ee76f6583e6b509d946c56287a9ca59dc362726f7773696e672e79616e6465782e636f6d",
     "link": "tg://proxy?server=85.17.89.193&port=443&secret=ee76f6583e6b509d946c56287a9ca59dc362726f7773696e672e79616e6465782e636f6d",
-    "ping": 0.144,
+    "ping": 0.143,
     "region": "ru",
     "domain": "browsing.yandex.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -382,12 +382,12 @@
     "port": 443,
     "secret": "4428c7014df8c8251795fdd6f985ee7d",
     "link": "tg://proxy?server=193.233.82.134&port=443&secret=4428c7014df8c8251795fdd6f985ee7d",
-    "ping": 0.146,
+    "ping": 0.142,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -395,12 +395,12 @@
     "port": 443,
     "secret": "ee3a4c2b816be46f6a0decf43209106a307777772e636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=104.105.18.26&port=443&secret=ee3a4c2b816be46f6a0decf43209106a307777772e636c6f7564666c6172652e636f6d",
-    "ping": 0.089,
+    "ping": 0.148,
     "region": "us",
     "domain": "www.cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T12:45:31.204889+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -434,12 +434,12 @@
     "port": 443,
     "secret": "ee19130c695cf699d93f5a31ecf380d4426d742e736b6f746f62617a2e7275",
     "link": "tg://proxy?server=2.27.12.116&port=443&secret=ee19130c695cf699d93f5a31ecf380d4426d742e736b6f746f62617a2e7275",
-    "ping": 0.091,
+    "ping": 0.142,
     "region": "ru",
     "domain": "mt.skotobaz.ru",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -447,12 +447,12 @@
     "port": 443,
     "secret": "eeb821a0ec7efc336d521069d6db22d9",
     "link": "tg://proxy?server=89.117.1.234&port=443&secret=eeb821a0ec7efc336d521069d6db22d9",
-    "ping": 0.15,
+    "ping": 0.147,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -473,12 +473,12 @@
     "port": 443,
     "secret": "dd79e7010200010007f0030386e24c3add",
     "link": "tg://proxy?server=91.238.92.251&port=443&secret=dd79e7010200010007f0030386e24c3add",
-    "ping": 0.09,
+    "ping": 0.147,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -486,12 +486,12 @@
     "port": 443,
     "secret": "ee99b282cc5e627c76312e9a8bdb9d09787777772e727562696b612e6972",
     "link": "tg://proxy?server=150.230.124.161&port=443&secret=ee99b282cc5e627c76312e9a8bdb9d09787777772e727562696b612e6972",
-    "ping": 0.076,
+    "ping": 0.134,
     "region": "ru",
     "domain": "www.rubika.ir",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -538,12 +538,12 @@
     "port": 443,
     "secret": "eef08dee29bc748ad2f349c593e042bad87777772e6d6963726f736f66742e636f6d",
     "link": "tg://proxy?server=185.19.33.86&port=443&secret=eef08dee29bc748ad2f349c593e042bad87777772e6d6963726f736f66742e636f6d",
-    "ping": 0.089,
+    "ping": 0.143,
     "region": "eu",
     "domain": "www.microsoft.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -551,12 +551,12 @@
     "port": 443,
     "secret": "ee8357954a3df5c26e32a7b8a7978c3f107777772e636974696c696e6b2e7275",
     "link": "tg://proxy?server=217.138.215.102&port=443&secret=ee8357954a3df5c26e32a7b8a7978c3f107777772e636974696c696e6b2e7275",
-    "ping": 0.148,
+    "ping": 0.141,
     "region": "ru",
     "domain": "www.citilink.ru",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -564,12 +564,12 @@
     "port": 443,
     "secret": "ee7b15367d6c33b0b2a8a34d92b9327b79706f636874612e7275",
     "link": "tg://proxy?server=94.103.1.226&port=443&secret=ee7b15367d6c33b0b2a8a34d92b9327b79706f636874612e7275",
-    "ping": 0.09,
+    "ping": 0.142,
     "region": "ru",
     "domain": "pochta.ru",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -668,12 +668,12 @@
     "port": 443,
     "secret": "0d1928855eb0d0e2bfb8ca04f46a7245",
     "link": "tg://proxy?server=140.82.32.202&port=443&secret=0d1928855eb0d0e2bfb8ca04f46a7245",
-    "ping": 0.149,
+    "ping": 0.147,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -694,12 +694,12 @@
     "port": 443,
     "secret": "eeec75b855ebcc01c982f3e013af8ed92a7777772e79616e6465782e7275",
     "link": "tg://proxy?server=78.17.71.42&port=443&secret=eeec75b855ebcc01c982f3e013af8ed92a7777772e79616e6465782e7275",
-    "ping": 0.143,
+    "ping": 0.14,
     "region": "ru",
     "domain": "www.yandex.ru",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -772,12 +772,12 @@
     "port": 443,
     "secret": "79e7010200010007f0030386e24c3add000000046e79656b74616e65742e636f6d666172616b61762e636f6d76616e2e6e616a76612e636f6d",
     "link": "tg://proxy?server=91.238.92.241&port=443&secret=79e7010200010007f0030386e24c3add000000046e79656b74616e65742e636f6d666172616b61762e636f6d76616e2e6e616a76612e636f6d",
-    "ping": 0.09,
+    "ping": 0.148,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -889,12 +889,12 @@
     "port": 443,
     "secret": "eedd0d34d34d34d34d34d34d34d34d34d3636861746770742e636f6d",
     "link": "tg://proxy?server=213.182.213.250&port=443&secret=eedd0d34d34d34d34d34d34d34d34d34d3636861746770742e636f6d",
-    "ping": 0.091,
+    "ping": 0.148,
     "region": "eu",
     "domain": "chatgpt.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T12:45:31.204889+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1214,12 +1214,12 @@
     "port": 443,
     "secret": "79e7010200010007f0030386e24c3add000000046e79656b74616e65742e636f6d666172616b61762e636f6d76616e2e6e616a76612e636f6d",
     "link": "tg://proxy?server=91.238.92.247&port=443&secret=79e7010200010007f0030386e24c3add000000046e79656b74616e65742e636f6d666172616b61762e636f6d76616e2e6e616a76612e636f6d",
-    "ping": 0.144,
+    "ping": 0.147,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1279,12 +1279,12 @@
     "port": 443,
     "secret": "ee54ce9cd90f33ee193591f8583b823ea9636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=144.91.121.19&port=443&secret=ee54ce9cd90f33ee193591f8583b823ea9636c6f7564666c6172652e636f6d",
-    "ping": 0.091,
+    "ping": 0.147,
     "region": "us",
     "domain": "cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1305,12 +1305,12 @@
     "port": 31126,
     "secret": "e8fa724103180483b35921b1d926118a",
     "link": "tg://proxy?server=ballast.proxy.rlwy.net&port=31126&secret=e8fa724103180483b35921b1d926118a",
-    "ping": 0.145,
+    "ping": 0.122,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1318,12 +1318,12 @@
     "port": 443,
     "secret": "7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ",
     "link": "tg://proxy?server=portal.old-but-new.co.uk.&port=443&secret=7t3_BeZaaaan_RoooooSH_93ZWIuYmFsZS5haQ",
-    "ping": 0.025,
+    "ping": 0.104,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1331,12 +1331,12 @@
     "port": 443,
     "secret": "7t3____FoRaLL_Proxy___93ZWIuYmFsZS5haQ==",
     "link": "tg://proxy?server=ftp.jinxandjack.co.uk.&port=443&secret=7t3____FoRaLL_Proxy___93ZWIuYmFsZS5haQ==",
-    "ping": 0.071,
+    "ping": 0.061,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1362,7 +1362,7 @@
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1370,12 +1370,12 @@
     "port": 14360,
     "secret": "ee1234567890abcdef1234567890abcd",
     "link": "tg://proxy?server=ballast.proxy.rlwy.net&port=14360&secret=ee1234567890abcdef1234567890abcd",
-    "ping": 0.064,
+    "ping": 0.116,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1396,12 +1396,12 @@
     "port": 443,
     "secret": "7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t",
     "link": "tg://proxy?server=5.255.126.224&port=443&secret=7hYDAQIAAQAB_AMDhuJMOt1tZWRpYS5zdGVhbXBvd2VyZWQuY29t",
-    "ping": 0.146,
+    "ping": 0.139,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1409,12 +1409,12 @@
     "port": 443,
     "secret": "ee37e7aad9447c88cd9421a1916f2147fd636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=158.220.100.132&port=443&secret=ee37e7aad9447c88cd9421a1916f2147fd636c6f7564666c6172652e636f6d",
-    "ping": 0.091,
+    "ping": 0.147,
     "region": "us",
     "domain": "cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1461,12 +1461,12 @@
     "port": 443,
     "secret": "eec37763c83384df9e52d8681b81b525557777772e636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=141.94.158.18&port=443&secret=eec37763c83384df9e52d8681b81b525557777772e636c6f7564666c6172652e636f6d",
-    "ping": 0.09,
+    "ping": 0.146,
     "region": "us",
     "domain": "www.cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:13:27.901664+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1513,12 +1513,12 @@
     "port": 443,
     "secret": "79e7010200010007f0030386e24c3add000000046e79656b74616e65742e636f6d666172616b61762e636f6d76616e2e6e616a76612e636f6d",
     "link": "tg://proxy?server=91.238.92.218&port=443&secret=79e7010200010007f0030386e24c3add000000046e79656b74616e65742e636f6d666172616b61762e636f6d76616e2e6e616a76612e636f6d",
-    "ping": 0.09,
+    "ping": 0.147,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1526,12 +1526,12 @@
     "port": 443,
     "secret": "79e7010200010007f0030386e24c3add000000046e79656b74616e65742e636f6d666172616b61762e636f6d76616e2e6e616a76612e636f6d",
     "link": "tg://proxy?server=91.238.92.251&port=443&secret=79e7010200010007f0030386e24c3add000000046e79656b74616e65742e636f6d666172616b61762e636f6d76616e2e6e616a76612e636f6d",
-    "ping": 0.09,
+    "ping": 0.147,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1539,12 +1539,12 @@
     "port": 443,
     "secret": "ee887896e32705c777dbc6741c11069fde636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=173.212.245.154&port=443&secret=ee887896e32705c777dbc6741c11069fde636c6f7564666c6172652e636f6d",
-    "ping": 0.09,
+    "ping": 0.147,
     "region": "us",
     "domain": "cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:13:27.901664+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1708,12 +1708,12 @@
     "port": 443,
     "secret": "ee101010ff0f480653fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d",
     "link": "tg://proxy?server=37.203.37.12&port=443&secret=ee101010ff0f480653fffffff5006e2e696d656469612e737465616d706f77657265642e636f6d",
-    "ping": 0.091,
+    "ping": 0.146,
     "region": "eu",
     "domain": "media.steampowered.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1773,12 +1773,12 @@
     "port": 443,
     "secret": "ee5c00289ce1b8653231f033e307807741636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=95.111.246.113&port=443&secret=ee5c00289ce1b8653231f033e307807741636c6f7564666c6172652e636f6d",
-    "ping": 0.09,
+    "ping": 0.147,
     "region": "us",
     "domain": "cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1799,12 +1799,12 @@
     "port": 443,
     "secret": "7jpMK4Fr5G9qDez0MgkQajB3d3cuY2xvdWRmbGFyZS5jb20",
     "link": "tg://proxy?server=104.105.18.26&port=443&secret=7jpMK4Fr5G9qDez0MgkQajB3d3cuY2xvdWRmbGFyZS5jb20",
-    "ping": 0.15,
+    "ping": 0.148,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1851,12 +1851,12 @@
     "port": 443,
     "secret": "ee5bd447d48aa948351cd8c6a85f7a7507636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=82.208.21.114&port=443&secret=ee5bd447d48aa948351cd8c6a85f7a7507636c6f7564666c6172652e636f6d",
-    "ping": 0.09,
+    "ping": 0.147,
     "region": "us",
     "domain": "cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1890,12 +1890,12 @@
     "port": 443,
     "secret": "eed5026c2375e5afa5174552eb8199edbe7777772e636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=85.90.244.164&port=443&secret=eed5026c2375e5afa5174552eb8199edbe7777772e636c6f7564666c6172652e636f6d",
-    "ping": 0.145,
+    "ping": 0.148,
     "region": "us",
     "domain": "www.cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1916,12 +1916,12 @@
     "port": 443,
     "secret": "7gnbgVptgqMf2nb4ciMMaddwa2didWlsZC5vcmc=",
     "link": "tg://proxy?server=172.65.186.19&port=443&secret=7gnbgVptgqMf2nb4ciMMaddwa2didWlsZC5vcmc=",
-    "ping": 0.011,
+    "ping": 0.005,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1929,12 +1929,12 @@
     "port": 443,
     "secret": "ee095b4c07061fa18ae9374091be8a8c4e79616e6465782e7275",
     "link": "tg://proxy?server=proxy-ru.wearvpn.online&port=443&secret=ee095b4c07061fa18ae9374091be8a8c4e79616e6465782e7275",
-    "ping": 0.069,
+    "ping": 0.074,
     "region": "ru",
     "domain": "yandex.ru",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1955,12 +1955,12 @@
     "port": 443,
     "secret": "e44cf695d605ab1c71dd456f39c49bae",
     "link": "tg://proxy?server=207.148.6.20&port=443&secret=e44cf695d605ab1c71dd456f39c49bae",
-    "ping": 0.039,
+    "ping": 0.045,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1968,12 +1968,12 @@
     "port": 36077,
     "secret": "ee31fcc7de872ddee361f1217d9a0377e17777772e636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=shortline.proxy.rlwy.net&port=36077&secret=ee31fcc7de872ddee361f1217d9a0377e17777772e636c6f7564666c6172652e636f6d",
-    "ping": 0.132,
+    "ping": 0.133,
     "region": "us",
     "domain": "www.cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -1994,12 +1994,12 @@
     "port": 443,
     "secret": "ee5c89ab20266ce759f96a0745b63d7cdf656467652e746964616c63616368652e636f6d",
     "link": "tg://proxy?server=n78dcf0.tidalcache.com&port=443&secret=ee5c89ab20266ce759f96a0745b63d7cdf656467652e746964616c63616368652e636f6d",
-    "ping": 0.081,
+    "ping": 0.117,
     "region": "eu",
     "domain": "edge.tidalcache.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2007,12 +2007,12 @@
     "port": 443,
     "secret": "7jFMSRrub9JuyovG5wb7BUJtYWlsLnJ1",
     "link": "tg://proxy?server=68.209.58.149&port=443&secret=7jFMSRrub9JuyovG5wb7BUJtYWlsLnJ1",
-    "ping": 0.143,
+    "ping": 0.137,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2072,12 +2072,12 @@
     "port": 443,
     "secret": "ee271a79a8c3ffc97950025632d757aa227777772e6d736e2e636f6d",
     "link": "tg://proxy?server=193.41.5.238&port=443&secret=ee271a79a8c3ffc97950025632d757aa227777772e6d736e2e636f6d",
-    "ping": 0.09,
+    "ping": 0.145,
     "region": "eu",
     "domain": "www.msn.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2176,12 +2176,12 @@
     "port": 443,
     "secret": "eebd5ad305b57ce0b14cbaa0f7df014c4d7777772e666173746573742e6d796d6e622e6972",
     "link": "tg://proxy?server=89.34.230.97&port=443&secret=eebd5ad305b57ce0b14cbaa0f7df014c4d7777772e666173746573742e6d796d6e622e6972",
-    "ping": 0.146,
+    "ping": 0.139,
     "region": "asia",
     "domain": "www.fastest.mymnb.ir",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2189,12 +2189,12 @@
     "port": 443,
     "secret": "eedec404cfa8eda63cce9e838547dee3dc636c6f7564666c6172652e636f6d",
     "link": "tg://proxy?server=89.117.61.184&port=443&secret=eedec404cfa8eda63cce9e838547dee3dc636c6f7564666c6172652e636f6d",
-    "ping": 0.091,
+    "ping": 0.148,
     "region": "us",
     "domain": "cloudflare.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T13:19:14.843293+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2202,12 +2202,12 @@
     "port": 443,
     "secret": "9f27410725ab8ab84ed17daf14723236",
     "link": "tg://proxy?server=prxyhub.click&port=443&secret=9f27410725ab8ab84ed17daf14723236",
-    "ping": 0.022,
+    "ping": 0.065,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2228,12 +2228,12 @@
     "port": 443,
     "secret": "a4b93f8c7e5d21fa0c6e4b2d8f19c73a",
     "link": "tg://proxy?server=216.9.225.97&port=443&secret=a4b93f8c7e5d21fa0c6e4b2d8f19c73a",
-    "ping": 0.067,
+    "ping": 0.064,
     "region": "us",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2254,12 +2254,12 @@
     "port": 443,
     "secret": "EERighJJvXrFGRMCIMJdCQRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
     "link": "tg://proxy?server=117.55.203.146&port=443&secret=EERighJJvXrFGRMCIMJdCQRueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29tAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-    "ping": 0.137,
+    "ping": 0.139,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2280,12 +2280,12 @@
     "port": 443,
     "secret": "ee32b920dffb51643028e2f6b878d4eac16170706c652e636f6d",
     "link": "tg://proxy?server=209.127.228.162&port=443&secret=ee32b920dffb51643028e2f6b878d4eac16170706c652e636f6d",
-    "ping": 0.142,
+    "ping": 0.137,
     "region": "eu",
     "domain": "apple.com",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2293,12 +2293,12 @@
     "port": 443,
     "secret": "746a6e2428ebe53299786324c187977a",
     "link": "tg://proxy?server=45.77.140.203&port=443&secret=746a6e2428ebe53299786324c187977a",
-    "ping": 0.144,
+    "ping": 0.148,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2345,12 +2345,12 @@
     "port": 443,
     "secret": "EERighJJvXrFGRMCIMJdCQ",
     "link": "tg://proxy?server=117.55.202.212&port=443&secret=EERighJJvXrFGRMCIMJdCQ",
-    "ping": 0.144,
+    "ping": 0.139,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2358,12 +2358,12 @@
     "port": 443,
     "secret": "90324bad83192e29c303d9c89171b9ad",
     "link": "tg://proxy?server=95.179.151.48&port=443&secret=90324bad83192e29c303d9c89171b9ad",
-    "ping": 0.145,
+    "ping": 0.141,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2371,12 +2371,12 @@
     "port": 443,
     "secret": "eecBAgABAAfwAwOG4kw63QAAAARueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29t",
     "link": "tg://proxy?server=185.209.15.243&port=443&secret=eecBAgABAAfwAwOG4kw63QAAAARueWVrdGFuZXQuY29tZmFyYWthdi5jb212YW4ubmFqdmEuY29t",
-    "ping": 0.145,
+    "ping": 0.139,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2397,12 +2397,12 @@
     "port": 443,
     "secret": "ee71fe479cbecef04a10072a5c551ccee0666173746573742e6d796d6e622e6972",
     "link": "tg://proxy?server=89.34.230.23&port=443&secret=ee71fe479cbecef04a10072a5c551ccee0666173746573742e6d796d6e622e6972",
-    "ping": 0.146,
+    "ping": 0.14,
     "region": "asia",
     "domain": "fastest.mymnb.ir",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2475,12 +2475,12 @@
     "port": 443,
     "secret": "dd79e7010200010007f0030386e24c3add",
     "link": "tg://proxy?server=103.161.34.42&port=443&secret=dd79e7010200010007f0030386e24c3add",
-    "ping": 0.148,
+    "ping": 0.147,
     "region": "asia",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2501,12 +2501,12 @@
     "port": 443,
     "secret": "3XnnAQIAAQAH8AMDhuJMOt0",
     "link": "tg://proxy?server=194.120.230.120&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0",
-    "ping": 0.148,
+    "ping": 0.147,
     "region": "eu",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   },
   {
     "type": "mtproto",
@@ -2657,11 +2657,336 @@
     "port": 443,
     "secret": "3XnnAQIAAQAH8AMDhuJMOt0",
     "link": "tg://proxy?server=103.161.35.56&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0",
-    "ping": 0.15,
+    "ping": 0.147,
     "region": "asia",
     "domain": "",
     "method": "TCP_OK",
     "probe_resistant": false,
-    "seen_at": "2026-11-18T18:41:39.914829+00:00"
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "web.jinxandjack.co.uk",
+    "port": 443,
+    "secret": "eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169",
+    "link": "tg://proxy?server=web.jinxandjack.co.uk&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169",
+    "ping": 0.051,
+    "region": "eu",
+    "domain": "web.bale.ai",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "185.92.182.44",
+    "port": 443,
+    "secret": "eea3f91c2d88b4e6aa11bb22cc33dd44ee7777772e676f6f676c652e63",
+    "link": "tg://proxy?server=185.92.182.44&port=443&secret=eea3f91c2d88b4e6aa11bb22cc33dd44ee7777772e676f6f676c652e63",
+    "ping": 0.058,
+    "region": "eu",
+    "domain": "www.google.c",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "ftp.jinxandjack.co.uk",
+    "port": 443,
+    "secret": "eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169",
+    "link": "tg://proxy?server=ftp.jinxandjack.co.uk&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169",
+    "ping": 0.064,
+    "region": "eu",
+    "domain": "web.bale.ai",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "66.94.107.23",
+    "port": 443,
+    "secret": "eecfcd09956992b6d4dd0bf6aa2a8f63cd676f6f676c65617069732e636f6d",
+    "link": "tg://proxy?server=66.94.107.23&port=443&secret=eecfcd09956992b6d4dd0bf6aa2a8f63cd676f6f676c65617069732e636f6d",
+    "ping": 0.084,
+    "region": "eu",
+    "domain": "googleapis.com",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "cdn.jinxandjack.co.uk",
+    "port": 443,
+    "secret": "eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169",
+    "link": "tg://proxy?server=cdn.jinxandjack.co.uk&port=443&secret=eeddffffffc5a1168b2ff3eba31cbfffff7765622e62616c652e6169",
+    "ping": 0.099,
+    "region": "eu",
+    "domain": "web.bale.ai",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "shared1.ddproxy.xyz",
+    "port": 443,
+    "secret": "eedddddddddddddddddddddddddddddddd6d2e6265626f6f2e7275",
+    "link": "tg://proxy?server=shared1.ddproxy.xyz&port=443&secret=eedddddddddddddddddddddddddddddddd6d2e6265626f6f2e7275",
+    "ping": 0.11,
+    "region": "ru",
+    "domain": "m.beboo.ru",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "n78dcf0.tidalcache.com",
+    "port": 443,
+    "secret": "7lyJqyAmbOdZ-WoHRbY9fN9lZGdlLnRpZGFsY2FjaGUuY29t",
+    "link": "tg://proxy?server=n78dcf0.tidalcache.com&port=443&secret=7lyJqyAmbOdZ-WoHRbY9fN9lZGdlLnRpZGFsY2FjaGUuY29t",
+    "ping": 0.134,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "87.58.201.189",
+    "port": 443,
+    "secret": "ee1caa97e5002aec0421f8c5b04a53c0e37362657262616e6b2e7275",
+    "link": "tg://proxy?server=87.58.201.189&port=443&secret=ee1caa97e5002aec0421f8c5b04a53c0e37362657262616e6b2e7275",
+    "ping": 0.142,
+    "region": "ru",
+    "domain": "sberbank.ru",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "176.65.151.68",
+    "port": 443,
+    "secret": "dd27729feca8dbcd8008c3fa4f12d92793",
+    "link": "tg://proxy?server=176.65.151.68&port=443&secret=dd27729feca8dbcd8008c3fa4f12d92793",
+    "ping": 0.142,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "87.229.100.5",
+    "port": 8770,
+    "secret": "eeNEgYdJvXrFGRMCIMJdCQ",
+    "link": "tg://proxy?server=87.229.100.5&port=8770&secret=eeNEgYdJvXrFGRMCIMJdCQ",
+    "ping": 0.142,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "fasst.sitemcinet.co.uk",
+    "port": 443,
+    "secret": "7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t",
+    "link": "tg://proxy?server=fasst.sitemcinet.co.uk&port=443&secret=7gAA8A8Pd1VV____9QBuLmltZWRpYS5zdGVhbXBvd2VyZWQuY29t",
+    "ping": 0.144,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "45.38.23.169",
+    "port": 443,
+    "secret": "eee2970b9a0d34e958110ee25e8bc8378d6d61696c2e7275",
+    "link": "tg://proxy?server=45.38.23.169&port=443&secret=eee2970b9a0d34e958110ee25e8bc8378d6d61696c2e7275",
+    "ping": 0.144,
+    "region": "ru",
+    "domain": "mail.ru",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "s2.server-space52.info",
+    "port": 2020,
+    "secret": "AAAAAAAAAAAAAAAAAAAAAA%3D%3D",
+    "link": "tg://proxy?server=s2.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D",
+    "ping": 0.144,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "192.248.181.20",
+    "port": 443,
+    "secret": "79e344818749bd7ac519130220c25d09",
+    "link": "tg://proxy?server=192.248.181.20&port=443&secret=79e344818749bd7ac519130220c25d09",
+    "ping": 0.144,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "186.246.16.55",
+    "port": 443,
+    "secret": "ee7d21ac88a75bdb5887ec4918a20386927777772e6d6963726f736f66742e636f6d",
+    "link": "tg://proxy?server=186.246.16.55&port=443&secret=ee7d21ac88a75bdb5887ec4918a20386927777772e6d6963726f736f66742e636f6d",
+    "ping": 0.145,
+    "region": "eu",
+    "domain": "www.microsoft.com",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "109.104.154.81",
+    "port": 443,
+    "secret": "ee0000f00f0f775555fffffff5006e2e696D656469612E737465616D706F77657265642E636F6D",
+    "link": "tg://proxy?server=109.104.154.81&port=443&secret=ee0000f00f0f775555fffffff5006e2e696D656469612E737465616D706F77657265642E636F6D",
+    "ping": 0.145,
+    "region": "eu",
+    "domain": "media.steampowered.com",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "194.163.179.172",
+    "port": 443,
+    "secret": "eed47dd5b61f267e882607f80791350679636c6f7564666c6172652e636f6d",
+    "link": "tg://proxy?server=194.163.179.172&port=443&secret=eed47dd5b61f267e882607f80791350679636c6f7564666c6172652e636f6d",
+    "ping": 0.147,
+    "region": "us",
+    "domain": "cloudflare.com",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "103.161.35.23",
+    "port": 443,
+    "secret": "3XnnAQIAAQAH8AMDhuJMOt0",
+    "link": "tg://proxy?server=103.161.35.23&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0",
+    "ping": 0.147,
+    "region": "asia",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "195.62.32.55",
+    "port": 443,
+    "secret": "3XnnAQIAAQAH8AMDhuJMOt",
+    "link": "tg://proxy?server=195.62.32.55&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt",
+    "ping": 0.147,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "176.65.128.63",
+    "port": 443,
+    "secret": "3XnnAQIAAQAH8AMDhuJMOt0",
+    "link": "tg://proxy?server=176.65.128.63&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0",
+    "ping": 0.147,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "194.163.170.186",
+    "port": 443,
+    "secret": "ee6563b226ac5c6c3959481f1605f442f9636c6f7564666c6172652e636f6d",
+    "link": "tg://proxy?server=194.163.170.186&port=443&secret=ee6563b226ac5c6c3959481f1605f442f9636c6f7564666c6172652e636f6d",
+    "ping": 0.147,
+    "region": "us",
+    "domain": "cloudflare.com",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "S1.server-space52.info",
+    "port": 2020,
+    "secret": "AAAAAAAAAAAAAAAAAAAAAA==",
+    "link": "tg://proxy?server=S1.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA==",
+    "ping": 0.148,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "S1.server-space52.info",
+    "port": 2020,
+    "secret": "AAAAAAAAAAAAAAAAAAAAAA%3D%3D",
+    "link": "tg://proxy?server=S1.server-space52.info&port=2020&secret=AAAAAAAAAAAAAAAAAAAAAA%3D%3D",
+    "ping": 0.148,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "194.120.230.106",
+    "port": 443,
+    "secret": "3XnnAQIAAQAH8AMDhuJMOt0",
+    "link": "tg://proxy?server=194.120.230.106&port=443&secret=3XnnAQIAAQAH8AMDhuJMOt0",
+    "ping": 0.148,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
+  },
+  {
+    "type": "mtproto",
+    "host": "80.240.30.57",
+    "port": 443,
+    "secret": "982334854ebc928f7d17018711bf8c41",
+    "link": "tg://proxy?server=80.240.30.57&port=443&secret=982334854ebc928f7d17018711bf8c41",
+    "ping": 0.148,
+    "region": "eu",
+    "domain": "",
+    "method": "TCP_OK",
+    "probe_resistant": false,
+    "seen_at": "2026-11-19T01:45:50.282632+00:00"
   }
 ]
