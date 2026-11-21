@@ -1,11 +1,11 @@
 {
-  "last_update": "2026-11-20T18:22:57.570759+00:00",
-  "unique_collected": 3370,
-  "checked": 3370,
-  "valid": 1228,
+  "last_update": "2026-11-21T01:07:54.813595+00:00",
+  "unique_collected": 3245,
+  "checked": 3245,
+  "valid": 1242,
   "manual_count": 9,
-  "sources_ok": 35,
-  "sources_failed": 21,
+  "sources_ok": 36,
+  "sources_failed": 20,
   "sources": {
     "https://raw.githubusercontent.com/kort0881/telegram-proxy-collector/main/proxy_ru.txt": {
       "stage": "mtproto",
@@ -51,23 +51,23 @@
     },
     "https://raw.githubusercontent.com/SoliSpirit/mtproto/master/all_proxies.txt": {
       "stage": "mtproto",
-      "mtproto": 197,
+      "mtproto": 313,
       "socks5": 0,
-      "total": 197,
+      "total": 313,
       "ok": true
     },
     "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt": {
       "stage": "mtproto",
-      "mtproto": 202,
+      "mtproto": 197,
       "socks5": 0,
-      "total": 202,
+      "total": 197,
       "ok": true
     },
     "https://raw.githubusercontent.com/ALIILAPRO/MTProtoProxy/main/mtproto.txt": {
       "stage": "mtproto",
-      "mtproto": 197,
+      "mtproto": 313,
       "socks5": 0,
-      "total": 197,
+      "total": 313,
       "ok": true
     },
     "https://mtpro.xyz/api/?type=mtproto": {
@@ -198,9 +198,9 @@
     },
     "https://raw.githubusercontent.com/Surfboardv2ray/TGProto/refs/heads/main/proxies.txt": {
       "stage": "mtproto",
-      "mtproto": 290,
+      "mtproto": 287,
       "socks5": 0,
-      "total": 290,
+      "total": 287,
       "ok": true
     },
     "https://raw.githubusercontent.com/iwh3n/tg-proxy/refs/heads/main/proxys/All_Proxys.txt": {
@@ -212,9 +212,9 @@
     },
     "https://raw.githubusercontent.com/kubiknubika/my-tg-proxies/refs/heads/main/data/proxies.json": {
       "stage": "mtproto",
-      "mtproto": 209,
+      "mtproto": 217,
       "socks5": 0,
-      "total": 209,
+      "total": 217,
       "ok": true
     },
     "https://raw.githubusercontent.com/shablin/mtproto-proxy/refs/heads/main/data/valid_proxy.json": {
@@ -240,16 +240,16 @@
     },
     "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/MTProto.txt": {
       "stage": "mtproto",
-      "mtproto": 248,
+      "mtproto": 216,
       "socks5": 0,
-      "total": 248,
+      "total": 216,
       "ok": true
     },
     "https://raw.githubusercontent.com/McDaived/ProxyDaiv/refs/heads/main/public/proxies.json": {
       "stage": "mtproto",
-      "mtproto": 80,
+      "mtproto": 179,
       "socks5": 0,
-      "total": 80,
+      "total": 179,
       "ok": true
     },
     "https://raw.githubusercontent.com/klondike0x/mtp4tg-proxies/refs/heads/main/all_proxies.txt": {
@@ -289,16 +289,16 @@
     },
     "https://raw.githubusercontent.com/blog1703/tgonline/refs/heads/main/proxies.txt": {
       "stage": "mtproto",
-      "mtproto": 23,
+      "mtproto": 25,
       "socks5": 0,
-      "total": 23,
+      "total": 25,
       "ok": true
     },
     "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/main/protocols/mtproto.txt": {
       "stage": "mtproto",
-      "mtproto": 352,
+      "mtproto": 328,
       "socks5": 0,
-      "total": 352,
+      "total": 328,
       "ok": true
     },
     "https://moonlunavpn.com/proxies.txt": {
@@ -369,13 +369,13 @@
       "mtproto": 0,
       "socks5": 0,
       "total": 0,
-      "ok": false
+      "ok": true
     },
     "https://gist.githubusercontent.com/December000/fd23d2530ffc29264297a5e687a79ecd/raw/all.yaml": {
       "stage": "socks5",
       "mtproto": 0,
-      "socks5": 0,
-      "total": 0,
+      "socks5": 1,
+      "total": 1,
       "ok": true
     },
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/proxy.txt": {
@@ -395,8 +395,8 @@
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt": {
       "stage": "socks5",
       "mtproto": 0,
-      "socks5": 847,
-      "total": 847,
+      "socks5": 658,
+      "total": 658,
       "ok": true
     }
   }
