@@ -1,67 +1,67 @@
 {
-  "timestamp": "2026-11-20T18:23:44.826163+00:00",
+  "timestamp": "2026-11-21T01:08:45.786528+00:00",
   "metrics": {
-    "total": 294,
-    "pings_count": 294,
-    "median_ping": 0.091,
-    "mean_ping": 0.092,
-    "stdev_ping": 0.041,
-    "good_thr": 0.091,
-    "bad_thr": 0.227,
-    "good": 172,
-    "medium": 122,
+    "total": 313,
+    "pings_count": 313,
+    "median_ping": 0.093,
+    "mean_ping": 0.099,
+    "stdev_ping": 0.04,
+    "good_thr": 0.093,
+    "bad_thr": 0.232,
+    "good": 163,
+    "medium": 150,
     "bad": 0,
     "regions": {
-      "eu": 185,
-      "us": 75,
+      "eu": 201,
+      "us": 78,
       "ru": 26,
       "asia": 8
     },
     "types": {
-      "mtproto": 294
+      "mtproto": 313
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
-    "recommended_workers": 100,
-    "current_avg_ping": 0.092,
-    "current_median_ping": 0.091,
-    "current_stdev_ping": 0.041,
-    "total_proxies": 294,
-    "trend_median_ping": -0.001,
+    "recommended_workers": 200,
+    "current_avg_ping": 0.099,
+    "current_median_ping": 0.093,
+    "current_stdev_ping": 0.04,
+    "total_proxies": 313,
+    "trend_median_ping": 0.002,
     "trend_direction": "stable"
   },
-  "anomalies_count": 15,
+  "anomalies_count": 16,
   "model": {
-    "cv_f1": 0.9978,
+    "cv_f1": 0.9981,
     "report": {
       "0": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 65.0
+        "support": 58.0
       },
       "1": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 229.0
+        "support": 255.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 294.0
+        "support": 313.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 294.0
+        "support": 313.0
       }
     },
-    "threshold": 0.1365
+    "threshold": 0.1395
   }
 }
