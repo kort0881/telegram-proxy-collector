@@ -6,10 +6,9 @@
 # - Расширенный фильтр подозрительных портов (Tomcat, Minecraft, RDP…)
 # - Расширенный ALLOWED_COUNTRIES: Азия, Ближний Восток, Мексика
 # - FIX: seen-кэш учитывает secret
-# - FIX: decode_domain корректно пропускает 34 символа (ee + 32 hex secret) перед чтением домена
 # - ADD: источники kort0881/telegram-proxy-collector (regional + all + socks5)
 # - ADD: MANUAL_PROXIES — всегда проверяемые прокси
-# - ADD: SOCKS5 handshake — не-SOCKS5 сервера отсеиваются
+# - ADD: проверка ответа Telegram через MTProto и SOCKS5 после TCP ping
 # - ADD: --seen-ttl 0 полностью отключает seen-кэш (ни чтения, ни записи)
 # - ADD: data/proxy_history.json — история для AI-аналитики
 # - ADD: verified/source_stats.json — реальная добыча каждого источника
@@ -25,7 +24,10 @@ import json
 import os
 import argparse
 from typing import Optional, Set, List, Dict, Any, Tuple
+from urllib.parse import quote, unquote
 import logging
+
+from telegram_proxy import MTProxySecret, check_telegram_proxy
 
 logging.basicConfig(
     level=logging.INFO,
@@ -168,6 +170,7 @@ SOCKS_SOURCES = [
 
 # ---------- Пути выходных данных ----------
 HISTORY_FILE = os.path.join('data', 'proxy_history.json')
+VERIFICATION_METHOD = 'TELEGRAM_OK'
 HISTORY_MAX = 2000  # потолок накопленной истории (записей)
 
 # ---------- Регэкспы MTProto (единый источник правды) ----------
@@ -184,40 +187,6 @@ def _valid_port(p: str) -> bool:
         return 1 <= int(p) <= 65535
     except ValueError:
         return False
-
-def _check_socks5_handshake(host: str, port: int, timeout: float,
-                            auth: Optional[Tuple[Optional[str], Optional[str]]] = None) -> bool:
-    """Проверяет, что на порту действительно SOCKS5.
-
-    Поддерживает метод 0x00 (no-auth) и 0x02 (username/password, RFC 1929).
-    SOCKS5 с обязательной авторизацией раньше отсеивался целиком — теперь
-    проверяется, если креды есть в источнике; без кредов такой прокси не проходит.
-    """
-    user, pw = (auth or (None, None))
-    has_auth = bool(user) and pw is not None
-    try:
-        with socket.create_connection((host, port), timeout=timeout) as s:
-            s.settimeout(timeout)
-            methods = b"\x05\x02\x00\x02" if has_auth else b"\x05\x01\x00"
-            s.sendall(methods)
-            resp = s.recv(2)
-            if len(resp) != 2 or resp[0] != 5:
-                return False
-            method = resp[1]
-            if method == 0x00:
-                return True
-            if method == 0x02 and has_auth:
-                u = str(user).encode("utf-8")[:255]
-                p = str(pw).encode("utf-8")[:255]
-                s.sendall(b"\x01" + bytes([len(u)]) + u + bytes([len(p)]) + p)
-                ok = s.recv(2)
-                return len(ok) == 2 and ok[0] == 1 and ok[1] == 0
-            return False
-    except (socket.timeout, socket.error, OSError):
-        return False
-
-def _is_blocked(secret: str, domain: Optional[str]) -> bool:
-    return len(secret) < 16 or (domain and any(b in domain for b in BLOCKED))
 
 def _region_from_country(iso_code: Optional[str]) -> str:
     if not iso_code:
@@ -236,36 +205,6 @@ def _detect_region(domain: Optional[str]) -> str:
     if any(m in d for m in US_DOMAINS):   return 'us'
     if any(m in d for m in ASIA_DOMAINS): return 'asia'
     return 'eu'
-
-def decode_domain(secret: str) -> Optional[str]:
-    """
-    MTProto secret формата 'ee...':
-      'ee' (2 hex) + 32 hex-символа secret (16 байт) + hex-encoded domain.
-    Домен начинается с позиции 34.
-    """
-    if not secret:
-        return None
-    s = secret.lower()
-    if not s.startswith('ee') or len(s) <= 34:
-        return None
-    try:
-        hex_domain = s[34:]
-        chars = []
-        for i in range(0, len(hex_domain) - 1, 2):
-            pair = hex_domain[i:i+2]
-            if len(pair) < 2:
-                break
-            v = int(pair, 16)
-            if v == 0:
-                break
-            if 32 <= v <= 126:
-                chars.append(chr(v))
-            else:
-                break
-        domain = ''.join(chars).strip().lower()
-        return domain or None
-    except (ValueError, IndexError):
-        return None
 
 def _load_geoip(path: str):
     global GEOIP_MODE
@@ -310,10 +249,10 @@ def get_proxies_from_text(text: str) -> Set[Tuple[str, str, int, Any]]:
                 proxies.add(('mtproto', h, int(p), s)); mtproto_ips.add((h, int(p)))
     for h, p, u, pw in re.findall(r'tg://socks\?server=([^&\s]+)&port=(\d+)(?:&(?:user|username)=([^&\s]*))?(?:&(?:pass|password)=([^&\s]*))?', text, re.I):
         if _valid_port(p):
-            proxies.add(('socks5', h, int(p), (u or None, pw or None)))
+            proxies.add(('socks5', h, int(p), (unquote(u) if u else None, unquote(pw) if pw else None)))
     for u, pw, h, p in re.findall(r'socks5://(?:([^:@]+):([^@]+)@)?([A-Za-z0-9\.-]+):(\d+)', text, re.I):
         if _valid_port(p):
-            proxies.add(('socks5', h, int(p), (u or None, pw or None)))
+            proxies.add(('socks5', h, int(p), (unquote(u) if u else None, unquote(pw) if pw else None)))
     for match in re.findall(r'(socks5)://([\d.]+):(\d+):\w+', text, re.I):
         ip, port = match[1], match[2]
         if _valid_port(port):
@@ -386,41 +325,47 @@ def check_proxy_tcp(p: Tuple[str, str, int, Any], timeout: float) -> Optional[Di
         if country and country.upper() not in ALLOWED_COUNTRIES:
             return None
 
+    proxy_secret = None
+    credentials = (None, None)
     if typ == 'mtproto':
-        secret = extra
-        domain = decode_domain(secret)
-        if _is_blocked(secret, domain):
+        try:
+            proxy_secret = MTProxySecret.parse(extra)
+        except ValueError:
             return None
-        link = f'tg://proxy?server={host}&port={port}&secret={secret}'
+        domain = proxy_secret.domain
+        if any(blocked in domain for blocked in BLOCKED):
+            return None
+        link = f'tg://proxy?server={host}&port={port}&secret={extra}'
         if domain:
             region = _detect_region(domain)
         else:
             region = _region_from_country(country)
-        domain_str = domain or ''
-    else:
+        domain_str = domain
+    elif typ == 'socks5':
         link = f'tg://socks?server={host}&port={port}'
-        if isinstance(extra, tuple) and len(extra) == 2 and extra[0]:
-            from urllib.parse import quote
-            link += f'&user={quote(str(extra[0]), safe="")}'
-            if extra[1] is not None:
-                link += f'&pass={quote(str(extra[1]), safe="")}'
+        if isinstance(extra, tuple) and len(extra) == 2:
+            credentials = extra
+        user, password = credentials
+        if user:
+            link += f'&user={quote(user, safe="")}'
+            if password is not None:
+                link += f'&pass={quote(password, safe="")}'
         region = _region_from_country(country)
         domain_str = ''
+    else:
+        return None
 
     try:
-        start = time.time()
-        with socket.create_connection((host, port), timeout=timeout) as s:
-            s.settimeout(timeout)
-        ping = round(time.time() - start, 3)
-        if typ == 'socks5':
-            creds = extra if isinstance(extra, tuple) and len(extra) == 2 else (None, None)
-            if not _check_socks5_handshake(host, port, timeout, creds):
-                return None
+        start = time.monotonic()
+        with socket.create_connection((host, port), timeout=timeout):
+            ping = round(time.monotonic() - start, 3)
+        if not check_telegram_proxy(host, port, timeout, secret=proxy_secret, credentials=credentials):
+            return None
         return {
             'type': typ, 'host': host, 'port': port,
             'secret': extra if typ == 'mtproto' else None,
             'link': link, 'ping': ping, 'region': region,
-            'domain': domain_str, 'method': 'TCP_OK', 'probe_resistant': False,
+            'domain': domain_str, 'method': VERIFICATION_METHOD, 'probe_resistant': False,
         }
     except (socket.timeout, socket.error, OSError, TypeError):
         return None
@@ -475,6 +420,8 @@ def load_seen(path: str, ttl_hours: int = 48) -> Set[Tuple]:
     except Exception as e:
         print(f'⚠️ Не удалось прочитать seen-кэш: {e}')
         return set()
+    if not isinstance(data, dict) or data.get('method') != VERIFICATION_METHOD:
+        return set()
 
     seen_set = set()
     now = datetime.now(timezone.utc)
@@ -496,7 +443,7 @@ def save_seen(path: str, seen):
         os.makedirs(os.path.dirname(path) or '.', exist_ok=True)
         keys = list(seen)[-100000:]
         now = datetime.now(timezone.utc).isoformat()
-        payload = {'seen': [{'k': list(k), 'ts': now} for k in keys]}
+        payload = {'method': VERIFICATION_METHOD, 'seen': [{'k': list(k), 'ts': now} for k in keys]}
         with open(path, 'w', encoding='utf-8') as f:
             json.dump(payload, f)
         print(f'💾 Seen-кэш сохранён: {len(keys)} записей')
@@ -601,7 +548,7 @@ def run(args):
         print(f"   SOCKS5: {sum(1 for x in all_raw if x[0] == 'socks5')}")
         return
 
-    print(f'\n⚡ Проверка {len(all_raw)} прокси (TCP ping)...\n')
+    print(f'\n⚡ Проверка {len(all_raw)} прокси (TCP ping и ответ Telegram)...\n')
     valid = []
     checked = 0
     total = len(all_raw)
@@ -624,7 +571,6 @@ def run(args):
 
     if not valid:
         print('\n⚠️ Рабочих прокси не найдено.')
-        return
 
     valid = deduplicate_and_sort(valid)
     mtproto_ru   = [x for x in valid if x['type'] == 'mtproto' and x['region'] == 'ru']
@@ -642,27 +588,28 @@ def run(args):
     all_proxies.sort(key=lambda x: (x['region'], x['ping']))
 
     # История для AI-аналитики — НАКАПЛИВАЕМ между прогонами, а не перезаписываем
-    try:
-        hist_dir = os.path.dirname(HISTORY_FILE)
-        if hist_dir:
-            os.makedirs(hist_dir, exist_ok=True)
-        merged: Dict[Tuple, Dict[str, Any]] = {}
+    if valid:
         try:
-            with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
-                for rec in json.load(f):
-                    if isinstance(rec, dict):
-                        merged[_hist_key(rec)] = rec
-        except (OSError, ValueError, TypeError):
-            merged = {}
-        old_count = len(merged)
-        for rec in valid[:top]:
-            merged[_hist_key(rec)] = dict(rec, seen_at=utc.isoformat())
-        items = list(merged.values())[-HISTORY_MAX:]
-        with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
-            json.dump(items, f, indent=2, ensure_ascii=False)
-        print(f'🧠 История для AI-аналитики: было {old_count}, стало {len(items)} записей → {HISTORY_FILE}')
-    except OSError as e:
-        print(f'⚠️ Не удалось записать историю: {e}')
+            hist_dir = os.path.dirname(HISTORY_FILE)
+            if hist_dir:
+                os.makedirs(hist_dir, exist_ok=True)
+            merged: Dict[Tuple, Dict[str, Any]] = {}
+            try:
+                with open(HISTORY_FILE, 'r', encoding='utf-8') as f:
+                    for rec in json.load(f):
+                        if isinstance(rec, dict):
+                            merged[_hist_key(rec)] = rec
+            except (OSError, ValueError, TypeError):
+                merged = {}
+            old_count = len(merged)
+            for rec in valid[:top]:
+                merged[_hist_key(rec)] = dict(rec, seen_at=utc.isoformat())
+            items = list(merged.values())[-HISTORY_MAX:]
+            with open(HISTORY_FILE, 'w', encoding='utf-8') as f:
+                json.dump(items, f, indent=2, ensure_ascii=False)
+            print(f'🧠 История для AI-аналитики: было {old_count}, стало {len(items)} записей → {HISTORY_FILE}')
+        except OSError as e:
+            print(f'⚠️ Не удалось записать историю: {e}')
 
     files_data = {
         'proxy_ru_verified.txt':   (mtproto_ru[:top],   f'# MTProto RU ({len(mtproto_ru[:top])})\n# Updated: {utc}\n\n'),
@@ -742,7 +689,7 @@ def run(args):
 
 def main():
     parser = argparse.ArgumentParser(description="MTProto & SOCKS5 Proxy Collector v4.1")
-    parser.add_argument('--timeout', type=float, default=2.0)
+    parser.add_argument('--timeout', type=float, default=2.0, help='Timeout in seconds for each check stage (TCP and Telegram)')
     parser.add_argument('--workers', type=int, default=100)
     parser.add_argument('--top', type=int, default=0)
     parser.add_argument('--output-dir', default='verified')
@@ -751,7 +698,7 @@ def main():
     parser.add_argument('--max-check', type=int, default=30000)
     parser.add_argument('--seen-file', type=str, default='verified/seen.json')
     parser.add_argument('--seen-ttl', type=int, default=48)
-    parser.add_argument('--dry-run', action='store_true', help='Only collect and parse proxies, skip TCP verification')
+    parser.add_argument('--dry-run', action='store_true', help='Only collect and parse proxies, skip network verification')
     args = parser.parse_args()
     run(args)
 
