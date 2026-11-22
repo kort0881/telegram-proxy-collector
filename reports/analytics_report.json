@@ -1,67 +1,67 @@
 {
-  "timestamp": "2026-11-21T22:51:14.733284+00:00",
+  "timestamp": "2026-11-22T05:23:49.348670+00:00",
   "metrics": {
-    "total": 348,
-    "pings_count": 348,
-    "median_ping": 0.091,
-    "mean_ping": 0.096,
-    "stdev_ping": 0.038,
-    "good_thr": 0.091,
-    "bad_thr": 0.227,
-    "good": 177,
-    "medium": 171,
+    "total": 361,
+    "pings_count": 361,
+    "median_ping": 0.09,
+    "mean_ping": 0.09,
+    "stdev_ping": 0.04,
+    "good_thr": 0.09,
+    "bad_thr": 0.225,
+    "good": 185,
+    "medium": 176,
     "bad": 0,
     "regions": {
-      "eu": 232,
-      "us": 81,
+      "eu": 244,
+      "us": 82,
       "ru": 27,
       "asia": 8
     },
     "types": {
-      "mtproto": 348
+      "mtproto": 361
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
     "recommended_workers": 200,
-    "current_avg_ping": 0.096,
-    "current_median_ping": 0.091,
-    "current_stdev_ping": 0.038,
-    "total_proxies": 348,
-    "trend_median_ping": 0.0,
+    "current_avg_ping": 0.09,
+    "current_median_ping": 0.09,
+    "current_stdev_ping": 0.04,
+    "total_proxies": 361,
+    "trend_median_ping": -0.001,
     "trend_direction": "stable"
   },
   "anomalies_count": 18,
   "model": {
-    "cv_f1": 0.9982,
+    "cv_f1": 0.9984,
     "report": {
       "0": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 67.0
+        "support": 59.0
       },
       "1": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 281.0
+        "support": 302.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 348.0
+        "support": 361.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 348.0
+        "support": 361.0
       }
     },
-    "threshold": 0.1365
+    "threshold": 0.135
   }
 }
