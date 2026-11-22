@@ -1,38 +1,38 @@
 {
-  "timestamp": "2026-11-22T05:23:49.348670+00:00",
+  "timestamp": "2026-11-22T14:10:32.168364+00:00",
   "metrics": {
-    "total": 361,
-    "pings_count": 361,
-    "median_ping": 0.09,
-    "mean_ping": 0.09,
-    "stdev_ping": 0.04,
-    "good_thr": 0.09,
-    "bad_thr": 0.225,
-    "good": 185,
-    "medium": 176,
+    "total": 371,
+    "pings_count": 371,
+    "median_ping": 0.091,
+    "mean_ping": 0.093,
+    "stdev_ping": 0.038,
+    "good_thr": 0.091,
+    "bad_thr": 0.227,
+    "good": 197,
+    "medium": 174,
     "bad": 0,
     "regions": {
-      "eu": 244,
-      "us": 82,
+      "eu": 252,
+      "us": 84,
       "ru": 27,
       "asia": 8
     },
     "types": {
-      "mtproto": 361
+      "mtproto": 371
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
     "recommended_workers": 200,
-    "current_avg_ping": 0.09,
-    "current_median_ping": 0.09,
-    "current_stdev_ping": 0.04,
-    "total_proxies": 361,
-    "trend_median_ping": -0.001,
+    "current_avg_ping": 0.093,
+    "current_median_ping": 0.091,
+    "current_stdev_ping": 0.038,
+    "total_proxies": 371,
+    "trend_median_ping": 0.001,
     "trend_direction": "stable"
   },
-  "anomalies_count": 18,
+  "anomalies_count": 19,
   "model": {
     "cv_f1": 0.9984,
     "report": {
@@ -40,28 +40,28 @@
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 59.0
+        "support": 56.0
       },
       "1": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 302.0
+        "support": 315.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 361.0
+        "support": 371.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 361.0
+        "support": 371.0
       }
     },
-    "threshold": 0.135
+    "threshold": 0.1365
   }
 }
