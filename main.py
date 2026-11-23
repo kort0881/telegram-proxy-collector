@@ -94,6 +94,8 @@ MANUAL_PROXIES = [
     "tg://proxy?server=proxy-a.normone.cc&port=8444&secret=ee0579c89b293b8ed2cc6cf535da97b28a706574726f766963682e7275",
     "tg://proxy?server=proxy-b.normone.cc&port=9443&secret=ddae0e2ca6e12d135fe03ae3bac49ce415",
     "tg://proxy?server=proxy-c.normone.cc&port=10443&secret=ee248678d3439f2b14508773c98c3b46787777772e6d6963726f736f66742e636f6d",
+    # из issue #66 (apteka81, 22.11.2026)
+    "tg://proxy?server=mt-sw.alex-photo-notes.pl&port=443&secret=ee7e6b2fd41ef1ea857afe29d6b303c5f17777772e676f6f676c652e636f6d",
 ]
 
 # ---------- Источники ----------
