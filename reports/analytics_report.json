@@ -1,38 +1,38 @@
 {
-  "timestamp": "2026-11-24T14:37:54.343551+00:00",
+  "timestamp": "2026-11-25T00:25:39.174603+00:00",
   "metrics": {
-    "total": 400,
-    "pings_count": 400,
-    "median_ping": 0.093,
-    "mean_ping": 0.097,
-    "stdev_ping": 0.039,
-    "good_thr": 0.093,
-    "bad_thr": 0.232,
-    "good": 204,
-    "medium": 196,
+    "total": 411,
+    "pings_count": 411,
+    "median_ping": 0.091,
+    "mean_ping": 0.093,
+    "stdev_ping": 0.04,
+    "good_thr": 0.091,
+    "bad_thr": 0.227,
+    "good": 226,
+    "medium": 185,
     "bad": 0,
     "regions": {
-      "eu": 273,
+      "eu": 284,
       "us": 87,
       "ru": 32,
       "asia": 8
     },
     "types": {
-      "mtproto": 400
+      "mtproto": 411
     }
   },
   "recommendations": {
     "recommended_timeout_mt": 8,
     "recommended_max_ping": 1.5,
     "recommended_workers": 200,
-    "current_avg_ping": 0.097,
-    "current_median_ping": 0.093,
-    "current_stdev_ping": 0.039,
-    "total_proxies": 400,
-    "trend_median_ping": 0.0,
+    "current_avg_ping": 0.093,
+    "current_median_ping": 0.091,
+    "current_stdev_ping": 0.04,
+    "total_proxies": 411,
+    "trend_median_ping": -0.002,
     "trend_direction": "stable"
   },
-  "anomalies_count": 19,
+  "anomalies_count": 20,
   "model": {
     "cv_f1": 1.0,
     "report": {
@@ -40,28 +40,28 @@
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 67.0
+        "support": 79.0
       },
       "1": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 333.0
+        "support": 332.0
       },
       "accuracy": 1.0,
       "macro avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 400.0
+        "support": 411.0
       },
       "weighted avg": {
         "precision": 1.0,
         "recall": 1.0,
         "f1-score": 1.0,
-        "support": 400.0
+        "support": 411.0
       }
     },
-    "threshold": 0.1395
+    "threshold": 0.1365
   }
 }
