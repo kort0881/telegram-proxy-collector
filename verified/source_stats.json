@@ -1,8 +1,8 @@
 {
-  "last_update": "2026-11-26T22:51:21.679113+00:00",
-  "unique_collected": 3431,
-  "checked": 3431,
-  "valid": 1381,
+  "last_update": "2026-11-27T06:59:09.012242+00:00",
+  "unique_collected": 3594,
+  "checked": 3594,
+  "valid": 1419,
   "manual_count": 10,
   "sources_ok": 36,
   "sources_failed": 20,
@@ -58,9 +58,9 @@
     },
     "https://raw.githubusercontent.com/Grim1313/mtproto-for-telegram/refs/heads/master/all_proxies.txt": {
       "stage": "mtproto",
-      "mtproto": 408,
+      "mtproto": 404,
       "socks5": 0,
-      "total": 408,
+      "total": 404,
       "ok": true
     },
     "https://raw.githubusercontent.com/ALIILAPRO/MTProtoProxy/main/mtproto.txt": {
@@ -198,9 +198,9 @@
     },
     "https://raw.githubusercontent.com/Surfboardv2ray/TGProto/refs/heads/main/proxies.txt": {
       "stage": "mtproto",
-      "mtproto": 371,
+      "mtproto": 363,
       "socks5": 0,
-      "total": 371,
+      "total": 363,
       "ok": true
     },
     "https://raw.githubusercontent.com/iwh3n/tg-proxy/refs/heads/main/proxys/All_Proxys.txt": {
@@ -212,9 +212,9 @@
     },
     "https://raw.githubusercontent.com/kubiknubika/my-tg-proxies/refs/heads/main/data/proxies.json": {
       "stage": "mtproto",
-      "mtproto": 226,
+      "mtproto": 207,
       "socks5": 0,
-      "total": 226,
+      "total": 207,
       "ok": true
     },
     "https://raw.githubusercontent.com/shablin/mtproto-proxy/refs/heads/main/data/valid_proxy.json": {
@@ -240,9 +240,9 @@
     },
     "https://raw.githubusercontent.com/Argh94/Proxy-List/refs/heads/main/MTProto.txt": {
       "stage": "mtproto",
-      "mtproto": 366,
+      "mtproto": 386,
       "socks5": 0,
-      "total": 366,
+      "total": 386,
       "ok": true
     },
     "https://raw.githubusercontent.com/McDaived/ProxyDaiv/refs/heads/main/public/proxies.json": {
@@ -296,9 +296,9 @@
     },
     "https://raw.githubusercontent.com/MustafaBaqer/VestraNet-Nodes/refs/heads/main/protocols/mtproto.txt": {
       "stage": "mtproto",
-      "mtproto": 435,
+      "mtproto": 583,
       "socks5": 0,
-      "total": 435,
+      "total": 583,
       "ok": true
     },
     "https://moonlunavpn.com/proxies.txt": {
@@ -388,15 +388,15 @@
     "https://raw.githubusercontent.com/CB-X2-Jun/proxy-lists/main/public/proxies.json": {
       "stage": "socks5",
       "mtproto": 0,
-      "socks5": 18,
-      "total": 18,
+      "socks5": 24,
+      "total": 24,
       "ok": true
     },
     "https://raw.githubusercontent.com/ProxyScrape/free-proxy-list/refs/heads/main/proxies/all/data.txt": {
       "stage": "socks5",
       "mtproto": 0,
-      "socks5": 512,
-      "total": 512,
+      "socks5": 666,
+      "total": 666,
       "ok": true
     }
   }
